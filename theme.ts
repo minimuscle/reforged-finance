@@ -11,4 +11,5 @@ export const theme = createTheme({
   headings: {
     fontFamily: roboto.style.fontFamily,
   },
+  defaultRadius: "sm",
 })
