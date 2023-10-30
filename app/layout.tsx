@@ -14,7 +14,13 @@ import {
 } from "@mantine/core"
 import { theme } from "../theme"
 import { useDisclosure } from "@mantine/hooks"
-import { RxDashboard } from "react-icons/rx"
+import { RxDashboard, RxGear } from "react-icons/rx"
+import { GrMoney, GrHistory } from "react-icons/gr"
+import { HiOutlineTrendingDown } from "react-icons/hi"
+import { TbReportMoney } from "react-icons/tb"
+import { PiCurrencyDollarSimpleBold, PiHandshakeFill } from "react-icons/pi"
+import { usePathname, useRouter } from "next/navigation"
+import "./global.css"
 
 export const metadata = {
   title: "Mantine Next.js template",
@@ -27,6 +33,8 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   const [opened, { toggle }] = useDisclosure(false)
+  const pathname = usePathname()
+  const router = useRouter()
 
   return (
     <html lang="en">
@@ -62,19 +70,64 @@ export default function RootLayout({
             </AppShell.Header>
             <AppShell.Navbar p="md">
               {/** TODO: This should be dynamic due to what the user has selected? Possibly */}
-              <Stack h="100%">
-                <NavLink label="Dashboard" leftSection={<RxDashboard />} />
-                <NavLink label="Cash" leftSection={<RxDashboard />} />
-                <NavLink label="Side Income" leftSection={<RxDashboard />} />
+              <Stack h="100%" className="navigation">
                 <NavLink
-                  label="Liabilities / Debts"
+                  className="navlink"
+                  label="Dashboard"
+                  active={pathname.toLowerCase() === "/"}
                   leftSection={<RxDashboard />}
+                  onClick={() => router.push("/")}
                 />
-                <NavLink label="Super" leftSection={<RxDashboard />} />
-                <NavLink label="Budget" leftSection={<RxDashboard />} />
-                <NavLink label="History" leftSection={<RxDashboard />} />
+                <NavLink
+                  className="navlink"
+                  label="Cash"
+                  active={pathname.toLowerCase() === "/cash"}
+                  leftSection={<PiCurrencyDollarSimpleBold />}
+                  onClick={() => router.push("/cash")}
+                />
+                <NavLink
+                  className="navlink"
+                  label="Side Income"
+                  active={pathname.toLowerCase() === "/side-income"}
+                  leftSection={<GrMoney />}
+                  onClick={() => router.push("/side-income")}
+                />
+                <NavLink
+                  className="navlink"
+                  label="Liabilities / Debts"
+                  active={pathname.toLowerCase() === "/debts"}
+                  leftSection={<HiOutlineTrendingDown />}
+                  onClick={() => router.push("/debts")}
+                />
+                <NavLink
+                  className="navlink"
+                  label="Super"
+                  active={pathname.toLowerCase() === "/super"}
+                  leftSection={<PiHandshakeFill />}
+                  onClick={() => router.push("/super")}
+                />
+                <NavLink
+                  className="navlink"
+                  label="Budget"
+                  active={pathname.toLowerCase() === "/budget"}
+                  leftSection={<TbReportMoney />}
+                  onClick={() => router.push("/budget")}
+                />
+                <NavLink
+                  className="navlink"
+                  label="History"
+                  active={pathname.toLowerCase() === "/history"}
+                  leftSection={<GrHistory />}
+                  onClick={() => router.push("/history")}
+                />
                 <Flex h="100%"></Flex>
-                <NavLink label="Settings" leftSection={<RxDashboard />} />
+                <NavLink
+                  className="navlink"
+                  label="Settings"
+                  active={pathname.toLowerCase() === "/settings"}
+                  leftSection={<RxGear />}
+                  onClick={() => router.push("/settings")}
+                />
               </Stack>
             </AppShell.Navbar>
             <AppShell.Main>{children}</AppShell.Main>
