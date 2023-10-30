@@ -1,3 +1,7 @@
 .navlink {
   border-radius: 5px;
 }
+
+.table th {
+  background-color: #eeeff9;
+}
