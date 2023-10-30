@@ -22,11 +22,6 @@ import { PiCurrencyDollarSimpleBold, PiHandshakeFill } from "react-icons/pi"
 import { usePathname, useRouter } from "next/navigation"
 import "./global.css"
 
-export const metadata = {
-  title: "Mantine Next.js template",
-  description: "I am using Mantine with Next.js!",
-}
-
 export default function RootLayout({
   children,
 }: {
