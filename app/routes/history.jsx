@@ -1,5 +1,5 @@
-"use client"
-import { Paper, Space, Stack, Table, Text, Title } from "@mantine/core"
+import React from "react"
+import { Center, Paper, Space, Stack, Table, Text, Title } from "@mantine/core"
 import "./styles.css"
 import {
   createColumnHelper,
@@ -52,13 +52,35 @@ const columns = [
     cell: (props) => <p>{props.getValue()}</p>,
   },
   {
+    accessorKey: "cash",
+    header: "Gain ($)",
+    cell: (props) => <p>{props.getValue()}</p>,
+  },
+  {
+    accessorKey: "cash",
+    header: "Increase (%)",
+    cell: (props) => <p>{props.getValue()}</p>,
+  },
+  {
     accessorKey: "super",
     header: "Super",
     cell: (props) => <p>{props.getValue()}</p>,
   },
   {
+    accessorKey: "super",
+    header: "Super Gain ($)",
+    cell: (props) => <p>{props.getValue()}</p>,
+  },
+  {
+    accessorKey: "super",
+    header: "Super Increase (%)",
+    size: 20,
+    cell: (props) => <p>{props.getValue()}</p>,
+  },
+  {
     accessorKey: "debts",
     header: "Debts",
+    size: 50,
     cell: (props) => <p>{props.getValue()}</p>,
   },
   {
@@ -83,26 +105,40 @@ export default function History() {
         <Title>History</Title>
         <Text>View Previous Months</Text>
       </Stack>
-      <Paper withBorder className="table">
-        {table.getHeaderGroups().map((headerGroup) => (
-          <Paper withBorder key={headerGroup.id}>
-            {headerGroup.headers.map((header) => (
-              <Paper withBorder>
-                {header.column.columnDef.header?.toString()}
-              </Paper>
-            ))}
-          </Paper>
-        ))}
-        {table.getRowModel().rows.map((row) => (
-          <Paper withBorder>
-            {row.getVisibleCells().map((cell) => (
-              <Paper withBorder>
-                {flexRender(cell.column.columnDef.cell, cell.getContext())}
-              </Paper>
-            ))}
-          </Paper>
-        ))}
-      </Paper>
+      <Space h="xl" />
+      <Table highlightOnHover striped withTableBorder className="table">
+        <Table.Thead>
+          {table.getHeaderGroups().map((headerGroup) => (
+            <Table.Tr key={headerGroup.id}>
+              {headerGroup.headers.map((header) => (
+                <Table.Th>
+                  {header.column.columnDef.header?.toString()}
+                </Table.Th>
+              ))}
+            </Table.Tr>
+          ))}
+        </Table.Thead>
+        <Table.Tbody>
+          {table.getRowModel().rows.map((row) => (
+            <Table.Tr>
+              {row.getVisibleCells().map((cell) => {
+                const content = flexRender(
+                  cell.column.columnDef.cell,
+                  cell.getContext()
+                )
+
+                return (
+                  <Table.Td
+                    className={parseInt(content) > 0 ? "positive" : "negative"}
+                  >
+                    {content}
+                  </Table.Td>
+                )
+              })}
+            </Table.Tr>
+          ))}
+        </Table.Tbody>
+      </Table>
     </div>
   )
 
