@@ -5,9 +5,6 @@ import vercel from "vite-plugin-vercel"
 
 export default defineConfig({
   plugins: [remix(), tsconfigPaths(), vercel()],
-  build: {
-    outDir: "dist",
-  },
   ssr: {
     noExternal: ["react-icons"],
   },
