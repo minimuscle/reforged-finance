@@ -8,15 +8,6 @@ import {
   useReactTable,
 } from "@tanstack/react-table"
 
-type HistoryRow = {
-  year: number
-  month: string
-  cash: number
-  super: number
-  debts: number
-  income: number
-}
-
 const data = [
   {
     year: 2021,
@@ -48,32 +39,32 @@ const columns = [
   {
     accessorKey: "year",
     header: "Year",
-    cell: (props: any) => <p>{props.getValue()}</p>,
+    cell: (props) => <p>{props.getValue()}</p>,
   },
   {
     accessorKey: "month",
     header: "Month",
-    cell: (props: any) => <p>{props.getValue()}</p>,
+    cell: (props) => <p>{props.getValue()}</p>,
   },
   {
     accessorKey: "cash",
     header: "Cash",
-    cell: (props: any) => <p>{props.getValue()}</p>,
+    cell: (props) => <p>{props.getValue()}</p>,
   },
   {
     accessorKey: "super",
     header: "Super",
-    cell: (props: any) => <p>{props.getValue()}</p>,
+    cell: (props) => <p>{props.getValue()}</p>,
   },
   {
     accessorKey: "debts",
     header: "Debts",
-    cell: (props: any) => <p>{props.getValue()}</p>,
+    cell: (props) => <p>{props.getValue()}</p>,
   },
   {
     accessorKey: "income",
     header: "Income",
-    cell: (props: any) => <p>{props.getValue()}</p>,
+    cell: (props) => <p>{props.getValue()}</p>,
   },
 ]
 

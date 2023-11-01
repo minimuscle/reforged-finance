@@ -1,31 +1,42 @@
 {
-  "name": "mantine-minimal-next-template",
-  "version": "0.1.0",
+  "name": "",
   "private": true,
+  "sideEffects": false,
+  "type": "module",
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
+    "build": "vite build && vite build --ssr",
+    "dev": "vite dev",
+    "start": "remix-serve ./build/index.js",
+    "typecheck": "tsc"
   },
   "dependencies": {
-    "@mantine/core": "7.1.7",
-    "@mantine/hooks": "7.1.7",
+    "@mantine/core": "^7.1.7",
+    "@mantine/dates": "^7.1.7",
+    "@mantine/form": "^7.1.7",
+    "@mantine/hooks": "^7.1.7",
+    "@mantine/notifications": "^7.1.7",
+    "@remix-run/css-bundle": "^2.2.0",
+    "@remix-run/node": "^2.2.0",
+    "@remix-run/react": "^2.2.0",
+    "@remix-run/serve": "^2.2.0",
     "@tanstack/react-table": "^8.10.7",
-    "chart.js": "^4.4.0",
-    "next": "^13.5.6",
-    "react": "18.2.0",
-    "react-chartjs-2": "^5.2.0",
-    "react-charts": "^3.0.0-beta.56",
-    "react-dom": "18.2.0",
+    "dayjs": "^1.11.10",
+    "isbot": "^3.6.8",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
     "react-icons": "^4.11.0"
   },
   "devDependencies": {
-    "@types/node": "20.2.5",
-    "@types/react": "18.2.7",
-    "@types/react-dom": "18.2.4",
-    "eslint": "8.41.0",
-    "eslint-config-next": "13.4.4",
-    "typescript": "5.0.4"
+    "@remix-run/dev": "^2.2.0",
+    "@remix-run/eslint-config": "^2.2.0",
+    "@types/react": "^18.2.20",
+    "@types/react-dom": "^18.2.7",
+    "eslint": "^8.38.0",
+    "typescript": "^5.1.6",
+    "vite": "^4.5.0",
+    "vite-tsconfig-paths": "^4.2.1"
+  },
+  "engines": {
+    "node": ">=18.0.0"
   }
 }
