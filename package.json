@@ -4,14 +4,13 @@
   "sideEffects": false,
   "type": "module",
   "scripts": {
-    "build": "vite build && vite build --ssr",
-    "dev": "vite dev",
+    "build": "remix build",
+    "dev": "remix dev --manual",
     "start": "remix-serve ./build/index.js",
     "typecheck": "tsc"
   },
   "dependencies": {
     "@mantine/core": "^7.1.7",
-    "@mantine/dates": "^7.1.7",
     "@mantine/form": "^7.1.7",
     "@mantine/hooks": "^7.1.7",
     "@mantine/notifications": "^7.1.7",
@@ -20,12 +19,10 @@
     "@remix-run/react": "^2.2.0",
     "@remix-run/serve": "^2.2.0",
     "@tanstack/react-table": "^8.10.7",
-    "dayjs": "^1.11.10",
     "isbot": "^3.6.8",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-icons": "^4.11.0",
-    "vite-plugin-vercel": "^2.0.0"
+    "react-icons": "^4.11.0"
   },
   "devDependencies": {
     "@remix-run/dev": "^2.2.0",
@@ -33,9 +30,7 @@
     "@types/react": "^18.2.20",
     "@types/react-dom": "^18.2.7",
     "eslint": "^8.38.0",
-    "typescript": "^5.1.6",
-    "vite": "^4.5.0",
-    "vite-tsconfig-paths": "^4.2.1"
+    "typescript": "^5.1.6"
   },
   "engines": {
     "node": ">=18.0.0"
