@@ -6,6 +6,7 @@ import {
   getCoreRowModel,
   useReactTable,
 } from "@tanstack/react-table"
+import "~/styles/styles.css"
 
 const data = [
   {
@@ -51,14 +52,23 @@ const columns = [
     cell: (props) => <p>{props.getValue()}</p>,
   },
   {
+    id: "cashGainDollar",
     accessorKey: "cash",
     header: "Gain ($)",
-    cell: (props) => <p>{props.getValue()}</p>,
+    cell: (props) => (
+      <p className={props.getValue() > 0 ? "positive" : "negative"}>
+        {console.log(getColumn)}
+      </p>
+    ),
   },
   {
     accessorKey: "cash",
     header: "Increase (%)",
-    cell: (props) => <p>{props.getValue()}</p>,
+    cell: (props) => (
+      <p className={props.getValue() > 0 ? "positive" : "negative"}>
+        {props.getValue()}
+      </p>
+    ),
   },
   {
     accessorKey: "super",
@@ -68,13 +78,21 @@ const columns = [
   {
     accessorKey: "super",
     header: "Super Gain ($)",
-    cell: (props) => <p>{props.getValue()}</p>,
+    cell: (props) => (
+      <p className={props.getValue() > 0 ? "positive" : "negative"}>
+        {props.getValue()}
+      </p>
+    ),
   },
   {
     accessorKey: "super",
     header: "Super Increase (%)",
     size: 20,
-    cell: (props) => <p>{props.getValue()}</p>,
+    cell: (props) => (
+      <p className={props.getValue() > 0 ? "positive" : "negative"}>
+        {props.getValue()}
+      </p>
+    ),
   },
   {
     accessorKey: "debts",
@@ -131,13 +149,7 @@ export default function History() {
                   cell.getContext()
                 )
 
-                return (
-                  <Table.Td
-                    className={parseInt(content) > 0 ? "positive" : "negative"}
-                  >
-                    {content}
-                  </Table.Td>
-                )
+                return <Table.Td>{content}</Table.Td>
               })}
             </Table.Tr>
           ))}
