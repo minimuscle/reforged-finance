@@ -1,6 +1,5 @@
 import React from "react"
 import { Center, Paper, Space, Stack, Table, Text, Title } from "@mantine/core"
-import "./styles.css"
 import {
   createColumnHelper,
   flexRender,
@@ -101,12 +100,17 @@ export default function History() {
 
   return (
     <div>
-      <Stack align="center">
+      <Stack align='center'>
         <Title>History</Title>
         <Text>View Previous Months</Text>
       </Stack>
-      <Space h="xl" />
-      <Table highlightOnHover striped withTableBorder className="table">
+      <Space h='xl' />
+      <Table
+        highlightOnHover
+        striped
+        withTableBorder
+        className='table'
+      >
         <Table.Thead>
           {table.getHeaderGroups().map((headerGroup) => (
             <Table.Tr key={headerGroup.id}>
