@@ -17,6 +17,7 @@ import {
   NetWorthChart,
   HistoricalNetWorthChart,
 } from "../components/Charts/Charts"
+import { Outlet } from "@remix-run/react"
 
 export const meta = () => {
   return [
@@ -44,6 +45,7 @@ export default function Index() {
           <Stack align="center" gap="1">
             <Title>Historical Net Worth</Title>
             <Text>Net Worth In The Last 5 Years</Text>
+            <Outlet />
           </Stack>
           <HistoricalNetWorthChart />
         </Grid.Col>
