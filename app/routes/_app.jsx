@@ -49,7 +49,6 @@ export const loader = async ({ request }) => {
   )
 
   const { data: user } = await supabase.auth.getUser()
-  console.log(user)
 
   return {
     user,
@@ -63,7 +62,6 @@ function App() {
   const fetcher = useFetcher()
   const supabase = useContext(SupabaseContext)
   const { user } = useLoaderData()
-  console.log(user)
 
   const signUp = () => {
     supabase.auth.signUp({

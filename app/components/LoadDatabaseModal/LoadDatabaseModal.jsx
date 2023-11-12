@@ -16,7 +16,6 @@ import { DatabaseContext } from "../../contexts/DatabaseContext"
 
 function LoadDatabaseModal({ close, setDatabase }) {
   const database = useContext(DatabaseContext)
-  console.log("database: ", database) // This should check if the user is logged in but
   return (
     <Modal
       opened={!database}

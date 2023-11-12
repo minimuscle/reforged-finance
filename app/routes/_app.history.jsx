@@ -1,6 +1,8 @@
 import React from "react"
 import { Center, Paper, Space, Stack, Table, Text, Title } from "@mantine/core"
 import "../styles/styles.css"
+import { createServerClient, parse, serialize } from "@supabase/ssr"
+import { useLoaderData } from "@remix-run/react"
 
 export const meta = () => {
   return [
@@ -9,7 +11,7 @@ export const meta = () => {
   ]
 }
 
-const data = [
+/*const data = [
   {
     year: 2021,
     month: "January",
@@ -34,13 +36,56 @@ const data = [
     debts: -46435,
     income: 5022,
   },
-]
+]*/
+
+export const loader = async ({ request }) => {
+  const cookies = parse(request.headers.get("Cookie") ?? "")
+  const headers = new Headers()
+
+  const supabase = createServerClient(
+    process.env.DATABASE_URL,
+    process.env.DB_KEY,
+    {
+      cookies: {
+        get(key) {
+          return cookies[key]
+        },
+        set(key, value, options) {
+          headers.append("Set-Cookie", serialize(key, value, options))
+        },
+        remove(key, options) {
+          headers.append("Set-Cookie", serialize(key, "", options))
+        },
+      },
+    }
+  )
+
+  const { data } = await supabase.from("history").select("*")
+  console.log(data)
+
+  return {
+    data,
+    headers,
+  }
+}
 
 export default function History() {
+  const { data } = useLoaderData()
+
   const formatter = new Intl.NumberFormat("en-AU", {
     style: "currency",
     currency: "AUD",
+    minimumFractionDigits: 0,
   })
+
+  function getMonthName(monthNumber) {
+    const date = new Date()
+    date.setMonth(monthNumber - 1)
+
+    return date.toLocaleString("en-US", {
+      month: "long",
+    })
+  }
 
   const rows = data.map((row, index, array) => {
     const cashGainDollar = index !== 0 ? row.cash - array[index - 1]?.cash : 0
@@ -57,9 +102,9 @@ export default function History() {
         : 0
 
     return (
-      <Table.Tr key={index}>
+      <Table.Tr key={row.id}>
         <Table.Td>{row.year}</Table.Td>
-        <Table.Td>{row.month}</Table.Td>
+        <Table.Td>{getMonthName(row.month)}</Table.Td>
         <Table.Td>{formatter.format(row.cash)}</Table.Td>
         <Table.Td className={cashGainDollar >= 0 ? "positive" : "negative"}>
           {formatter.format(cashGainDollar)}
