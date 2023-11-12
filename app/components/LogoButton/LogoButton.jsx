@@ -1,6 +1,7 @@
 import { Button, Group, Image, Title } from "@mantine/core"
 import { useLocation, useNavigate } from "@remix-run/react"
 import Logo from "~/images/Logo.jpg"
+import "./LogoButton.css"
 
 function LogoButton() {
   const navigate = useNavigate()
@@ -16,7 +17,9 @@ function LogoButton() {
       >
         <Group>
           <Image w="40px" src={Logo} />
-          <Title size="h2">Personal Finance</Title>
+          <Title size="h2" className="logoTitle">
+            Personal Finance
+          </Title>
         </Group>
       </Button>
     </>

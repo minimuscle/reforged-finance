@@ -82,7 +82,6 @@ function Sidebar() {
         <Nav
           className="navlink"
           label="Budget (Coming Soon)"
-          disabled
           active={path.pathname.toLowerCase() === "/budget"}
           leftSection={<TbReportMoney />}
           rightSection={
@@ -102,6 +101,17 @@ function Sidebar() {
           onClick={() => navigate("/history")}
         />
         <Flex h="100%"></Flex>
+        <Nav
+          className="navlink"
+          label="Get Premium"
+          variant="filled"
+          color={
+            path.pathname.toLowerCase() === "/premium" ? "black" : "violet"
+          }
+          active
+          leftSection={<PiCrownFill color="orange" />}
+          onClick={() => navigate("/premium")}
+        />
         <Nav
           className="navlink"
           label="Settings"
