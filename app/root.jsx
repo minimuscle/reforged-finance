@@ -43,7 +43,9 @@ export const links = () => [
 
 export default function App() {
   const [opened, { toggle }] = useDisclosure(false)
-  const database = useContext(DatabaseContext)
+  const [databaseSet, setDatabase] = React.useState(false)
+
+  console.log("database: ", databaseSet)
 
   return (
     <html lang="en">
@@ -55,10 +57,10 @@ export default function App() {
         <Links />
       </head>
       <body>
-        <DatabaseContext.Provider>
+        <DatabaseContext.Provider value={databaseSet}>
           <PremiumMemberContext.Provider>
             <MantineProvider theme={theme}>
-              <LoadDatabaseModal opened={!database} />
+              <LoadDatabaseModal close={toggle} setDatabase={setDatabase} />
               <AppShell
                 header={{ height: 60 }}
                 navbar={{
