@@ -21,12 +21,18 @@ import {
   NavLink as Nav,
   Flex,
   Stack,
+  Image,
+  Title,
+  Anchor,
+  Button,
 } from "@mantine/core"
 import { useDisclosure } from "@mantine/hooks"
 
 import theme from "./util/theme"
 import "./global.css"
 import Sidebar from "./components/Sidebar/Sidebar"
+import Logo from "./images/Logo.jpg"
+import LogoButton from "./components/LogoButton/LogoButton"
 
 export const links = () => [
   ...(cssBundleHref ? [{ rel: "stylesheet", href: cssBundleHref }] : []),
@@ -63,7 +69,7 @@ export default function App() {
                   hiddenFrom="sm"
                   size="sm"
                 />
-                Logo
+                <LogoButton />
               </Group>
             </AppShell.Header>
             <AppShell.Navbar p="md">

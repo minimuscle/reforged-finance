@@ -1,4 +1,11 @@
-import { Button, Flex, NavLink as Nav, Stack } from "@mantine/core"
+import {
+  Button,
+  Flex,
+  NavLink as Nav,
+  Stack,
+  ThemeIcon,
+  Tooltip,
+} from "@mantine/core"
 import { RxDashboard, RxGear } from "react-icons/rx/index.js"
 import { GrMoney, GrHistory } from "react-icons/gr/index.js"
 import { HiOutlineTrendingDown } from "react-icons/hi/index.js"
@@ -12,12 +19,24 @@ import {
 } from "react-icons/pi/index.js"
 import { Link, useLocation, useNavigate } from "@remix-run/react"
 import "./Sidebar.css"
+import { useContext } from "react"
+import { PremiumMemberContext } from "../../contexts/premiumMemberContext"
+import PremiumPopup from "../PremiumPopup/PremiumPopup"
+import { useDisclosure } from "@mantine/hooks"
 
 function Sidebar() {
   const path = useLocation()
   const navigate = useNavigate()
+  const premium = useContext(PremiumMemberContext)
+  const [opened, { open, close }] = useDisclosure(false)
+
+  function showPremiumPopup() {
+    open()
+  }
+
   return (
     <>
+      <PremiumPopup opened={opened} close={close} />
       {/** TODO: This should be dynamic due to what the user has selected? Possibly */}
       <Stack h="100%" className="navigation">
         <Nav
@@ -30,39 +49,50 @@ function Sidebar() {
 
         <Nav
           className="navlink"
-          label="Cash"
+          label="Cash (Coming Soon)"
+          disabled
           active={path.pathname.toLowerCase() === "/cash"}
           leftSection={<PiCurrencyDollarSimpleBold />}
           onClick={() => navigate("/cash")}
         />
         <Nav
           className="navlink"
-          label="Side Income"
+          label="Side Income (Coming Soon)"
+          disabled
           active={path.pathname.toLowerCase() === "/side-income"}
           leftSection={<PiMoney />}
           onClick={() => navigate("/side-income")}
         />
         <Nav
           className="navlink"
-          label="Liabilities / Debts"
+          label="Liabilities / Debts (Coming Soon)"
+          disabled
           active={path.pathname.toLowerCase() === "/debts"}
           leftSection={<HiOutlineTrendingDown />}
           onClick={() => navigate("/debts")}
         />
         <Nav
           className="navlink"
-          label="Super"
+          label="Super (Coming Soon)"
+          disabled
           active={path.pathname.toLowerCase() === "/super"}
           leftSection={<PiHandshakeFill />}
           onClick={() => navigate("/super")}
         />
         <Nav
           className="navlink"
-          label="Budget"
+          label="Budget (Coming Soon)"
+          disabled
           active={path.pathname.toLowerCase() === "/budget"}
           leftSection={<TbReportMoney />}
-          rightSection={<PiCrownFill color="orange" />}
-          onClick={() => navigate("/budget")}
+          rightSection={
+            <Tooltip withArrow label="Premium Feature">
+              <ThemeIcon variant="white">
+                <PiCrownFill color="orange" />
+              </ThemeIcon>
+            </Tooltip>
+          }
+          onClick={() => (premium ? navigate("/budget") : showPremiumPopup())}
         />
         <Nav
           className="navlink"
