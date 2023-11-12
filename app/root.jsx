@@ -7,6 +7,7 @@ import {
   Scripts,
   ScrollRestoration,
   useLoaderData,
+  useRevalidator,
 } from "@remix-run/react"
 import { redirect } from "@remix-run/node"
 import "@mantine/core/styles.css"
@@ -21,6 +22,7 @@ import {
 } from "@supabase/ssr"
 import { createClient } from "@supabase/supabase-js"
 import { useState } from "react"
+import { useEffect } from "react"
 
 export const links = () => [
   ...(cssBundleHref ? [{ rel: "stylesheet", href: cssBundleHref }] : []),
@@ -43,6 +45,19 @@ export default function App() {
   const [supabase] = useState(() =>
     createBrowserClient(env.DATABASE_URL, env.DB_KEY)
   )
+  const revalidator = useRevalidator()
+
+  useEffect(() => {
+    const {
+      data: { subscription },
+    } = supabase.auth.onAuthStateChange((event, session) => {
+      revalidator.revalidate()
+    })
+
+    return () => {
+      subscription.unsubscribe()
+    }
+  }, [supabase])
 
   return (
     <html lang="en">

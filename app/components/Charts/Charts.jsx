@@ -66,19 +66,21 @@ function Fallback() {
   return <div>Generating Chart</div>
 }
 
-export function NetWorthChart() {
+export function NetWorthChart(data) {
+  const latest = data.data[data.data.length - 1]
+
   return (
     <ClientOnly fallback={<Fallback />}>
       {() => (
         <Doughnut
           data={{
             type: "pie",
-            labels: data.map((item) => item.name),
+            labels: ["Cash", "Super"],
             datasets: [
               {
                 label: " Amount",
-                data: data.map((item) => item.value),
-                backgroundColor: ["#6BD731", "#2BDD66", "#09B8FF", "#099CFF"],
+                data: [latest.cash, latest.super],
+                backgroundColor: ["#6BD731", "#09B8FF", "#099CFF"],
                 //borderColor: ["#1c7c54", "#ffcb77", "#ff847c"],
                 //borderWidth: 1,
               },
@@ -90,7 +92,18 @@ export function NetWorthChart() {
   )
 }
 
-export function HistoricalNetWorthChart() {
+function getMonthName(monthNumber) {
+  const date = new Date()
+  date.setMonth(monthNumber - 1)
+
+  return date.toLocaleString("en-US", {
+    month: "long",
+  })
+}
+
+export function HistoricalNetWorthChart(data) {
+  console.log()
+
   return (
     <ClientOnly fallback={<Fallback />}>
       {() => (
@@ -108,20 +121,9 @@ export function HistoricalNetWorthChart() {
             },
           }}
           data={{
-            labels: [
-              "January",
-              "Febuary",
-              "March",
-              "April",
-              "May",
-              "June",
-              "January",
-              "Febuary",
-              "March",
-              "April",
-              "May",
-              "June",
-            ],
+            labels: data.data.map(
+              (item) => getMonthName(item.month) + " " + item.year
+            ),
             datasets: [
               {
                 type: "line",
@@ -129,7 +131,9 @@ export function HistoricalNetWorthChart() {
                 borderWidth: 2,
                 fill: false,
                 label: "Total Net Worth",
-                data: [9723, 5723, 7646, 7646, 7646, 7646],
+                data: data.data.map(
+                  (item) => item.cash + item.super + item.debts
+                ),
                 backgroundColor: ["#F21616"],
                 //borderColor: ["#1c7c54", "#ffcb77", "#ff847c"],
                 //borderWidth: 1,
@@ -137,7 +141,7 @@ export function HistoricalNetWorthChart() {
               {
                 type: "bar",
                 label: "Cash",
-                data: [9723, 5723, 7646, 7646, 7646, 7646],
+                data: data.data.map((item) => item.cash),
                 backgroundColor: ["#6BD731"],
                 //borderColor: ["#1c7c54", "#ffcb77", "#ff847c"],
                 //borderWidth: 1,
@@ -145,7 +149,7 @@ export function HistoricalNetWorthChart() {
               {
                 type: "bar",
                 label: "Super",
-                data: [723, 6881, 8881, 8881, 8881, 8881],
+                data: data.data.map((item) => item.super),
                 backgroundColor: ["#099CFF"],
                 //borderColor: ["#1c7c54", "#ffcb77", "#ff847c"],
                 //borderWidth: 1,
@@ -153,8 +157,8 @@ export function HistoricalNetWorthChart() {
               {
                 type: "bar",
                 label: "Debts",
-                data: [-9723, -5723, -7646, -7646, -7646, -7646],
-                backgroundColor: ["#7B2EDA"],
+                data: data.data.map((item) => item.debts),
+                backgroundColor: ["#D9D02F"],
                 //borderColor: ["#1c7c54", "#ffcb77", "#ff847c"],
                 //borderWidth: 1,
               },
