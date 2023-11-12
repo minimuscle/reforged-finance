@@ -1,9 +1,15 @@
 import {
+  ActionIcon,
+  Avatar,
+  Box,
   Button,
   Flex,
+  Group,
   NavLink as Nav,
   Stack,
+  Text,
   ThemeIcon,
+  Title,
   Tooltip,
 } from "@mantine/core"
 import { RxDashboard, RxGear } from "react-icons/rx/index.js"
@@ -132,6 +138,7 @@ function Sidebar() {
           onClick={() => navigate("/history")}
         />
         <Flex h="100%"></Flex>
+
         <Nav
           className="navlink"
           label="Get Premium (Coming Soon)"

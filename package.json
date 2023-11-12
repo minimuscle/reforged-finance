@@ -18,6 +18,7 @@
     "@remix-run/node": "^2.2.0",
     "@remix-run/react": "^2.2.0",
     "@remix-run/serve": "^2.2.0",
+    "@supabase/ssr": "^0.0.10",
     "@supabase/supabase-js": "^2.38.4",
     "chart.js": "^4.4.0",
     "isbot": "^3.6.8",
