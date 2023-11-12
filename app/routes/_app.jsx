@@ -1,4 +1,4 @@
-import { Outlet, useFetcher } from "@remix-run/react"
+import { Outlet, useFetcher, useLoaderData } from "@remix-run/react"
 import { DatabaseContext } from "../contexts/DatabaseContext"
 import { SupabaseContext } from "../contexts/SupabaseContext"
 import { PremiumMemberContext } from "../contexts/premiumMemberContext"
@@ -18,6 +18,7 @@ import { useDisclosure } from "@mantine/hooks"
 import { useState, useContext } from "react"
 import theme from "~/util/theme"
 import { supabaseSignIn } from "../util/supabase"
+import { createServerClient, parse, serialize } from "@supabase/ssr"
 
 const loginUser = async () => {
   console.log("Logging in user")
@@ -25,12 +26,44 @@ const loginUser = async () => {
   console.log(response)
 }
 
+export const loader = async ({ request }) => {
+  const cookies = parse(request.headers.get("Cookie") ?? "")
+  const headers = new Headers()
+
+  const supabase = createServerClient(
+    process.env.DATABASE_URL,
+    process.env.DB_KEY,
+    {
+      cookies: {
+        get(key) {
+          return cookies[key]
+        },
+        set(key, value, options) {
+          headers.append("Set-Cookie", serialize(key, value, options))
+        },
+        remove(key, options) {
+          headers.append("Set-Cookie", serialize(key, "", options))
+        },
+      },
+    }
+  )
+
+  const { data: user } = await supabase.auth.getUser()
+  console.log(user)
+
+  return {
+    user,
+    headers,
+  }
+}
+
 function App() {
   const [opened, { toggle }] = useDisclosure(false)
   const [databaseSet, setDatabase] = useState(false)
-  const [user, setUser] = useState(null)
   const fetcher = useFetcher()
   const supabase = useContext(SupabaseContext)
+  const { user } = useLoaderData()
+  console.log(user)
 
   const signUp = () => {
     supabase.auth.signUp({
@@ -74,7 +107,7 @@ function App() {
                 <LogoButton />
 
                 <Group pos="absolute" right={10}>
-                  <Text align="right">User {user ? "" : "Not"} Logged In</Text>
+                  <Text align="right">{user?.user?.email}</Text>
                   <Avatar variant="outline" radius="xl" src="" />
                   <Button onClick={() => signUp()}>Sign Up</Button>
                   <Button onClick={() => login()}>Login</Button>
