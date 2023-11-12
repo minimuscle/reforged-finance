@@ -18,11 +18,14 @@
     "@remix-run/node": "^2.2.0",
     "@remix-run/react": "^2.2.0",
     "@remix-run/serve": "^2.2.0",
-    "@tanstack/react-table": "^8.10.7",
+    "chart.js": "^4.4.0",
+    "chartjs-plugin-zoom": "^2.0.1",
     "isbot": "^3.6.8",
     "react": "^18.2.0",
+    "react-chartjs-2": "^5.2.0",
     "react-dom": "^18.2.0",
-    "react-icons": "^4.11.0"
+    "react-icons": "^4.11.0",
+    "remix-utils": "^7.1.0"
   },
   "devDependencies": {
     "@remix-run/dev": "^2.2.0",
