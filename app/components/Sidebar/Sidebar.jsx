@@ -56,7 +56,6 @@ function Sidebar() {
         <Nav
           className="navlink"
           label="Cash (Coming Soon)"
-          disabled
           active={path.pathname.toLowerCase() === "/cash"}
           leftSection={<PiCurrencyDollarSimpleBold />}
           onClick={() => navigate("/cash")}
@@ -64,7 +63,6 @@ function Sidebar() {
         <Nav
           className="navlink"
           label="Side Income (Coming Soon)"
-          disabled
           active={path.pathname.toLowerCase() === "/side-income"}
           leftSection={<PiMoney />}
           onClick={() => navigate("/side-income")}
@@ -72,7 +70,6 @@ function Sidebar() {
         <Nav
           className="navlink"
           label="Liabilities / Debts (Coming Soon)"
-          disabled
           active={path.pathname.toLowerCase() === "/debts"}
           leftSection={<HiOutlineTrendingDown />}
           onClick={() => navigate("/debts")}
