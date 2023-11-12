@@ -1,5 +1,5 @@
 import { cssBundleHref } from "@remix-run/css-bundle"
-import React from "react"
+import React, { useContext } from "react"
 import {
   Links,
   LiveReload,
@@ -33,6 +33,8 @@ import "./global.css"
 import Sidebar from "./components/Sidebar/Sidebar"
 import Logo from "./images/Logo.jpg"
 import LogoButton from "./components/LogoButton/LogoButton"
+import { PremiumMemberContext } from "./contexts/premiumMemberContext"
+import { DatabaseContext } from "./contexts/DatabaseContext"
 
 export const links = () => [
   ...(cssBundleHref ? [{ rel: "stylesheet", href: cssBundleHref }] : []),
@@ -40,6 +42,7 @@ export const links = () => [
 
 export default function App() {
   const [opened, { toggle }] = useDisclosure(false)
+  const database = useContext(DatabaseContext)
 
   return (
     <html lang="en">
@@ -51,36 +54,39 @@ export default function App() {
         <Links />
       </head>
       <body>
-        <MantineProvider theme={theme}>
-          <AppShell
-            header={{ height: 60 }}
-            navbar={{
-              width: 300,
-              breakpoint: "sm",
-              collapsed: { mobile: !opened },
-            }}
-            padding="md"
-          >
-            <AppShell.Header>
-              <Group h="100%" px="md">
-                <Burger
-                  opened={opened}
-                  onClick={toggle}
-                  hiddenFrom="sm"
-                  size="sm"
-                />
-                <LogoButton />
-              </Group>
-            </AppShell.Header>
-            <AppShell.Navbar p="md">
-              <Sidebar />
-            </AppShell.Navbar>
-            <AppShell.Main>
-              <Outlet />
-            </AppShell.Main>
-          </AppShell>
-        </MantineProvider>
-
+        <DatabaseContext.Provider>
+          <PremiumMemberContext.Provider>
+            <MantineProvider theme={theme}>
+              <AppShell
+                header={{ height: 60 }}
+                navbar={{
+                  width: 300,
+                  breakpoint: "sm",
+                  collapsed: { mobile: !opened },
+                }}
+                padding="md"
+              >
+                <AppShell.Header>
+                  <Group h="100%" px="md">
+                    <Burger
+                      opened={opened}
+                      onClick={toggle}
+                      hiddenFrom="sm"
+                      size="sm"
+                    />
+                    <LogoButton />
+                  </Group>
+                </AppShell.Header>
+                <AppShell.Navbar p="md">
+                  <Sidebar />
+                </AppShell.Navbar>
+                <AppShell.Main>
+                  <Outlet />
+                </AppShell.Main>
+              </AppShell>
+            </MantineProvider>
+          </PremiumMemberContext.Provider>
+        </DatabaseContext.Provider>
         <ScrollRestoration />
         <LiveReload />
         <Scripts />

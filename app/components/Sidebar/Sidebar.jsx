@@ -82,6 +82,37 @@ function Sidebar() {
         <Nav
           className="navlink"
           label="Budget (Coming Soon)"
+          disabled
+          active={path.pathname.toLowerCase() === "/budget"}
+          leftSection={<TbReportMoney />}
+          rightSection={
+            <Tooltip withArrow label="Premium Feature">
+              <ThemeIcon variant="white">
+                <PiCrownFill color="orange" />
+              </ThemeIcon>
+            </Tooltip>
+          }
+          onClick={() => (premium ? navigate("/budget") : showPremiumPopup())}
+        />
+        <Nav
+          className="navlink"
+          label="Property (Coming Soon)"
+          disabled
+          active={path.pathname.toLowerCase() === "/budget"}
+          leftSection={<TbReportMoney />}
+          rightSection={
+            <Tooltip withArrow label="Premium Feature">
+              <ThemeIcon variant="white">
+                <PiCrownFill color="orange" />
+              </ThemeIcon>
+            </Tooltip>
+          }
+          onClick={() => (premium ? navigate("/budget") : showPremiumPopup())}
+        />
+        <Nav
+          className="navlink"
+          label="Stocks (Coming Soon)"
+          disabled
           active={path.pathname.toLowerCase() === "/budget"}
           leftSection={<TbReportMoney />}
           rightSection={
@@ -103,7 +134,7 @@ function Sidebar() {
         <Flex h="100%"></Flex>
         <Nav
           className="navlink"
-          label="Get Premium"
+          label="Get Premium (Coming Soon)"
           variant="filled"
           color={
             path.pathname.toLowerCase() === "/premium" ? "black" : "violet"
