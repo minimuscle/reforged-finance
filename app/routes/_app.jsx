@@ -1,10 +1,12 @@
-import { Outlet } from "@remix-run/react"
+import { Outlet, useFetcher } from "@remix-run/react"
 import { DatabaseContext } from "../contexts/DatabaseContext"
+import { SupabaseContext } from "../contexts/SupabaseContext"
 import { PremiumMemberContext } from "../contexts/premiumMemberContext"
 import {
   AppShell,
   Avatar,
   Burger,
+  Button,
   Group,
   MantineProvider,
   Text,
@@ -13,14 +15,40 @@ import LoadDatabaseModal from "../components/LoadDatabaseModal/LoadDatabaseModal
 import LogoButton from "../components/LogoButton/LogoButton"
 import Sidebar from "../components/Sidebar/Sidebar"
 import { useDisclosure } from "@mantine/hooks"
-import { useState } from "react"
+import { useState, useContext } from "react"
 import theme from "~/util/theme"
+import { supabaseSignIn } from "../util/supabase"
+
+const loginUser = async () => {
+  console.log("Logging in user")
+  const response = await supabaseSignIn()
+  console.log(response)
+}
 
 function App() {
   const [opened, { toggle }] = useDisclosure(false)
   const [databaseSet, setDatabase] = useState(false)
   const [user, setUser] = useState(null)
+  const fetcher = useFetcher()
+  const supabase = useContext(SupabaseContext)
 
+  const signUp = () => {
+    supabase.auth.signUp({
+      email: "joshthiele@live.com.au",
+      password: "password",
+    })
+  }
+
+  const login = () => {
+    supabase.auth.signInWithPassword({
+      email: "joshthiele@live.com.au",
+      password: "password",
+    })
+  }
+
+  const logout = () => {
+    supabase.auth.signOut()
+  }
   return (
     <DatabaseContext.Provider value={true}>
       <PremiumMemberContext.Provider>
@@ -48,6 +76,9 @@ function App() {
                 <Group pos="absolute" right={10}>
                   <Text align="right">User {user ? "" : "Not"} Logged In</Text>
                   <Avatar variant="outline" radius="xl" src="" />
+                  <Button onClick={() => signUp()}>Sign Up</Button>
+                  <Button onClick={() => login()}>Login</Button>
+                  <Button onClick={() => logout()}>Logout</Button>
                 </Group>
               </Group>
             </AppShell.Header>
