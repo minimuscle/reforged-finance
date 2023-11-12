@@ -99,23 +99,18 @@ export default function History() {
   console.log(table.getHeaderGroups())
 
   return (
-    <div>
-      <Stack align='center'>
+    <>
+      <Stack align="center">
         <Title>History</Title>
         <Text>View Previous Months</Text>
       </Stack>
-      <Space h='xl' />
-      <Table
-        highlightOnHover
-        striped
-        withTableBorder
-        className='table'
-      >
+      <Space h="xl" />
+      <Table highlightOnHover striped withTableBorder className="table">
         <Table.Thead>
           {table.getHeaderGroups().map((headerGroup) => (
             <Table.Tr key={headerGroup.id}>
-              {headerGroup.headers.map((header) => (
-                <Table.Th>
+              {headerGroup.headers.map((header, key) => (
+                <Table.Th key={key}>
                   {header.column.columnDef.header?.toString()}
                 </Table.Th>
               ))}
@@ -123,9 +118,9 @@ export default function History() {
           ))}
         </Table.Thead>
         <Table.Tbody>
-          {table.getRowModel().rows.map((row) => (
-            <Table.Tr>
-              {row.getVisibleCells().map((cell) => {
+          {table.getRowModel().rows.map((row, rowKey) => (
+            <Table.Tr key={rowKey}>
+              {row.getVisibleCells().map((cell, key) => {
                 const content = flexRender(
                   cell.column.columnDef.cell,
                   cell.getContext()
@@ -133,6 +128,7 @@ export default function History() {
 
                 return (
                   <Table.Td
+                    key={key}
                     className={parseInt(content) > 0 ? "positive" : "negative"}
                   >
                     {content}
@@ -143,7 +139,7 @@ export default function History() {
           ))}
         </Table.Tbody>
       </Table>
-    </div>
+    </>
   )
 
   // const formatter = new Intl.NumberFormat("en-AU", {
