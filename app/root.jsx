@@ -13,7 +13,12 @@ import "@mantine/core/styles.css"
 import { ColorSchemeScript } from "@mantine/core"
 import "./global.css"
 import { SupabaseContext } from "./contexts/SupabaseContext"
-import { createServerClient, parse, serialize } from "@supabase/ssr"
+import {
+  createBrowserClient,
+  createServerClient,
+  parse,
+  serialize,
+} from "@supabase/ssr"
 import { createClient } from "@supabase/supabase-js"
 import { useState } from "react"
 
@@ -21,7 +26,10 @@ export const links = () => [
   ...(cssBundleHref ? [{ rel: "stylesheet", href: cssBundleHref }] : []),
 ]
 
-export const loader = async () => {
+export const loader = async ({ request }) => {
+  const cookies = parse(request.headers.get("Cookie") ?? "")
+  const headers = new Headers()
+
   const env = {
     DATABASE_URL: process.env.DATABASE_URL,
     DB_KEY: process.env.DB_KEY,
@@ -32,7 +40,9 @@ export const loader = async () => {
 
 export default function App() {
   const { env } = useLoaderData()
-  const [supabase] = useState(() => createClient(env.DATABASE_URL, env.DB_KEY))
+  const [supabase] = useState(() =>
+    createBrowserClient(env.DATABASE_URL, env.DB_KEY)
+  )
 
   return (
     <html lang="en">
