@@ -7,10 +7,10 @@ export const meta = () => {
   ]
 }
 
-export default function Index() {
+export default function SideIncome() {
   return (
     <div>
-      <h1>Dashboard</h1>
+      <h1>Side Income</h1>
     </div>
   )
 }
