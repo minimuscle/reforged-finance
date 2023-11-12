@@ -35,6 +35,7 @@ import Logo from "./images/Logo.jpg"
 import LogoButton from "./components/LogoButton/LogoButton"
 import { PremiumMemberContext } from "./contexts/premiumMemberContext"
 import { DatabaseContext } from "./contexts/DatabaseContext"
+import LoadDatabaseModal from "./components/LoadDatabaseModal/LoadDatabaseModal"
 
 export const links = () => [
   ...(cssBundleHref ? [{ rel: "stylesheet", href: cssBundleHref }] : []),
@@ -57,6 +58,7 @@ export default function App() {
         <DatabaseContext.Provider>
           <PremiumMemberContext.Provider>
             <MantineProvider theme={theme}>
+              <LoadDatabaseModal opened={!database} />
               <AppShell
                 header={{ height: 60 }}
                 navbar={{
