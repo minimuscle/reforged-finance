@@ -11,11 +11,15 @@ import {
 } from "@mantine/core"
 import { PiCrownFill } from "react-icons/pi/index.js"
 import "./LoadDatabaseModal.css"
+import { useContext } from "react"
+import { DatabaseContext } from "../../contexts/DatabaseContext"
 
-function LoadDatabaseModal({ opened, close }) {
+function LoadDatabaseModal({ close, setDatabase }) {
+  const database = useContext(DatabaseContext)
+  console.log("database: ", database) // This should check if the user is logged in but
   return (
     <Modal
-      opened={opened}
+      opened={!database}
       onClose={close}
       centered
       overlayProps={{
@@ -33,7 +37,15 @@ function LoadDatabaseModal({ opened, close }) {
       </Text>
       <Space h="xl" />
       <Stack>
-        <Button fullWidth>Connect Database</Button>
+        <Button
+          fullWidth
+          onClick={() => {
+            //This is temp and should be removed
+            setDatabase(true)
+          }}
+        >
+          Login to Connect Database
+        </Button>
         <Button color="yellow" fullWidth>
           No Database Yet? Create One
         </Button>
