@@ -67,8 +67,10 @@ export default function Index() {
   const data = useLoaderData()
 
   const getNetWorth = () => {
+    console.log(data.data)
+    if (data.data.length <= 0) return formatter.format(0)
     const latest = data.data[data.data.length - 1]
-    const netWorth = latest.cash + latest.super + latest.debts
+    const netWorth = latest?.cash + latest?.super + latest?.debts
     return formatter.format(netWorth)
   }
 
@@ -84,7 +86,7 @@ export default function Index() {
             <Text>Total Net Worth</Text>
           </Stack>
           <Title>{getNetWorth()}</Title>
-          <NetWorthChart data={data.data} />
+          {data.data.length > 0 && <NetWorthChart data={data.data} />}
         </Grid.Col>
         <Grid.Col span={8} justify="center" align="center">
           <Stack align="center" gap="1">
@@ -92,7 +94,7 @@ export default function Index() {
             <Text>Net Worth In The Last 5 Years</Text>
             <Outlet />
           </Stack>
-          <HistoricalNetWorthChart data={data.data} />
+          {data.data.length > 0 && <HistoricalNetWorthChart data={data.data} />}
         </Grid.Col>
       </Grid>
     </>

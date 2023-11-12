@@ -102,8 +102,6 @@ function getMonthName(monthNumber) {
 }
 
 export function HistoricalNetWorthChart(data) {
-  console.log()
-
   return (
     <ClientOnly fallback={<Fallback />}>
       {() => (
