@@ -1,7 +1,7 @@
 import { Outlet, useFetcher, useLoaderData } from "@remix-run/react"
 import { DatabaseContext } from "../contexts/DatabaseContext"
 import { SupabaseContext } from "../contexts/SupabaseContext"
-import { PremiumMemberContext } from "../contexts/premiumMemberContext"
+import { PremiumMemberContext } from "../contexts/PremiumMemberContext"
 import {
   AppShell,
   Avatar,
