@@ -21,10 +21,7 @@ import { Outlet, useLoaderData } from "@remix-run/react"
 import { createServerClient, parse, serialize } from "@supabase/ssr"
 
 export const meta = () => {
-  return [
-    { title: "New Remix App" },
-    { name: "description", content: "Welcome to Remix!" },
-  ]
+  return [{ title: "Dashboard | Personal Finance" }]
 }
 
 export const loader = async ({ request }) => {
