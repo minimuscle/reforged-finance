@@ -13,12 +13,11 @@ import {
 } from "@mantine/core"
 //import NetWorthChart from "../components/Charts/NetWorthChart"
 //import HistoricalNetWorthChart from "../components/Charts/HistoricalNetWorthChart"
-import {
-  NetWorthChart,
-  HistoricalNetWorthChart,
-} from "../components/Charts/Charts.client"
+import NetWorthChart from "../components/Charts/NetWorthChart"
 import { Outlet, useLoaderData } from "@remix-run/react"
+import { ClientOnly } from "remix-utils/client-only"
 import { createServerClient, parse, serialize } from "@supabase/ssr"
+import HistoricalNetWorthChart from "../components/Charts/HistoricalNetWorthChart.client"
 
 export const meta = () => {
   return [{ title: "Dashboard | Personal Finance" }]
@@ -89,9 +88,12 @@ export default function Index() {
           <Stack align="center" gap="1">
             <Title>Historical Net Worth</Title>
             <Text>Net Worth In The Last 5 Years</Text>
-            <Outlet />
+            {data.data.length > 0 && (
+              <ClientOnly>
+                {() => <HistoricalNetWorthChart data={data.data} />}
+              </ClientOnly>
+            )}
           </Stack>
-          {data.data.length > 0 && <HistoricalNetWorthChart data={data.data} />}
         </Grid.Col>
       </Grid>
     </>
