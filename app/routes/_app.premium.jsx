@@ -3,10 +3,7 @@ import { Center, Paper, Space, Stack, Table, Text, Title } from "@mantine/core"
 import "../styles/styles.css"
 
 export const meta = () => {
-  return [
-    { title: "Premium | Personal Finance" },
-    { name: "description", content: "View Previous Months" },
-  ]
+  return [{ title: "Premium | Personal Finance" }]
 }
 
 const data = [

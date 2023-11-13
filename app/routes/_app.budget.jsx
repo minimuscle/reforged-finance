@@ -2,10 +2,7 @@ import { Stack, Text, Title } from "@mantine/core"
 import React from "react"
 
 export const meta = () => {
-  return [
-    { title: "New Remix App" },
-    { name: "description", content: "Welcome to Remix!" },
-  ]
+  return [{ title: "Budget | Personal Finance" }]
 }
 
 export default function Budget() {

@@ -5,10 +5,7 @@ import { createServerClient, parse, serialize } from "@supabase/ssr"
 import { useLoaderData } from "@remix-run/react"
 
 export const meta = () => {
-  return [
-    { title: "History | Personal Finance" },
-    { name: "description", content: "View Previous Months" },
-  ]
+  return [{ title: "History | Personal Finance" }]
 }
 
 /*const data = [
