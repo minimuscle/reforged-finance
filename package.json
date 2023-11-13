@@ -21,6 +21,7 @@
     "@supabase/ssr": "^0.0.10",
     "@supabase/supabase-js": "^2.38.4",
     "chart.js": "^4.4.0",
+    "chartjs-plugin-zoom": "^2.0.1",
     "isbot": "^3.6.8",
     "react": "^18.2.0",
     "react-chartjs-2": "^5.2.0",

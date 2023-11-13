@@ -16,7 +16,7 @@ import {
 import {
   NetWorthChart,
   HistoricalNetWorthChart,
-} from "../components/Charts/Charts"
+} from "../components/Charts/Charts.client"
 import { Outlet, useLoaderData } from "@remix-run/react"
 import { createServerClient, parse, serialize } from "@supabase/ssr"
 

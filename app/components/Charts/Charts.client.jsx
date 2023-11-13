@@ -12,6 +12,7 @@ import {
 } from "chart.js"
 import { Doughnut, Bar } from "react-chartjs-2"
 import { ClientOnly } from "remix-utils/client-only"
+import zoomPlugin from "chartjs-plugin-zoom"
 
 ChartJS.register(
   ArcElement,
@@ -22,7 +23,8 @@ ChartJS.register(
   LineController,
   PointElement,
   Tooltip,
-  Legend
+  Legend,
+  zoomPlugin
 )
 
 const data = [
@@ -58,6 +60,29 @@ export const options = {
     title: {
       display: true,
       text: "Chart.js Bar Chart",
+    },
+    zoom: {
+      pan: {
+        enabled: true,
+        mode: "x",
+      },
+      zoom: {
+        pinch: {
+          enabled: true, // Enable pinch zooming
+        },
+        wheel: {
+          enabled: true, // Enable wheel zooming
+        },
+        mode: "x",
+      },
+    },
+  },
+  scales: {
+    x: {
+      stacked: true,
+    },
+    y: {
+      stacked: true,
     },
   },
 }
@@ -108,16 +133,7 @@ export function HistoricalNetWorthChart(data) {
         <Bar
           className="barChart"
           height="100px"
-          options={{
-            scales: {
-              x: {
-                stacked: true,
-              },
-              y: {
-                stacked: true,
-              },
-            },
-          }}
+          options={options}
           data={{
             labels: data.data.map(
               (item) => getMonthName(item.month) + " " + item.year
