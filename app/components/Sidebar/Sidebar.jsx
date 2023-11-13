@@ -26,7 +26,7 @@ import {
 import { Link, useLocation, useNavigate } from "@remix-run/react"
 import "./Sidebar.css"
 import { useContext } from "react"
-import { PremiumMemberContext } from "../../contexts/premiumMemberContext"
+import { PremiumMemberContext } from "../../contexts/PremiumMemberContext"
 import PremiumPopup from "../PremiumPopup/PremiumPopup"
 import { useDisclosure } from "@mantine/hooks"
 
