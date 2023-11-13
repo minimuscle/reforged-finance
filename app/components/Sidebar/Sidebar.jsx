@@ -85,7 +85,6 @@ function Sidebar() {
         <Nav
           className="navlink"
           label="Budget (Coming Soon)"
-          disabled
           active={path.pathname.toLowerCase() === "/budget"}
           leftSection={<TbReportMoney />}
           rightSection={
