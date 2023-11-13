@@ -5,3 +5,28 @@
 .negative {
   color: red;
 }
+
+.pricing {
+  color: #9093a4;
+}
+
+.large {
+  color: #000;
+  font-size: 5em;
+  vertical-align: -0.5em;
+}
+
+.small {
+  color: #9093a4;
+  vertical-align: -2.5em;
+}
+
+.white,
+.white .large {
+  color: white;
+}
+
+.white .small,
+.white .pricing {
+  color: #c8cad3;
+}
