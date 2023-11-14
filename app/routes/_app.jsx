@@ -1,4 +1,9 @@
-import { Outlet, useFetcher, useLoaderData } from "@remix-run/react"
+import {
+  Outlet,
+  useFetcher,
+  useLoaderData,
+  useRevalidator,
+} from "@remix-run/react"
 import { DatabaseContext } from "../contexts/DatabaseContext"
 import { SupabaseContext } from "../contexts/SupabaseContext"
 import { PremiumMemberContext } from "../contexts/PremiumMemberContext"
@@ -15,7 +20,7 @@ import LoadDatabaseModal from "../components/LoadDatabaseModal/LoadDatabaseModal
 import LogoButton from "../components/LogoButton/LogoButton"
 import Sidebar from "../components/Sidebar/Sidebar"
 import { useDisclosure } from "@mantine/hooks"
-import { useState, useContext } from "react"
+import { useState, useContext, useEffect } from "react"
 import theme from "~/util/theme"
 import { supabaseSignIn } from "../util/supabase"
 import { createServerClient, parse, serialize } from "@supabase/ssr"
@@ -49,6 +54,7 @@ export const loader = async ({ request }) => {
   )
 
   const { data: user } = await supabase.auth.getUser()
+  console.log(user)
 
   return {
     user,
@@ -58,10 +64,29 @@ export const loader = async ({ request }) => {
 
 function App() {
   const [opened, { toggle }] = useDisclosure(false)
-  const [databaseSet, setDatabase] = useState(false)
-  const fetcher = useFetcher()
-  const supabase = useContext(SupabaseContext)
   const { user } = useLoaderData()
+  const [database, setDatabase] = useState(user?.user?.id ? true : false)
+  const supabase = useContext(SupabaseContext)
+  const revalidator = useRevalidator()
+
+  useEffect(() => {
+    const {
+      data: { subscription },
+    } = supabase.auth.onAuthStateChange(() => {
+      revalidator.revalidate()
+      if (user?.user?.id) {
+        setDatabase(true)
+      } else {
+        setDatabase(false)
+      }
+    })
+
+    console.log("database: ", database)
+
+    return () => {
+      subscription.unsubscribe()
+    }
+  }, [supabase, database, user?.user?.id])
 
   const signUp = () => {
     supabase.auth.signUp({
@@ -81,10 +106,10 @@ function App() {
     supabase.auth.signOut()
   }
   return (
-    <DatabaseContext.Provider value={true}>
+    <DatabaseContext.Provider value={database}>
       <PremiumMemberContext.Provider>
         <MantineProvider theme={theme}>
-          <LoadDatabaseModal close={toggle} setDatabase={setDatabase} />
+          <LoadDatabaseModal close={toggle} login={login} />
           <AppShell
             header={{ height: 60 }}
             navbar={{

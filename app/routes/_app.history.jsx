@@ -129,23 +129,32 @@ export default function History() {
         <Text>View Previous Months</Text>
       </Stack>
       <Space h="xl" />
-      <Table highlightOnHover striped withTableBorder className="table">
-        <Table.Thead>
-          <Table.Tr>
-            <Table.Th>Year</Table.Th>
-            <Table.Th>Month</Table.Th>
-            <Table.Th>Cash</Table.Th>
-            <Table.Th>Gain ($)</Table.Th>
-            <Table.Th>Increase (%)</Table.Th>
-            <Table.Th>Super</Table.Th>
-            <Table.Th>Super Gain ($)</Table.Th>
-            <Table.Th>Super Increase (%)</Table.Th>
-            <Table.Th>Debts</Table.Th>
-            <Table.Th>Income</Table.Th>
-          </Table.Tr>
-        </Table.Thead>
-        <Table.Tbody>{rows}</Table.Tbody>
-      </Table>
+      <Table.ScrollContainer minWidth={750} type="native">
+        <Table
+          highlightOnHover
+          striped
+          withTableBorder
+          className="table"
+          h="100px"
+          overflow="hidden"
+        >
+          <Table.Thead>
+            <Table.Tr>
+              <Table.Th>Year</Table.Th>
+              <Table.Th>Month</Table.Th>
+              <Table.Th>Cash</Table.Th>
+              <Table.Th>Gain ($)</Table.Th>
+              <Table.Th>Increase (%)</Table.Th>
+              <Table.Th>Super</Table.Th>
+              <Table.Th>Super Gain ($)</Table.Th>
+              <Table.Th>Super Increase (%)</Table.Th>
+              <Table.Th>Debts</Table.Th>
+              <Table.Th>Income</Table.Th>
+            </Table.Tr>
+          </Table.Thead>
+          <Table.Tbody>{rows}</Table.Tbody>
+        </Table>
+      </Table.ScrollContainer>
     </>
   )
 }

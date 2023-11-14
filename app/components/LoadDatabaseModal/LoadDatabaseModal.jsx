@@ -14,7 +14,7 @@ import "./LoadDatabaseModal.css"
 import { useContext } from "react"
 import { DatabaseContext } from "../../contexts/DatabaseContext"
 
-function LoadDatabaseModal({ close, setDatabase }) {
+function LoadDatabaseModal({ close, login }) {
   const database = useContext(DatabaseContext)
   return (
     <Modal
@@ -40,7 +40,7 @@ function LoadDatabaseModal({ close, setDatabase }) {
           fullWidth
           onClick={() => {
             //This is temp and should be removed
-            setDatabase(true)
+            login()
           }}
         >
           Login to Connect Database
