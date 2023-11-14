@@ -45,19 +45,6 @@ export default function App() {
   const [supabase] = useState(() =>
     createBrowserClient(env.DATABASE_URL, env.DB_KEY)
   )
-  const revalidator = useRevalidator()
-
-  useEffect(() => {
-    const {
-      data: { subscription },
-    } = supabase.auth.onAuthStateChange((event, session) => {
-      revalidator.revalidate()
-    })
-
-    return () => {
-      subscription.unsubscribe()
-    }
-  }, [supabase])
 
   return (
     <html lang="en">
