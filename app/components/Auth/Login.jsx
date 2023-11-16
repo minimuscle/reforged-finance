@@ -1,21 +1,18 @@
 import {
   Button,
-  Flex,
-  Group,
+  Divider,
+  Input,
   Modal,
+  PasswordInput,
   Space,
   Stack,
   Text,
   Title,
-  Tooltip,
 } from "@mantine/core"
-import { PiCrownFill } from "react-icons/pi/index.js"
-import { useContext, useState } from "react"
-import { DatabaseContext } from "../../contexts/DatabaseContext"
+import { Form } from "@remix-run/react"
+import { Link } from "react-router-dom"
 
-function Login({ opened, close }) {
-  const database = useContext(DatabaseContext)
-  const [type, setType] = useState("main")
+function Login({ opened, close, signup }) {
   return (
     <Modal
       opened={opened}
@@ -25,27 +22,41 @@ function Login({ opened, close }) {
         backgroundOpacity: 0.75,
         blur: 20,
       }}
-      size={"lg"}
+      size={"sm"}
       withCloseButton={false}
     >
-      <Title align="center" order={4}>
-        Login!
-      </Title>
-      <Text align="center">
-        Connect to your database below in order to use this program
-      </Text>
+      <Title align="center">Login</Title>
       <Space h="xl" />
       <Stack>
-        <Button
-          fullWidth
-          onClick={() => {
-            setType("login")
-          }}
-        >
-          Login to Connect Database
+        <Form method="POST" action="/login">
+          <Input.Wrapper label="Email" mb="20px">
+            <Input type="email" placeholder="Email" />
+          </Input.Wrapper>
+          <Input.Wrapper
+            label="Password"
+            mb="10px"
+            description="UNSAFE - Currently sent as plaintext"
+          >
+            <PasswordInput mt="5px" type="password" placeholder="Password" />
+          </Input.Wrapper>
+          <Link to="/forgot-password">
+            <Text size="xs" align="right">
+              Forgot Password?
+            </Text>
+          </Link>
+          <Button fullWidth type="submit" mt="25px">
+            Login
+          </Button>
+        </Form>
+        <Text align="center">
+          Don't have an account? <Link onClick={() => signup()}>Sign Up</Link>
+        </Text>
+        <Divider my="xs" label="Or" labelPosition="center" />
+        <Button fullWidth disabled type="submit" color="indigo">
+          Login with Facebook (Coming Soon)
         </Button>
-        <Button color="yellow" fullWidth>
-          No Database Yet? Create One
+        <Button fullWidth disabled type="submit" color="grey">
+          Login with Google (Coming Soon)
         </Button>
       </Stack>
     </Modal>
