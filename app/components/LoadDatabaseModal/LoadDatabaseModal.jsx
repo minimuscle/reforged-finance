@@ -10,39 +10,49 @@ import {
   Tooltip,
 } from "@mantine/core"
 import { PiCrownFill } from "react-icons/pi/index.js"
-import "./LoadDatabaseModal.css"
 import { useContext, useState } from "react"
 import { DatabaseContext } from "../../contexts/DatabaseContext"
-import Main from "../Auth/Main"
+import Login from "../Auth/Login"
 
-const getData = (type) => {
-  switch (type) {
-    case "login":
-    case "signup":
-
-    case "main":
-    default:
-      return <Main />
-  }
-}
-
-function LoadDatabaseModal({ close, login }) {
+function LoadDatabaseModal({ opened, close, login }) {
   const database = useContext(DatabaseContext)
-  const [type, setType] = useState("main")
+  const [loginModal, setLoginModal] = useState(false)
   return (
-    <Modal
-      opened={!database}
-      onClose={close}
-      centered
-      overlayProps={{
-        backgroundOpacity: 0.75,
-        blur: 20,
-      }}
-      size={"lg"}
-      withCloseButton={false}
-    >
-      {getData(type)}
-    </Modal>
+    <>
+      <Login opened={loginModal} close={() => setLoginModal(false)} />
+      <Modal
+        opened={opened}
+        onClose={close}
+        centered
+        overlayProps={{
+          backgroundOpacity: 0.75,
+          blur: 20,
+        }}
+        size={"lg"}
+        withCloseButton={false}
+      >
+        <Title align="center" order={4}>
+          Connect to Your Database
+        </Title>
+        <Text align="center">
+          Connect to your database below in order to use this program
+        </Text>
+        <Space h="xl" />
+        <Stack>
+          <Button
+            fullWidth
+            onClick={() => {
+              login(true)
+            }}
+          >
+            Login to Connect Database
+          </Button>
+          <Button color="yellow" fullWidth>
+            No Database Yet? Create One
+          </Button>
+        </Stack>
+      </Modal>
+    </>
   )
 }
 

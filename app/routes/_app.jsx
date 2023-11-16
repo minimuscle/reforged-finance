@@ -24,6 +24,7 @@ import { useState, useContext, useEffect } from "react"
 import theme from "~/util/theme"
 import { supabaseSignIn } from "../util/supabase"
 import { createServerClient, parse, serialize } from "@supabase/ssr"
+import Login from "../components/Auth/Login"
 
 const loginUser = async () => {
   console.log("Logging in user")
@@ -64,8 +65,11 @@ export const loader = async ({ request }) => {
 
 function App() {
   const [opened, { toggle }] = useDisclosure(false)
+  const [loginOpen, { toggle: loginToggle }] = useDisclosure(false)
+  const [signUpOpen, { toggle: signUpToggle }] = useDisclosure(false)
   const { user } = useLoaderData()
   const [database, setDatabase] = useState(user?.user?.id ? true : false)
+  const [modalOpen, { toggle: modalToggle }] = useDisclosure(!database)
   const supabase = useContext(SupabaseContext)
   const revalidator = useRevalidator()
 
@@ -96,10 +100,12 @@ function App() {
   }
 
   const login = () => {
-    supabase.auth.signInWithPassword({
+    loginToggle()
+    modalToggle()
+    /*supabase.auth.signInWithPassword({
       email: "joshthiele@live.com.au",
       password: "password",
-    })
+    })*/
   }
 
   const logout = () => {
@@ -109,7 +115,12 @@ function App() {
     <DatabaseContext.Provider value={database}>
       <PremiumMemberContext.Provider>
         <MantineProvider theme={theme}>
-          <LoadDatabaseModal close={toggle} login={login} />
+          <LoadDatabaseModal
+            opened={modalOpen}
+            close={modalToggle}
+            login={login}
+          />
+          <Login opened={loginOpen} close={loginToggle} />
           <AppShell
             header={{ height: 60 }}
             navbar={{
