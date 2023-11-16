@@ -1,28 +1,10 @@
-import {
-  Button,
-  Flex,
-  Group,
-  Modal,
-  Space,
-  Stack,
-  Text,
-  Title,
-  Tooltip,
-} from "@mantine/core"
-import { PiCrownFill } from "react-icons/pi/index.js"
-import { useContext, useState } from "react"
-import { DatabaseContext } from "../../contexts/DatabaseContext"
-import Login from "../Auth/Login"
-
-function LoadDatabaseModal({ opened, close, login }) {
-  const database = useContext(DatabaseContext)
-  const [loginModal, setLoginModal] = useState(false)
+import { Button, Modal, Space, Stack, Text, Title } from "@mantine/core"
+function LoadDatabaseModal({ opened, toggle, login }) {
   return (
     <>
-      <Login opened={loginModal} close={() => setLoginModal(false)} />
       <Modal
         opened={opened}
-        onClose={close}
+        onClose={toggle}
         centered
         overlayProps={{
           backgroundOpacity: 0.75,

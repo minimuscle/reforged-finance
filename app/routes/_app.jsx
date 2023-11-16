@@ -25,6 +25,7 @@ import theme from "~/util/theme"
 import { supabaseSignIn } from "../util/supabase"
 import { createServerClient, parse, serialize } from "@supabase/ssr"
 import Login from "../components/Auth/Login"
+import SignUp from "../components/Auth/SignUp"
 
 const loginUser = async () => {
   console.log("Logging in user")
@@ -120,7 +121,28 @@ function App() {
             close={modalToggle}
             login={login}
           />
-          <Login opened={loginOpen} close={loginToggle} />
+          <Login
+            opened={loginOpen}
+            close={() => {
+              loginToggle()
+              modalToggle()
+            }}
+            signup={() => {
+              loginToggle()
+              signUpToggle()
+            }}
+          />
+          <SignUp
+            opened={signUpOpen}
+            close={() => {
+              signUpToggle()
+              modalToggle()
+            }}
+            login={() => {
+              loginToggle()
+              signUpToggle()
+            }}
+          />
           <AppShell
             header={{ height: 60 }}
             navbar={{
