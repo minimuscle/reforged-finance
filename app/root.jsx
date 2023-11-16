@@ -7,31 +7,19 @@ import {
   Scripts,
   ScrollRestoration,
   useLoaderData,
-  useRevalidator,
 } from "@remix-run/react"
-import { redirect } from "@remix-run/node"
 import "@mantine/core/styles.css"
 import { ColorSchemeScript } from "@mantine/core"
 import "./global.css"
 import { SupabaseContext } from "./contexts/SupabaseContext"
-import {
-  createBrowserClient,
-  createServerClient,
-  parse,
-  serialize,
-} from "@supabase/ssr"
-import { createClient } from "@supabase/supabase-js"
+import { createBrowserClient } from "@supabase/ssr"
 import { useState } from "react"
-import { useEffect } from "react"
 
 export const links = () => [
   ...(cssBundleHref ? [{ rel: "stylesheet", href: cssBundleHref }] : []),
 ]
 
-export const loader = async ({ request }) => {
-  const cookies = parse(request.headers.get("Cookie") ?? "")
-  const headers = new Headers()
-
+export const loader = async () => {
   const env = {
     DATABASE_URL: process.env.DATABASE_URL,
     DB_KEY: process.env.DB_KEY,

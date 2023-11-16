@@ -10,15 +10,15 @@ import {
   Tooltip,
 } from "@mantine/core"
 import { PiCrownFill } from "react-icons/pi/index.js"
-import "./LoadDatabaseModal.css"
-import { useContext } from "react"
+import { useContext, useState } from "react"
 import { DatabaseContext } from "../../contexts/DatabaseContext"
 
-function Login() {
+function Login({ opened, close }) {
   const database = useContext(DatabaseContext)
+  const [type, setType] = useState("main")
   return (
     <Modal
-      opened={!database}
+      opened={opened}
       onClose={close}
       centered
       overlayProps={{
@@ -29,7 +29,7 @@ function Login() {
       withCloseButton={false}
     >
       <Title align="center" order={4}>
-        Connect to Your Database
+        Login!
       </Title>
       <Text align="center">
         Connect to your database below in order to use this program
@@ -39,8 +39,7 @@ function Login() {
         <Button
           fullWidth
           onClick={() => {
-            //This is temp and should be removed
-            login()
+            setType("login")
           }}
         >
           Login to Connect Database
@@ -53,4 +52,4 @@ function Login() {
   )
 }
 
-export default LoadDatabaseModal
+export default Login
