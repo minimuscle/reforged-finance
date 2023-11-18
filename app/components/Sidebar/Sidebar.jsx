@@ -113,7 +113,22 @@ function Sidebar() {
         />
         <Nav
           className="navlink"
-          label="Stocks (Coming Soon)"
+          label="Managed Fund (Coming Soon)"
+          disabled
+          active={path.pathname.toLowerCase() === "/budget"}
+          leftSection={<TbReportMoney />}
+          rightSection={
+            <Tooltip withArrow label="Premium Feature">
+              <ThemeIcon variant="white">
+                <PiCrownFill color="orange" />
+              </ThemeIcon>
+            </Tooltip>
+          }
+          onClick={() => (premium ? navigate("/budget") : showPremiumPopup())}
+        />
+        <Nav
+          className="navlink"
+          label="Stocks / ETFs (Coming Soon)"
           disabled
           active={path.pathname.toLowerCase() === "/budget"}
           leftSection={<TbReportMoney />}
@@ -134,7 +149,16 @@ function Sidebar() {
           onClick={() => navigate("/history")}
         />
         <Flex h="100%"></Flex>
-
+        <Nav
+          className="navlink"
+          label="Roadmap (Coming Soon)"
+          color={
+            path.pathname.toLowerCase() === "/premium" ? "black" : "violet"
+          }
+          active
+          leftSection={<PiCrownFill color="orange" />}
+          onClick={() => navigate("/premium")}
+        />
         <Nav
           className="navlink"
           label="Get Premium (Coming Soon)"

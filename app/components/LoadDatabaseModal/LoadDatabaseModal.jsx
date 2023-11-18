@@ -1,5 +1,8 @@
 import { Button, Modal, Space, Stack, Text, Title } from "@mantine/core"
+import { useNavigate } from "@remix-run/react"
 function LoadDatabaseModal({ opened, toggle, login }) {
+  const navigate = useNavigate()
+
   return (
     <>
       <Modal
@@ -24,7 +27,7 @@ function LoadDatabaseModal({ opened, toggle, login }) {
           <Button
             fullWidth
             onClick={() => {
-              login(true)
+              navigate("/login")
             }}
           >
             Login to Connect Database

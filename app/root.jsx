@@ -46,11 +46,6 @@ export const loader = async () => {
   return { env }
 }
 
-export const action = async ({ request }) => {
-  const body = await request.formData()
-  return "hello"
-}
-
 export default function App() {
   const { env } = useLoaderData()
   const [supabase] = useState(() =>
@@ -90,16 +85,14 @@ export default function App() {
       password: "password",
     })
   }
+  /**/
 
   const login = () => {
-    loginToggle()
-    modalToggle()
-    /*supabase.auth.signInWithPassword({
+    supabase.auth.signInWithPassword({
       email: "joshthiele@live.com.au",
       password: "password",
-    })*/
+    })
   }
-
   const logout = () => {
     supabase.auth.signOut()
   }
@@ -118,11 +111,7 @@ export default function App() {
           <DatabaseContext.Provider value={database}>
             <PremiumMemberContext.Provider>
               <MantineProvider theme={theme}>
-                <LoadDatabaseModal
-                  opened={modalOpen}
-                  close={modalToggle}
-                  login={login}
-                />
+                <LoadDatabaseModal opened={false} close={modalToggle} />
                 <AppShell
                   header={{ height: 60 }}
                   navbar={{
@@ -145,9 +134,12 @@ export default function App() {
                       <Group pos="absolute" right={10}>
                         <Text align="right">{user?.user?.email}</Text>
                         <Avatar variant="outline" radius="xl" src="" />
-                        <Button onClick={() => signUp()}>Sign Up</Button>
-                        <Button onClick={() => login()}>Login</Button>
-                        <Button onClick={() => logout()}>Logout</Button>
+                        <Button variant="light" onClick={() => login()}>
+                          Log In
+                        </Button>
+                        <Button variant="light" onClick={() => logout()}>
+                          Sign Out
+                        </Button>
                       </Group>
                     </Group>
                   </AppShell.Header>
