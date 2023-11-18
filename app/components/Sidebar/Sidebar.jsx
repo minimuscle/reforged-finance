@@ -23,6 +23,7 @@ import {
   PiClockCounterClockwiseBold,
   PiCrownFill,
 } from "react-icons/pi/index.js"
+import { RiRoadMapFill } from "react-icons/ri/index.js"
 import { Link, useLocation, useNavigate } from "@remix-run/react"
 import "./Sidebar.css"
 import { useContext } from "react"
@@ -151,13 +152,11 @@ function Sidebar() {
         <Flex h="100%"></Flex>
         <Nav
           className="navlink"
-          label="Roadmap (Coming Soon)"
-          color={
-            path.pathname.toLowerCase() === "/premium" ? "black" : "violet"
-          }
+          label="Roadmap"
+          color={path.pathname.toLowerCase() === "/roadmap" ? "black" : "blue"}
           active
-          leftSection={<PiCrownFill color="orange" />}
-          onClick={() => navigate("/premium")}
+          leftSection={<RiRoadMapFill />}
+          onClick={() => navigate("/roadmap")}
         />
         <Nav
           className="navlink"
