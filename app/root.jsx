@@ -23,7 +23,12 @@ import {
 } from "@mantine/core"
 import "./global.css"
 import { SupabaseContext } from "./contexts/SupabaseContext"
-import { createBrowserClient } from "@supabase/ssr"
+import {
+  createBrowserClient,
+  createServerClient,
+  parse,
+  serialize,
+} from "@supabase/ssr"
 import { useState, useEffect } from "react"
 import { DatabaseContext } from "./contexts/DatabaseContext"
 import { PremiumMemberContext } from "./contexts/PremiumMemberContext"
@@ -37,24 +42,46 @@ export const links = () => [
   ...(cssBundleHref ? [{ rel: "stylesheet", href: cssBundleHref }] : []),
 ]
 
-export const loader = async () => {
+export const loader = async ({ request }) => {
   const env = {
     DATABASE_URL: process.env.DATABASE_URL,
     DB_KEY: process.env.DB_KEY,
   }
+  const cookies = parse(request.headers.get("Cookie") ?? "")
+  const headers = new Headers()
 
-  return { env }
+  const supabase = createServerClient(env.DATABASE_URL, env.DB_KEY, {
+    cookies: {
+      get(key) {
+        return cookies[key]
+      },
+      set(key, value, options) {
+        headers.append("Set-Cookie", serialize(key, value, options))
+      },
+      remove(key, options) {
+        headers.append("Set-Cookie", serialize(key, "", options))
+      },
+    },
+  })
+
+  const { data: user } = await supabase.auth.getUser()
+  console.log(user)
+
+  return {
+    env,
+    user,
+    headers,
+  }
 }
 
 export default function App() {
-  const { env } = useLoaderData()
+  const { env, user } = useLoaderData()
   const [supabase] = useState(() =>
     createBrowserClient(env.DATABASE_URL, env.DB_KEY)
   )
   const [opened, { toggle }] = useDisclosure(false)
   const [loginOpen, { toggle: loginToggle }] = useDisclosure(false)
   const [signUpOpen, { toggle: signUpToggle }] = useDisclosure(false)
-  const { user } = useLoaderData()
   const res = useActionData()
   const [database, setDatabase] = useState(user?.user?.id ? true : false)
   const [modalOpen, { toggle: modalToggle }] = useDisclosure(!database)
@@ -109,7 +136,7 @@ export default function App() {
       <body>
         <SupabaseContext.Provider value={supabase}>
           <DatabaseContext.Provider value={database}>
-            <PremiumMemberContext.Provider>
+            <PremiumMemberContext.Provider value={false}>
               <MantineProvider theme={theme}>
                 <LoadDatabaseModal opened={false} close={modalToggle} />
                 <AppShell
@@ -134,12 +161,15 @@ export default function App() {
                       <Group pos="absolute" right={10}>
                         <Text align="right">{user?.user?.email}</Text>
                         <Avatar variant="outline" radius="xl" src="" />
-                        <Button variant="light" onClick={() => login()}>
-                          Log In
-                        </Button>
-                        <Button variant="light" onClick={() => logout()}>
-                          Sign Out
-                        </Button>
+                        {user?.user ? (
+                          <Button variant="light" onClick={() => logout()}>
+                            Sign Out
+                          </Button>
+                        ) : (
+                          <Button variant="light" onClick={() => login()}>
+                            Log In
+                          </Button>
+                        )}
                       </Group>
                     </Group>
                   </AppShell.Header>
