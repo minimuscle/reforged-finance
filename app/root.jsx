@@ -28,6 +28,11 @@ export const loader = async () => {
   return { env }
 }
 
+export const action = async ({ request }) => {
+  const body = await request.formData()
+  return "hello"
+}
+
 export default function App() {
   const { env } = useLoaderData()
   const [supabase] = useState(() =>

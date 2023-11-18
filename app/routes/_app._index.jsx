@@ -63,7 +63,6 @@ export default function Index() {
   const data = useLoaderData()
 
   const getNetWorth = () => {
-    console.log(data.data)
     if (data.data.length <= 0) return formatter.format(0)
     const latest = data.data[data.data.length - 1]
     const netWorth = latest?.cash + latest?.super + latest?.debts

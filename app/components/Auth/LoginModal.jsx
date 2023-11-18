@@ -9,10 +9,19 @@ import {
   Text,
   Title,
 } from "@mantine/core"
-import { Form } from "@remix-run/react"
+import { Form, useActionData } from "@remix-run/react"
+import { useEffect } from "react"
 import { Link } from "react-router-dom"
 
 function Login({ opened, close, signup }) {
+  const action = useActionData()
+
+  useEffect(() => {
+    if (action === "hello") {
+      console.log("hello")
+    }
+  }, [action])
+
   return (
     <Modal
       opened={opened}
@@ -25,19 +34,25 @@ function Login({ opened, close, signup }) {
       size={"sm"}
       withCloseButton={false}
     >
-      <Title align="center">Login</Title>
+      <Title align="center">Login - {action}</Title>
       <Space h="xl" />
       <Stack>
-        <Form method="POST" action="/login">
+        <Form method="POST" action="/">
           <Input.Wrapper label="Email" mb="20px">
-            <Input type="email" placeholder="Email" />
+            <Input type="email" id="email" name="email" placeholder="Email" />
           </Input.Wrapper>
           <Input.Wrapper
             label="Password"
             mb="10px"
             description="UNSAFE - Currently sent as plaintext"
           >
-            <PasswordInput mt="5px" type="password" placeholder="Password" />
+            <PasswordInput
+              mt="5px"
+              name="password"
+              id="password"
+              type="password"
+              placeholder="Password"
+            />
           </Input.Wrapper>
           <Link to="/forgot-password">
             <Text size="xs" align="right">

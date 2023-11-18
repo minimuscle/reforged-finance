@@ -1,5 +1,6 @@
 import {
   Outlet,
+  useActionData,
   useFetcher,
   useLoaderData,
   useRevalidator,
@@ -24,14 +25,8 @@ import { useState, useContext, useEffect } from "react"
 import theme from "~/util/theme"
 import { supabaseSignIn } from "../util/supabase"
 import { createServerClient, parse, serialize } from "@supabase/ssr"
-import Login from "../components/Auth/Login"
+import Login from "../components/Auth/LoginModal"
 import SignUp from "../components/Auth/SignUp"
-
-const loginUser = async () => {
-  console.log("Logging in user")
-  const response = await supabaseSignIn()
-  console.log(response)
-}
 
 export const loader = async ({ request }) => {
   const cookies = parse(request.headers.get("Cookie") ?? "")
@@ -69,6 +64,7 @@ function App() {
   const [loginOpen, { toggle: loginToggle }] = useDisclosure(false)
   const [signUpOpen, { toggle: signUpToggle }] = useDisclosure(false)
   const { user } = useLoaderData()
+  const res = useActionData()
   const [database, setDatabase] = useState(user?.user?.id ? true : false)
   const [modalOpen, { toggle: modalToggle }] = useDisclosure(!database)
   const supabase = useContext(SupabaseContext)
@@ -120,17 +116,6 @@ function App() {
             opened={modalOpen}
             close={modalToggle}
             login={login}
-          />
-          <Login
-            opened={loginOpen}
-            close={() => {
-              loginToggle()
-              modalToggle()
-            }}
-            signup={() => {
-              loginToggle()
-              signUpToggle()
-            }}
           />
           <SignUp
             opened={signUpOpen}
