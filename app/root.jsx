@@ -64,16 +64,19 @@ export const loader = async ({ request }) => {
     },
   })
 
-  const { data: user } = await supabase.auth.getUser()
+  const { data: auth } = await supabase.auth.getUser()
+  const { data: user } = await supabase.from("profiles").select().single()
+  console.log(user)
   return {
     env,
+    auth,
     user,
     headers,
   }
 }
 
 export default function App() {
-  const { env, user } = useLoaderData()
+  const { env, auth, user } = useLoaderData()
   const [supabase] = useState(() =>
     createBrowserClient(env.DATABASE_URL, env.DB_KEY)
   )
@@ -81,7 +84,7 @@ export default function App() {
   const [loginOpen, { toggle: loginToggle }] = useDisclosure(false)
   const [signUpOpen, { toggle: signUpToggle }] = useDisclosure(false)
   const res = useActionData()
-  const [database, setDatabase] = useState(user?.user?.id ? true : false)
+  const [database, setDatabase] = useState(auth?.user?.id ? true : false)
   const [modalOpen, { toggle: modalToggle }] = useDisclosure(!database)
   const revalidator = useRevalidator()
 
@@ -90,7 +93,7 @@ export default function App() {
       data: { subscription },
     } = supabase.auth.onAuthStateChange(() => {
       revalidator.revalidate()
-      if (user?.user?.id) {
+      if (auth?.user?.id) {
         setDatabase(true)
       } else {
         setDatabase(false)
@@ -102,7 +105,7 @@ export default function App() {
     return () => {
       subscription.unsubscribe()
     }
-  }, [supabase, database, user?.user?.id])
+  }, [supabase, database, auth?.user?.id])
 
   const signUp = () => {
     supabase.auth.signUp({
@@ -157,9 +160,11 @@ export default function App() {
                       <LogoButton />
 
                       <Group pos="absolute" right={10}>
-                        <Text align="right">{user?.user?.email}</Text>
+                        <Text align="right">
+                          {user.name || auth?.user?.email}
+                        </Text>
                         <Avatar variant="outline" radius="xl" src="" />
-                        {user?.user ? (
+                        {auth?.user ? (
                           <Button variant="light" onClick={() => logout()}>
                             Sign Out
                           </Button>
