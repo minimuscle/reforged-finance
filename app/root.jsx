@@ -37,6 +37,7 @@ import LogoButton from "./components/LogoButton/LogoButton"
 import Sidebar from "./components/Sidebar/Sidebar"
 import { useDisclosure } from "@mantine/hooks"
 import theme from "~/util/theme"
+import SetupModal from "./components/Setup/SetupModal"
 
 export const links = () => [
   ...(cssBundleHref ? [{ rel: "stylesheet", href: cssBundleHref }] : []),
@@ -81,7 +82,7 @@ export default function App() {
     createBrowserClient(env.DATABASE_URL, env.DB_KEY)
   )
   const [opened, { toggle }] = useDisclosure(false)
-  const [loginOpen, { toggle: loginToggle }] = useDisclosure(false)
+  const [setupOpen, { toggle: setupToggle }] = useDisclosure(false)
   const [signUpOpen, { toggle: signUpToggle }] = useDisclosure(false)
   const res = useActionData()
   const [database, setDatabase] = useState(auth?.user?.id ? true : false)
@@ -106,6 +107,13 @@ export default function App() {
       subscription.unsubscribe()
     }
   }, [supabase, database, auth?.user?.id])
+
+  //check for "user" if null, then set SetupModal to open
+  useEffect(() => {
+    if (!user) {
+      setupToggle()
+    }
+  }, [user])
 
   const signUp = () => {
     supabase.auth.signUp({
@@ -139,6 +147,7 @@ export default function App() {
           <DatabaseContext.Provider value={database}>
             <PremiumMemberContext.Provider value={false}>
               <MantineProvider theme={theme}>
+                <SetupModal opened={setupOpen} close={setupToggle} />
                 <LoadDatabaseModal opened={false} close={modalToggle} />
                 <AppShell
                   header={{ height: 60 }}
