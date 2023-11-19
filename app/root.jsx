@@ -65,8 +65,6 @@ export const loader = async ({ request }) => {
   })
 
   const { data: user } = await supabase.auth.getUser()
-  console.log(user)
-
   return {
     env,
     user,
@@ -177,7 +175,7 @@ export default function App() {
                     <Sidebar />
                   </AppShell.Navbar>
                   <AppShell.Main>
-                    <Outlet />
+                    <Outlet className="main" />
                   </AppShell.Main>
                 </AppShell>
               </MantineProvider>
