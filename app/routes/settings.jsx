@@ -190,7 +190,7 @@ export default function Settings() {
                       },
                     }}
                     name="employmentIncome"
-                    placeholder={currency(profile.employmentIncome).format()}
+                    placeholder={currency(profile?.employmentIncome).format()}
                   />
                 </Input.Wrapper>
                 <Tooltip label="Other Currency Coming Soon">
@@ -200,7 +200,7 @@ export default function Settings() {
                     label="Currency"
                     value="AUD"
                     data={["AUD", "USD", "NZD", "EUR"]}
-                    defaultValue={profile.currency || "AUD"}
+                    defaultValue={profile?.currency || "AUD"}
                     name="currency"
                     allowDeselect={false}
                     mt="17px"
@@ -224,7 +224,7 @@ export default function Settings() {
                       thousandsSeparator: ",",
                     },
                   }}
-                  placeholder={currency(profile.netIncome).format()}
+                  placeholder={currency(profile?.netIncome).format()}
                 />
               </Input.Wrapper>
               <Select
@@ -232,7 +232,7 @@ export default function Settings() {
                 label="Salary Frequency"
                 description="How often you get paid"
                 data={["Monthly", "Fortnightly (2-Weeks)", "Weekly"]}
-                defaultValue={profile.salaryFrequency || "Monthly"}
+                defaultValue={profile?.salaryFrequency || "Monthly"}
                 allowDeselect={false}
               />
             </Stack>
@@ -256,20 +256,20 @@ export default function Settings() {
                       thousandsSeparator: ",",
                     },
                   }}
-                  placeholder={currency(profile.cashGoal).format()}
+                  placeholder={currency(profile?.cashGoal).format()}
                 />
               </Input.Wrapper>
               <NumberInput
                 name="emergencyFundGoal"
                 label="Emergency Fund Goal"
                 description="How many months you want to save for. We recommend 12 months"
-                placeholder={(profile.emergencyFundGoal || "X") + " Months"}
+                placeholder={(profile?.emergencyFundGoal || "X") + " Months"}
                 allowNegative={false}
                 allowDecimal={false}
                 suffix=" Months"
               />
               <Switch
-                defaultChecked={profile.homeDeposit || false}
+                defaultChecked={profile?.homeDeposit || false}
                 name="homeDeposit"
                 labelPosition="left"
                 label="Home Deposit"
@@ -283,7 +283,7 @@ export default function Settings() {
               >
                 <Input
                   name="depositAmount"
-                  placeholder={currency(profile.depositAmount).format()}
+                  placeholder={currency(profile?.depositAmount).format()}
                 />
               </Input.Wrapper>
             </Stack>
@@ -305,7 +305,7 @@ export default function Settings() {
               >
                 <Input
                   name="email"
-                  placeholder={profile.email || "johnsmith@example.com"}
+                  placeholder={profile?.email || auth?.user?.email}
                 />
               </Input.Wrapper>
               <Input.Wrapper
@@ -313,7 +313,10 @@ export default function Settings() {
                 description="Your name for use in this app, it can be anything you like"
                 error=""
               >
-                <Input name="name" placeholder={profile.name || "John Smith"} />
+                <Input
+                  name="name"
+                  placeholder={profile?.name || "John Smith"}
+                />
               </Input.Wrapper>
             </Stack>
           </Paper>
