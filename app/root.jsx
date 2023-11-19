@@ -161,7 +161,7 @@ export default function App() {
 
                       <Group pos="absolute" right={10}>
                         <Text align="right">
-                          {user.name || auth?.user?.email}
+                          {user?.name || auth?.user?.email}
                         </Text>
                         <Avatar variant="outline" radius="xl" src="" />
                         {auth?.user ? (
