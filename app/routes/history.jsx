@@ -102,7 +102,7 @@ export default function History() {
         <Text>View Previous Months</Text>
       </Stack>
       <Space h="xl" />
-      <Table.ScrollContainer minWidth={750} type="native">
+      <Table.ScrollContainer bg="white" minWidth={750} type="native">
         <Table
           highlightOnHover
           striped
