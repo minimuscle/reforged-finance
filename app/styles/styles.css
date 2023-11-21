@@ -30,3 +30,8 @@
 .white .pricing {
   color: #c8cad3;
 }
+
+.tableBanks {
+  border-radius: 20px;
+  border: black;
+}

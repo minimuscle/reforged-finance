@@ -56,7 +56,7 @@ function Sidebar() {
 
         <Nav
           className="navlink"
-          label="Cash (Coming Soon)"
+          label="Cash"
           active={path.pathname.toLowerCase() === "/cash"}
           leftSection={<PiCurrencyDollarSimpleBold />}
           onClick={() => navigate("/cash")}
