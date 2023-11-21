@@ -130,8 +130,6 @@ export const action = async ({ request }) => {
     oldProfile.depositAmount ||
     null
 
-  console.log("name: ", name)
-
   const { data: profile, error } = await supabase
     .from("profiles")
     .upsert(
