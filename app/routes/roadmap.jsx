@@ -71,6 +71,15 @@ export default function Roadmap() {
                 </Timeline.Item>
                 <Timeline.Item title="Version 0.0.3">
                   <Text c="dimmed" size="sm">
+                    Setup page for those who are new to the application. <br />
+                    Included profile page creation of the database
+                  </Text>
+                  <Badge color="green" size="xs" mt={4}>
+                    Stable
+                  </Badge>
+                </Timeline.Item>
+                <Timeline.Item lineVariant="dashed" title="Version 0.0.4">
+                  <Text c="dimmed" size="sm">
                     Cash page and ability to add cash / bank accounts that save
                     <br />
                     to the history and apply to the dashboard
@@ -79,18 +88,18 @@ export default function Roadmap() {
                     In-Development
                   </Badge>
                 </Timeline.Item>
-                <Timeline.Item lineVariant="dashed" title="Version 0.0.4">
-                  <Text c="dimmed" size="sm">
-                    User Sign Up / Login and Logout functionality fully
-                    supported
-                  </Text>
-                  <Badge color="yellow" size="xs" mt={4}>
-                    Upcoming
-                  </Badge>
-                </Timeline.Item>
                 <Timeline.Item title="Version 0.1.0">
                   <Text c="dimmed" size="sm">
-                    Completed History, Cash, Dashboard and User accounts
+                    <List c="dimmed" size="sm" mt={-25}>
+                      <List.Item>
+                        Completed History, Cash, Dashboard and User accounts
+                      </List.Item>
+                      <List.Item>
+                        User Sign Up / Login and Logout functionality fully
+                        supported
+                      </List.Item>
+                      <List.Item>And More</List.Item>
+                    </List>
                   </Text>
                   <Badge color="yellow" size="xs" mt={4}>
                     Upcoming
