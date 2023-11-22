@@ -1,7 +1,7 @@
 import React from "react"
 
 export const meta = () => {
-  return [{ title: "Side Income | Personal Finance" }]
+  return [{ title: "Side Income | WealthForge" }]
 }
 
 export default function SideIncome() {
