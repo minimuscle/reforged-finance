@@ -21,7 +21,7 @@ import { createServerClient, parse, serialize } from "@supabase/ssr"
 import HistoricalNetWorthChart from "../components/Charts/HistoricalNetWorthChart.client"
 
 export const meta = () => {
-  return [{ title: "Dashboard | Personal Finance" }]
+  return [{ title: "Dashboard | WealthForge" }]
 }
 
 export const loader = async ({ request }) => {
@@ -72,20 +72,34 @@ export default function Index() {
 
   return (
     <>
-      <Title align="center">Personal Finance Overview</Title>
-      <Space h="xl" />
+      <Title align='center'>Personal Finance Overview</Title>
+      <Space h='xl' />
 
       <Grid>
-        <Grid.Col span={4} justify="center" align="center">
-          <Stack align="center" gap="1">
+        <Grid.Col
+          span={4}
+          justify='center'
+          align='center'
+        >
+          <Stack
+            align='center'
+            gap='1'
+          >
             <Title>Net Worth</Title>
             <Text>Total Net Worth</Text>
           </Stack>
           <Title>{getNetWorth()}</Title>
           {data.data.length > 0 && <NetWorthChart data={data.data} />}
         </Grid.Col>
-        <Grid.Col span={8} justify="center" align="center">
-          <Stack align="center" gap="1">
+        <Grid.Col
+          span={8}
+          justify='center'
+          align='center'
+        >
+          <Stack
+            align='center'
+            gap='1'
+          >
             <Title>Historical Net Worth</Title>
             <Text>Net Worth In The Last 5 Years</Text>
             {data.data.length > 0 && (

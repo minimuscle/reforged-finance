@@ -5,7 +5,7 @@ import { createServerClient, parse, serialize } from "@supabase/ssr"
 import { useLoaderData } from "@remix-run/react"
 
 export const meta = () => {
-  return [{ title: "History | Personal Finance" }]
+  return [{ title: "History | WealthForge" }]
 }
 
 export const loader = async ({ request }) => {
@@ -97,19 +97,23 @@ export default function History() {
 
   return (
     <>
-      <Stack align="center">
+      <Stack align='center'>
         <Title>History</Title>
         <Text>View Previous Months</Text>
       </Stack>
-      <Space h="xl" />
-      <Table.ScrollContainer bg="white" minWidth={750} type="native">
+      <Space h='xl' />
+      <Table.ScrollContainer
+        bg='white'
+        minWidth={750}
+        type='native'
+      >
         <Table
           highlightOnHover
           striped
           withTableBorder
-          className="table"
-          h="100px"
-          overflow="hidden"
+          className='table'
+          h='100px'
+          overflow='hidden'
         >
           <Table.Thead>
             <Table.Tr>

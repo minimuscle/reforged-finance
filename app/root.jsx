@@ -134,11 +134,14 @@ export default function App() {
   }
 
   return (
-    <html lang="en">
+    <html lang='en'>
       <head>
         <ColorSchemeScript />
-        <meta charSet="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta charSet='utf-8' />
+        <meta
+          name='viewport'
+          content='width=device-width, initial-scale=1'
+        />
         <Meta />
         <Links />
       </head>
@@ -147,8 +150,14 @@ export default function App() {
           <DatabaseContext.Provider value={database}>
             <PremiumMemberContext.Provider value={false}>
               <MantineProvider theme={theme}>
-                <SetupModal opened={setupOpen} close={setupToggle} />
-                <LoadDatabaseModal opened={false} close={modalToggle} />
+                <SetupModal
+                  opened={false}
+                  close={setupToggle}
+                />
+                <LoadDatabaseModal
+                  opened={false}
+                  close={modalToggle}
+                />
                 <AppShell
                   header={{ height: 60 }}
                   navbar={{
@@ -156,40 +165,57 @@ export default function App() {
                     breakpoint: "sm",
                     collapsed: { mobile: !opened },
                   }}
-                  padding="md"
+                  padding='md'
                 >
                   <AppShell.Header>
-                    <Group h="100%" px="md" align="center">
+                    <Group
+                      h='100%'
+                      px='md'
+                      align='center'
+                    >
                       <Burger
                         opened={opened}
                         onClick={toggle}
-                        hiddenFrom="sm"
-                        size="sm"
+                        hiddenFrom='sm'
+                        size='sm'
                       />
                       <LogoButton />
 
-                      <Group pos="absolute" right={10}>
-                        <Text align="right">
+                      <Group
+                        pos='absolute'
+                        right={10}
+                      >
+                        <Text align='right'>
                           {user?.name || auth?.user?.email}
                         </Text>
-                        <Avatar variant="outline" radius="xl" src="" />
+                        <Avatar
+                          variant='outline'
+                          radius='xl'
+                          src=''
+                        />
                         {auth?.user ? (
-                          <Button variant="light" onClick={() => logout()}>
+                          <Button
+                            variant='light'
+                            onClick={() => logout()}
+                          >
                             Sign Out
                           </Button>
                         ) : (
-                          <Button variant="light" onClick={() => login()}>
+                          <Button
+                            variant='light'
+                            onClick={() => login()}
+                          >
                             Log In
                           </Button>
                         )}
                       </Group>
                     </Group>
                   </AppShell.Header>
-                  <AppShell.Navbar p="md">
+                  <AppShell.Navbar p='md'>
                     <Sidebar />
                   </AppShell.Navbar>
                   <AppShell.Main>
-                    <Outlet className="main" />
+                    <Outlet className='main' />
                   </AppShell.Main>
                 </AppShell>
               </MantineProvider>
