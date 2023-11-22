@@ -35,7 +35,7 @@ import { createServerClient, parse, serialize } from "@supabase/ssr"
 import currency from "currency.js"
 
 export const meta = () => {
-  return [{ title: "Cash | Personal Finance" }]
+  return [{ title: "Cash | WealthForge" }]
 }
 
 export const moneyFormatter = new Intl.NumberFormat("en-AU", {
@@ -80,16 +80,20 @@ export default function Cash() {
   const { auth, profile } = useLoaderData()
   return (
     <>
-      <Grid pb="100px">
+      <Grid pb='100px'>
         <Grid.Col span={6}>
-          <Paper shadow="xl" p="md" withBorder>
+          <Paper
+            shadow='xl'
+            p='md'
+            withBorder
+          >
             <Stack>
-              <Title align="center">Bank Accounts</Title>
+              <Title align='center'>Bank Accounts</Title>
               <Table
-                borderColor="blue"
-                className="tableBanks"
+                borderColor='blue'
+                className='tableBanks'
                 highlightOnHover
-                verticalSpacing="lg"
+                verticalSpacing='lg'
                 withRowBorders={false}
               >
                 <Table.Thead>
@@ -104,11 +108,11 @@ export default function Cash() {
                     <Table.Td>2Up Account</Table.Td>
                     <Table.Td>
                       <Select
-                        maw="85px"
-                        value="AUD"
+                        maw='85px'
+                        value='AUD'
                         data={["AUD", "USD", "NZD", "EUR"]}
                         defaultValue={profile?.currency || "AUD"}
-                        name="currency"
+                        name='currency'
                         allowDeselect={false}
                       />
                     </Table.Td>
@@ -120,7 +124,12 @@ export default function Cash() {
           </Paper>
         </Grid.Col>
       </Grid>
-      <Flex bg={"blue"} gap={"lg"} wrap={"wrap"} justify={"center"}></Flex>
+      <Flex
+        bg={"blue"}
+        gap={"lg"}
+        wrap={"wrap"}
+        justify={"center"}
+      ></Flex>
     </>
   )
 }
