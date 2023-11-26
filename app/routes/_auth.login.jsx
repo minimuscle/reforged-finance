@@ -11,30 +11,10 @@ import {
 } from "@mantine/core"
 import { Form, useActionData, useNavigate, Link } from "@remix-run/react"
 import { redirect } from "@remix-run/node"
-import { createServerClient, serialize, parse } from "@supabase/ssr"
-import { useEffect } from "react"
+import { createSupabaseServerClient } from "../util/supabase.server"
 
 export const action = async ({ request }) => {
-  const cookies = parse(request.headers.get("Cookie") ?? "")
-  const headers = new Headers()
-
-  const supabase = createServerClient(
-    process.env.DATABASE_URL,
-    process.env.DB_KEY,
-    {
-      cookies: {
-        get(key) {
-          return cookies[key]
-        },
-        set(key, value, options) {
-          headers.append("Set-Cookie", serialize(key, value, options))
-        },
-        remove(key, options) {
-          headers.append("Set-Cookie", serialize(key, "", options))
-        },
-      },
-    }
-  )
+  const supabase = createSupabaseServerClient({ request })
   const body = await request.formData()
   const email = body.get("email")
   const password = body.get("password")

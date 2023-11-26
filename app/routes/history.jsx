@@ -1,41 +1,21 @@
 import React from "react"
-import { Center, Paper, Space, Stack, Table, Text, Title } from "@mantine/core"
+import { Space, Stack, Table, Text, Title } from "@mantine/core"
 import "../styles/styles.css"
-import { createServerClient, parse, serialize } from "@supabase/ssr"
 import { useLoaderData } from "@remix-run/react"
+import { createSupabaseServerClient } from "../util/supabase.server"
 
 export const meta = () => {
   return [{ title: "History | WealthForge" }]
 }
 
 export const loader = async ({ request }) => {
-  const cookies = parse(request.headers.get("Cookie") ?? "")
-  const headers = new Headers()
-
-  const supabase = createServerClient(
-    process.env.DATABASE_URL,
-    process.env.DB_KEY,
-    {
-      cookies: {
-        get(key) {
-          return cookies[key]
-        },
-        set(key, value, options) {
-          headers.append("Set-Cookie", serialize(key, value, options))
-        },
-        remove(key, options) {
-          headers.append("Set-Cookie", serialize(key, "", options))
-        },
-      },
-    }
-  )
+  const supabase = createSupabaseServerClient({ request })
 
   const { data } = await supabase.from("history").select("*")
   console.log(data)
 
   return {
     data,
-    headers,
   }
 }
 
@@ -97,23 +77,19 @@ export default function History() {
 
   return (
     <>
-      <Stack align='center'>
+      <Stack align="center">
         <Title>History</Title>
         <Text>View Previous Months</Text>
       </Stack>
-      <Space h='xl' />
-      <Table.ScrollContainer
-        bg='white'
-        minWidth={750}
-        type='native'
-      >
+      <Space h="xl" />
+      <Table.ScrollContainer bg="white" minWidth={750} type="native">
         <Table
           highlightOnHover
           striped
           withTableBorder
-          className='table'
-          h='100px'
-          overflow='hidden'
+          className="table"
+          h="100px"
+          overflow="hidden"
         >
           <Table.Thead>
             <Table.Tr>

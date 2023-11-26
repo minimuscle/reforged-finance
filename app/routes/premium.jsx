@@ -1,18 +1,13 @@
 import React, { useState } from "react"
 import {
   Badge,
-  Box,
   Button,
-  Center,
   Divider,
   Flex,
   Group,
   List,
   Paper,
-  SimpleGrid,
-  Space,
   Stack,
-  Table,
   Text,
   Title,
 } from "@mantine/core"
@@ -31,43 +26,25 @@ export default function Premium() {
   const [selected, setSelected] = useState("none")
   return (
     <>
-      <Stack
-        align='center'
-        mb='50px'
-      >
+      <Stack align="center" mb="50px">
         <Title>Premium</Title>
         <Text>Get Premium</Text>
       </Stack>
-      <Flex
-        justify='center'
-        gap='xl'
-        wrap='wrap'
-      >
-        <Paper
-          withBorder
-          shadow='xl'
-          p='xl'
-          w='300px'
-        >
-          <RiBardLine size='1.5em' />
+      <Flex justify="center" gap="xl" wrap="wrap">
+        <Paper withBorder shadow="xl" p="xl" w="300px">
+          <RiBardLine size="1.5em" />
           <Title>Base</Title>
           <Text>Free plan for starters</Text>
-          <Text className='pricing'>
+          <Text className="pricing">
             $
-            <Text
-              className='large'
-              span
-            >
+            <Text className="large" span>
               0
             </Text>
-            <Text
-              className='small'
-              span
-            >
+            <Text className="small" span>
               / free
             </Text>
           </Text>
-          <Divider m='30px 0' />
+          <Divider m="30px 0" />
           <List>
             <List.Item>Net Worth Overview</List.Item>
             <List.Item>Historical Data</List.Item>
@@ -76,11 +53,7 @@ export default function Premium() {
             <List.Item>Super Tracking</List.Item>
             <List.Item>Stocks</List.Item>
           </List>
-          <Button
-            mt='30px'
-            disabled
-            fullWidth
-          >
+          <Button mt="30px" disabled fullWidth>
             Current Plan
           </Button>
         </Paper>
@@ -88,17 +61,14 @@ export default function Premium() {
           withBorder
           bg={selected === "premium" ? "violet" : ""}
           className={selected === "premium" ? "white" : ""}
-          shadow='xl'
-          p='xl'
-          w='300px'
+          shadow="xl"
+          p="xl"
+          w="300px"
         >
-          <Group
-            justify='space-between'
-            mb='5px'
-          >
-            <RiVipCrownLine size='1.5em' />
+          <Group justify="space-between" mb="5px">
+            <RiVipCrownLine size="1.5em" />
             <Badge
-              variant='gradient'
+              variant="gradient"
               gradient={{ from: "blue", to: "teal", deg: 90 }}
             >
               Most Popular
@@ -106,22 +76,16 @@ export default function Premium() {
           </Group>
           <Title>Premium</Title>
           <Text>A small fee, all the content</Text>
-          <Text className='pricing'>
+          <Text className="pricing">
             $
-            <Text
-              className='large'
-              span
-            >
+            <Text className="large" span>
               5
             </Text>
-            <Text
-              className='small'
-              span
-            >
+            <Text className="small" span>
               / month
             </Text>
           </Text>
-          <Divider m='30px 0' />
+          <Divider m="30px 0" />
           <List>
             <List.Item>Detailed Budgeting System</List.Item>
             <List.Item>Export Overview as PDF</List.Item>
@@ -131,8 +95,8 @@ export default function Premium() {
             <List.Item>Premium Support</List.Item>
           </List>
           <Button
-            mt='30px'
-            color='violet'
+            mt="30px"
+            color="violet"
             variant={selected === "premium" ? "white" : "filled"}
             fullWidth
             onClick={() => setSelected("premium")}
@@ -144,29 +108,23 @@ export default function Premium() {
           withBorder
           bg={selected === "lifetime" ? "violet" : ""}
           className={selected === "lifetime" ? "white" : ""}
-          shadow='xl'
-          p='xl'
-          w='300px'
+          shadow="xl"
+          p="xl"
+          w="300px"
         >
-          <RiLifebuoyLine size='1.5em' />
+          <RiLifebuoyLine size="1.5em" />
           <Title>Lifetime</Title>
           <Text>Premium Forever.</Text>
-          <Text className='pricing'>
+          <Text className="pricing">
             $
-            <Text
-              className='large'
-              span
-            >
+            <Text className="large" span>
               60
             </Text>
-            <Text
-              className='small'
-              span
-            >
+            <Text className="small" span>
               / lifetime
             </Text>
           </Text>
-          <Divider m='30px 0' />
+          <Divider m="30px 0" />
           <List>
             <List.Item>All Premium Features</List.Item>
             <List.Item>One-Time Fee</List.Item>
@@ -174,8 +132,8 @@ export default function Premium() {
             <List.Item>Same Premium Support</List.Item>
           </List>
           <Button
-            mt='80px'
-            color='violet'
+            mt="80px"
+            color="violet"
             variant={selected === "lifetime" ? "white" : "filled"}
             fullWidth
             onClick={() => setSelected("lifetime")}
