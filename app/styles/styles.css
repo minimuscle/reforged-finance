@@ -35,3 +35,11 @@
   border-radius: 20px;
   border: black;
 }
+
+.showButtons {
+  display: none;
+}
+
+.rowHover:hover .showButtons {
+  display: inline-flex;
+}
