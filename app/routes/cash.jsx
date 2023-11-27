@@ -1,7 +1,5 @@
 import { Button, Flex, Grid, Paper, Stack, Table, Title } from "@mantine/core"
-import { useFetcher } from "@remix-run/react"
 import "../styles/styles.css"
-import { createServerClient, parse, serialize } from "@supabase/ssr"
 import BankAccounts from "../components/Widgets/Bank/BankAccounts"
 import { createSupabaseServerClient } from "../util/supabase.server"
 
@@ -23,8 +21,43 @@ export const loader = async ({ request }) => {
 }
 
 export const action = async ({ request }) => {
-  const data = await request.formData()
+  const formData = await request.formData()
+  const { _action, ...values } = Object.fromEntries(formData)
   const supabase = createSupabaseServerClient({ request })
+  const { data: user } = await supabase.auth.getUser()
+
+  console.log(_action)
+  console.log("value: ", values)
+  switch (_action) {
+    case "updateBank":
+      const { data: bank, error } = await supabase
+        .from("cash")
+        .upsert(
+          {
+            ...values,
+            user_id: user.user.id,
+          },
+          { onConflict: "id" }
+        )
+        .select()
+      if (error) {
+        console.log("error ", error)
+        return null
+      }
+      break
+    case "delete":
+      const { error: deleteError } = await supabase
+        .from("cash")
+        .delete()
+        .eq("id", values.id)
+      if (deleteError) {
+        console.log("error ", deleteError)
+        return null
+      }
+      break
+    default:
+      return null
+  }
 
   return null
 }
@@ -33,35 +66,7 @@ export default function Cash() {
   return (
     <>
       <Grid pb="100px">
-        <Grid.Col span={6}>
-          <Paper shadow="xl" p="md" withBorder>
-            <Stack pos={"relative"}>
-              <Button pos={"absolute"} right={0}>
-                Add Account
-              </Button>
-              <Title align="center">Bank Accounts</Title>
-              <Table
-                borderColor="blue"
-                className="tableBanks"
-                highlightOnHover
-                verticalSpacing="lg"
-                withRowBorders={false}
-              >
-                <Table.Thead>
-                  <Table.Tr>
-                    <Table.Th>Account Name</Table.Th>
-                    <Table.Th>Currency</Table.Th>
-                    <Table.Th>Balance</Table.Th>
-                    <Table.Th></Table.Th>
-                  </Table.Tr>
-                </Table.Thead>
-                <Table.Tbody>
-                  <BankAccounts />
-                </Table.Tbody>
-              </Table>
-            </Stack>
-          </Paper>
-        </Grid.Col>
+        <BankAccounts />
       </Grid>
       <Flex bg={"blue"} gap={"lg"} wrap={"wrap"} justify={"center"}></Flex>
     </>
