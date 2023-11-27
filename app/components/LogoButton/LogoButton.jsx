@@ -9,22 +9,16 @@ function LogoButton() {
   return (
     <>
       <Button
-        variant='transparent'
+        variant="transparent"
         // Check if the user is already on the dashboard as to not screw up the history
         onClick={() =>
           path.pathname.toLowerCase() !== "/" ? navigate("/") : ""
         }
       >
         <Group>
-          <Image
-            w='40px'
-            src={Logo}
-          />
-          <Title
-            size='h2'
-            className='logoTitle'
-          >
-            Wealth Forge
+          <Image w="40px" src={Logo} />
+          <Title size="h2" className="logoTitle">
+            WealthForge
           </Title>
         </Group>
       </Button>
