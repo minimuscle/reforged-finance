@@ -1,3 +1,9 @@
 .navlink {
+  color: unset;
   text-decoration: none !important;
+  margin-bottom: 15px;
+}
+
+.navlink a {
+  border-radius: 5px;
 }

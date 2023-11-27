@@ -1,19 +1,5 @@
-import {
-  ActionIcon,
-  Avatar,
-  Box,
-  Button,
-  Flex,
-  Group,
-  NavLink as Nav,
-  Stack,
-  Text,
-  ThemeIcon,
-  Title,
-  Tooltip,
-} from "@mantine/core"
+import { Flex, NavLink as Nav, ThemeIcon, Tooltip } from "@mantine/core"
 import { RxDashboard, RxGear } from "react-icons/rx/index.js"
-import { GrMoney, GrHistory } from "react-icons/gr/index.js"
 import { HiOutlineTrendingDown } from "react-icons/hi/index.js"
 import { TbReportMoney } from "react-icons/tb/index.js"
 import {
@@ -24,159 +10,117 @@ import {
   PiCrownFill,
 } from "react-icons/pi/index.js"
 import { RiRoadMapFill } from "react-icons/ri/index.js"
-import { Link, useLocation, useNavigate } from "@remix-run/react"
+import { NavLink } from "@remix-run/react"
 import "./Sidebar.css"
-import { useContext } from "react"
-import { PremiumMemberContext } from "../../contexts/PremiumMemberContext"
-import PremiumPopup from "../PremiumPopup/PremiumPopup"
-import { useDisclosure } from "@mantine/hooks"
 
 function Sidebar() {
-  const path = useLocation()
-  const navigate = useNavigate()
-  const premium = useContext(PremiumMemberContext)
-  const [opened, { open, close }] = useDisclosure(false)
-
-  function showPremiumPopup() {
-    open()
-  }
-
   return (
     <>
-      <PremiumPopup opened={opened} close={close} />
-      {/** TODO: This should be dynamic due to what the user has selected? Possibly */}
-      <Stack h="100%" className="navigation">
-        <Nav
-          className="navlink"
-          label="Dashboard"
-          active={path.pathname.toLowerCase() === "/"}
-          leftSection={<RxDashboard />}
-          onClick={() => navigate("/")}
-        />
-
-        <Nav
-          className="navlink"
-          label="Cash"
-          active={path.pathname.toLowerCase() === "/cash"}
-          leftSection={<PiCurrencyDollarSimpleBold />}
-          onClick={() => navigate("/cash")}
-        />
-        <Nav
-          className="navlink"
-          label="Side Income (Coming Soon)"
-          active={path.pathname.toLowerCase() === "/side-income"}
-          leftSection={<PiMoney />}
-          onClick={() => navigate("/side-income")}
-        />
-        <Nav
-          className="navlink"
-          label="Liabilities / Debts (Coming Soon)"
-          active={path.pathname.toLowerCase() === "/debts"}
-          leftSection={<HiOutlineTrendingDown />}
-          onClick={() => navigate("/debts")}
-        />
-        <Nav
-          className="navlink"
-          label="Super (Coming Soon)"
-          disabled
-          active={path.pathname.toLowerCase() === "/super"}
-          leftSection={<PiHandshakeFill />}
-          onClick={() => navigate("/super")}
-        />
-        <Nav
-          className="navlink"
-          label="Budget (Coming Soon)"
-          active={path.pathname.toLowerCase() === "/budget"}
-          leftSection={<TbReportMoney />}
-          rightSection={
-            <Tooltip withArrow label="Premium Feature">
-              <ThemeIcon variant="white">
-                <PiCrownFill color="orange" />
-              </ThemeIcon>
-            </Tooltip>
-          }
-          onClick={() => (premium ? navigate("/budget") : showPremiumPopup())}
-        />
-        <Nav
-          className="navlink"
-          label="Property (Coming Soon)"
-          disabled
-          active={path.pathname.toLowerCase() === "/budget"}
-          leftSection={<TbReportMoney />}
-          rightSection={
-            <Tooltip withArrow label="Premium Feature">
-              <ThemeIcon variant="white">
-                <PiCrownFill color="orange" />
-              </ThemeIcon>
-            </Tooltip>
-          }
-          onClick={() => (premium ? navigate("/budget") : showPremiumPopup())}
-        />
-        <Nav
-          className="navlink"
-          label="Managed Fund (Coming Soon)"
-          disabled
-          active={path.pathname.toLowerCase() === "/budget"}
-          leftSection={<TbReportMoney />}
-          rightSection={
-            <Tooltip withArrow label="Premium Feature">
-              <ThemeIcon variant="white">
-                <PiCrownFill color="orange" />
-              </ThemeIcon>
-            </Tooltip>
-          }
-          onClick={() => (premium ? navigate("/budget") : showPremiumPopup())}
-        />
-        <Nav
-          className="navlink"
-          label="Stocks / ETFs (Coming Soon)"
-          disabled
-          active={path.pathname.toLowerCase() === "/budget"}
-          leftSection={<TbReportMoney />}
-          rightSection={
-            <Tooltip withArrow label="Premium Feature">
-              <ThemeIcon variant="white">
-                <PiCrownFill color="orange" />
-              </ThemeIcon>
-            </Tooltip>
-          }
-          onClick={() => (premium ? navigate("/budget") : showPremiumPopup())}
-        />
-        <Nav
-          className="navlink"
-          label="History"
-          active={path.pathname.toLowerCase() === "/history"}
-          leftSection={<PiClockCounterClockwiseBold />}
-          onClick={() => navigate("/history")}
-        />
-        <Flex h="100%"></Flex>
-        <Nav
-          className="navlink"
-          label="Roadmap"
-          color={path.pathname.toLowerCase() === "/roadmap" ? "black" : "blue"}
-          active
-          leftSection={<RiRoadMapFill />}
-          onClick={() => navigate("/roadmap")}
-        />
-        <Nav
-          className="navlink"
-          label="Get Premium (Coming Soon)"
-          variant="filled"
-          color={
-            path.pathname.toLowerCase() === "/premium" ? "black" : "violet"
-          }
-          active
-          leftSection={<PiCrownFill color="orange" />}
-          onClick={() => navigate("/premium")}
-        />
-        <Nav
-          className="navlink"
-          label="Settings"
-          active={path.pathname.toLowerCase() === "/settings"}
-          leftSection={<RxGear />}
-          onClick={() => navigate("/settings")}
-        />
-      </Stack>
+      <NavLink to="/" className="navlink">
+        {({ isActive }) => (
+          <Nav
+            label="Dashboard"
+            active={isActive}
+            leftSection={<RxDashboard />}
+          />
+        )}
+      </NavLink>
+      <NavLink to="/cash" className="navlink">
+        {({ isActive }) => (
+          <Nav
+            label="Cash"
+            active={isActive}
+            leftSection={<PiCurrencyDollarSimpleBold />}
+          />
+        )}
+      </NavLink>
+      <NavLink to="/side-income" className="navlink">
+        {({ isActive }) => (
+          <Nav
+            disabled
+            label="Side Income"
+            description="Coming Soon"
+            active={isActive}
+            leftSection={<PiMoney />}
+          />
+        )}
+      </NavLink>
+      <NavLink to="/debts" className="navlink">
+        {({ isActive }) => (
+          <Nav
+            disabled
+            label="Liabilities / Debts"
+            description="Coming Soon"
+            active={isActive}
+            leftSection={<HiOutlineTrendingDown />}
+          />
+        )}
+      </NavLink>
+      <NavLink to="/super" className="navlink">
+        {({ isActive }) => (
+          <Nav
+            disabled
+            label="Super"
+            description="Coming Soon"
+            active={isActive}
+            leftSection={<PiHandshakeFill />}
+          />
+        )}
+      </NavLink>
+      <NavLink to="/budget" className="navlink">
+        {({ isActive }) => (
+          <Nav
+            label="Budget"
+            description="Coming Soon"
+            disabled
+            active={isActive}
+            leftSection={<TbReportMoney />}
+            rightSection={
+              <Tooltip withArrow label="Premium Feature">
+                <ThemeIcon variant="white">
+                  <PiCrownFill color="orange" />
+                </ThemeIcon>
+              </Tooltip>
+            }
+          />
+        )}
+      </NavLink>
+      <NavLink to="/history" className="navlink">
+        {({ isActive }) => (
+          <Nav
+            label="History"
+            active={isActive}
+            leftSection={<PiClockCounterClockwiseBold />}
+          />
+        )}
+      </NavLink>
+      <Flex h="100%"></Flex>
+      <NavLink to="/roadmap" className="navlink">
+        {({ isActive }) => (
+          <Nav
+            label="Roadmap"
+            active={isActive}
+            leftSection={<RiRoadMapFill />}
+          />
+        )}
+      </NavLink>
+      <NavLink to="/premium" className="navlink">
+        {({ isActive }) => (
+          <Nav
+            active
+            label="Get Premium"
+            description="Coming Soon"
+            variant="filled"
+            color={isActive ? "black" : "violet"}
+            leftSection={<PiCrownFill color="orange" />}
+          />
+        )}
+      </NavLink>
+      <NavLink to="/settings" className="navlink">
+        {({ isActive }) => (
+          <Nav label="Settings" active={isActive} leftSection={<RxGear />} />
+        )}
+      </NavLink>
     </>
   )
 }
