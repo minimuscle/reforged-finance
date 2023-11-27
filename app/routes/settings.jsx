@@ -15,7 +15,6 @@ import {
 import { useFetcher, useLoaderData } from "@remix-run/react"
 import { IMaskInput } from "react-imask"
 import "../styles/styles.css"
-import { createServerClient, parse, serialize } from "@supabase/ssr"
 import currency from "currency.js"
 import { createSupabaseServerClient } from "../util/supabase.server"
 
