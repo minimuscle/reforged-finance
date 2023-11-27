@@ -55,6 +55,21 @@ export const action = async ({ request }) => {
         return null
       }
       break
+    case "addBank":
+      console.log("adding bank")
+      const { data: newBank, error: addError } = await supabase
+        .from("cash")
+        .insert({
+          name: values.name,
+          balance: values.balance,
+          currency: values.currency,
+          user_id: user.user.id,
+        })
+      if (addError) {
+        console.log("error ", addError)
+        return null
+      }
+      break
     default:
       return null
   }
