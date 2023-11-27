@@ -9,6 +9,7 @@ import {
   Table,
   Tooltip,
   Title,
+  Loader,
 } from "@mantine/core"
 import { Form, useFetcher, useLoaderData } from "@remix-run/react"
 import { useReducer, useState } from "react"
@@ -22,6 +23,8 @@ export const moneyFormatter = new Intl.NumberFormat("en-AU", {
 
 const reducer = (state, action) => {
   switch (action.type) {
+    case "_action":
+      return { ...state, _action: action.payload }
     case "id":
       return { ...state, id: action.payload }
     case "name":
@@ -39,6 +42,7 @@ const reducer = (state, action) => {
 
 const BankAccounts = () => {
   const [bankId, editBank] = useState()
+  const [addingTable, setAddingTable] = useState(false)
   const [bankItem, setBankItem] = useReducer(reducer, {
     _action: "updateBank",
     id: bankId,
@@ -53,7 +57,14 @@ const BankAccounts = () => {
     <Grid.Col span={6}>
       <Paper shadow="xl" p="md" withBorder>
         <Stack pos={"relative"}>
-          <Button pos={"absolute"} right={0}>
+          <Button
+            pos={"absolute"}
+            right={0}
+            onClick={() => {
+              setAddingTable(true)
+              setBankItem({ type: "_action", payload: "addBank" })
+            }}
+          >
             Add Account
           </Button>
           <Title align="center">Bank Accounts</Title>
@@ -69,18 +80,23 @@ const BankAccounts = () => {
                 <Table.Th>Account Name</Table.Th>
                 <Table.Th>Currency</Table.Th>
                 <Table.Th>Balance</Table.Th>
-                <Table.Th>{fetcher.state}</Table.Th>
+                <Table.Th></Table.Th>
               </Table.Tr>
             </Table.Thead>
             <Table.Tbody>
               {cash?.map((bank) => (
                 <Table.Tr key={bank.id} className="rowHover">
                   <Table.Td>
-                    {bankId === bank.id ? (
+                    {fetcher.state !== "idle" ? (
+                      <Loader color="blue" type="dots" />
+                    ) : bankId === bank.id ? (
                       <Input
                         value={bankItem.name ? bankItem.name : bank?.name}
                         onChange={(e) =>
-                          setBankItem({ type: "name", payload: e.target.value })
+                          setBankItem({
+                            type: "name",
+                            payload: e.target.value,
+                          })
                         }
                       />
                     ) : (
@@ -99,7 +115,9 @@ const BankAccounts = () => {
                     />
                   </Table.Td>
                   <Table.Td>
-                    {bankId === bank.id ? (
+                    {fetcher.state !== "idle" ? (
+                      <Loader color="blue" type="dots" />
+                    ) : bankId === bank.id ? (
                       <Input
                         maw="50%"
                         value={
@@ -148,6 +166,10 @@ const BankAccounts = () => {
                           ml="-100px"
                           onClick={() => {
                             editBank(bank.id)
+                            setBankItem({
+                              type: "_action",
+                              payload: "updateBank",
+                            })
                             setBankItem({ type: "id", payload: bank.id })
                             setBankItem({ type: "name", payload: bank.name })
                             setBankItem({
@@ -198,6 +220,74 @@ const BankAccounts = () => {
                   </Table.Td>
                 </Table.Tr>
               ))}
+              {addingTable && (
+                <Table.Tr className="rowHover">
+                  <Table.Td>
+                    <Input
+                      value={bankItem.name}
+                      onChange={(e) =>
+                        setBankItem({
+                          type: "name",
+                          payload: e.target.value,
+                        })
+                      }
+                    />
+                  </Table.Td>
+                  <Table.Td>
+                    <Select
+                      maw="85px"
+                      value="AUD"
+                      data={["AUD", "USD", "NZD", "EUR"]}
+                      defaultValue={"AUD"}
+                      name="currency"
+                      disabled
+                      allowDeselect={false}
+                    />
+                  </Table.Td>
+                  <Table.Td>
+                    <Input
+                      maw="50%"
+                      value={bankItem.balance}
+                      onChange={(e) =>
+                        setBankItem({
+                          type: "balance",
+                          payload: e.target.value,
+                        })
+                      }
+                    />
+                  </Table.Td>
+                  <Table.Td align="right">
+                    <Tooltip label="Save">
+                      <ActionIcon
+                        color="green"
+                        aria-label="Save"
+                        mr={"15px"}
+                        ml="-100px"
+                        onClick={() => {
+                          editBank()
+                          setAddingTable(false)
+                          fetcher.submit(bankItem, { method: "POST" })
+                        }}
+                        tooltipLabel="Save"
+                      >
+                        <RiCheckFill />
+                      </ActionIcon>
+                    </Tooltip>
+                    <Tooltip label="Cancel">
+                      <ActionIcon
+                        variant="filled"
+                        color="red"
+                        aria-label="Cancel"
+                        onClick={() => {
+                          setAddingTable(false)
+                        }}
+                      >
+                        <RiCloseFill />
+                      </ActionIcon>
+                    </Tooltip>
+                  </Table.Td>
+                </Table.Tr>
+              )}
             </Table.Tbody>
           </Table>
         </Stack>
