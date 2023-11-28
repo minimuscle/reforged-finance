@@ -31,6 +31,8 @@ export const action = async ({ request }) => {
     return null
   }
 
+  //FIXME: This should use the Stepper component from Mantine
+
   const id = user.user.id
   const name = data.get("name")
   const email = data.get("email")
@@ -87,10 +89,10 @@ const Setup = () => {
   return (
     <Modal opened withCloseButton={false} fullScreen centered>
       <Container>
-        <Center h="90dvh">
-          <Stack justify="center">
-            <Title align="center">Setup Account</Title>
-            <fetcher.Form method="post">
+        <Center h='90dvh'>
+          <Stack justify='center'>
+            <Title align='center'>Setup Account</Title>
+            <fetcher.Form method='post'>
               <Step0
                 className={step === 0 ? "" : "hideStep"}
                 toggle={() => setStep(1)}
@@ -144,7 +146,7 @@ export default Setup
 const Step0 = ({ toggle, className }) => {
   return (
     <Box className={className}>
-      <Text align="center">
+      <Text align='center'>
         The next few steps will guide you through setting up an account with us
         for the first time. <br />
         Please make sure to not leave this page until its done, as anything
@@ -161,7 +163,7 @@ const Step1 = ({ toggle, className }) => {
   const [content, setContent] = useState("")
   return (
     <Box className={className}>
-      <Text align="center">First things first, we need to know your name.</Text>
+      <Text align='center'>First things first, we need to know your name.</Text>
       <Input
         autoFocus
         onChange={(e) => setContent(e.target.value)}
@@ -169,15 +171,15 @@ const Step1 = ({ toggle, className }) => {
         onKeyDown={(e) => {
           if (e.key === "Enter") toggle()
         }}
-        mt="10px"
-        name="name"
-        placeholder="Your Name"
+        mt='10px'
+        name='name'
+        placeholder='Your Name'
       />
       <Button
         disabled={!content}
         mt={25}
         onClick={() => toggle()}
-        variant="light"
+        variant='light'
         fullWidth
       >
         Next
@@ -190,15 +192,15 @@ const Step2 = ({ back, toggle, className }) => {
   const [content, setContent] = useState("")
   return (
     <Box className={className}>
-      <Text align="center">
+      <Text align='center'>
         Perfect! Next, what is your pre-tax (gross) yearly income? <br />
         Round to the nearest dollar if needed.
       </Text>
       <InputBase
-        name="employmentIncome"
+        name='employmentIncome'
         mt={3}
         component={IMaskInput}
-        mask="$num"
+        mask='$num'
         blocks={{
           num: {
             mask: Number,
@@ -206,7 +208,7 @@ const Step2 = ({ back, toggle, className }) => {
             thousandsSeparator: ",",
           },
         }}
-        placeholder="Your Gross Income"
+        placeholder='Your Gross Income'
         onAccept={(value, mask) => setContent(mask.unmaskedValue)}
         value={content}
         onKeyDown={(e) => {
@@ -216,8 +218,8 @@ const Step2 = ({ back, toggle, className }) => {
       <Button
         mt={15}
         onClick={() => back()}
-        color="red"
-        variant="light"
+        color='red'
+        variant='light'
         fullWidth
       >
         Back
@@ -226,7 +228,7 @@ const Step2 = ({ back, toggle, className }) => {
         disabled={!content}
         mt={10}
         onClick={() => toggle()}
-        variant="light"
+        variant='light'
         fullWidth
       >
         Next
@@ -238,15 +240,15 @@ const Step3 = ({ back, toggle, className }) => {
   const [content, setContent] = useState("")
   return (
     <Box className={className}>
-      <Text align="center">
+      <Text align='center'>
         Great, now that what is the value that actually hits the bank? <br />{" "}
         Your Net Income
       </Text>
       <InputBase
-        name="netIncome"
+        name='netIncome'
         mt={3}
         component={IMaskInput}
-        mask="$num"
+        mask='$num'
         blocks={{
           num: {
             mask: Number,
@@ -254,28 +256,28 @@ const Step3 = ({ back, toggle, className }) => {
             thousandsSeparator: ",",
           },
         }}
-        placeholder="Your Net Income"
+        placeholder='Your Net Income'
         onAccept={(value, mask) => setContent(mask.unmaskedValue)}
         value={content}
         onKeyDown={(e) => {
           if (e.key === "Enter") toggle()
         }}
       />
-      <Text mt={20} align="center">
+      <Text mt={20} align='center'>
         Following this, how often do you get paid?
       </Text>
       <Select
         mt={3}
-        name="salaryFrequency"
+        name='salaryFrequency'
         data={["Monthly", "Fortnightly (2-Weeks)", "Weekly"]}
-        placeholder="Select Frequency"
+        placeholder='Select Frequency'
         allowDeselect={false}
       />
       <Button
         mt={15}
         onClick={() => back()}
-        color="red"
-        variant="light"
+        color='red'
+        variant='light'
         fullWidth
       >
         Back
@@ -284,7 +286,7 @@ const Step3 = ({ back, toggle, className }) => {
         disabled={!content}
         mt={10}
         onClick={() => toggle()}
-        variant="light"
+        variant='light'
         fullWidth
       >
         Next
@@ -297,15 +299,15 @@ const Step4 = ({ back, toggle, className }) => {
   console.log(content)
   return (
     <Box className={className}>
-      <Text align="center">
+      <Text align='center'>
         Lookin' Good! Lets set some goals!
         <br /> What is your cash goal? Something to work towards
       </Text>
       <InputBase
-        name="cashGoal"
+        name='cashGoal'
         mt={3}
         component={IMaskInput}
-        mask="$num"
+        mask='$num'
         blocks={{
           num: {
             mask: Number,
@@ -313,7 +315,7 @@ const Step4 = ({ back, toggle, className }) => {
             thousandsSeparator: ",",
           },
         }}
-        placeholder="Cash Goal"
+        placeholder='Cash Goal'
         onAccept={(value, mask) => setContent(mask.unmaskedValue)}
         value={content}
         onKeyDown={(e) => {
@@ -323,8 +325,8 @@ const Step4 = ({ back, toggle, className }) => {
       <Button
         mt={15}
         onClick={() => back()}
-        color="red"
-        variant="light"
+        color='red'
+        variant='light'
         fullWidth
       >
         Back
@@ -333,7 +335,7 @@ const Step4 = ({ back, toggle, className }) => {
         disabled={!content}
         mt={10}
         onClick={() => toggle()}
-        variant="light"
+        variant='light'
         fullWidth
       >
         Next
@@ -345,17 +347,17 @@ const Step5 = ({ back, toggle, className }) => {
   const [content, setContent] = useState("")
   return (
     <Box className={className}>
-      <Text align="center">
+      <Text align='center'>
         Emergency Funds are essential for saving for a rainy day. <br />
         How long do you want to save for?
       </Text>
       <NumberInput
         mt={3}
-        name="emergencyFundGoal"
+        name='emergencyFundGoal'
         placeholder={"Emergency Fund Length"}
         allowNegative={false}
         allowDecimal={false}
-        suffix=" Months"
+        suffix=' Months'
         onKeyDown={(e) => {
           if (e.key === "Enter") toggle()
         }}
@@ -363,13 +365,13 @@ const Step5 = ({ back, toggle, className }) => {
       <Button
         mt={15}
         onClick={() => back()}
-        color="red"
-        variant="light"
+        color='red'
+        variant='light'
         fullWidth
       >
         Back
       </Button>
-      <Button mt={10} onClick={() => toggle()} variant="light" fullWidth>
+      <Button mt={10} onClick={() => toggle()} variant='light' fullWidth>
         Next
       </Button>
     </Box>
@@ -379,34 +381,34 @@ const Step6 = ({ back, toggle, className }) => {
   const [content, setContent] = useState("")
   return (
     <Box className={className}>
-      <Text align="center">Are you saving for a home deposit?</Text>
+      <Text align='center'>Are you saving for a home deposit?</Text>
       <Switch
         mt={15}
         defaultChecked={false}
-        name="homeDeposit"
-        labelPosition="left"
-        label="I am saving!"
+        name='homeDeposit'
+        labelPosition='left'
+        label='I am saving!'
       />
-      <Text mt={15} align="center">
+      <Text mt={15} align='center'>
         If so, how much are you wanting to save?
       </Text>
       <Input
-        name="depositAmount"
+        name='depositAmount'
         onKeyDown={(e) => {
           if (e.key === "Enter") toggle()
         }}
-        placeholder="Deposit Amount"
+        placeholder='Deposit Amount'
       />
       <Button
         mt={15}
         onClick={() => back()}
-        color="red"
-        variant="light"
+        color='red'
+        variant='light'
         fullWidth
       >
         Back
       </Button>
-      <Button mt={10} onClick={() => toggle()} variant="light" fullWidth>
+      <Button mt={10} onClick={() => toggle()} variant='light' fullWidth>
         Next
       </Button>
     </Box>
@@ -416,7 +418,7 @@ const Step7 = ({ back, toggle, className, fetcher }) => {
   const [content, setContent] = useState("")
   return (
     <Box className={className}>
-      <Text align="center">
+      <Text align='center'>
         Amazing! Last one, promise!
         <br />
         <br />
@@ -425,17 +427,17 @@ const Step7 = ({ back, toggle, className, fetcher }) => {
         You can leave it blank if you like
       </Text>
       <Input
-        name="email"
+        name='email'
         onKeyDown={(e) => {
           if (e.key === "Enter") toggle()
         }}
-        placeholder="Your Email Address"
+        placeholder='Your Email Address'
       />
       <Button
         mt={15}
         onClick={() => back()}
-        color="red"
-        variant="light"
+        color='red'
+        variant='light'
         fullWidth
       >
         Back

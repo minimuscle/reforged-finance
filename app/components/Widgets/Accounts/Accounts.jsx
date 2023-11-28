@@ -32,27 +32,22 @@ const Accounts = () => {
   const handleDragEnd = (event) => {
     const { active, over } = event
     if (active.id !== over.id) {
-      const activeAccount = cash.find((item) => item.id === active.id)
-      const overAccount = cash.find((item) => item.id === over.id)
-      if (activeAccount.weight <= overAccount.weight) {
-        activeAccount.weight = overAccount.weight + 1
-      } else {
-        activeAccount.weight = overAccount.weight - 1
-      }
-      //Update the database via action here
-      fetcher.submit(
-        {
-          _action: "updateBank",
-          id: activeAccount.id,
-          weight: activeAccount.weight,
-        },
-        { method: "POST" }
-      )
-
       const oldIndex = cash.findIndex((item) => item.id === active.id)
       const newIndex = cash.findIndex((item) => item.id === over.id)
       const newAccount = arrayMove(cash, oldIndex, newIndex)
       setAccounts(newAccount)
+      newAccount.forEach((account, index) => {
+        account.weight = index
+        console.log("account: ", account)
+      })
+      fetcher.submit(
+        {
+          _action: "updateBankOrder",
+          accounts: JSON.stringify(newAccount),
+        },
+        { method: "POST" }
+      )
+      console.log("newAccount: ", newAccount)
     }
   }
 
