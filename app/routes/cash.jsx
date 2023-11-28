@@ -43,6 +43,15 @@ export const action = async ({ request }) => {
   console.log(_action)
   console.log("value: ", values)
   switch (_action) {
+    case "updateBankOrder":
+      const { error: orderError } = await supabase
+        .from("cash")
+        .upsert(JSON.parse(values.accounts))
+      if (orderError) {
+        console.log("error ", orderError)
+        return null
+      }
+      break
     case "updateBank":
       const { data: bank, error } = await supabase
         .from("cash")
@@ -94,9 +103,9 @@ export const action = async ({ request }) => {
 export default function Cash() {
   return (
     <>
-      <Grid pb="100px">
+      <Grid pb='100px'>
         <BankAccounts />
-        <Paper h="100%" shadow="xl" p="md" withBorder w="20%" align="center">
+        <Paper h='100%' shadow='xl' p='md' withBorder w='20%' align='center'>
           <Title>Net Worth</Title>
           <Text>$30,000</Text>
         </Paper>
