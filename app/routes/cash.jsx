@@ -1,7 +1,8 @@
 import { Button, Flex, Grid, Paper, Stack, Table, Title } from "@mantine/core"
 import "../styles/styles.css"
-import BankAccounts from "../components/Widgets/Bank/BankAccounts"
+import BankAccounts from "../components/Widgets/Accounts/BankAccounts"
 import { createSupabaseServerClient } from "../util/supabase.server"
+import Accounts from "../components/Widgets/Accounts"
 
 export const meta = () => {
   return [{ title: "Cash | WealthForge" }]
@@ -12,7 +13,10 @@ export const loader = async ({ request }) => {
 
   const { data: auth } = await supabase.auth.getUser()
   const { data: profile } = await supabase.from("profiles").select().single()
-  const { data: cash } = await supabase.from("cash").select("*")
+  const { data: cash } = await supabase
+    .from("cash")
+    .select("*")
+    .order("weight", { ascending: true })
   return {
     auth,
     profile,
@@ -21,6 +25,7 @@ export const loader = async ({ request }) => {
 }
 
 export const action = async ({ request }) => {
+  console.log("running")
   const formData = await request.formData()
   const { _action, ...values } = Object.fromEntries(formData)
   const supabase = createSupabaseServerClient({ request })
@@ -42,7 +47,7 @@ export const action = async ({ request }) => {
         .select()
       if (error) {
         console.log("error ", error)
-        return null
+        return bank
       }
       break
     case "delete":
@@ -84,6 +89,7 @@ export default function Cash() {
         <BankAccounts />
       </Grid>
       <Flex bg={"blue"} gap={"lg"} wrap={"wrap"} justify={"center"}></Flex>
+      <Accounts />
     </>
   )
 }
