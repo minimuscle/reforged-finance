@@ -13,7 +13,7 @@ import {
 import { Box, Button, Grid, Group, Paper, Text, Title } from "@mantine/core"
 import { useFetcher, useLoaderData } from "@remix-run/react"
 import SortableAccount from "./SortableAccount"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import {
   restrictToParentElement,
   restrictToVerticalAxis,
@@ -24,6 +24,10 @@ const Accounts = () => {
   const { cash } = useLoaderData()
   const [accounts, setAccounts] = useState(cash)
   const fetcher = useFetcher()
+
+  useEffect(() => {
+    setAccounts(cash)
+  }, [cash])
 
   const handleDragEnd = (event) => {
     const { active, over } = event
@@ -53,22 +57,22 @@ const Accounts = () => {
   }
 
   return (
-    <Paper shadow="xl" p="md" withBorder w="40%" align="center">
+    <Paper shadow='xl' p='md' withBorder w='40%' align='center'>
       <Title>Bank Accounts</Title>
-      <Box mt="lg">
-        <Grid grow m="0 10px 10px 10px">
-          <Grid.Col span={5.5} align="left">
-            <Text size="sm" fw={700}>
+      <Box mt='lg'>
+        <Grid grow m='0 10px 10px 10px'>
+          <Grid.Col span={5.5} align='left'>
+            <Text size='sm' fw={700}>
               Account Name
             </Text>
           </Grid.Col>
-          <Grid.Col span={3} align="left">
-            <Text size="sm" fw={700}>
+          <Grid.Col span={3} align='left'>
+            <Text size='sm' fw={700}>
               Account Balance
             </Text>
           </Grid.Col>
-          <Grid.Col span={2} align="left">
-            <Text size="sm" fw={700}>
+          <Grid.Col span={2} align='left'>
+            <Text size='sm' fw={700}>
               Currency
             </Text>
           </Grid.Col>
