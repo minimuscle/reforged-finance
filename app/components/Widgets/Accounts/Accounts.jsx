@@ -1,5 +1,6 @@
 import {
   DndContext,
+  DragOverlay,
   closestCenter,
   useDraggable,
   useDroppable,
@@ -9,10 +10,15 @@ import {
   arrayMove,
   verticalListSortingStrategy,
 } from "@dnd-kit/sortable"
-import { Button, Paper, Title } from "@mantine/core"
+import { Box, Button, Grid, Group, Paper, Text, Title } from "@mantine/core"
 import { useFetcher, useLoaderData } from "@remix-run/react"
 import SortableAccount from "./SortableAccount"
 import { useState } from "react"
+import {
+  restrictToParentElement,
+  restrictToVerticalAxis,
+  restrictToWindowEdges,
+} from "@dnd-kit/modifiers"
 
 const Accounts = () => {
   const { cash } = useLoaderData()
@@ -47,16 +53,40 @@ const Accounts = () => {
   }
 
   return (
-    <DndContext collisionDetection={closestCenter} onDragEnd={handleDragEnd}>
-      <Paper shadow="xl" p="md" withBorder w="50%" align="center">
-        <Title>Bank Accounts</Title>
-        <SortableContext items={cash} strategy={verticalListSortingStrategy}>
-          {accounts.map((account) => (
-            <SortableAccount key={account.id} {...account} />
-          ))}
-        </SortableContext>
-      </Paper>
-    </DndContext>
+    <Paper shadow="xl" p="md" withBorder w="40%" align="center">
+      <Title>Bank Accounts</Title>
+      <Box mt="lg">
+        <Grid grow m="0 10px 10px 10px">
+          <Grid.Col span={5.5} align="left">
+            <Text size="sm" fw={700}>
+              Account Name
+            </Text>
+          </Grid.Col>
+          <Grid.Col span={3} align="left">
+            <Text size="sm" fw={700}>
+              Account Balance
+            </Text>
+          </Grid.Col>
+          <Grid.Col span={2} align="left">
+            <Text size="sm" fw={700}>
+              Currency
+            </Text>
+          </Grid.Col>
+          <Grid.Col span={1.5}></Grid.Col>
+        </Grid>
+        <DndContext
+          collisionDetection={closestCenter}
+          onDragEnd={handleDragEnd}
+          modifiers={[restrictToVerticalAxis, restrictToParentElement]}
+        >
+          <SortableContext items={cash} strategy={verticalListSortingStrategy}>
+            {accounts.map((account) => (
+              <SortableAccount key={account.id} {...account} handle />
+            ))}
+          </SortableContext>
+        </DndContext>
+      </Box>
+    </Paper>
   )
 }
 

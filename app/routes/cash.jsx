@@ -1,4 +1,13 @@
-import { Button, Flex, Grid, Paper, Stack, Table, Title } from "@mantine/core"
+import {
+  Button,
+  Flex,
+  Grid,
+  Paper,
+  Stack,
+  Table,
+  Text,
+  Title,
+} from "@mantine/core"
 import "../styles/styles.css"
 import BankAccounts from "../components/Widgets/Accounts/BankAccounts"
 import { createSupabaseServerClient } from "../util/supabase.server"
@@ -87,6 +96,10 @@ export default function Cash() {
     <>
       <Grid pb="100px">
         <BankAccounts />
+        <Paper h="100%" shadow="xl" p="md" withBorder w="20%" align="center">
+          <Title>Net Worth</Title>
+          <Text>$30,000</Text>
+        </Paper>
       </Grid>
       <Flex bg={"blue"} gap={"lg"} wrap={"wrap"} justify={"center"}></Flex>
       <Accounts />
