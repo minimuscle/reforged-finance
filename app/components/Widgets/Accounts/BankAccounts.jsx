@@ -55,7 +55,7 @@ const BankAccounts = () => {
 
   return (
     <Grid.Col span={6}>
-      <Paper shadow="xl" p="md" withBorder>
+      <Paper shadow="xl" p="md">
         <Stack pos={"relative"}>
           <Button
             pos={"absolute"}
