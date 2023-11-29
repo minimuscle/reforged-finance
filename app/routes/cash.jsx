@@ -70,6 +70,23 @@ export const action = async ({ request }) => {
         return bank
       }
       break
+    case "updateBankColour":
+      const { error: colorError } = await supabase
+        .from("cash")
+        .upsert(
+          {
+            colour: values.colour,
+            id: values.id,
+            user_id: user.user.id,
+          },
+          { onConflict: "id" }
+        )
+        .select()
+      if (colorError) {
+        console.log("error ", colorError)
+        return colorError
+      }
+      break
     case "delete":
       const { error: deleteError } = await supabase
         .from("cash")
@@ -105,16 +122,13 @@ export const action = async ({ request }) => {
 export default function Cash() {
   return (
     <>
-      <Grid pb='100px'>
-        <BankAccounts />
-
-        <Paper h='100%' shadow='xl' p='md' withBorder w='20%' align='center'>
-          <Title>Net Worth</Title>
-          <Text>$30,000</Text>
-        </Paper>
-      </Grid>
-      <Flex bg={"blue"} gap={"lg"} wrap={"wrap"} justify={"center"}></Flex>
       <Accounts />
+      <br />
+      <Paper h='100%' shadow='xl' p='md' withBorder w='20%' align='center'>
+        <Title>Net Worth</Title>
+        <Text>$30,000</Text>
+      </Paper>
+      <Flex bg={"blue"} gap={"lg"} wrap={"wrap"} justify={"center"}></Flex>
     </>
   )
 }
