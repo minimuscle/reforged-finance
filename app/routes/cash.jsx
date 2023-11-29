@@ -3,6 +3,7 @@ import {
   Flex,
   Grid,
   Paper,
+  Space,
   Stack,
   Table,
   Text,
@@ -12,6 +13,7 @@ import "../styles/styles.css"
 import BankAccounts from "../components/Widgets/Accounts/BankAccounts"
 import { createSupabaseServerClient } from "../util/supabase.server"
 import Accounts from "../components/Widgets/Accounts"
+import { ColorSwatches } from "../components/ColorSwatches/ColorSwatches"
 
 export const meta = () => {
   return [{ title: "Cash | WealthForge" }]
@@ -105,6 +107,7 @@ export default function Cash() {
     <>
       <Grid pb='100px'>
         <BankAccounts />
+
         <Paper h='100%' shadow='xl' p='md' withBorder w='20%' align='center'>
           <Title>Net Worth</Title>
           <Text>$30,000</Text>

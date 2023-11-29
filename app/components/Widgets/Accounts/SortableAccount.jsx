@@ -1,24 +1,35 @@
+import { ColorSwatches } from "./../../ColorSwatches/ColorSwatches"
 import { useSortable } from "@dnd-kit/sortable"
 import { CSS } from "@dnd-kit/utilities"
 import {
   ActionIcon,
   Box,
   Button,
+  ColorSwatch,
   Flex,
   Grid,
   Group,
   Input,
+  Loader,
   Menu,
+  NavLink,
   Paper,
   Popover,
   Text,
+  Title,
+  UnstyledButton,
 } from "@mantine/core"
 import {
+  RiArrowRightLine,
+  RiArrowRightSLine,
   RiCheckFill,
   RiDeleteBinFill,
+  RiDeleteBinLine,
   RiDraggable,
   RiDropFill,
+  RiDropLine,
   RiEditFill,
+  RiEditLine,
   RiMoreFill,
 } from "react-icons/ri/index.js"
 import "./Accounts.css"
@@ -28,6 +39,7 @@ import { useFetcher } from "@remix-run/react"
 
 const SortableAccount = (account) => {
   const [editing, setEditing] = useState(false)
+  const [colour, setColour] = useState(account.colour)
   const fetcher = useFetcher()
   const { attributes, listeners, setNodeRef, transform, transition } =
     useSortable({ id: account.id })
@@ -39,7 +51,9 @@ const SortableAccount = (account) => {
 
   useEffect(() => {
     setEditing(false)
-  }, [fetcher.state])
+  }, [account])
+
+  if (fetcher.formData?.get("_action") == "delete") return null
 
   return (
     <Paper
@@ -48,7 +62,7 @@ const SortableAccount = (account) => {
       styles={
         account.colour && {
           root: {
-            borderLeft: `5px solid ${account.colour}`,
+            borderLeft: `5px solid ${colour}`,
           },
         }
       }
@@ -104,25 +118,69 @@ const SortableAccount = (account) => {
                 <RiCheckFill className='always' />
               </ActionIcon>
             ) : (
-              <Menu position='top' shadow='md' withArrow>
-                <Menu.Target>
+              <Popover position='top' shadow='md'>
+                <Popover.Target>
                   <ActionIcon color='black' variant='transparent' m={"0 -5px"}>
                     <RiMoreFill />
                   </ActionIcon>
-                </Menu.Target>
-                <Menu.Dropdown>
-                  <Menu.Item
-                    onClick={() => setEditing(true)}
-                    leftSection={<RiEditFill />}
-                  >
-                    Edit
-                  </Menu.Item>
-                  <Menu.Item leftSection={<RiDropFill />}>Colour</Menu.Item>
-                  <Menu.Item color='red' leftSection={<RiDeleteBinFill />}>
-                    Delete
-                  </Menu.Item>
-                </Menu.Dropdown>
-              </Menu>
+                </Popover.Target>
+                <Popover.Dropdown p={0}>
+                  <Button.Group orientation='vertical'>
+                    <Button
+                      justify='left'
+                      color='black'
+                      variant='subtle'
+                      onClick={() => setEditing(true)}
+                      leftSection={<RiEditLine />}
+                    >
+                      <Text size='sm'>Edit</Text>
+                    </Button>
+                    <Popover position='right' shadow='md' withArrow>
+                      <Popover.Target>
+                        <Button
+                          color='black'
+                          justify='left'
+                          variant='subtle'
+                          leftSection={<RiDropLine />}
+                          rightSection={<RiArrowRightSLine />}
+                        >
+                          <Text size='sm'>Colour</Text>
+                        </Button>
+                      </Popover.Target>
+                      <Popover.Dropdown>
+                        <ColorSwatches
+                          setColour={(colour) => {
+                            setColour(colour)
+                            fetcher.submit(
+                              {
+                                _action: "updateBank",
+                                id: account.id,
+                                colour: colour,
+                              },
+                              { method: "POST" }
+                            )
+                          }}
+                        />
+                      </Popover.Dropdown>
+                    </Popover>
+                    <Button
+                      justify='left'
+                      variant='subtle'
+                      color='red'
+                      leftSection={<RiDeleteBinLine />}
+                      component='button'
+                      onClick={() => {
+                        fetcher.submit(
+                          { _action: "delete", id: account.id },
+                          { method: "POST" }
+                        )
+                      }}
+                    >
+                      <Text size='sm'>Delete</Text>
+                    </Button>
+                  </Button.Group>
+                </Popover.Dropdown>
+              </Popover>
             )}
           </Grid.Col>
         </Grid>
