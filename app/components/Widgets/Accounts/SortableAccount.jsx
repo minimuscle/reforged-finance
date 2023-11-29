@@ -153,7 +153,7 @@ const SortableAccount = (account) => {
                             setColour(colour)
                             fetcher.submit(
                               {
-                                _action: "updateBank",
+                                _action: "updateBankColour",
                                 id: account.id,
                                 colour: colour,
                               },
