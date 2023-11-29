@@ -31,7 +31,7 @@ import {
   restrictToWindowEdges,
 } from "@dnd-kit/modifiers"
 import { RiCheckFill } from "react-icons/ri/index.js"
-import { moneyFormatter } from "../../../util/formatter"
+import { moneyFormatter } from "../../../../util/formatter"
 
 const Accounts = () => {
   const { cash } = useLoaderData()
@@ -71,30 +71,30 @@ const Accounts = () => {
   }
 
   return (
-    <Paper shadow='xl' p='md' withBorder w='40%' align='center'>
-      <Flex align={"flex-end"} justify='space-between' gap='xl'>
+    <Paper shadow="xl" p="md" withBorder miw="600px" align="center">
+      <Flex align={"flex-end"} justify="space-between" gap="xl">
         <Title>Bank Accounts</Title>
-        <Text justify='right' c='blue'>
-          <Text span fw='700' c='black'>
+        <Text justify="right" c="blue">
+          <Text span fw="700" c="black">
             Total Balance:{" "}
           </Text>
           {moneyFormatter.format(totalBalance)}
         </Text>
       </Flex>
-      <Box mt='lg'>
-        <Grid grow m='0 10px 10px 10px'>
-          <Grid.Col span={5.5} align='left'>
-            <Text size='sm' fw={700}>
+      <Box mt="lg">
+        <Grid grow m="0 10px 10px 10px">
+          <Grid.Col span={5.5} align="left">
+            <Text size="sm" fw={700}>
               Account Name
             </Text>
           </Grid.Col>
-          <Grid.Col span={3} align='left'>
-            <Text size='sm' fw={700}>
+          <Grid.Col span={3} align="left">
+            <Text size="sm" fw={700}>
               Account Balance
             </Text>
           </Grid.Col>
-          <Grid.Col span={2} align='left'>
-            <Text size='sm' fw={700}>
+          <Grid.Col span={2} align="left">
+            <Text size="sm" fw={700}>
               Currency
             </Text>
           </Grid.Col>
@@ -112,29 +112,29 @@ const Accounts = () => {
           </SortableContext>
         </DndContext>
         {editing ? (
-          <Paper className='account' shadow='xs' withBorder p='sm' mb='10px'>
-            <fetcher.Form method='POST'>
+          <Paper className="account" shadow="xs" withBorder p="sm" mb="10px">
+            <fetcher.Form method="POST">
               <Grid>
-                <Grid.Col span={5.5} align='left'>
-                  <Input name='bank_name' placeholder='Bank' />
+                <Grid.Col span={5.5} align="left">
+                  <Input name="bank_name" placeholder="Bank" />
                 </Grid.Col>
-                <Grid.Col span={3} align='left'>
-                  <Input name='balance' type='number' placeholder='0' />
+                <Grid.Col span={3} align="left">
+                  <Input name="balance" type="number" placeholder="0" />
                 </Grid.Col>
-                <Grid.Col span={2} align='left'>
-                  <input type='hidden' name='currency' value='AUD' />
-                  <Text c='lightGray'>AUD</Text>
+                <Grid.Col span={2} align="left">
+                  <input type="hidden" name="currency" value="AUD" />
+                  <Text c="lightGray">AUD</Text>
                 </Grid.Col>
                 <Grid.Col span={1.5} align={"center"}>
                   <ActionIcon
-                    color='green'
-                    variant='light'
+                    color="green"
+                    variant="light"
                     m={"0 -5px"}
-                    type='submit'
-                    name='_action'
-                    value='addBank'
+                    type="submit"
+                    name="_action"
+                    value="addBank"
                   >
-                    <RiCheckFill className='always' />
+                    <RiCheckFill className="always" />
                   </ActionIcon>
                 </Grid.Col>
               </Grid>
@@ -143,9 +143,9 @@ const Accounts = () => {
         ) : (
           <Flex>
             <Button
-              size='xs'
-              color='gray'
-              variant='light'
+              size="xs"
+              color="gray"
+              variant="light"
               onClick={() => setEditing(true)}
             >
               New Account
