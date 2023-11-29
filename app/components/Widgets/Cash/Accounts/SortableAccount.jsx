@@ -1,4 +1,4 @@
-import { ColorSwatches } from "./../../ColorSwatches/ColorSwatches"
+import { ColorSwatches } from "../../../ColorSwatches/ColorSwatches"
 import { useSortable } from "@dnd-kit/sortable"
 import { CSS } from "@dnd-kit/utilities"
 import {
@@ -33,7 +33,7 @@ import {
   RiMoreFill,
 } from "react-icons/ri/index.js"
 import "./Accounts.css"
-import { moneyFormatter } from "../../../util/formatter"
+import { moneyFormatter } from "../../../../util/formatter"
 import { useEffect, useState } from "react"
 import { useFetcher } from "@remix-run/react"
 
@@ -66,85 +66,85 @@ const SortableAccount = (account) => {
           },
         }
       }
-      className='account'
-      shadow='xs'
+      className="account"
+      shadow="xs"
       withBorder
-      p='sm'
-      mb='10px'
+      p="sm"
+      mb="10px"
     >
-      <fetcher.Form method='POST'>
+      <fetcher.Form method="POST">
         <Grid>
-          <Grid.Col span={5.5} align='left'>
+          <Grid.Col span={5.5} align="left">
             <Group>
               <ActionIcon
                 {...attributes}
                 {...listeners}
-                color='gray'
-                variant='transparent'
+                color="gray"
+                variant="transparent"
                 m={"0 -5px"}
                 onClick={() => setEditing(false)}
               >
                 <RiDraggable />
               </ActionIcon>
               {editing ? (
-                <Input name='name' defaultValue={account.name} />
+                <Input name="name" defaultValue={account.name} />
               ) : (
                 <Text>{account.name}</Text>
               )}
             </Group>
           </Grid.Col>
-          <Grid.Col span={3} align='left'>
+          <Grid.Col span={3} align="left">
             {editing ? (
-              <Input name='balance' defaultValue={account.balance} />
+              <Input name="balance" defaultValue={account.balance} />
             ) : (
               <Text>{moneyFormatter.format(account.balance)}</Text>
             )}
           </Grid.Col>
-          <Grid.Col span={2} align='left'>
-            <input type='hidden' name='currency' value='AUD' />
-            <input type='hidden' name='id' value={account.id} />
-            <Text c='lightGray'>{account.currency}</Text>
+          <Grid.Col span={2} align="left">
+            <input type="hidden" name="currency" value="AUD" />
+            <input type="hidden" name="id" value={account.id} />
+            <Text c="lightGray">{account.currency}</Text>
           </Grid.Col>
           <Grid.Col span={1.5} align={editing ? "center" : "right"}>
             {editing ? (
               <ActionIcon
-                color='green'
-                variant='light'
+                color="green"
+                variant="light"
                 m={"0 -5px"}
-                type='submit'
-                name='_action'
-                value='updateBank'
+                type="submit"
+                name="_action"
+                value="updateBank"
               >
-                <RiCheckFill className='always' />
+                <RiCheckFill className="always" />
               </ActionIcon>
             ) : (
-              <Popover position='top' shadow='md'>
+              <Popover position="top" shadow="md">
                 <Popover.Target>
-                  <ActionIcon color='black' variant='transparent' m={"0 -5px"}>
+                  <ActionIcon color="black" variant="transparent" m={"0 -5px"}>
                     <RiMoreFill />
                   </ActionIcon>
                 </Popover.Target>
                 <Popover.Dropdown p={0}>
-                  <Button.Group orientation='vertical'>
+                  <Button.Group orientation="vertical">
                     <Button
-                      justify='left'
-                      color='black'
-                      variant='subtle'
+                      justify="left"
+                      color="black"
+                      variant="subtle"
                       onClick={() => setEditing(true)}
                       leftSection={<RiEditLine />}
                     >
-                      <Text size='sm'>Edit</Text>
+                      <Text size="sm">Edit</Text>
                     </Button>
-                    <Popover position='right' shadow='md' withArrow>
+                    <Popover position="right" shadow="md" withArrow>
                       <Popover.Target>
                         <Button
-                          color='black'
-                          justify='left'
-                          variant='subtle'
+                          color="black"
+                          justify="left"
+                          variant="subtle"
                           leftSection={<RiDropLine />}
                           rightSection={<RiArrowRightSLine />}
                         >
-                          <Text size='sm'>Colour</Text>
+                          <Text size="sm">Colour</Text>
                         </Button>
                       </Popover.Target>
                       <Popover.Dropdown>
@@ -164,11 +164,11 @@ const SortableAccount = (account) => {
                       </Popover.Dropdown>
                     </Popover>
                     <Button
-                      justify='left'
-                      variant='subtle'
-                      color='red'
+                      justify="left"
+                      variant="subtle"
+                      color="red"
                       leftSection={<RiDeleteBinLine />}
-                      component='button'
+                      component="button"
                       onClick={() => {
                         fetcher.submit(
                           { _action: "delete", id: account.id },
@@ -176,7 +176,7 @@ const SortableAccount = (account) => {
                         )
                       }}
                     >
-                      <Text size='sm'>Delete</Text>
+                      <Text size="sm">Delete</Text>
                     </Button>
                   </Button.Group>
                 </Popover.Dropdown>

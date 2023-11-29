@@ -1,7 +1,8 @@
 import { Flex, Paper, Text, Title } from "@mantine/core"
 import "../styles/styles.css"
 import { createSupabaseServerClient } from "../util/supabase.server"
-import Accounts from "../components/Widgets/Accounts"
+import Accounts from "../components/Widgets/Cash/Accounts"
+import CashSavings from "../components/Widgets/Cash/CashSavings"
 
 export const meta = () => {
   return [{ title: "Cash | WealthForge" }]
@@ -12,11 +13,13 @@ export const loader = async ({ request }) => {
 
   const { data: auth } = await supabase.auth.getUser()
   const { data: profile } = await supabase.from("profiles").select().single()
+  const { data: history } = await supabase.from("history").select()
   const { data: cash } = await supabase
     .from("cash")
     .select("*")
     .order("weight", { ascending: true })
   return {
+    history,
     auth,
     profile,
     cash,
@@ -30,8 +33,6 @@ export const action = async ({ request }) => {
   const supabase = createSupabaseServerClient({ request })
   const { data: user } = await supabase.auth.getUser()
 
-  console.log(_action)
-  console.log("value: ", values)
   switch (_action) {
     case "updateBankOrder":
       const { error: orderError } = await supabase
@@ -110,14 +111,9 @@ export const action = async ({ request }) => {
 
 export default function Cash() {
   return (
-    <>
+    <Flex gap="md">
       <Accounts />
-      <br />
-      <Paper h='100%' shadow='xl' p='md' withBorder w='20%' align='center'>
-        <Title>Net Worth</Title>
-        <Text>$30,000</Text>
-      </Paper>
-      <Flex bg={"blue"} gap={"lg"} wrap={"wrap"} justify={"center"}></Flex>
-    </>
+      <CashSavings />
+    </Flex>
   )
 }
