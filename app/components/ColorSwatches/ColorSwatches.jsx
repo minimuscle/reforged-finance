@@ -2,7 +2,7 @@ import { ColorSwatch, Group, Text, Title } from "@mantine/core"
 import React from "react"
 
 const colours = [
-  "transparent",
+  "",
   "var(--mantine-color-gray-6)",
   "var(--mantine-color-red-6)",
   "var(--mantine-color-pink-6)",

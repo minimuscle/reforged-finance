@@ -1,19 +1,7 @@
-import {
-  Button,
-  Flex,
-  Grid,
-  Paper,
-  Space,
-  Stack,
-  Table,
-  Text,
-  Title,
-} from "@mantine/core"
+import { Flex, Paper, Text, Title } from "@mantine/core"
 import "../styles/styles.css"
-import BankAccounts from "../components/Widgets/Accounts/BankAccounts"
 import { createSupabaseServerClient } from "../util/supabase.server"
 import Accounts from "../components/Widgets/Accounts"
-import { ColorSwatches } from "../components/ColorSwatches/ColorSwatches"
 
 export const meta = () => {
   return [{ title: "Cash | WealthForge" }]
@@ -98,13 +86,14 @@ export const action = async ({ request }) => {
       }
       break
     case "addBank":
-      console.log("adding bank")
+      const { data: cash } = await supabase.from("cash").select("*")
       const { data: newBank, error: addError } = await supabase
         .from("cash")
         .insert({
           name: values.bank_name,
           balance: values.balance,
           currency: values.currency,
+          weight: cash.length,
           user_id: user.user.id,
         })
       if (addError) {
