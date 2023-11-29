@@ -31,12 +31,19 @@ import {
   restrictToWindowEdges,
 } from "@dnd-kit/modifiers"
 import { RiCheckFill } from "react-icons/ri/index.js"
+import { moneyFormatter } from "../../../util/formatter"
 
 const Accounts = () => {
   const { cash } = useLoaderData()
   const [accounts, setAccounts] = useState(cash)
   const [editing, setEditing] = useState(false)
   const fetcher = useFetcher()
+
+  const totalBalance = cash.reduce((total, account) => {
+    console.log(account.balance)
+    console.log(total)
+    return total + account.balance
+  }, 0)
 
   useEffect(() => {
     setAccounts(cash)
@@ -52,7 +59,6 @@ const Accounts = () => {
       setAccounts(newAccount)
       newAccount.forEach((account, index) => {
         account.weight = index
-        console.log("account: ", account)
       })
       fetcher.submit(
         {
@@ -61,13 +67,20 @@ const Accounts = () => {
         },
         { method: "POST" }
       )
-      console.log("newAccount: ", newAccount)
     }
   }
 
   return (
     <Paper shadow='xl' p='md' withBorder w='40%' align='center'>
-      <Title>Bank Accounts</Title>
+      <Flex align={"flex-end"} justify='space-between' gap='xl'>
+        <Title>Bank Accounts</Title>
+        <Text justify='right' c='blue'>
+          <Text span fw='700' c='black'>
+            Total Balance:{" "}
+          </Text>
+          {moneyFormatter.format(totalBalance)}
+        </Text>
+      </Flex>
       <Box mt='lg'>
         <Grid grow m='0 10px 10px 10px'>
           <Grid.Col span={5.5} align='left'>
