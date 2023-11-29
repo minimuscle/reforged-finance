@@ -85,7 +85,7 @@ export const action = async ({ request }) => {
       const { data: newBank, error: addError } = await supabase
         .from("cash")
         .insert({
-          name: values.name,
+          name: values.bank_name,
           balance: values.balance,
           currency: values.currency,
           user_id: user.user.id,
