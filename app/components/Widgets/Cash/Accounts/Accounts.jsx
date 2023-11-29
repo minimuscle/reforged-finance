@@ -12,6 +12,7 @@ import {
 } from "@dnd-kit/sortable"
 import {
   ActionIcon,
+  Badge,
   Box,
   Button,
   Flex,
@@ -40,8 +41,6 @@ const Accounts = () => {
   const fetcher = useFetcher()
 
   const totalBalance = cash.reduce((total, account) => {
-    console.log(account.balance)
-    console.log(total)
     return total + account.balance
   }, 0)
 
@@ -74,12 +73,14 @@ const Accounts = () => {
     <Paper shadow="xl" p="md" withBorder miw="600px" align="center">
       <Flex align={"flex-end"} justify="space-between" gap="xl">
         <Title>Bank Accounts</Title>
-        <Text justify="right" c="blue">
-          <Text span fw="700" c="black">
-            Total Balance:{" "}
+        <Group>
+          <Text justify="right" fw="700">
+            Total Balance:
           </Text>
-          {moneyFormatter.format(totalBalance)}
-        </Text>
+          <Badge size="xl" variant="light" radius="sm">
+            {moneyFormatter.format(totalBalance)}
+          </Badge>
+        </Group>
       </Flex>
       <Box mt="lg">
         <Grid grow m="0 10px 10px 10px">
