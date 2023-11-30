@@ -1,13 +1,12 @@
 import { Badge, Group, Paper, Stack, Table, Text, Title } from "@mantine/core"
 import { moneyFormatter } from "../../../../util/formatter"
 import { useLoaderData } from "@remix-run/react"
+import { getMonth } from "../../../../util/Maths/util"
 
 const CashSavings = () => {
   const { history } = useLoaderData()
   //get just the cash from last month and the month before
-  const month = Intl.DateTimeFormat("en-US", { month: "2-digit" }).format(
-    Date.now()
-  )
+  const month = getMonth(Date.now())
   const year = Intl.DateTimeFormat("en-US", { year: "numeric" }).format(
     Date.now()
   )
