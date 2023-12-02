@@ -6,7 +6,7 @@ import { createSupabaseServerClient } from "../util/supabase.server"
 import { formatter, getSortedData } from "../util"
 
 export const meta = () => {
-  return [{ title: "History | WealthForge" }]
+  return [{ title: "History | WealthFire" }]
 }
 
 export const loader = async ({ request }) => {

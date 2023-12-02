@@ -19,7 +19,7 @@ import currency from "currency.js"
 import { createSupabaseServerClient } from "../util/supabase.server"
 
 export const meta = () => {
-  return [{ title: "Settings | WealthForge" }]
+  return [{ title: "Settings | WealthFire" }]
 }
 
 export const moneyFormatter = new Intl.NumberFormat("en-AU", {

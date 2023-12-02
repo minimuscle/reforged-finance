@@ -5,7 +5,7 @@ import NetWorth from "../components/Widgets/Dashboard/NetWorth"
 import { isRouteErrorResponse, useRouteError } from "@remix-run/react"
 
 export const meta = () => {
-  return [{ title: "Dashboard | WealthForge" }]
+  return [{ title: "Dashboard | WealthFire" }]
 }
 
 export const loader = async ({ request }) => {

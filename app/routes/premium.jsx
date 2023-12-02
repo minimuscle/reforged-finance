@@ -19,7 +19,7 @@ import {
 } from "react-icons/ri/index.js"
 
 export const meta = () => {
-  return [{ title: "Premium | WealthForge" }]
+  return [{ title: "Premium | WealthFire" }]
 }
 
 export default function Premium() {

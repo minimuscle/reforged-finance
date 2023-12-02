@@ -10,7 +10,7 @@ function LogoButton() {
         <Group>
           <Image w="40px" src={Logo} />
           <Title size="h2" className="logoTitle">
-            WealthForge (Alpha)
+            WealthFire (Alpha)
           </Title>
         </Group>
       </Button>
