@@ -14,7 +14,7 @@
  * 
  * Provide no parameters to get the current month
  */
-export const getMonth = (date: number = Date.now(), format: Intl.DateTimeFormatOptions['month'] = "2-digit") => {
+const getMonth = (date: number = Date.now(), format: Intl.DateTimeFormatOptions['month'] = "2-digit") => {
   return Intl.DateTimeFormat('en-AU', { month: format }).format(date)
 }
 
@@ -23,7 +23,7 @@ export const getMonth = (date: number = Date.now(), format: Intl.DateTimeFormatO
  * 
  * Provide no parameters to get the current year
  */
-export const getYear = (date: number = Date.now(), format: Intl.DateTimeFormatOptions['year'] = "numeric") => {
+const getYear = (date: number = Date.now(), format: Intl.DateTimeFormatOptions['year'] = "numeric") => {
   return Intl.DateTimeFormat('en-AU', { year: format }).format(date)
 }
 
@@ -59,6 +59,21 @@ export const getThisYearData = (data: any, year: any = getYear()) => {
       }
     })
   }
+
+export const getSortedData = (data: any) => {
+  const year: any = getYear()
+  return data.sort((a:any, b: any) => {
+    // Custom sorting logic
+    if (a.year == year - 1 && a.month == 12) {
+      return -1 // Move items with month "12" and year "year - 1" to the front
+    } else if (b.year == year - 1 && b.month == 12) {
+      return 1 // Move items with month "12" and year "year - 1" to the front
+    } else {
+      // Normal sorting based on month
+      return a.month - b.month
+    }
+  })
+}
 
 /**Money formatter gets money in the right format for the currency
  * 
