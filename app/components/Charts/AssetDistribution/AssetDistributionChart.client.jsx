@@ -49,7 +49,7 @@ const MyResponsivePie = ({ data }) => (
     innerRadius={0.6}
     animate
     activeOuterRadiusOffset={8}
-    padAngle={0.5}
+    padAngle={2}
     cornerRadius={3}
     arcLinkLabelsThickness={2}
     arcLinkLabelsColor={{ from: "color" }}

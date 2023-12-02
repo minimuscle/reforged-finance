@@ -93,14 +93,14 @@ const SortableAccount = (account) => {
               )}
             </Group>
           </Grid.Col>
-          <Grid.Col span={3} align="left">
+          <Grid.Col span={4} align="left">
             {editing ? (
               <Input name="balance" defaultValue={account.balance} />
             ) : (
               <Text>{formatter.format(account.balance)}</Text>
             )}
           </Grid.Col>
-          <Grid.Col span={2} align="left">
+          <Grid.Col span={1} align="left">
             <input type="hidden" name="currency" value="AUD" />
             <input type="hidden" name="id" value={account.id} />
             <Text c="lightGray">{account.currency}</Text>

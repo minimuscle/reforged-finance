@@ -85,21 +85,21 @@ const Accounts = () => {
       <Box mt="lg">
         <Grid grow m="0 10px 10px 10px">
           <Grid.Col span={5.5} align="left">
-            <Text size="sm" fw={700}>
+            <Text size="md" fw={700}>
               Account Name
             </Text>
           </Grid.Col>
-          <Grid.Col span={3} align="left">
-            <Text size="sm" fw={700}>
+          <Grid.Col span={4} align="left">
+            <Text size="md" ml={-10} fw={700}>
               Account Balance
             </Text>
           </Grid.Col>
-          <Grid.Col span={2} align="left">
-            <Text size="sm" fw={700}>
+          <Grid.Col span={1} align="left">
+            <Text size="md" ml={-20} fw={700}>
               Currency
             </Text>
           </Grid.Col>
-          <Grid.Col span={1.5}></Grid.Col>
+          <Grid.Col span={0.5}></Grid.Col>
         </Grid>
         <DndContext
           collisionDetection={closestCenter}
@@ -119,10 +119,10 @@ const Accounts = () => {
                 <Grid.Col span={5.5} align="left">
                   <Input name="bank_name" placeholder="Bank" />
                 </Grid.Col>
-                <Grid.Col span={3} align="left">
+                <Grid.Col span={3.5} align="left">
                   <Input name="balance" type="number" placeholder="0" />
                 </Grid.Col>
-                <Grid.Col span={2} align="left">
+                <Grid.Col span={1.5} align="left">
                   <input type="hidden" name="currency" value="AUD" />
                   <Text c="lightGray">AUD</Text>
                 </Grid.Col>
