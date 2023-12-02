@@ -34,7 +34,7 @@ import {
 import { RiCheckFill } from "react-icons/ri/index.js"
 import { formatter } from "../../../../util"
 
-const Accounts = () => {
+const Accounts = ({ isEdit = false }) => {
   const { cash } = useLoaderData()
   const [accounts, setAccounts] = useState(cash)
   const [editing, setEditing] = useState(false)
@@ -108,7 +108,12 @@ const Accounts = () => {
         >
           <SortableContext items={cash} strategy={verticalListSortingStrategy}>
             {accounts.map((account) => (
-              <SortableAccount key={account.id} {...account} handle />
+              <SortableAccount
+                key={account.id}
+                {...account}
+                handle
+                isEdit={isEdit}
+              />
             ))}
           </SortableContext>
         </DndContext>

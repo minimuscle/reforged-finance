@@ -38,7 +38,7 @@ import { useEffect, useState } from "react"
 import { useFetcher } from "@remix-run/react"
 
 const SortableAccount = (account) => {
-  const [editing, setEditing] = useState(false)
+  const [editing, setEditing] = useState(account.isEdit)
   const [colour, setColour] = useState(account.colour)
   const fetcher = useFetcher()
   const { attributes, listeners, setNodeRef, transform, transition } =
@@ -50,7 +50,7 @@ const SortableAccount = (account) => {
   }
 
   useEffect(() => {
-    setEditing(false)
+    if (!account.isEdit) setEditing(false)
   }, [account])
 
   if (fetcher.formData?.get("_action") == "delete") return null
