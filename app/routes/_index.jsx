@@ -9,7 +9,10 @@ export const meta = () => {
 
 export const loader = async ({ request }) => {
   const supabase = createSupabaseServerClient({ request })
-  const { data: history } = await supabase.from("history").select("*")
+  const { data: history } = await supabase
+    .from("history")
+    .select("*")
+    .order("date", { ascending: true })
   return {
     history,
   }

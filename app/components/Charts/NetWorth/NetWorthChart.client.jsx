@@ -16,32 +16,37 @@ const formatData = (data) => {
 
   data.forEach((item) => {
     const netWorth = item.cash + item.super + item.debts
+    const month = Intl.DateTimeFormat("en-AU", { month: "2-digit" }).format(
+      new Date(item.date)
+    )
+    const year = new Date(item.date).getFullYear()
+    console.log(month)
     // split negative and positive values into separate datasets
     if (netWorth < 0) {
       formattedData[0].data.push({
-        x: `${item.year}-${item.month}-01`,
+        x: `${year}-${month}-01`,
         y: null,
       })
       formattedData[1].data.push({
-        x: `${item.year}-${item.month}-01`,
+        x: `${year}-${month}-01`,
         y: netWorth,
       })
     } else if (netWorth < 1000 && netWorth > -1000) {
       formattedData[0].data.push({
-        x: `${item.year}-${item.month}-01`,
+        x: `${year}-${month}-01`,
         y: netWorth,
       })
       formattedData[1].data.push({
-        x: `${item.year}-${item.month}-01`,
+        x: `${year}-${month}-01`,
         y: netWorth,
       })
     } else {
       formattedData[0].data.push({
-        x: `${item.year}-${item.month}-01`,
+        x: `${year}-${month}-01`,
         y: netWorth,
       })
       formattedData[1].data.push({
-        x: `${item.year}-${item.month}-01`,
+        x: `${year}-${month}-01`,
         y: null,
       })
     }
@@ -63,7 +68,11 @@ const getHighestValue = (data) => {
 }
 
 const NetWorthChart = ({ data }) => {
-  const thisYear = getThisYearData(data)
+  const thisYear = data.filter(
+    (item) =>
+      new Date(item.date).getFullYear() == new Date(Date.now()).getFullYear()
+  ) // gets just this year
+  console.log(thisYear)
   const formattedData = formatData(thisYear)
   const max = getHighestValue(formattedData)
 

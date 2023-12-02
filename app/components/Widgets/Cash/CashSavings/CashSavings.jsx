@@ -10,7 +10,9 @@ const CashSavings = () => {
   const lastMonth = history[history.length - 2] // Gets the second last month completed
   const thisMonth = history[history.length - 1] // Gets the last month completed, which if the user has done this month should be the current month
 
-  const thisYear = history.filter((item) => item.year == year) // gets just this year
+  const thisYear = history.filter(
+    (item) => new Date(item.date).getFullYear() == year
+  ) // gets just this year
 
   const monthlyCashSavings = thisMonth.cash - lastMonth.cash
   const yearlyCashSavings =

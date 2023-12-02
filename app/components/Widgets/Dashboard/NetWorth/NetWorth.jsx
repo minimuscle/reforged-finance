@@ -2,16 +2,13 @@ import { Badge, Paper, Stack, Text, Title } from "@mantine/core"
 import NetWorthChart from "../../../Charts/NetWorth"
 import { useLoaderData } from "@remix-run/react"
 import { ClientOnly } from "remix-utils/client-only"
-import { formatter, getThisMonthData } from "../../../../util"
+import { formatter } from "../../../../util"
 
 const NetWorth = () => {
   const { history } = useLoaderData()
 
-  const getNetWorth = () => {
-    const latest = getThisMonthData(history)
-    const netWorth = latest.cash + latest.super + latest.debts
-    return formatter.format(netWorth)
-  }
+  const latest = history[history.length - 1]
+  const netWorth = formatter.format(latest.cash + latest.super + latest.debts)
 
   return (
     <Paper shadow="xl" p="md" withBorder h="100%" miw="800px">
@@ -19,7 +16,7 @@ const NetWorth = () => {
         <Title>Historical Net Worth</Title>
         <Text>Current Net Worth</Text>
         <Badge p={"20"} size="xl" radius="sm" variant="light">
-          <Title order={2}>{getNetWorth()}</Title>
+          <Title order={2}>{netWorth}</Title>
         </Badge>
       </Stack>
       <ClientOnly>{() => <NetWorthChart data={history} />}</ClientOnly>
