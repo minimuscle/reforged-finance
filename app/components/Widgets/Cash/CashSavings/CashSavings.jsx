@@ -65,37 +65,38 @@ const CashSavings = () => {
   console.log("compareRes:", averageComparisonResult / cashComparisons.length)
   console.log(cashComparisons.length)
 
-  const averageMonthlyDifference =
+  const averageMonthlyDifference = Math.round(
     averageComparisonResult / cashComparisons.length
+  )
 
   const monthlyCashSavings = thisMonth.cash - lastMonth.cash
   const yearlyCashSavings =
     thisYear[thisYear.length - 1].cash - thisYear[0].cash
 
   const predictedSavings =
-    yearlyCashSavings + averageMonthlyDifference * (12 - month)
-  const predictedCash = thisMonth.cash + predictedSavings
+    yearlyCashSavings + averageMonthlyDifference * (12 - (month - 1))
+  const predictedCash = thisMonth.cash + averageMonthlyDifference
 
   //Get today's month
   const monthLong = Intl.DateTimeFormat("en-US", {
     month: "long",
   }).format(Date.now())
   return (
-    <Paper shadow="xl" p="md" withBorder h="100%" miw="400px" align="center">
-      <Stack justify="flex-start">
+    <Paper shadow='xl' p='md' withBorder h='100%' miw='400px' align='center'>
+      <Stack justify='flex-start'>
         <Title>{monthLong} Cash Savings</Title>
-        <Table verticalSpacing="md" withTableBorder striped>
+        <Table verticalSpacing='md' withTableBorder striped>
           <Table.Tbody>
             <Table.Tr>
               <Table.Td>
                 <Text>Cash Savings This Month</Text>
               </Table.Td>
-              <Table.Td align="right">
+              <Table.Td align='right'>
                 <Badge
                   color={monthlyCashSavings > 0 ? "green" : "red"}
-                  variant="light"
-                  size="xl"
-                  radius="sm"
+                  variant='light'
+                  size='xl'
+                  radius='sm'
                 >
                   {formatter.format(monthlyCashSavings)}
                 </Badge>
@@ -105,12 +106,12 @@ const CashSavings = () => {
               <Table.Td>
                 <Text>Cash Savings This Year</Text>
               </Table.Td>
-              <Table.Td align="right">
+              <Table.Td align='right'>
                 <Badge
                   color={yearlyCashSavings > 0 ? "green" : "red"}
-                  variant="light"
-                  size="xl"
-                  radius="sm"
+                  variant='light'
+                  size='xl'
+                  radius='sm'
                 >
                   {formatter.format(yearlyCashSavings)}
                 </Badge>
@@ -120,12 +121,12 @@ const CashSavings = () => {
               <Table.Td>
                 <Text>Average Cash Savings per Month</Text>
               </Table.Td>
-              <Table.Td align="right">
+              <Table.Td align='right'>
                 <Badge
                   color={averageMonthlyDifference > 0 ? "green" : "red"}
-                  variant="light"
-                  size="xl"
-                  radius="sm"
+                  variant='light'
+                  size='xl'
+                  radius='sm'
                 >
                   {formatter.format(averageMonthlyDifference)}
                 </Badge>
@@ -135,12 +136,12 @@ const CashSavings = () => {
               <Table.Td>
                 <Text>Predicted Cash Savings EOY</Text>
               </Table.Td>
-              <Table.Td align="right">
+              <Table.Td align='right'>
                 <Badge
                   color={predictedSavings > 0 ? "green" : "red"}
-                  variant="light"
-                  size="xl"
-                  radius="sm"
+                  variant='light'
+                  size='xl'
+                  radius='sm'
                 >
                   {formatter.format(predictedSavings)}
                 </Badge>
@@ -150,12 +151,12 @@ const CashSavings = () => {
               <Table.Td>
                 <Text>Predicted Total Cash EOY</Text>
               </Table.Td>
-              <Table.Td align="right">
+              <Table.Td align='right'>
                 <Badge
-                  color={predictedCash > 0 ? "green" : "red"}
-                  variant="light"
-                  size="xl"
-                  radius="sm"
+                  color={predictedCash > 0 ? "blue" : "red"}
+                  variant='light'
+                  size='xl'
+                  radius='sm'
                 >
                   {formatter.format(predictedCash)}
                 </Badge>
