@@ -13,7 +13,10 @@ export const loader = async ({ request }) => {
 
   const { data: auth } = await supabase.auth.getUser()
   const { data: profile } = await supabase.from("profiles").select().single()
-  const { data: history } = await supabase.from("history").select()
+  const { data: history } = await supabase
+    .from("history")
+    .select()
+    .order("date", { ascending: true })
   const { data: cash } = await supabase
     .from("cash")
     .select("*")

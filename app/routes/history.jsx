@@ -3,7 +3,7 @@ import { Paper, Space, Stack, Table, Text, Title } from "@mantine/core"
 import "../styles/styles.css"
 import { useLoaderData } from "@remix-run/react"
 import { createSupabaseServerClient } from "../util/supabase.server"
-import { formatter } from "../util"
+import { formatter, getSortedData } from "../util"
 
 export const meta = () => {
   return [{ title: "History | WealthForge" }]
@@ -12,7 +12,9 @@ export const meta = () => {
 export const loader = async ({ request }) => {
   const supabase = createSupabaseServerClient({ request })
 
-  const { data } = await supabase.from("history").select("*")
+  const { data } = await supabase.from("history").select("*").order("id", {
+    ascending: true,
+  })
   console.log(data)
 
   return {
@@ -22,15 +24,6 @@ export const loader = async ({ request }) => {
 
 export default function History() {
   const { data } = useLoaderData()
-
-  function getMonthName(monthNumber) {
-    const date = new Date()
-    date.setMonth(monthNumber - 1)
-
-    return date.toLocaleString("en-US", {
-      month: "long",
-    })
-  }
 
   const rows = data.map((row, index, array) => {
     const cashGainDollar = index !== 0 ? row.cash - array[index - 1]?.cash : 0
@@ -48,8 +41,12 @@ export default function History() {
 
     return (
       <Table.Tr key={row.id}>
-        <Table.Td>{row.year}</Table.Td>
-        <Table.Td>{getMonthName(row.month)}</Table.Td>
+        <Table.Td>{new Date(row.date).getFullYear()}</Table.Td>
+        <Table.Td>
+          {Intl.DateTimeFormat("en-AU", { month: "long" }).format(
+            new Date(row.date)
+          )}
+        </Table.Td>
         <Table.Td>{formatter.format(row.cash)}</Table.Td>
         <Table.Td className={cashGainDollar >= 0 ? "positive" : "negative"}>
           {formatter.format(cashGainDollar)}
