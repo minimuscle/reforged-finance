@@ -12,7 +12,7 @@ import {
 import "../styles/styles.css"
 
 export const meta = () => {
-  return [{ title: "Roadmap | WealthForge" }]
+  return [{ title: "Roadmap | WealthFire" }]
 }
 
 export default function Roadmap() {

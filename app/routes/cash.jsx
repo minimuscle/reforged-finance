@@ -5,7 +5,7 @@ import Accounts from "../components/Widgets/Cash/Accounts"
 import CashSavings from "../components/Widgets/Cash/CashSavings"
 
 export const meta = () => {
-  return [{ title: "Cash | WealthForge" }]
+  return [{ title: "Cash | WealthFire" }]
 }
 
 export const loader = async ({ request }) => {
