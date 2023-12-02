@@ -1,20 +1,19 @@
 import { Badge, Group, Paper, Stack, Table, Text, Title } from "@mantine/core"
-import { moneyFormatter } from "../../../../util/formatter"
 import { useLoaderData } from "@remix-run/react"
-import { getMonth } from "../../../../util/Maths/util"
+import {
+  getMonth,
+  getYear,
+  formatter,
+  getLastMonthData,
+} from "../../../../util"
 
 const CashSavings = () => {
   const { history } = useLoaderData()
   //get just the cash from last month and the month before
   const month = getMonth(Date.now())
-  const year = Intl.DateTimeFormat("en-US", { year: "numeric" }).format(
-    Date.now()
-  )
+  const year = getYear(Date.now())
+  const lastMonth = getLastMonthData(history, month, year)
 
-  const lastMonth = history.find(
-    (item) =>
-      item.month == month - 1 && item.year == (month == 1 ? year - 1 : year) // This accounts for last month being December of the previous year
-  )
   const thisMonth = history.find(
     (item) => item.month == month && item.year == year
   )
@@ -98,7 +97,7 @@ const CashSavings = () => {
                   size="xl"
                   radius="sm"
                 >
-                  {moneyFormatter.format(monthlyCashSavings)}
+                  {formatter.format(monthlyCashSavings)}
                 </Badge>
               </Table.Td>
             </Table.Tr>
@@ -113,7 +112,7 @@ const CashSavings = () => {
                   size="xl"
                   radius="sm"
                 >
-                  {moneyFormatter.format(yearlyCashSavings)}
+                  {formatter.format(yearlyCashSavings)}
                 </Badge>
               </Table.Td>
             </Table.Tr>
@@ -128,7 +127,7 @@ const CashSavings = () => {
                   size="xl"
                   radius="sm"
                 >
-                  {moneyFormatter.format(averageMonthlyDifference)}
+                  {formatter.format(averageMonthlyDifference)}
                 </Badge>
               </Table.Td>
             </Table.Tr>
@@ -143,7 +142,7 @@ const CashSavings = () => {
                   size="xl"
                   radius="sm"
                 >
-                  {moneyFormatter.format(predictedSavings)}
+                  {formatter.format(predictedSavings)}
                 </Badge>
               </Table.Td>
             </Table.Tr>
@@ -158,7 +157,7 @@ const CashSavings = () => {
                   size="xl"
                   radius="sm"
                 >
-                  {moneyFormatter.format(predictedCash)}
+                  {formatter.format(predictedCash)}
                 </Badge>
               </Table.Td>
             </Table.Tr>

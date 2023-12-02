@@ -32,7 +32,7 @@ import {
   restrictToWindowEdges,
 } from "@dnd-kit/modifiers"
 import { RiCheckFill } from "react-icons/ri/index.js"
-import { moneyFormatter } from "../../../../util/formatter"
+import { formatter } from "../../../../util"
 
 const Accounts = () => {
   const { cash } = useLoaderData()
@@ -78,7 +78,7 @@ const Accounts = () => {
             Total Balance:
           </Text>
           <Badge size="xl" variant="light" radius="sm">
-            {moneyFormatter.format(totalBalance)}
+            {formatter.format(totalBalance)}
           </Badge>
         </Group>
       </Flex>

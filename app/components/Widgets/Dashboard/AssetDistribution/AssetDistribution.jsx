@@ -2,7 +2,7 @@ import { Badge, Stack, Text, Title } from "@mantine/core"
 import NetworthChart from "../../../Charts/NetworthChart"
 import { useLoaderData } from "@remix-run/react"
 import { ClientOnly } from "remix-utils/client-only"
-import { moneyFormatter } from "../../../../util/formatter"
+import { formatter } from "../../../../util"
 
 const AssetDistribution = () => {
   const { data } = useLoaderData()
@@ -13,7 +13,7 @@ const AssetDistribution = () => {
     const latest = data[data.length - 1]
     const netWorth = latest?.cash + latest?.super + latest?.debts
 
-    return moneyFormatter.format(netWorth)
+    return formatter.format(netWorth)
   }
 
   return (

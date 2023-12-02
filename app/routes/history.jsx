@@ -3,6 +3,7 @@ import { Paper, Space, Stack, Table, Text, Title } from "@mantine/core"
 import "../styles/styles.css"
 import { useLoaderData } from "@remix-run/react"
 import { createSupabaseServerClient } from "../util/supabase.server"
+import { formatter } from "../util"
 
 export const meta = () => {
   return [{ title: "History | WealthForge" }]
@@ -21,12 +22,6 @@ export const loader = async ({ request }) => {
 
 export default function History() {
   const { data } = useLoaderData()
-
-  const formatter = new Intl.NumberFormat("en-AU", {
-    style: "currency",
-    currency: "AUD",
-    minimumFractionDigits: 0,
-  })
 
   function getMonthName(monthNumber) {
     const date = new Date()
