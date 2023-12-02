@@ -20,7 +20,6 @@ const formatData = (data) => {
       new Date(item.date)
     )
     const year = new Date(item.date).getFullYear()
-    console.log(month)
     // split negative and positive values into separate datasets
     if (netWorth < 0) {
       formattedData[0].data.push({
@@ -72,7 +71,6 @@ const NetWorthChart = ({ data }) => {
     (item) =>
       new Date(item.date).getFullYear() == new Date(Date.now()).getFullYear()
   ) // gets just this year
-  console.log(thisYear)
   const formattedData = formatData(thisYear)
   const max = getHighestValue(formattedData)
 
