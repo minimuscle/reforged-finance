@@ -65,6 +65,19 @@ export const loader = async ({ request }) => {
     },
   })
 
+  supabase.auth.onAuthStateChange((event, session) => {
+    if (event === "SIGNED_OUT" || event === "USER_DELETED") {
+      // delete cookies on sign out
+      const expires = new Date(0).toUTCString()
+      document.cookie = `my-access-token=; path=/; expires=${expires}; SameSite=Lax; secure`
+      document.cookie = `my-refresh-token=; path=/; expires=${expires}; SameSite=Lax; secure`
+    } else if (event === "SIGNED_IN" || event === "TOKEN_REFRESHED") {
+      const maxAge = 100 * 365 * 24 * 60 * 60 // 100 years, never expires
+      document.cookie = `my-access-token=${session.access_token}; path=/; max-age=${maxAge}; SameSite=Lax; secure`
+      document.cookie = `my-refresh-token=${session.refresh_token}; path=/; max-age=${maxAge}; SameSite=Lax; secure`
+    }
+  })
+
   const { data: auth } = await supabase.auth.getUser()
   const { data: user } = await supabase.from("profiles").select().single()
   return {
@@ -169,7 +182,15 @@ export default function App() {
                         <Text align="right">
                           {user?.name || auth?.user?.email}
                         </Text>
-                        <Avatar variant="outline" radius="xl" src="" />
+                        <Avatar
+                          variant="light"
+                          color={"blue"}
+                          radius="xl"
+                          src=""
+                        >
+                          {user?.name?.charAt(0) ||
+                            auth?.user?.email?.charAt(0)}
+                        </Avatar>
                         {auth?.user ? (
                           <Button variant="light" onClick={() => logout()}>
                             Sign Out
@@ -200,3 +221,5 @@ export default function App() {
     </html>
   )
 }
+
+//TODO: create a hook to get the data from the database in the right format
