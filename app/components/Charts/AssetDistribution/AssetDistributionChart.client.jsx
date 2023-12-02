@@ -15,10 +15,15 @@ const formatData = (data) => {
       id: "Super",
       value: data.super,
     })
-  data.super &&
+  data.stocks &&
     formattedData.push({
       id: "Stocks",
-      value: data.super,
+      value: data.stocks,
+    })
+  data.property &&
+    formattedData.push({
+      id: "Property",
+      value: data.property,
     })
   return formattedData
 }
@@ -58,7 +63,7 @@ const MyResponsivePie = ({ data }) => (
   />
 )
 
-function NetworthChart({ data }) {
+function AssetDistributionChart({ data }) {
   const chart = formatData(data)
   return (
     <div className="donut">
@@ -69,4 +74,4 @@ function NetworthChart({ data }) {
   )
 }
 
-export default NetworthChart
+export default AssetDistributionChart

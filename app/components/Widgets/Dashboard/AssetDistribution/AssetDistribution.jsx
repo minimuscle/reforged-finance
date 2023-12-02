@@ -1,5 +1,5 @@
 import { Badge, Paper, Stack, Text, Title } from "@mantine/core"
-import NetworthChart from "../../../Charts/NetworthChart"
+import AssetDistributionChart from "../../../Charts/AssetDistribution"
 import { useLoaderData } from "@remix-run/react"
 import { ClientOnly } from "remix-utils/client-only"
 import { formatter, getThisMonthData } from "../../../../util"
@@ -8,7 +8,7 @@ const AssetDistribution = () => {
   const { history } = useLoaderData()
   const latest = getThisMonthData(history)
 
-  const getNetWorth = () => {
+  const getAssets = () => {
     const netWorth = latest.cash + latest.super
     return formatter.format(netWorth)
   }
@@ -19,10 +19,10 @@ const AssetDistribution = () => {
         <Title>Asset Distribution</Title>
         <Text>Total Assets</Text>
         <Badge p={"20"} size="xl" radius="sm" variant="light">
-          <Title order={2}>{getNetWorth()}</Title>
+          <Title order={2}>{getAssets()}</Title>
         </Badge>
       </Stack>
-      <ClientOnly>{() => <NetworthChart data={latest} />}</ClientOnly>
+      <ClientOnly>{() => <AssetDistributionChart data={latest} />}</ClientOnly>
     </Paper>
   )
 }

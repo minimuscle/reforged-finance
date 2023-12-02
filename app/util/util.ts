@@ -30,11 +30,6 @@ export const getYear = (date: number = Date.now(), format: Intl.DateTimeFormatOp
 /**This gets the last month from an array of data, it requires a month in 2-digit format, and a full year
  * As well as the actually array of course
  */
-type LastMonthData = {
-  month: string,
-  year: string,
-  data: object
-}
 export const getLastMonthData = (data: any, month: string = getMonth(), year: string = getYear()) => {
   return data.find((item: any) => { 
     return item.month == (parseInt(month) - 1) && item.year == year
@@ -46,6 +41,24 @@ export const getThisMonthData = (data: any, month: string = getMonth(), year: st
     (item: any) => item.month == month && item.year == year
   )
 }
+
+export const getThisYearData = (data: any, year: any = getYear()) => {
+  return data
+    .filter(
+      (item: any) => item.year == year || (item.month == 12 && item.year == year - 1)
+    )
+    .sort((a:any, b: any) => {
+      // Custom sorting logic
+      if (a.year == year - 1 && a.month == 12) {
+        return -1 // Move items with month "12" and year "year - 1" to the front
+      } else if (b.year == year - 1 && b.month == 12) {
+        return 1 // Move items with month "12" and year "year - 1" to the front
+      } else {
+        // Normal sorting based on month
+        return a.month - b.month
+      }
+    })
+  }
 
 /**Money formatter gets money in the right format for the currency
  * 
