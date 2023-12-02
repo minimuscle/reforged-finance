@@ -1,75 +1,69 @@
-// install (please try to align the version of installed @nivo packages)
-// yarn add @nivo/pie
-import { Box } from "@mantine/core"
+import { Box, Paper, Text } from "@mantine/core"
 import { ResponsivePie } from "@nivo/pie"
+import { formatter } from "../../../util"
 
-const data = [
-  {
-    id: "lisp",
-    label: "lisp",
-    value: 420,
-    color: "#ccc",
-  },
-  {
-    id: "python",
-    label: "python",
-    value: 599,
-    color: "hsl(53, 70%, 50%)",
-  },
-  {
-    id: "erlang",
-    label: "erlang",
-    value: 532,
-    color: "hsl(264, 70%, 50%)",
-  },
-  {
-    id: "java",
-    label: "java",
-    value: 91,
-    color: "hsl(10, 70%, 50%)",
-  },
-  {
-    id: "scala",
-    label: "scala",
-    value: 353,
-    color: "hsl(233, 70%, 50%)",
-  },
-]
+const formatData = (data) => {
+  const formattedData = []
+
+  data.cash &&
+    formattedData.push({
+      id: "Cash",
+      value: data.cash,
+    })
+  data.super &&
+    formattedData.push({
+      id: "Super",
+      value: data.super,
+    })
+  data.super &&
+    formattedData.push({
+      id: "Stocks",
+      value: data.super,
+    })
+  return formattedData
+}
+
 // make sure parent container have a defined height when using
 // responsive component, otherwise height will be 0 and
 // no chart will be rendered.
 // website examples showcase many properties,
 // you'll often use just a few of them.
-const MyResponsivePie = ({ data /* see data tab */ }) => (
+const MyResponsivePie = ({ data }) => (
   <ResponsivePie
     data={data}
-    margin={{ top: 40, right: 80, bottom: 80, left: 80 }}
-    innerRadius={0.5}
-    padAngle={0.7}
-    cornerRadius={3}
-    activeOuterRadiusOffset={8}
-    borderWidth={1}
-    borderColor={{
-      from: "color",
-      modifiers: [["darker", 0.2]],
+    colors={{
+      scheme: "paired",
     }}
-    arcLinkLabelsSkipAngle={10}
-    arcLinkLabelsTextColor="#333333"
+    margin={{ top: 20, right: 100, bottom: 20, left: 110 }}
+    theme={{
+      text: {
+        fontFamily: "Roboto Slab, serif",
+        fontSize: "16px",
+      },
+    }}
+    innerRadius={0.6}
+    animate
+    activeOuterRadiusOffset={8}
+    padAngle={0.5}
+    cornerRadius={3}
     arcLinkLabelsThickness={2}
     arcLinkLabelsColor={{ from: "color" }}
-    arcLabelsSkipAngle={10}
-    arcLabelsTextColor={{
+    arcLinkLabelsTextColor={{
       from: "color",
-      modifiers: [["darker", 2]],
+      modifiers: [["darker", 1.2]],
     }}
+    //arcLabelsTextColor={{ from: "color", modifiers: [["brighter", 0.5]] }}
+    valueFormat={(value) => formatter.format(value)}
+    arcLabel={false}
   />
 )
 
-function NetworthChart() {
+function NetworthChart({ data }) {
+  const chart = formatData(data)
   return (
     <div className="donut">
-      <Box h={400}>
-        <MyResponsivePie data={data} />
+      <Box h={310}>
+        <MyResponsivePie data={chart} />
       </Box>
     </div>
   )

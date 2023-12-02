@@ -100,8 +100,6 @@ export default function App() {
       }
     })
 
-    console.log("database: ", database)
-
     return () => {
       subscription.unsubscribe()
     }

@@ -5,6 +5,7 @@ import {
   getYear,
   formatter,
   getLastMonthData,
+  getThisMonthData,
 } from "../../../../util"
 
 const CashSavings = () => {
@@ -12,12 +13,8 @@ const CashSavings = () => {
   //get just the cash from last month and the month before
   const month = getMonth(Date.now())
   const year = getYear(Date.now())
-  const lastMonth = getLastMonthData(history, month, year)
-
-  const thisMonth = history.find(
-    (item) => item.month == month && item.year == year
-  )
-
+  const lastMonth = getLastMonthData(history)
+  const thisMonth = getThisMonthData(history)
   //sort in case the month was added at a different time, ID might not be in order
   const thisYear = history
     .filter(
@@ -46,8 +43,6 @@ const CashSavings = () => {
     })
     .reverse()
 
-  console.log(sortedHistory)
-
   const cashComparisons = []
 
   // Iterate over the array for 12 months
@@ -57,14 +52,10 @@ const CashSavings = () => {
     // Compare the 'cash' values and push the result into the new array
     cashComparisons.push(currentMonthCash - previousMonthCash)
   }
-  console.log("compare:", cashComparisons)
   const averageComparisonResult = cashComparisons.reduce(
     (acc, num) => acc + num,
     0
   )
-  console.log("compareRes:", averageComparisonResult / cashComparisons.length)
-  console.log(cashComparisons.length)
-
   const averageMonthlyDifference = Math.round(
     averageComparisonResult / cashComparisons.length
   )
@@ -82,21 +73,21 @@ const CashSavings = () => {
     month: "long",
   }).format(Date.now())
   return (
-    <Paper shadow='xl' p='md' withBorder h='100%' miw='400px' align='center'>
-      <Stack justify='flex-start'>
+    <Paper shadow="xl" p="md" withBorder h="100%" miw="400px" align="center">
+      <Stack justify="flex-start">
         <Title>{monthLong} Cash Savings</Title>
-        <Table verticalSpacing='md' withTableBorder striped>
+        <Table verticalSpacing="md" withTableBorder striped>
           <Table.Tbody>
             <Table.Tr>
               <Table.Td>
                 <Text>Cash Savings This Month</Text>
               </Table.Td>
-              <Table.Td align='right'>
+              <Table.Td align="right">
                 <Badge
                   color={monthlyCashSavings > 0 ? "green" : "red"}
-                  variant='light'
-                  size='xl'
-                  radius='sm'
+                  variant="light"
+                  size="xl"
+                  radius="sm"
                 >
                   {formatter.format(monthlyCashSavings)}
                 </Badge>
@@ -106,12 +97,12 @@ const CashSavings = () => {
               <Table.Td>
                 <Text>Cash Savings This Year</Text>
               </Table.Td>
-              <Table.Td align='right'>
+              <Table.Td align="right">
                 <Badge
                   color={yearlyCashSavings > 0 ? "green" : "red"}
-                  variant='light'
-                  size='xl'
-                  radius='sm'
+                  variant="light"
+                  size="xl"
+                  radius="sm"
                 >
                   {formatter.format(yearlyCashSavings)}
                 </Badge>
@@ -121,12 +112,12 @@ const CashSavings = () => {
               <Table.Td>
                 <Text>Average Cash Savings per Month</Text>
               </Table.Td>
-              <Table.Td align='right'>
+              <Table.Td align="right">
                 <Badge
                   color={averageMonthlyDifference > 0 ? "green" : "red"}
-                  variant='light'
-                  size='xl'
-                  radius='sm'
+                  variant="light"
+                  size="xl"
+                  radius="sm"
                 >
                   {formatter.format(averageMonthlyDifference)}
                 </Badge>
@@ -136,12 +127,12 @@ const CashSavings = () => {
               <Table.Td>
                 <Text>Predicted Cash Savings EOY</Text>
               </Table.Td>
-              <Table.Td align='right'>
+              <Table.Td align="right">
                 <Badge
                   color={predictedSavings > 0 ? "green" : "red"}
-                  variant='light'
-                  size='xl'
-                  radius='sm'
+                  variant="light"
+                  size="xl"
+                  radius="sm"
                 >
                   {formatter.format(predictedSavings)}
                 </Badge>
@@ -151,12 +142,12 @@ const CashSavings = () => {
               <Table.Td>
                 <Text>Predicted Total Cash EOY</Text>
               </Table.Td>
-              <Table.Td align='right'>
+              <Table.Td align="right">
                 <Badge
                   color={predictedCash > 0 ? "blue" : "red"}
-                  variant='light'
-                  size='xl'
-                  radius='sm'
+                  variant="light"
+                  size="xl"
+                  radius="sm"
                 >
                   {formatter.format(predictedCash)}
                 </Badge>
