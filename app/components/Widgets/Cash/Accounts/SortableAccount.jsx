@@ -33,7 +33,7 @@ import {
   RiMoreFill,
 } from "react-icons/ri/index.js"
 import "./Accounts.css"
-import { moneyFormatter } from "../../../../util/formatter"
+import { formatter } from "../../../../util"
 import { useEffect, useState } from "react"
 import { useFetcher } from "@remix-run/react"
 
@@ -97,7 +97,7 @@ const SortableAccount = (account) => {
             {editing ? (
               <Input name="balance" defaultValue={account.balance} />
             ) : (
-              <Text>{moneyFormatter.format(account.balance)}</Text>
+              <Text>{formatter.format(account.balance)}</Text>
             )}
           </Grid.Col>
           <Grid.Col span={2} align="left">
