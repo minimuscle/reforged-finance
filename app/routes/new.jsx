@@ -11,19 +11,51 @@ import {
   Title,
 } from "@mantine/core"
 import { useDisclosure } from "@mantine/hooks"
-import { useNavigate } from "@remix-run/react"
+import { useNavigate, useFetcher, useLoaderData } from "@remix-run/react"
 import React, { useState } from "react"
 import Accounts from "../components/Widgets/Cash/Accounts"
 import { createSupabaseServerClient } from "../util/supabase.server"
+import SubmitMonth from "../components/SubmitMonth"
+import { redirect } from "@remix-run/node"
 
 export const meta = () => {
   return [{ title: "Add New Month | WealthForge" }]
 }
 
 export const action = async ({ request }) => {
+  const formData = await request.formData()
   const supabase = createSupabaseServerClient({ request })
+  const { data: auth } = await supabase.auth.getUser()
+  const { _action, ...values } = Object.fromEntries(formData)
 
-  const { error } = await supabase
+  const { data: history } = await supabase
+    .from("history")
+    .select("*")
+    .order("date", { ascending: true })
+
+  const lastHistory = history.slice(-1)[0]
+  const month = new Date(Date.now()).getMonth() + 1
+  const year = new Date(Date.now()).getFullYear()
+  const date = `${year}-${month}-01`
+  let id
+  if (date == lastHistory.date) {
+    id = lastHistory.id
+  }
+
+  switch (_action) {
+    case "completeForm":
+      const { data, error } = await supabase
+        .from("history")
+        .upsert(
+          { ...values, user_id: auth.user.id, id: id },
+          { onConflict: "id" }
+        )
+        .select()
+      if (error) console.log(error)
+      return redirect("/")
+    default:
+      break
+  }
 
   return null
 }
@@ -34,9 +66,16 @@ export const loader = async ({ request }) => {
     .from("cash")
     .select("*")
     .order("weight", { ascending: true })
+  const { data: profile } = await supabase.from("profiles").select("*").single()
+  const { data: history } = await supabase
+    .from("history")
+    .select("*")
+    .order("date", { ascending: true })
 
   return {
     cash,
+    profile,
+    history,
   }
 }
 
@@ -48,7 +87,8 @@ export const loader = async ({ request }) => {
  *
  */
 
-export default function Debts() {
+export default function NewMonth() {
+  const { history } = useLoaderData()
   const [opened, { open, close }] = useDisclosure(true)
   const navigate = useNavigate()
   const [active, setActive] = useState(0)
@@ -56,6 +96,11 @@ export default function Debts() {
     setActive((current) => (current < 4 ? current + 1 : current))
   const prevStep = () =>
     setActive((current) => (current > 0 ? current - 1 : current))
+  const lastHistory = history.slice(-1)[0]
+  const month = new Date(Date.now()).getMonth() + 1
+  const year = new Date(Date.now()).getFullYear()
+  const date = `${year}-${month}-01`
+
   return (
     <Modal
       opened={opened}
@@ -98,6 +143,27 @@ export default function Debts() {
           </Stepper.Step>
           <Stepper.Completed>
             <Title>Completed!</Title>
+            <Text>Click the complete button below to save the changes!</Text>
+            {date == lastHistory.date && (
+              <>
+                <br />
+                <Title order={2} c="red">
+                  Whoa!
+                </Title>
+                <Text c="red">
+                  It looks like you are submitting a month that you have already
+                  submitted!
+                  <br />
+                  This will{" "}
+                  <Text span fw={700}>
+                    override
+                  </Text>{" "}
+                  the data that you have already.
+                  <br />
+                  If you are sure about that, then please continue.
+                </Text>
+              </>
+            )}
           </Stepper.Completed>
         </Stepper>
         <Group justify="center" mt="xl" mb="xl">
@@ -111,9 +177,7 @@ export default function Debts() {
             </Button>
           )}
           {active === 4 ? (
-            <Button color="green" onClick={nextStep}>
-              Complete Month
-            </Button>
+            <SubmitMonth />
           ) : (
             <Button onClick={nextStep}>Next Step</Button>
           )}
