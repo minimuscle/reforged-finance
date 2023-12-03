@@ -67,6 +67,7 @@ export const loader = async ({ request }) => {
 
   const { data: auth } = await supabase.auth.getUser()
   const { data: user } = await supabase.from("profiles").select().single()
+  const { data: cash } = await supabase.from("cash").select("*")
   const { data: history } = await supabase
     .from("history")
     .select("*")
@@ -77,13 +78,14 @@ export const loader = async ({ request }) => {
     env,
     auth,
     user,
+    cash,
     history,
     headers,
   }
 }
 
 export default function App() {
-  const { env, auth, user, history } = useLoaderData()
+  const { env, auth, user, history, cash } = useLoaderData()
   const [supabase] = useState(() =>
     createBrowserClient(env.DATABASE_URL, env.DB_KEY)
   )
@@ -197,7 +199,7 @@ export default function App() {
                   <Sidebar />
                 </AppShell.Navbar>
                 <AppShell.Main>
-                  <Outlet className="main" context={history} />
+                  <Outlet className="main" context={{ user, cash, history }} />
                 </AppShell.Main>
               </AppShell>
             </MantineProvider>

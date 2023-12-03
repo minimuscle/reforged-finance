@@ -1,11 +1,12 @@
 import { Badge, Paper, Stack, Text, Title } from "@mantine/core"
 import AssetDistributionChart from "../../../Charts/AssetDistribution"
-import { useLoaderData } from "@remix-run/react"
+import { useLoaderData, useOutletContext } from "@remix-run/react"
 import { ClientOnly } from "remix-utils/client-only"
 import { formatter } from "../../../../util"
 
 const AssetDistribution = () => {
-  const { history } = useLoaderData()
+  const data = useOutletContext()
+  const history = data.history
 
   const latest = history[history.length - 1]
   const assets = formatter.format(latest.cash + latest.super)

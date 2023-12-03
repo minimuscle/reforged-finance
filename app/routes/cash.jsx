@@ -8,27 +8,6 @@ export const meta = () => {
   return [{ title: "Cash | WealthFire" }]
 }
 
-export const loader = async ({ request }) => {
-  const supabase = createSupabaseServerClient({ request })
-
-  const { data: auth } = await supabase.auth.getUser()
-  const { data: profile } = await supabase.from("profiles").select().single()
-  const { data: history } = await supabase
-    .from("history")
-    .select()
-    .order("date", { ascending: true })
-  const { data: cash } = await supabase
-    .from("cash")
-    .select("*")
-    .order("weight", { ascending: true })
-  return {
-    history,
-    auth,
-    profile,
-    cash,
-  }
-}
-
 export const action = async ({ request }) => {
   console.log("running")
   const formData = await request.formData()

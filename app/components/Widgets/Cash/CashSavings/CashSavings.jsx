@@ -1,9 +1,10 @@
 import { Badge, Paper, Stack, Table, Text, Title } from "@mantine/core"
-import { useLoaderData } from "@remix-run/react"
+import { useLoaderData, useOutletContext } from "@remix-run/react"
 import { formatter } from "../../../../util"
 
 const CashSavings = () => {
-  const { history } = useLoaderData()
+  const data = useOutletContext()
+  const history = data.history
 
   const month = new Date(Date.now()).getMonth()
   const year = new Date(Date.now()).getFullYear()

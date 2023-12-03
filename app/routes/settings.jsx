@@ -12,7 +12,7 @@ import {
   Title,
   Tooltip,
 } from "@mantine/core"
-import { useFetcher, useLoaderData } from "@remix-run/react"
+import { useFetcher, useLoaderData, useOutletContext } from "@remix-run/react"
 import { IMaskInput } from "react-imask"
 import "../styles/styles.css"
 import currency from "currency.js"
@@ -27,17 +27,6 @@ export const moneyFormatter = new Intl.NumberFormat("en-AU", {
   currency: "AUD",
   minimumFractionDigits: 0,
 })
-
-export const loader = async ({ request }) => {
-  const supabase = createSupabaseServerClient({ request })
-
-  const { data: auth } = await supabase.auth.getUser()
-  const { data: profile } = await supabase.from("profiles").select().single()
-  return {
-    auth,
-    profile,
-  }
-}
 
 export const action = async ({ request }) => {
   const data = await request.formData()
@@ -104,7 +93,10 @@ export const action = async ({ request }) => {
 
 export default function Settings() {
   const fetcher = useFetcher()
-  const { auth, profile } = useLoaderData()
+  const data = useOutletContext()
+  const auth = data.auth
+  const profile = data.user
+
   return (
     <>
       <Stack align="center" mb="50px">
