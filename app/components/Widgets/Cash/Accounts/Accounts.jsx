@@ -23,7 +23,7 @@ import {
   Text,
   Title,
 } from "@mantine/core"
-import { useFetcher, useLoaderData } from "@remix-run/react"
+import { useFetcher, useLoaderData, useOutletContext } from "@remix-run/react"
 import SortableAccount from "./SortableAccount"
 import { useEffect, useState } from "react"
 import {
@@ -35,7 +35,8 @@ import { RiCheckFill } from "react-icons/ri/index.js"
 import { formatter } from "../../../../util"
 
 const Accounts = ({ isEdit = false }) => {
-  const { cash } = useLoaderData()
+  const data = useOutletContext()
+  const cash = data.cash
   const [accounts, setAccounts] = useState(cash)
   const [editing, setEditing] = useState(false)
   const fetcher = useFetcher()

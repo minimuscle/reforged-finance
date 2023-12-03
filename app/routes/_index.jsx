@@ -7,18 +7,6 @@ import { isRouteErrorResponse, useRouteError } from "@remix-run/react"
 export const meta = () => {
   return [{ title: "Dashboard | WealthFire" }]
 }
-
-export const loader = async ({ request }) => {
-  const supabase = createSupabaseServerClient({ request })
-  const { data: history } = await supabase
-    .from("history")
-    .select("*")
-    .order("date", { ascending: true })
-  return {
-    history,
-  }
-}
-
 export const ErrorBoundary = () => {
   const error = useRouteError()
 

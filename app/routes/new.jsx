@@ -11,7 +11,12 @@ import {
   Title,
 } from "@mantine/core"
 import { useDisclosure } from "@mantine/hooks"
-import { useNavigate, useFetcher, useLoaderData } from "@remix-run/react"
+import {
+  useNavigate,
+  useFetcher,
+  useLoaderData,
+  useOutletContext,
+} from "@remix-run/react"
 import React, { useState } from "react"
 import Accounts from "../components/Widgets/Cash/Accounts"
 import { createSupabaseServerClient } from "../util/supabase.server"
@@ -60,25 +65,6 @@ export const action = async ({ request }) => {
   return null
 }
 
-export const loader = async ({ request }) => {
-  const supabase = createSupabaseServerClient({ request })
-  const { data: cash } = await supabase
-    .from("cash")
-    .select("*")
-    .order("weight", { ascending: true })
-  const { data: profile } = await supabase.from("profiles").select("*").single()
-  const { data: history } = await supabase
-    .from("history")
-    .select("*")
-    .order("date", { ascending: true })
-
-  return {
-    cash,
-    profile,
-    history,
-  }
-}
-
 /** //TODO: Check if the user has already added a month this year and
  * if so ask them "Whoa it looks like you have already submitted this month,
  * are you sure you want to continue?"
@@ -88,7 +74,8 @@ export const loader = async ({ request }) => {
  */
 
 export default function NewMonth() {
-  const { history } = useLoaderData()
+  const data = useOutletContext()
+  const history = data.history
   const [opened, { open, close }] = useDisclosure(true)
   const navigate = useNavigate()
   const [active, setActive] = useState(0)

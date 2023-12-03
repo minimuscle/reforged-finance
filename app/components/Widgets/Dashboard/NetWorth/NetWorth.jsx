@@ -1,11 +1,12 @@
 import { Badge, Paper, Stack, Text, Title } from "@mantine/core"
 import NetWorthChart from "../../../Charts/NetWorth"
-import { useLoaderData } from "@remix-run/react"
+import { useLoaderData, useOutletContext } from "@remix-run/react"
 import { ClientOnly } from "remix-utils/client-only"
 import { formatter } from "../../../../util"
 
 const NetWorth = () => {
-  const { history } = useLoaderData()
+  const data = useOutletContext()
+  const history = data.history
 
   const latest = history[history.length - 1]
   const netWorth = formatter.format(latest.cash + latest.super + latest.debts)

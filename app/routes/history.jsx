@@ -1,9 +1,8 @@
 import React from "react"
 import { Paper, Space, Stack, Table, Text, Title } from "@mantine/core"
 import "../styles/styles.css"
-import { useLoaderData, useOutletContext } from "@remix-run/react"
-import { createSupabaseServerClient } from "../util/supabase.server"
-import { formatter, getSortedData } from "../util"
+import { useOutletContext } from "@remix-run/react"
+import { formatter } from "../util"
 
 export const meta = () => {
   return [{ title: "History | WealthFire" }]
@@ -13,7 +12,7 @@ export default function History() {
   const data = useOutletContext()
   console.log(data)
 
-  const rows = data.map((row, index, array) => {
+  const rows = data.history.map((row, index, array) => {
     const cashGainDollar = index !== 0 ? row.cash - array[index - 1]?.cash : 0
     const cashGainPercent =
       index !== 0
