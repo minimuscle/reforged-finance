@@ -6,7 +6,7 @@ import "./LogoButton.css"
 function LogoButton() {
   return (
     <Link to="/">
-      <Button variant="transparent">
+      <Button h="100%" variant="transparent">
         <Group>
           <Image w="40px" src={Logo} />
           <Title size="h2" className="logoTitle">
