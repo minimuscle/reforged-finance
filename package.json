@@ -18,6 +18,7 @@
     "@mantine/form": "^7.1.7",
     "@mantine/hooks": "^7.1.7",
     "@mantine/notifications": "^7.1.7",
+    "@nivo/bar": "^0.80.0",
     "@nivo/core": "^0.80.0",
     "@nivo/line": "^0.80.0",
     "@nivo/pie": "^0.80.0",

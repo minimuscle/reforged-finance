@@ -3,6 +3,7 @@ import { createSupabaseServerClient } from "../util/supabase.server"
 import AssetDistribution from "../components/Widgets/Dashboard/AssetDistribution"
 import NetWorth from "../components/Widgets/Dashboard/NetWorth"
 import { isRouteErrorResponse, useRouteError } from "@remix-run/react"
+import HistoricalWorth from "../components/Widgets/Dashboard/HistoricalWorth"
 
 export const meta = () => {
   return [{ title: "Dashboard | WealthFire" }]
@@ -36,9 +37,10 @@ export const ErrorBoundary = () => {
 export default function Index() {
   return (
     <>
-      <Flex gap="md" wrap>
+      <Flex gap="md" wrap="wrap">
         <AssetDistribution />
         <NetWorth />
+        <HistoricalWorth />
       </Flex>
     </>
   )

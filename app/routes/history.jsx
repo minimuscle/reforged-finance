@@ -1,9 +1,8 @@
-import React from "react"
+import { Suspense } from "react"
 import { Paper, Space, Stack, Table, Text, Title } from "@mantine/core"
 import "../styles/styles.css"
 import { Await, useOutletContext } from "@remix-run/react"
 import { formatter } from "../util"
-import { Suspense } from "react"
 
 export const meta = () => {
   return [{ title: "History | WealthFire" }]
