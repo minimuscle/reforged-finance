@@ -38,6 +38,7 @@ import Sidebar from "./components/Sidebar/Sidebar"
 import { useDisclosure } from "@mantine/hooks"
 import theme from "~/util/theme"
 import SetupModal from "./components/Setup/SetupModal"
+import { defer } from "@remix-run/node"
 
 export const links = () => [
   ...(cssBundleHref ? [{ rel: "stylesheet", href: cssBundleHref }] : []),
@@ -65,23 +66,23 @@ export const loader = async ({ request }) => {
     },
   })
 
-  const { data: auth } = await supabase.auth.getUser()
-  const { data: user } = await supabase.from("profiles").select().single()
-  const { data: cash } = await supabase.from("cash").select("*")
-  const { data: history } = await supabase
-    .from("history")
-    .select("*")
-    .order("id", {
-      ascending: true,
-    })
-  return {
+  let [auth, user, cash, history] = await Promise.all([
+    supabase.auth.getUser(),
+    supabase.from("profiles").select().single(),
+    supabase.from("cash").select("*"),
+    supabase.from("history").select("*").order("id", { ascending: true }),
+  ])
+
+  console.log("auth", auth.data)
+
+  return defer({
     env,
-    auth,
-    user,
-    cash,
-    history,
+    auth: auth.data,
+    user: user.data,
+    cash: cash.data,
+    history: history.data,
     headers,
-  }
+  })
 }
 
 export default function App() {
@@ -91,7 +92,6 @@ export default function App() {
   )
   const [opened, { toggle }] = useDisclosure(false)
   const [setupOpen, { toggle: setupToggle }] = useDisclosure(false)
-  const [signUpOpen, { toggle: signUpToggle }] = useDisclosure(false)
   const res = useActionData()
   const [database, setDatabase] = useState(auth?.user?.id ? true : false)
   const [modalOpen, { toggle: modalToggle }] = useDisclosure(!database)

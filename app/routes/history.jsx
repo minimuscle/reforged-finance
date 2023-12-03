@@ -1,8 +1,9 @@
 import React from "react"
 import { Paper, Space, Stack, Table, Text, Title } from "@mantine/core"
 import "../styles/styles.css"
-import { useOutletContext } from "@remix-run/react"
+import { Await, useOutletContext } from "@remix-run/react"
 import { formatter } from "../util"
+import { Suspense } from "react"
 
 export const meta = () => {
   return [{ title: "History | WealthFire" }]
@@ -85,7 +86,11 @@ export default function History() {
                 <Table.Th>Income</Table.Th>
               </Table.Tr>
             </Table.Thead>
-            <Table.Tbody>{rows}</Table.Tbody>
+            <Table.Tbody>
+              <Suspense fallback={<div>Loading Data...</div>}>
+                <Await resolve={data}>{rows}</Await>
+              </Suspense>
+            </Table.Tbody>
           </Table>
         </Table.ScrollContainer>
       </Paper>
