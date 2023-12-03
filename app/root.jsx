@@ -39,8 +39,6 @@ import Sidebar from "./components/Sidebar/Sidebar"
 import { useDisclosure } from "@mantine/hooks"
 import theme from "~/util/theme"
 import SetupModal from "./components/Setup/SetupModal"
-import { ClientOnly } from "remix-utils/client-only"
-import ZohoSalesIQ from "./components/ZohoSalesIQ"
 
 export const links = () => [
   ...(cssBundleHref ? [{ rel: "stylesheet", href: cssBundleHref }] : []),
@@ -195,7 +193,6 @@ export default function App() {
                         )}
                       </Group>
                     </Group>
-                    <ClientOnly>{() => <ZohoSalesIQ />}</ClientOnly>
                   </AppShell.Header>
                   <AppShell.Navbar p="md">
                     <Sidebar />
