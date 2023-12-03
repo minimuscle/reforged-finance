@@ -48,9 +48,7 @@ function Sidebar() {
       <NavLink to="/debts" className="navlink">
         {({ isActive }) => (
           <Nav
-            disabled
             label="Liabilities / Debts"
-            description="Coming Soon"
             active={isActive}
             leftSection={<HiOutlineTrendingDown />}
           />
