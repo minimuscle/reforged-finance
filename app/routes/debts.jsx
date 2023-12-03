@@ -8,7 +8,7 @@ export const meta = () => {
 
 export default function Debts() {
   return (
-    <Flex gap="md">
+    <Flex gap="md" wrap="wrap">
       <DebtsList />
     </Flex>
   )

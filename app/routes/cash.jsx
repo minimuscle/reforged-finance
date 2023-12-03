@@ -127,7 +127,7 @@ export const ErrorBoundary = () => {
 export default function Cash() {
   const data = useOutletContext()
   return (
-    <Flex gap="md">
+    <Flex gap="md" wrap="wrap">
       <Suspense fallback={<div>Loading Data...</div>}>
         <Await resolve={data}>
           <Accounts />

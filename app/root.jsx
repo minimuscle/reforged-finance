@@ -73,8 +73,6 @@ export const loader = async ({ request }) => {
     supabase.from("history").select("*").order("id", { ascending: true }),
   ])
 
-  console.log("auth", auth.data)
-
   return defer({
     env,
     auth: auth.data,
