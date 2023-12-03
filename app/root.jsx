@@ -31,7 +31,6 @@ import {
   serialize,
 } from "@supabase/ssr"
 import { useState, useEffect } from "react"
-import { DatabaseContext } from "./contexts/DatabaseContext"
 import { PremiumMemberContext } from "./contexts/PremiumMemberContext"
 import LoadDatabaseModal from "./components/LoadDatabaseModal/LoadDatabaseModal"
 import LogoButton from "./components/LogoButton/LogoButton"
@@ -68,16 +67,23 @@ export const loader = async ({ request }) => {
 
   const { data: auth } = await supabase.auth.getUser()
   const { data: user } = await supabase.from("profiles").select().single()
+  const { data: history } = await supabase
+    .from("history")
+    .select("*")
+    .order("id", {
+      ascending: true,
+    })
   return {
     env,
     auth,
     user,
+    history,
     headers,
   }
 }
 
 export default function App() {
-  const { env, auth, user } = useLoaderData()
+  const { env, auth, user, history } = useLoaderData()
   const [supabase] = useState(() =>
     createBrowserClient(env.DATABASE_URL, env.DB_KEY)
   )
@@ -142,68 +148,60 @@ export default function App() {
       </head>
       <body>
         <SupabaseContext.Provider value={supabase}>
-          <DatabaseContext.Provider value={database}>
-            <PremiumMemberContext.Provider value={false}>
-              <MantineProvider theme={theme}>
-                <SetupModal opened={false} close={setupToggle} />
-                <LoadDatabaseModal opened={false} close={modalToggle} />
-                <AppShell
-                  header={{ height: 60 }}
-                  navbar={{
-                    width: 300,
-                    breakpoint: "sm",
-                    collapsed: { mobile: !opened },
-                  }}
-                  padding="md"
-                >
-                  <AppShell.Header>
-                    <Group h="100%" px="md" align="center">
-                      <Burger
-                        opened={opened}
-                        onClick={toggle}
-                        hiddenFrom="sm"
-                        size="sm"
-                      />
-                      <LogoButton />
+          <PremiumMemberContext.Provider value={false}>
+            <MantineProvider theme={theme}>
+              <SetupModal opened={false} close={setupToggle} />
+              <LoadDatabaseModal opened={false} close={modalToggle} />
+              <AppShell
+                header={{ height: 60 }}
+                navbar={{
+                  width: 300,
+                  breakpoint: "sm",
+                  collapsed: { mobile: !opened },
+                }}
+                padding="md"
+              >
+                <AppShell.Header>
+                  <Group h="100%" px="md" align="center">
+                    <Burger
+                      opened={opened}
+                      onClick={toggle}
+                      hiddenFrom="sm"
+                      size="sm"
+                    />
+                    <LogoButton />
 
-                      <Group pos="absolute" right={10}>
-                        <Form action="/new">
-                          <Button type="submit">Add Month</Button>
-                        </Form>
-                        <Text align="right">
-                          {user?.name || auth?.user?.email}
-                        </Text>
-                        <Avatar
-                          variant="light"
-                          color={"blue"}
-                          radius="xl"
-                          src=""
-                        >
-                          {user?.name?.charAt(0) ||
-                            auth?.user?.email?.charAt(0)}
-                        </Avatar>
-                        {auth?.user ? (
-                          <Button variant="light" onClick={() => logout()}>
-                            Sign Out
-                          </Button>
-                        ) : (
-                          <Button variant="light" onClick={() => login()}>
-                            Log In
-                          </Button>
-                        )}
-                      </Group>
+                    <Group pos="absolute" right={10}>
+                      <Form action="/new">
+                        <Button type="submit">Add Month</Button>
+                      </Form>
+                      <Text align="right">
+                        {user?.name || auth?.user?.email}
+                      </Text>
+                      <Avatar variant="light" color={"blue"} radius="xl" src="">
+                        {user?.name?.charAt(0) || auth?.user?.email?.charAt(0)}
+                      </Avatar>
+                      {auth?.user ? (
+                        <Button variant="light" onClick={() => logout()}>
+                          Sign Out
+                        </Button>
+                      ) : (
+                        <Button variant="light" onClick={() => login()}>
+                          Log In
+                        </Button>
+                      )}
                     </Group>
-                  </AppShell.Header>
-                  <AppShell.Navbar p="md">
-                    <Sidebar />
-                  </AppShell.Navbar>
-                  <AppShell.Main>
-                    <Outlet className="main" />
-                  </AppShell.Main>
-                </AppShell>
-              </MantineProvider>
-            </PremiumMemberContext.Provider>
-          </DatabaseContext.Provider>
+                  </Group>
+                </AppShell.Header>
+                <AppShell.Navbar p="md">
+                  <Sidebar />
+                </AppShell.Navbar>
+                <AppShell.Main>
+                  <Outlet className="main" context={history} />
+                </AppShell.Main>
+              </AppShell>
+            </MantineProvider>
+          </PremiumMemberContext.Provider>
         </SupabaseContext.Provider>
         <ScrollRestoration />
         <LiveReload />
