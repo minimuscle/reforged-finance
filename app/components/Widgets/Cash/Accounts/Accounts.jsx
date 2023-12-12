@@ -36,7 +36,6 @@ import { formatter } from "../../../../util"
 
 const Accounts = ({ isEdit = false }) => {
   const data = useOutletContext()
-  console.log("data:", data)
   const cash = data.cash
   const [accounts, setAccounts] = useState(cash)
   const [editing, setEditing] = useState(false)

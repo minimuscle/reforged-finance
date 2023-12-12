@@ -10,6 +10,7 @@ import {
   useOutletContext,
   useRouteError,
 } from "@remix-run/react"
+import CashTotal from "../components/Widgets/Cash/CashTotal"
 
 export const meta = () => {
   return [{ title: "Cash | WealthFire" }]
@@ -125,15 +126,11 @@ export const ErrorBoundary = () => {
 }
 
 export default function Cash() {
-  const data = useOutletContext()
   return (
     <Flex gap="md" wrap="wrap">
-      <Suspense fallback={<div>Loading Data...</div>}>
-        <Await resolve={data}>
-          <Accounts />
-          <CashSavings />
-        </Await>
-      </Suspense>
+      <Accounts />
+      <CashTotal />
+      <CashSavings />
     </Flex>
   )
 }
