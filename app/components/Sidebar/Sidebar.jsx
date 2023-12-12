@@ -16,7 +16,7 @@ import "./Sidebar.css"
 function Sidebar() {
   return (
     <>
-      <NavLink to="/" className="navlink">
+      <NavLink to="/" className="navlink" prefetch="intent">
         {({ isActive }) => (
           <Nav
             label="Dashboard"
@@ -25,7 +25,7 @@ function Sidebar() {
           />
         )}
       </NavLink>
-      <NavLink to="/cash" className="navlink">
+      <NavLink to="/cash" className="navlink" prefetch="intent">
         {({ isActive }) => (
           <Nav
             label="Cash"
