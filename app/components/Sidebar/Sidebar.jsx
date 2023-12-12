@@ -34,7 +34,7 @@ function Sidebar() {
           />
         )}
       </NavLink>
-      <NavLink to="/side-income" className="navlink">
+      <NavLink to="/side-income" className="navlink" prefetch="intent">
         {({ isActive }) => (
           <Nav
             disabled
@@ -45,7 +45,7 @@ function Sidebar() {
           />
         )}
       </NavLink>
-      <NavLink to="/debts" className="navlink">
+      <NavLink to="/debts" className="navlink" prefetch="intent">
         {({ isActive }) => (
           <Nav
             label="Liabilities / Debts"
@@ -54,7 +54,7 @@ function Sidebar() {
           />
         )}
       </NavLink>
-      <NavLink to="/super" className="navlink">
+      <NavLink to="/super" className="navlink" prefetch="intent">
         {({ isActive }) => (
           <Nav
             disabled
@@ -65,7 +65,7 @@ function Sidebar() {
           />
         )}
       </NavLink>
-      <NavLink to="/budget" className="navlink">
+      <NavLink to="/budget" className="navlink" prefetch="intent">
         {({ isActive }) => (
           <Nav
             label="Budget"
@@ -83,7 +83,7 @@ function Sidebar() {
           />
         )}
       </NavLink>
-      <NavLink to="/history" className="navlink">
+      <NavLink to="/history" className="navlink" prefetch="intent">
         {({ isActive }) => (
           <Nav
             label="History"
@@ -93,7 +93,7 @@ function Sidebar() {
         )}
       </NavLink>
       <Flex h="100%"></Flex>
-      <NavLink to="/roadmap" className="navlink">
+      <NavLink to="/roadmap" className="navlink" prefetch="intent">
         {({ isActive }) => (
           <Nav
             label="Roadmap"
@@ -102,7 +102,7 @@ function Sidebar() {
           />
         )}
       </NavLink>
-      <NavLink to="/premium" className="navlink">
+      <NavLink to="/premium" className="navlink" prefetch="intent">
         {({ isActive }) => (
           <Nav
             active
@@ -114,7 +114,7 @@ function Sidebar() {
           />
         )}
       </NavLink>
-      <NavLink to="/settings" className="navlink">
+      <NavLink to="/settings" className="navlink" prefetch="intent">
         {({ isActive }) => (
           <Nav label="Settings" active={isActive} leftSection={<RxGear />} />
         )}
