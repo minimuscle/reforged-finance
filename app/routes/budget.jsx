@@ -1,5 +1,6 @@
-import { Stack, Text, Title } from "@mantine/core"
+import { Flex, Stack, Text, Title } from "@mantine/core"
 import React from "react"
+import MonthlyBudget from "../components/Widgets/Budget/MonthlyBudget"
 
 export const meta = () => {
   return [{ title: "Budget | WealthFire" }]
@@ -7,11 +8,8 @@ export const meta = () => {
 
 export default function Budget() {
   return (
-    <>
-      <Stack align="center">
-        <Title>Budget</Title>
-        <Text>Only Available for Premium Members</Text>
-      </Stack>
-    </>
+    <Flex gap="md" wrap="wrap">
+      <MonthlyBudget />
+    </Flex>
   )
 }
