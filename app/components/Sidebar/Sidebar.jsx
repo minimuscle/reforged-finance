@@ -70,7 +70,6 @@ function Sidebar() {
           <Nav
             label="Budget"
             description="Coming Soon"
-            disabled
             active={isActive}
             leftSection={<TbReportMoney />}
             rightSection={

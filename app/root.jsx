@@ -67,11 +67,12 @@ export const loader = async ({ request }) => {
     },
   })
 
-  let [auth, user, cash, history] = await Promise.all([
+  let [auth, user, cash, history, budget] = await Promise.all([
     supabase.auth.getUser(),
     supabase.from("profiles").select().single(),
     supabase.from("cash").select("*"),
     supabase.from("history").select("*").order("id", { ascending: true }),
+    supabase.from("budget").select("*"),
   ])
 
   return defer({
@@ -80,6 +81,7 @@ export const loader = async ({ request }) => {
     user: user.data,
     cash: cash.data,
     history: history.data,
+    budget: budget.data,
     headers,
   })
 }
