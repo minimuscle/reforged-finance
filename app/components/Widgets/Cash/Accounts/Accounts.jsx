@@ -33,10 +33,10 @@ import {
 } from "@dnd-kit/modifiers"
 import { RiCheckFill } from "react-icons/ri/index.js"
 import { formatter } from "../../../../util"
+import { useCash } from "../../../../hooks/useData"
 
 const Accounts = ({ isEdit = false }) => {
-  const data = useOutletContext()
-  const cash = data.cash
+  const cash = useCash()
   const [accounts, setAccounts] = useState(cash)
   const [editing, setEditing] = useState(false)
   const fetcher = useFetcher()
