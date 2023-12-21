@@ -1,0 +1,11 @@
+.account .mantine-ActionIcon-root {
+  color: transparent;
+}
+
+.account:hover .mantine-ActionIcon-root {
+  color: var(--ai-color);
+}
+
+.always {
+  color: var(--ai-color);
+}

@@ -1,10 +1,7 @@
 import React from "react"
 
 export const meta = () => {
-  return [
-    { title: "New Remix App" },
-    { name: "description", content: "Welcome to Remix!" },
-  ]
+  return [{ title: "Super | WealthFire" }]
 }
 
 export default function Super() {

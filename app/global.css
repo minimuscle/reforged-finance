@@ -3,3 +3,15 @@
 .navlink {
   border-radius: 5px;
 }
+
+.switch .mantine-Switch-labelWrapper {
+  margin-top: -15px;
+}
+
+main {
+  background-color: #f8f9fa;
+}
+
+.hideStep {
+  display: none;
+}
