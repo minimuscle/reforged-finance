@@ -9,6 +9,8 @@ import {
   ScrollRestoration,
 } from "@remix-run/react"
 import stylesheet from "./tailwind.css"
+import "@radix-ui/themes/styles.css"
+import { Theme } from "@radix-ui/themes"
 
 export const links: LinksFunction = () => [
   ...(cssBundleHref ? [{ rel: "stylesheet", href: cssBundleHref }] : []),
@@ -25,7 +27,9 @@ export default function App() {
         <Links />
       </head>
       <body>
-        <Outlet />
+        <Theme>
+          <Outlet />
+        </Theme>
         <ScrollRestoration />
         <Scripts />
         <LiveReload />
