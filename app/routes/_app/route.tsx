@@ -23,7 +23,7 @@ export default function Index() {
     <div className={styles.container}>
       <Flex height={"100%"} direction={"column"}>
         <Header />
-        <Flex grow={"1"}>
+        <Flex className={styles.flex} grow={"1"}>
           <Sidebar />
           <Box className={styles.outlet}>
             <Outlet />

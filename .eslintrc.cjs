@@ -57,15 +57,7 @@ module.exports = {
           node: {
             extensions: [".ts", ".tsx"],
           },
-          typescript: {
-            alwaysTryTypes: true,
-          },
-          alias: {
-            map: [
-              ['~', './app/'],
-            ],
-            extensions: ['.ts','.tsx', '.js', '.jsx', '.json']
-          }
+          "typescript": {}
         },
       },
       extends: [
