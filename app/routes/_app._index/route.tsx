@@ -1,4 +1,4 @@
-import { Heading } from "@radix-ui/themes"
+import { Box, Heading } from "@radix-ui/themes"
 import type { MetaFunction } from "@remix-run/node"
 import { Card } from "@tremor/react"
 
@@ -11,11 +11,9 @@ export const meta: MetaFunction = () => {
 
 export default function Index() {
   return (
-    <div>
+    <Box>
       <Heading>Hi</Heading>
-      <div style={{ width: "50%", marginLeft: "50px" }}>
-        <Card>Hello</Card>
-      </div>
-    </div>
+      <Card>Hello</Card>
+    </Box>
   )
 }

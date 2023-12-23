@@ -1,7 +1,15 @@
-import { Flex, Heading } from "@radix-ui/themes"
+import { Box, Flex } from "@radix-ui/themes"
 import { Outlet } from "@remix-run/react"
-import Sidebar from "./Sidebar"
-import Header from "./Header"
+import Sidebar from "./components/Sidebar"
+import Header from "./components/Header"
+import { LoaderFunctionArgs } from "@remix-run/node"
+import { supabaseCreate } from "~/utils/supabase"
+import styles from "./_app.module.css"
+
+export const loader = async ({ request }: LoaderFunctionArgs) => {
+  const supabase = supabaseCreate(request)
+  return null
+}
 
 /**
  * This is the main layout of the application
@@ -12,12 +20,14 @@ import Header from "./Header"
 
 export default function Index() {
   return (
-    <div style={{ height: "100vh" }}>
+    <div className={styles.container}>
       <Flex height={"100%"} direction={"column"}>
         <Header />
         <Flex grow={"1"}>
           <Sidebar />
-          <Outlet />
+          <Box className={styles.outlet}>
+            <Outlet />
+          </Box>
         </Flex>
       </Flex>
     </div>
