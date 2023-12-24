@@ -6,5 +6,5 @@ export default function LoginCardAction(formData: FormData) {
   if (!email) errors.email = "Email is required"
   if (!password) errors.password = "Password is required"
 
-  return errors
+  return Object.keys(errors).length ? errors : null
 }
