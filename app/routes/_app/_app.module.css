@@ -2,7 +2,7 @@
   background-color: #F8F9FA;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); /* This gives 6 columns and 6 rows*/
-  grid-template-rows: repeat(auto-fill, 180px);
+  grid-template-rows: repeat(4, 180px);
   grid-gap: 10px;
 }
 
@@ -12,6 +12,6 @@
   box-shadow: 10px 0 10px -10px rgba(0, 0, 0, 0.1);
 }
 
-.header {
-  padding: 15px;
+.target {
+  cursor: pointer;
 }

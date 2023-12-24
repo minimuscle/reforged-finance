@@ -18,7 +18,9 @@ const Tile = ({ children, rows = 1, cols = 2 }: TileProps) => {
 
   return (
     <Box className={`${rowClassName} ${colClassName}`}>
-      <Paper className={styles.card}>{children}</Paper>
+      <Paper withBorder shadow="sm" p={"sm"} className={styles.card}>
+        {children}
+      </Paper>
     </Box>
   )
 }

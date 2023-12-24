@@ -10,11 +10,18 @@ import { useDisclosure } from "@mantine/hooks"
 export const loader = async ({ request }: LoaderFunctionArgs) => {
   const supabase = supabaseCreate(request)
   const session = await supabase.auth.getSession()
-  const user = session?.data?.session?.user
+  const userSession = session?.data?.session?.user
   //Takes user to login page if not logged in
-  if (!user) throw redirect("/login")
+  if (!userSession) throw redirect("/login")
 
+  const user = (await supabase.auth.getUser()).data.user
+
+  return { user: user }
+}
+
+export const action = async () => {
   return null
+  //return redirect("/login")
 }
 
 /**
@@ -28,7 +35,7 @@ export default function Index() {
   const [opened, { toggle }] = useDisclosure()
   return (
     <AppShell
-      header={{ height: 50 }}
+      header={{ height: 60 }}
       navbar={{
         width: 250,
         breakpoint: "sm",
