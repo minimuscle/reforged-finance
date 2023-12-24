@@ -57,7 +57,9 @@ module.exports = {
           node: {
             extensions: [".ts", ".tsx"],
           },
-          "typescript": {}
+          typescript: {
+            alwaysTryTypes: true,
+          },
         },
       },
       extends: [
