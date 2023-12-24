@@ -1,13 +1,20 @@
-import { Box, Flex } from "@radix-ui/themes"
 import { Outlet } from "@remix-run/react"
 import Sidebar from "./components/Sidebar"
 import Header from "./components/Header"
-import { LoaderFunctionArgs } from "@remix-run/node"
+import { LoaderFunctionArgs, redirect } from "@remix-run/node"
 import { supabaseCreate } from "~/utils/supabase"
 import styles from "./_app.module.css"
+import { AppShell, Burger } from "@mantine/core"
+import { useDisclosure } from "@mantine/hooks"
 
 export const loader = async ({ request }: LoaderFunctionArgs) => {
   const supabase = supabaseCreate(request)
+  const session = await supabase.auth.getSession()
+  const user = session?.data?.session?.user
+
+  //Takes user to login page if not logged in
+  //if (!user) throw redirect("/login")
+
   return null
 }
 
@@ -19,17 +26,27 @@ export const loader = async ({ request }: LoaderFunctionArgs) => {
  */
 
 export default function Index() {
+  const [opened, { toggle }] = useDisclosure()
   return (
-    <div className={styles.container}>
-      <Flex height={"100%"} direction={"column"}>
+    <AppShell
+      header={{ height: 50 }}
+      navbar={{
+        width: 250,
+        breakpoint: "sm",
+        collapsed: { mobile: !opened },
+      }}
+      padding="md"
+    >
+      <AppShell.Header className={styles.header}>
+        <Burger opened={opened} onClick={toggle} hiddenFrom="sm" size="sm" />
         <Header />
-        <Flex className={styles.flex} grow={"1"}>
-          <Sidebar />
-          <Box className={styles.outlet}>
-            <Outlet />
-          </Box>
-        </Flex>
-      </Flex>
-    </div>
+      </AppShell.Header>
+      <AppShell.Navbar className={styles.navbar}>
+        <Sidebar />
+      </AppShell.Navbar>
+      <AppShell.Main className={styles.outlet}>
+        <Outlet />
+      </AppShell.Main>
+    </AppShell>
   )
 }

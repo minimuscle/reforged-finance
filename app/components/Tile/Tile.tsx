@@ -1,16 +1,24 @@
-import { Card, Col } from "@tremor/react"
 import styles from "./Tile.module.css"
 import { ReactNode } from "react"
-import { Box } from "@radix-ui/themes"
+import { Box, Paper } from "@mantine/core"
 
 type TileProps = {
+  minRows?: number
+  maxRows?: number
+  minCols?: number
+  maxCols?: number
+  rows?: number
+  cols?: number
   children?: ReactNode
 }
 
-const Tile = ({ children }: TileProps) => {
+const Tile = ({ children, rows = 1, cols = 2 }: TileProps) => {
+  const rowClassName = styles[`row${rows}`]
+  const colClassName = styles[`col${cols}`]
+
   return (
-    <Box className={styles.container}>
-      <Card className={styles.card}>{children}</Card>
+    <Box className={`${rowClassName} ${colClassName}`}>
+      <Paper className={styles.card}>{children}</Paper>
     </Box>
   )
 }

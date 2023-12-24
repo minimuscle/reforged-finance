@@ -8,13 +8,11 @@ import {
   Scripts,
   ScrollRestoration,
 } from "@remix-run/react"
-import stylesheet from "./tailwind.css"
-import "@radix-ui/themes/styles.css"
-import { Theme } from "@radix-ui/themes"
+import "@mantine/core/styles.css"
+import { ColorSchemeScript, MantineProvider } from "@mantine/core"
 
 export const links: LinksFunction = () => [
   ...(cssBundleHref ? [{ rel: "stylesheet", href: cssBundleHref }] : []),
-  { rel: "stylesheet", href: stylesheet },
 ]
 
 export default function App() {
@@ -25,14 +23,15 @@ export default function App() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <Meta />
         <Links />
+        <ColorSchemeScript />
       </head>
       <body>
-        <Theme>
+        <MantineProvider>
           <Outlet />
-        </Theme>
-        <ScrollRestoration />
-        <Scripts />
-        <LiveReload />
+          <ScrollRestoration />
+          <Scripts />
+          <LiveReload />
+        </MantineProvider>
       </body>
     </html>
   )
