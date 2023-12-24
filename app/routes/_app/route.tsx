@@ -13,7 +13,7 @@ export const loader = async ({ request }: LoaderFunctionArgs) => {
   const user = session?.data?.session?.user
 
   //Takes user to login page if not logged in
-  //if (!user) throw redirect("/login")
+  if (!user) throw redirect("/login")
 
   return null
 }

@@ -1,7 +1,6 @@
 import {
   Box,
   Button,
-  Input,
   Paper,
   Space,
   Text,
@@ -9,13 +8,13 @@ import {
   Title,
 } from "@mantine/core"
 import styles from "./LoginCard.module.css"
-import { Link, useActionData } from "@remix-run/react"
+import { Form, Link, useActionData } from "@remix-run/react"
+import { action } from "../route"
 
 export default function LoginCard() {
-  const data = useActionData<T>()
-  console.log(data)
-  const emailError = data?.errors?.email
-  const passwordError = data?.errors?.password
+  const actionData = useActionData<typeof action>()
+  const emailError = actionData?.errors?.email
+  const passwordError = actionData?.errors?.password
 
   return (
     <Paper w={300} withBorder shadow="xs" p="xl">
@@ -23,11 +22,14 @@ export default function LoginCard() {
         Login
       </Title>
       <Space h="lg" />
-      <form method="post">
+      <Form method="post">
         <TextInput
+          // eslint-disable-next-line jsx-a11y/no-autofocus
+          autoFocus
           name="email"
-          type="email"
+          //type="email"
           placeholder="Email"
+          //required
           error={emailError}
         />
         <Space h="sm" />
@@ -35,6 +37,7 @@ export default function LoginCard() {
           name="password"
           type="password"
           placeholder="Password"
+          //required
           error={passwordError}
         />
         <Space h="sm" />
@@ -43,7 +46,7 @@ export default function LoginCard() {
         </Box>
 
         <Space h="sm" />
-        <Button fullWidth type="submit">
+        <Button fullWidth type="submit" color="teal">
           Login
         </Button>
         <Text className={styles.signup}>
@@ -52,7 +55,7 @@ export default function LoginCard() {
             Signup
           </Link>
         </Text>
-      </form>
+      </Form>
     </Paper>
   )
 }
