@@ -2,10 +2,7 @@ import type { MetaFunction } from "@remix-run/node"
 import Tile from "~/components/Tile"
 
 export const meta: MetaFunction = () => {
-  return [
-    { title: "Wealthfire" },
-    { name: "description", content: "Welcome to Remix!" },
-  ]
+  return [{ title: "Dashboard | Wealthfire" }]
 }
 
 export default function Index() {
