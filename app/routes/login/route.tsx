@@ -8,6 +8,7 @@ import {
 } from "@remix-run/node"
 import LoginCardAction from "./components/LoginCardAction"
 import { createServerClient, parse, serialize } from "@supabase/ssr"
+import crypto from "crypto"
 
 export async function loader({ request }: LoaderFunctionArgs) {
   const cookies = parse(request.headers.get("Cookie") ?? "")
@@ -64,12 +65,11 @@ export async function action({ request }: ActionFunctionArgs) {
 
   const email = String(formData.get("email"))
   const password = String(formData.get("password"))
+  const hash = crypto.createHash("sha256").update(password).digest("hex")
   const { data } = await supabase.auth.signInWithPassword({
     email: email,
-    password: password,
+    password: hash,
   })
-
-  console.log(data)
 
   if (!data.user) {
     return {
@@ -78,7 +78,7 @@ export async function action({ request }: ActionFunctionArgs) {
     }
   }
 
-  return new Response(null, {
+  return redirect("/", {
     headers,
   })
 }

@@ -1,6 +1,7 @@
-import { ActionFunctionArgs, redirect } from "@remix-run/node"
+import { LoaderFunctionArgs, redirect } from "@remix-run/node"
 import { createServerClient, parse, serialize } from "@supabase/ssr"
-export const action = async ({ request }: ActionFunctionArgs) => {
+
+export const loader = async ({ request }: LoaderFunctionArgs) => {
   const cookies = parse(request.headers.get("Cookie") ?? "")
   const headers = new Headers()
 
@@ -23,9 +24,5 @@ export const action = async ({ request }: ActionFunctionArgs) => {
   )
   await supabase.auth.signOut()
 
-  return new Response("...", { headers })
-}
-
-export const loader = async () => {
-  throw redirect("/")
+  return redirect("/", { headers })
 }

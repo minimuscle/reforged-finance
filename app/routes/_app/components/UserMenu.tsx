@@ -8,7 +8,7 @@ import {
   RiLogoutBoxLine,
 } from "react-icons/ri/index.js"
 import { useState } from "react"
-import { useSubmit } from "@remix-run/react"
+import { useNavigate } from "@remix-run/react"
 
 interface UserMenuProps {
   children: React.ReactNode
@@ -16,8 +16,7 @@ interface UserMenuProps {
 
 export default function UserMenu({ children }: UserMenuProps) {
   const [opened, setOpened] = useState(false)
-  const submit = useSubmit()
-
+  const navigate = useNavigate()
   return (
     <Menu opened={opened} onChange={setOpened} position="bottom-end" withArrow>
       <Menu.Target>
@@ -61,9 +60,7 @@ export default function UserMenu({ children }: UserMenuProps) {
           leftSection={
             <RiLogoutBoxLine style={{ width: "16px", height: "100%" }} />
           }
-          onClick={() =>
-            submit("/logout", { method: "POST", action: "/logout" })
-          }
+          onClick={() => navigate("/logout")}
         >
           Log Out
         </Menu.Item>

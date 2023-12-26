@@ -1,6 +1,5 @@
 import {
   Alert,
-  Box,
   Button,
   Paper,
   Space,
@@ -17,8 +16,8 @@ import MatchItem from "./MatchItem"
 export default function SignupCard() {
   const actionData = useActionData<typeof action>()
   const emailError = actionData?.errors?.email
-
-  const passwordError: password = actionData?.errors?.password
+  const confirmPasswordError = actionData?.errors?.confirmPassword
+  const passwordError: password | undefined = actionData?.errors?.password
 
   console.log(passwordError)
 
@@ -46,9 +45,17 @@ export default function SignupCard() {
         </Alert>
       )
     }
+    if (
+      typeof confirmPasswordError === "object" &&
+      confirmPasswordError !== null
+    ) {
+      return (
+        <Alert color="red" className={styles.alert} title="Error">
+          {confirmPasswordError.error}
+        </Alert>
+      )
+    }
   }
-
-  const confirmPasswordError = actionData?.errors?.confirmPassword
 
   return (
     <Paper w={350} withBorder shadow="xs" p="xl">
@@ -82,7 +89,11 @@ export default function SignupCard() {
           type="password"
           placeholder="Confirm Password"
           //required
-          error={confirmPasswordError}
+          error={
+            typeof confirmPasswordError === "string"
+              ? confirmPasswordError
+              : !!confirmPasswordError
+          }
         />
         <Space h="sm" />
         {passwordErrorDisplay()}
@@ -91,9 +102,9 @@ export default function SignupCard() {
           Login
         </Button>
         <Text className={styles.signup}>
-          Don&apos;t have an account?{" "}
-          <Link className={styles.signup} to="/signup">
-            Signup
+          Already have an account?{" "}
+          <Link className={styles.signup} to="/login">
+            Login
           </Link>
         </Text>
       </Form>
