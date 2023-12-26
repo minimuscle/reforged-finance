@@ -1,6 +1,6 @@
 import { Center } from "@mantine/core"
 import styles from "./signup.module.css"
-import LoginCard from "./components/SignupCard"
+import SignupCard from "./components/SignupCard"
 import {
   ActionFunctionArgs,
   LoaderFunctionArgs,
@@ -8,6 +8,7 @@ import {
 } from "@remix-run/node"
 import SignupCardAction from "./components/SignupCardAction"
 import { createServerClient, parse, serialize } from "@supabase/ssr"
+import crypto from "crypto"
 
 export async function loader({ request }: LoaderFunctionArgs) {
   const cookies = parse(request.headers.get("Cookie") ?? "")
@@ -64,21 +65,21 @@ export async function action({ request }: ActionFunctionArgs) {
 
   const email = String(formData.get("email"))
   const password = String(formData.get("password"))
-  const { data } = await supabase.auth.signInWithPassword({
+  const hash = crypto.createHash("sha256").update(password).digest("hex")
+  const { error } = await supabase.auth.signUp({
     email: email,
-    password: password,
+    password: hash,
   })
-
-  console.log(data)
-
-  if (!data.user) {
+  if (error)
     return {
-      status: 401,
-      errors: { email: " ", password: "Invalid email or password" },
+      errors: {
+        email: " ",
+        password: " ",
+        confirmPassword: { error: error.message },
+      },
     }
-  }
 
-  return new Response(null, {
+  return redirect("/", {
     headers,
   })
 }
@@ -87,7 +88,7 @@ export default function Signup() {
   return (
     <div className={styles.container}>
       <Center h={"100%"}>
-        <LoginCard />
+        <SignupCard />
       </Center>
     </div>
   )
