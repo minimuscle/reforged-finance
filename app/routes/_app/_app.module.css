@@ -15,3 +15,47 @@
 .target {
   cursor: pointer;
 }
+
+.link {
+  text-decoration: none;
+  color: #000;
+  display: flex;
+  padding: 5px;
+  gap: 5px;
+  align-items: center;
+  border-radius: 5px;
+}
+
+.link:hover {
+  text-decoration: none;
+  background-color: var(--mantine-color-gray-0);
+}
+
+.premiumLink {
+  text-decoration: none;
+  color: #fff;
+  font-weight: 600;
+  display: flex;
+  padding: 5px;
+  gap: 5px;
+  align-items: center;
+  background-color: var(--mantine-color-violet-6);
+  border-radius: 5px;
+}
+
+.premiumLink:hover {
+  text-decoration: none;
+  background-color: var(--mantine-color-violet-9);
+}
+
+.premiumLink.premiumActive {
+  text-decoration: none;
+  color: var(--mantine-color-violet-6);
+  background-color: var(--mantine-color-violet-0);
+}
+
+.link.active {
+  text-decoration: none;
+  color: var(--mantine-color-blue-6);
+  background-color: var(--mantine-color-blue-0);
+}
