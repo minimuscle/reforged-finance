@@ -13,7 +13,11 @@ export const loader = async ({ request }: LoaderFunctionArgs) => {
   const userSession = session?.data?.session?.user
   //Takes user to login page if not logged in
   if (!userSession) throw redirect("/login")
-  const user = (await supabase.auth.getUser()).data.user
+  const { data: user } = await supabase.from("profiles").select()
+
+  //Takes user to setup page if not setup with a profile
+  if (!user?.length) throw redirect("/setup")
+
   return { user: user }
 }
 
