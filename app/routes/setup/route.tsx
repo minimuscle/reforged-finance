@@ -2,7 +2,6 @@ import {
   Button,
   Center,
   Group,
-  InputBase,
   NumberInput,
   Paper,
   Select,
@@ -15,26 +14,52 @@ import {
   Title,
 } from "@mantine/core"
 import styles from "./setup.module.css"
-import { FormEvent, useEffect, useReducer, useRef, useState } from "react"
+import { FormEvent, useEffect, useReducer, useState } from "react"
 import { Form, useSubmit } from "@remix-run/react"
-import { IMaskInput } from "react-imask"
-import { Validate } from "./validate"
+import validate from "./validate"
+import { ActionFunctionArgs } from "@remix-run/node"
+import { supabaseCreate } from "~/utils/supabase"
 
-type formDataProps = {
+export const action = async ({ request }: ActionFunctionArgs) => {
+  const formData = await request.formData()
+  const supabase = supabaseCreate(request)
+  const session = (await supabase.auth.getSession()).data.session?.user
+
+  const isSaving = formData.get("isSaving") as unknown as boolean
+  const deposit = isSaving === true ? formData.get("deposit") : 0
+
+  const { data, error } = await supabase.from("profiles").upsert({
+    name: formData.get("name"),
+    email: session?.email,
+    employmentIncome: formData.get("gross"),
+    currency: formData.get("country"),
+    netIncome: formData.get("net"),
+    salaryFrequency: formData.get("frequency"),
+    cashGoal: formData.get("goal"),
+    emergencyFundGoal: formData.get("emergency"),
+    homeDeposit: formData.get("isSaving"),
+    depositAmount: deposit,
+  })
+  if (error) console.log(error)
+  console.log(data)
+  return null
+}
+
+export type formDataProps = {
   name: string
-  country: string
-  gross: string
-  net: string
+  currency: string
+  gross?: number | ""
+  net?: number | ""
   frequency: string
-  goal: string
-  emergency: string
+  goal?: number | ""
+  emergency?: number | ""
   isSaving: boolean
-  deposit: string
+  deposit?: number | ""
 }
 
 const initialState: formDataProps = {
   name: "",
-  country: "",
+  currency: "",
   gross: "",
   net: "",
   frequency: "",
@@ -71,11 +96,17 @@ export default function Setup() {
     })
   }
 
-  const submitForm = async (e: FormEvent) => {
+  const submitForm = (e: FormEvent) => {
     e.preventDefault()
+    const isValid = validate(formData)
+    console.log(isValid)
+    if (isValid) {
+      submit(formData, { method: "POST" })
+    }
   }
 
   useEffect(() => {
+    console.log(formData)
     switch (active) {
       case 0:
         if (formData.name?.length) {
@@ -86,41 +117,35 @@ export default function Setup() {
         }
         break
       case 1:
-        if (formData.country) {
+        if (formData.currency) {
           setDisabled(false)
         } else {
           setDisabled(true)
         }
         break
       case 2:
-        // eslint-disable-next-line no-case-declarations
-        const gross = parseInt(formData.gross.split(",").join(""))
-        if (gross >= 0 && gross) {
+        console.log(formData.gross)
+        if (formData.gross && formData.gross >= 0) {
           setDisabled(false)
         } else {
           setDisabled(true)
         }
         break
       case 3:
-        // eslint-disable-next-line no-case-declarations
-        const net = parseInt(formData.net.split(",").join(""))
-        if (formData.frequency && net >= 0) {
+        if (formData.frequency && formData.net && formData.net >= 0) {
           setDisabled(false)
         } else {
           setDisabled(true)
         }
         break
       case 4:
-        // eslint-disable-next-line no-case-declarations
-        const goal = parseInt(formData.goal.split(",").join(""))
-        // eslint-disable-next-line no-case-declarations
-        const deposit = parseInt(formData.deposit.split(",").join(""))
-        console.log(formData.isSaving)
-
+        console.log(typeof formData.goal)
         if (
-          goal >= 0 &&
-          parseInt(formData.emergency) >= 0 &&
-          (formData.isSaving ? deposit >= 0 : true)
+          formData.goal &&
+          formData.goal >= 0 &&
+          formData.emergency &&
+          formData.emergency >= 0 &&
+          (formData.isSaving ? formData.deposit && formData.deposit >= 0 : true)
         ) {
           setDisabled(false)
         } else {
@@ -138,16 +163,16 @@ export default function Setup() {
   return (
     <div className={styles.container}>
       <Center h={"100%"} p={"xl"}>
-        <Paper p="xl" shadow="md" w={"100%"} maw={1250}>
+        <Paper p='xl' shadow='md' w={"100%"} maw={1250}>
           <Center>
             <Title>Account Setup</Title>
           </Center>
           <Space h={"lg"} />
-          <Form method="POST" onSubmit={(e) => submitForm(e)}>
-            <Stepper color="teal" active={active}>
-              <Stepper.Step label="Step 1" description="Name">
+          <Form method='POST' onSubmit={(e) => submitForm(e)}>
+            <Stepper color='teal' active={active}>
+              <Stepper.Step label='Step 1' description='Name'>
                 <Center>
-                  <Stack align="center">
+                  <Stack align='center'>
                     <Title order={2}>Let&apos;s get some things setup</Title>
                     <Text>First things first, we need to know your name</Text>
                     <TextInput
@@ -159,94 +184,92 @@ export default function Setup() {
                         }
                       }}
                       value={formData.name}
-                      name="name"
-                      placeholder="Name"
+                      name='name'
+                      placeholder='Name'
                     />
                   </Stack>
                 </Center>
               </Stepper.Step>
-              <Stepper.Step label="Step 2" description="Country">
+              <Stepper.Step label='Step 2' description='Country'>
                 <Center>
-                  <Stack align="center">
+                  <Stack align='center'>
                     <Title order={2}>Hi {formData.name}!</Title>
-                    <Text align="center">
+                    <Text align='center'>
                       Where are you from?
                       <br />
                       (More countries coming very soon!)
                     </Text>
                     <Select
-                      name="country"
-                      placeholder="Pick Available Country"
-                      value={formData.country}
-                      onChange={handleInputChange("country")}
-                      data={["Australia"]}
+                      name='currency'
+                      placeholder='Pick Available Country'
+                      value={formData.currency}
+                      onChange={handleInputChange("currency")}
+                      data={[{ label: "Australia", value: "AUD" }]}
                     />
                   </Stack>
                 </Center>
               </Stepper.Step>
-              <Stepper.Step label="Step 3" description="Gross Income">
+              <Stepper.Step label='Step 3' description='Gross Income'>
                 <Center>
-                  <Stack align="center">
-                    <Title order={2}>Ooh, {formData.country}!</Title>
-                    <Text align="center">
+                  <Stack align='center'>
+                    <Title order={2}>Ooh, I like that place!</Title>
+                    <Text align='center'>
                       Next, what is your pre-tax (gross) yearly income?
                       <br />
                       Round to the nearest dollar if needed.
                     </Text>
-                    <InputBase
-                      name="gross"
+                    <NumberInput
+                      name='gross'
                       w={"100%"}
-                      component={IMaskInput}
-                      mask={Number}
-                      leftSection="$"
-                      rightSection=".00"
-                      thousandsSeparator=","
-                      value={formData.gross}
-                      onAccept={handleInputChange("gross")}
+                      leftSection='$'
+                      thousandSeparator=','
+                      decimalScale={2}
+                      allowNegative={false}
+                      value={formData.gross?.toString()}
+                      onChange={handleInputChange("gross")}
                       onKeyDown={(e) => {
                         if (e.key === "Enter" && !disabled) {
                           nextStep()
                         }
                       }}
-                      placeholder="Gross Income"
+                      placeholder='Gross Income'
                     />
                   </Stack>
                 </Center>
               </Stepper.Step>
-              <Stepper.Step label="Step 4" description="Net Income">
+              <Stepper.Step label='Step 4' description='Net Income'>
                 <Center>
-                  <Stack align="center">
+                  <Stack align='center'>
                     <Title order={2}>Ok, help us out!!</Title>
-                    <Text align="center">
+                    <Text align='center'>
                       Next, what is your post-tax (net) income?
                       <br />
                       This should be what you get in your account each pay
                       cycle.
                     </Text>
-                    <InputBase
-                      name="net"
+                    <NumberInput
+                      name='net'
                       w={"100%"}
-                      component={IMaskInput}
-                      mask={Number}
-                      leftSection="$"
-                      rightSection=".00"
-                      thousandsSeparator=","
-                      value={formData.net}
-                      onAccept={handleInputChange("net")}
+                      leftSection='$'
+                      thousandSeparator=','
+                      decimalScale={2}
+                      allowNegative={false}
+                      value={formData.net?.toString()}
+                      onChange={handleInputChange("net")}
                       onKeyDown={(e) => {
                         if (e.key === "Enter" && !disabled) {
                           nextStep()
                         }
                       }}
-                      placeholder="Net Income"
+                      placeholder='Net Income'
                     />
-                    <Text align="center">
+                    <Text align='center'>
                       And what is the frequency of this pay?
                     </Text>
                     <Select
-                      name="frequency"
+                      name='frequency'
                       w={"100%"}
-                      placeholder="Pay Cycle"
+                      placeholder='Pay Cycle'
                       value={formData.frequency}
                       onChange={handleInputChange("frequency")}
                       data={["Monthly", "Fortnightly", "Weekly"]}
@@ -254,92 +277,90 @@ export default function Setup() {
                   </Stack>
                 </Center>
               </Stepper.Step>
-              <Stepper.Step label="Step 5" description="Goals">
+              <Stepper.Step label='Step 5' description='Goals'>
                 <Center>
-                  <Stack align="center">
+                  <Stack align='center'>
                     <Title order={2}>Lookin' Good!</Title>
-                    <Text align="center">
+                    <Text align='center'>
                       Now, let&apos;s get some goals.
                       <br />
                       Set a cash goal, something to work towwards. <br />
                       Unsure? We recommend about $10,000
                     </Text>
-                    <InputBase
-                      name="goal"
+                    <NumberInput
+                      name='goal'
                       w={"100%"}
-                      component={IMaskInput}
-                      mask={Number}
-                      leftSection="$"
-                      rightSection=".00"
-                      thousandsSeparator=","
+                      leftSection='$'
+                      thousandSeparator=','
+                      decimalScale={2}
+                      allowNegative={false}
                       value={formData.goal}
-                      onAccept={handleInputChange("goal")}
+                      onChange={handleInputChange("goal")}
                       onKeyDown={(e) => {
                         if (e.key === "Enter" && !disabled) {
                           nextStep()
                         }
                       }}
-                      placeholder="Savings Goal"
+                      placeholder='Savings Goal'
                     />
-                    <Text align="center">
+                    <Text align='center'>
                       Emergency Funds are essential for saving for a rainy day.
                       <br />
                       How long do you want to save for?
                     </Text>
                     <NumberInput
-                      name="emergency"
+                      name='emergency'
                       w={"100%"}
                       min={1}
-                      value={formData.emergency}
+                      value={formData?.emergency}
                       onChange={handleInputChange("emergency")}
-                      suffix={formData.emergency === 1 ? " Month" : " Months"}
-                      placeholder="Emergency Fund"
+                      suffix={formData?.emergency === 1 ? " Month" : " Months"}
+                      placeholder='Emergency Fund'
                     />
-                    <Text align="center">Are you saving for a home loan?</Text>
+                    <Text align='center'>Are you saving for a home loan?</Text>
                     <Switch
-                      name="isSaving"
+                      name='isSaving'
                       checked={formData.isSaving}
-                      onChange={(e) =>
+                      onChange={(e) => {
                         dispatch({
                           type: "updateField",
                           fieldName: "isSaving",
                           payload: e.target.checked,
                         })
-                      }
-                      label="I am saving!"
+                      }}
+                      label='I am saving!'
                     />
                     <Text
-                      align="center"
+                      align='center'
                       display={formData.isSaving ? "block" : "none"}
                     >
                       How much are you wanting to save?
                     </Text>
-                    <InputBase
+                    <NumberInput
                       display={formData.isSaving ? "block" : "none"}
-                      name="deposit"
+                      name='deposit'
                       w={"100%"}
-                      component={IMaskInput}
-                      mask={Number}
-                      leftSection="$"
-                      rightSection=".00"
-                      thousandsSeparator=","
-                      value={formData.deposit}
-                      onAccept={handleInputChange("deposit")}
+                      leftSection='$'
+                      thousandSeparator=','
+                      decimalScale={2}
+                      allowNegative={false}
+                      value={formData.deposit?.toString()}
+                      onChange={handleInputChange("deposit")}
                       onKeyDown={(e) => {
                         if (e.key === "Enter" && !disabled) {
                           nextStep()
                         }
                       }}
-                      placeholder="Home Deposit"
+                      placeholder='Home Deposit'
                     />
                   </Stack>
                 </Center>
               </Stepper.Step>
               <Stepper.Completed>
                 <Center>
-                  <Stack align="center">
+                  <Stack align='center'>
                     <Title order={2}>Congratulations!</Title>
-                    <Text align="center">
+                    <Text align='center'>
                       You&apos;re done! <br />
                       Click Finish to complete the setup
                     </Text>
@@ -349,11 +370,11 @@ export default function Setup() {
             </Stepper>
             <Center pt={"xl"}>
               <Group>
-                <Button onClick={prevStep} variant="default">
+                <Button onClick={prevStep} variant='default'>
                   Back
                 </Button>
                 <Button
-                  color="teal"
+                  color='teal'
                   disabled={disabled}
                   type={active === 5 ? "submit" : "button"}
                   onClick={nextStep}

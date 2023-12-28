@@ -24,3 +24,18 @@ export const supabaseCreate = (request: Request) => {
 
   return supabase
 }
+
+export type userProfile = {
+  id: string
+  name: string
+  created_at: string
+  email: string | null
+  employmentIncome: number
+  currency: string
+  netIncome: number
+  salaryFrequency: string
+  cashGoal: number | null
+  emergencyFundGoal: number | null
+  homeDeposit: boolean
+  depositAmount: number | null
+}
