@@ -13,10 +13,11 @@ export const loader = async ({ request }: LoaderFunctionArgs) => {
   const userSession = session?.data?.session?.user
   //Takes user to login page if not logged in
   if (!userSession) throw redirect("/login")
-  const { data: user } = await supabase.from("profiles").select()
+  const { data: user } = await supabase.from("profiles").select("*").single()
+  console.log(user)
 
   //Takes user to setup page if not setup with a profile
-  if (!user?.length) throw redirect("/setup")
+  if (!user) throw redirect("/setup")
 
   return { user: user }
 }
@@ -43,10 +44,10 @@ export default function Index() {
         breakpoint: "sm",
         collapsed: { mobile: !opened },
       }}
-      padding="md"
+      padding='md'
     >
       <AppShell.Header className={styles.header}>
-        <Burger opened={opened} onClick={toggle} hiddenFrom="sm" size="sm" />
+        <Burger opened={opened} onClick={toggle} hiddenFrom='sm' size='sm' />
         <Header />
       </AppShell.Header>
       <AppShell.Navbar className={styles.navbar}>
