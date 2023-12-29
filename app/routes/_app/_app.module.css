@@ -12,6 +12,8 @@
   box-shadow: 10px 0 10px -10px rgba(0, 0, 0, 0.1);
 }
 
+
+
 .target {
   cursor: pointer;
 }
@@ -29,6 +31,12 @@
 .link:hover {
   text-decoration: none;
   background-color: var(--mantine-color-gray-0);
+}
+
+.link.active {
+  text-decoration: none;
+  color: var(--mantine-color-teal-6);
+  background-color: var(--mantine-color-teal-0);
 }
 
 .premiumLink {
@@ -54,8 +62,3 @@
   background-color: var(--mantine-color-violet-0);
 }
 
-.link.active {
-  text-decoration: none;
-  color: var(--mantine-color-blue-6);
-  background-color: var(--mantine-color-blue-0);
-}

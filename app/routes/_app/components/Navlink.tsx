@@ -27,7 +27,7 @@ export default function NavLink({
       }`}
     >
       <ThemeIcon
-        color={premium ? "yellow" : active ? "blue" : "black"}
+        color={premium ? "yellow" : active ? "teal" : "black"}
         variant="subtle"
       >
         {cloneElement(icon as React.ReactElement, {
