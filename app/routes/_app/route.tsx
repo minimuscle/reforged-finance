@@ -20,11 +20,12 @@ export const loader = async ({ request }: LoaderFunctionArgs) => {
     .order("date", { ascending: false })
     .limit(1)
   const lastMonth = lastMonthRes && (lastMonthRes[0] as history)
-  console.log(lastMonth)
+  const { data: cash } = await supabase.from("cash").select("*")
+  console.log(cash)
   //Takes user to setup page if not setup with a profile
   if (!user) throw redirect("/setup")
 
-  return { user: user, lastMonth: lastMonth }
+  return { user: user, lastMonth: lastMonth, cash: cash }
 }
 
 export const action = async () => {
@@ -41,7 +42,6 @@ export const action = async () => {
 
 export default function Index() {
   const data = useLoaderData<typeof loader>()
-  console.log(data)
   const [opened, { toggle }] = useDisclosure()
   return (
     <AppShell
@@ -61,7 +61,7 @@ export default function Index() {
         <Sidebar />
       </AppShell.Navbar>
       <AppShell.Main className={styles.outlet}>
-        <Outlet />
+        <Outlet context={data} />
       </AppShell.Main>
     </AppShell>
   )

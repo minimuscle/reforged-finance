@@ -20,8 +20,8 @@ export default function Header() {
   return (
     <Flex p={"md"} h={"100%"} justify={"space-between"} align={"center"}>
       <Link
-        to={"/"}
         prefetch="intent"
+        to={"/"}
         style={{ textDecoration: "none", color: "unset" }}
       >
         <Group>
