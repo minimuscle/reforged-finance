@@ -84,6 +84,8 @@ function formReducer(state: formDataProps, action) {
   }
 }
 
+//TODO: Refactor this to use Remix State management using URL search params
+
 export default function Setup() {
   const [active, setActive] = useState(0)
   const [disabled, setDisabled] = useState(true)
