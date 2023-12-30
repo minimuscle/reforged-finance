@@ -5,7 +5,7 @@ import { cloneElement } from "react"
 
 interface NavLinkProps {
   children: React.ReactNode
-  icon: React.ReactNode
+  icon: React.ReactElement
   to: string
   premium?: boolean
 }
@@ -30,7 +30,7 @@ export default function NavLink({
         color={premium ? "yellow" : active ? "teal" : "black"}
         variant="subtle"
       >
-        {cloneElement(icon as React.ReactElement, {
+        {cloneElement(icon, {
           style: { height: "80%", width: "80%" },
         })}
       </ThemeIcon>

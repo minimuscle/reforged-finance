@@ -39,3 +39,14 @@ export type userProfile = {
   homeDeposit: boolean
   depositAmount: number | null
 }
+
+export type history = {
+  id: number
+  created_at: string
+  user_id: string
+  date: string
+  cash: number
+  super: number
+  debts: number
+  income: number
+}

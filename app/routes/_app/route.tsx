@@ -1,8 +1,8 @@
-import { Outlet } from "@remix-run/react"
+import { Outlet, useLoaderData } from "@remix-run/react"
 import Sidebar from "./components/Sidebar"
 import Header from "./components/Header"
 import { LoaderFunctionArgs, redirect } from "@remix-run/node"
-import { supabaseCreate } from "~/utils/supabase"
+import { history, supabaseCreate } from "~/utils/supabase"
 import styles from "./_app.module.css"
 import { AppShell, Burger } from "@mantine/core"
 import { useDisclosure } from "@mantine/hooks"
@@ -14,12 +14,17 @@ export const loader = async ({ request }: LoaderFunctionArgs) => {
   //Takes user to login page if not logged in
   if (!userSession) throw redirect("/login")
   const { data: user } = await supabase.from("profiles").select("*").single()
-  console.log(user)
-
+  const { data: lastMonthRes } = await supabase
+    .from("history")
+    .select("*")
+    .order("date", { ascending: false })
+    .limit(1)
+  const lastMonth = lastMonthRes && (lastMonthRes[0] as history)
+  console.log(lastMonth)
   //Takes user to setup page if not setup with a profile
   if (!user) throw redirect("/setup")
 
-  return { user: user }
+  return { user: user, lastMonth: lastMonth }
 }
 
 export const action = async () => {
@@ -35,6 +40,8 @@ export const action = async () => {
  */
 
 export default function Index() {
+  const data = useLoaderData<typeof loader>()
+  console.log(data)
   const [opened, { toggle }] = useDisclosure()
   return (
     <AppShell
@@ -44,10 +51,10 @@ export default function Index() {
         breakpoint: "sm",
         collapsed: { mobile: !opened },
       }}
-      padding='md'
+      padding="md"
     >
       <AppShell.Header className={styles.header}>
-        <Burger opened={opened} onClick={toggle} hiddenFrom='sm' size='sm' />
+        <Burger opened={opened} onClick={toggle} hiddenFrom="sm" size="sm" />
         <Header />
       </AppShell.Header>
       <AppShell.Navbar className={styles.navbar}>

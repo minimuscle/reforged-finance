@@ -8,5 +8,7 @@
     "**/.DS_Store": true,
     "**/Thumbs.db": true,
     "**/node_modules": false
-  }
+  },
+  "todo-tree.tree.showBadges": true,
+  "todo-tree.tree.scanMode": "workspace only"
 }
