@@ -1,5 +1,4 @@
-import { ColorSwatch, Group, Text, Title } from "@mantine/core"
-import React from "react"
+import { ColorSwatch, Group, Text } from "@mantine/core"
 
 const colours = [
   "var(--mantine-color-gray-3)",
@@ -18,7 +17,11 @@ const colours = [
   "var(--mantine-color-orange-6)",
 ]
 
-export function ColorSwatches({ setColour }) {
+export function ColorSwatches({
+  setColour,
+}: {
+  setColour: (colour: string) => void
+}) {
   return (
     <>
       <Text c="dimmed" pb="5px">
