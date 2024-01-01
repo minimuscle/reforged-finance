@@ -10,12 +10,12 @@ import {
 } from "@mantine/core"
 import { useModel } from "~/utils/hooks/useModel"
 import SingleAccount from "./SingleAccount"
-import { Form } from "@remix-run/react"
-import { v4 as uuidv4 } from "uuid"
+import { useFetcher } from "@remix-run/react"
 import { CashProps } from "~/utils/types"
 
 export default function BankAccounts() {
   const { cash, cashTotal } = useModel()
+  const fetcher = useFetcher()
 
   return (
     <Stack w={"100%"} h={"100%"}>
@@ -34,13 +34,18 @@ export default function BankAccounts() {
         ))}
       </Box>
       <Box>
-        <Form method="POST" navigate={false}>
-          <input type="hidden" name="id" value={uuidv4()} />
-          <input type="hidden" name="intent" value="addBankAccount" />
-          <Button type="submit" size="xs" variant="light" color="gray">
+        <fetcher.Form method="POST">
+          <Button
+            type="submit"
+            name="intent"
+            value="addBankAccount"
+            size="xs"
+            variant="light"
+            color="gray"
+          >
             Add Account
           </Button>
-        </Form>
+        </fetcher.Form>
       </Box>
     </Stack>
   )

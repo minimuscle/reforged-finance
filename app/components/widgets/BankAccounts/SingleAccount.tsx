@@ -2,9 +2,9 @@ import {
   ActionIcon,
   Button,
   Flex,
-  Menu,
   Paper,
   Popover,
+  Skeleton,
   Stack,
   Text,
   Title,
@@ -18,12 +18,9 @@ import {
   RiDeleteBinLine,
   RiDraggable,
   RiDropLine,
-  RiEditLine,
   RiMore2Line,
-  RiMoreFill,
-  RiPaletteLine,
 } from "react-icons/ri/index.js"
-import { useFetcher, useSubmit } from "@remix-run/react"
+import { useFetcher } from "@remix-run/react"
 import { ColorSwatches } from "./ColorSwatches"
 
 export default function SingleAccount({ account }: { account: CashProps }) {
@@ -44,7 +41,7 @@ export default function SingleAccount({ account }: { account: CashProps }) {
       <div className={styles.grid}>
         <Flex w={"100%"} justify={"left"} align={"center"}>
           <ActionIcon
-            variant="subtle"
+            variant="transparent"
             color="gray"
             aria-label="Settings"
             className={styles.actionIcon}
@@ -62,7 +59,15 @@ export default function SingleAccount({ account }: { account: CashProps }) {
           >
             Account Name
           </Title>
-          <EditableText value={account.name} id={account.id} fieldName="name" />
+          {account.pending ? (
+            <Skeleton height={15} mt={6} w={"50%"} radius="md" />
+          ) : (
+            <EditableText
+              value={account.name}
+              id={account.id}
+              fieldName="name"
+            />
+          )}
         </Stack>
         <Stack gap={0}>
           <Title
@@ -74,13 +79,17 @@ export default function SingleAccount({ account }: { account: CashProps }) {
           >
             Balance
           </Title>
-          <EditableText
-            value={account.balance}
-            id={account.id}
-            formatter={formatter}
-            type="currency"
-            fieldName="balance"
-          />
+          {account.pending ? (
+            <Skeleton height={15} mt={6} w={"50%"} radius="md" />
+          ) : (
+            <EditableText
+              value={account.balance}
+              id={account.id}
+              formatter={formatter}
+              type="currency"
+              fieldName="balance"
+            />
+          )}
         </Stack>
 
         <Stack gap={0}>
@@ -93,12 +102,21 @@ export default function SingleAccount({ account }: { account: CashProps }) {
           >
             Currency
           </Title>
-          <Text m={0}>{account.currency}</Text>
+          {account.pending ? (
+            <Skeleton height={15} mt={6} w={"50%"} radius="md" />
+          ) : (
+            <Text m={0}>{account.currency}</Text>
+          )}
         </Stack>
         <Popover position="top" shadow="md">
           <Popover.Target>
             <Flex w={"100%"} justify={"right"} align={"center"}>
-              <ActionIcon variant="subtle" color="gray" aria-label="Settings">
+              <ActionIcon
+                disabled={account.pending}
+                variant="subtle"
+                color="gray"
+                aria-label="Settings"
+              >
                 <RiMore2Line />
               </ActionIcon>
             </Flex>
@@ -150,29 +168,6 @@ export default function SingleAccount({ account }: { account: CashProps }) {
             </Button.Group>
           </Popover.Dropdown>
         </Popover>
-        {/* <Menu shadow="md" width={200}>
-          <Menu.Target>
-            
-          </Menu.Target>
-
-          <Menu.Dropdown>
-            <Menu.Item
-              leftSection={<RiPaletteLine />}
-              rightSection={<RiArrowRightSLine />}
-            >
-              Colour
-            </Menu.Item>
-            <Menu.Item
-              onClick={() => submitDelete()}
-              name="intent"
-              value="deleteBank"
-              color="red"
-              leftSection={<RiDeleteBinLine />}
-            >
-              Delete Bank
-            </Menu.Item>
-          </Menu.Dropdown>
-        </Menu> */}
       </div>
     </Paper>
   )

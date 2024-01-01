@@ -7,6 +7,7 @@ export type CashProps = {
   balance: number
   weight: number
   colour: string
+  pending?: boolean
 }
 
 export type userProfile = {
