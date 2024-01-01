@@ -1,7 +1,7 @@
 import BankAccounts from "~/components/widgets/BankAccounts"
 import Tile from "~/components/Tile"
 import { ActionFunctionArgs } from "@remix-run/node"
-import { updateCashField } from "~/utils/supabase"
+import { addBankAccount, updateCashField } from "~/utils/supabase"
 
 export const action = async ({ request }: ActionFunctionArgs) => {
   const formData = await request.formData()
@@ -9,8 +9,10 @@ export const action = async ({ request }: ActionFunctionArgs) => {
   console.log(intent)
 
   switch (intent) {
+    case "addBankAccount":
+      addBankAccount(request, formData)
+      break
     case "updateCashField":
-      console.log("got here")
       updateCashField(request, formData)
       break
   }
