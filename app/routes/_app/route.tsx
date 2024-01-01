@@ -1,11 +1,12 @@
-import { Outlet, useLoaderData } from "@remix-run/react"
+import { Outlet, useLoaderData, useRouteError } from "@remix-run/react"
 import Sidebar from "./components/Sidebar"
 import Header from "./components/Header"
 import { LoaderFunctionArgs, redirect } from "@remix-run/node"
-import { history, supabaseCreate } from "~/utils/supabase"
+import { supabaseCreate } from "~/utils/supabase"
 import styles from "./_app.module.css"
 import { AppShell, Burger } from "@mantine/core"
 import { useDisclosure } from "@mantine/hooks"
+import { history } from "~/utils/types"
 
 export const loader = async ({ request }: LoaderFunctionArgs) => {
   const supabase = supabaseCreate(request)
@@ -20,7 +21,10 @@ export const loader = async ({ request }: LoaderFunctionArgs) => {
     .order("date", { ascending: false })
     .limit(1)
   const lastMonth = lastMonthRes && (lastMonthRes[0] as history)
-  const { data: cash } = await supabase.from("cash").select("*")
+  const { data: cash } = await supabase
+    .from("cash")
+    .select("*")
+    .order("weight", { ascending: true })
   //Takes user to setup page if not setup with a profile
   if (!user) throw redirect("/setup")
 

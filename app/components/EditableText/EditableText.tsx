@@ -33,7 +33,13 @@ const EditableText = ({
   const buttonRef = useRef<HTMLButtonElement>(null)
 
   if (fetcher.formData?.has(fieldName)) {
-    value = String(fetcher.formData.get(fieldName))
+    if (type === "currency") {
+      value = parseFloat(
+        String(fetcher.formData.get(fieldName)).replace(/[$,]/g, "")
+      )
+    } else {
+      value = String(fetcher.formData.get(fieldName))
+    }
   }
 
   return edit ? (
