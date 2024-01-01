@@ -1,20 +1,16 @@
 import { useFetcher } from "@remix-run/react"
 import styles from "./EditableText.module.css"
-import { Box, Button, TextInput } from "@mantine/core"
-import { HTMLInputTypeAttribute, useRef, useState } from "react"
+import { useRef, useState } from "react"
 import { IMaskInput } from "react-imask"
 
 const EditableText = ({
-  children,
   fieldName,
   id,
   value,
   type,
   inputClassName,
   formatter,
-  inputLabel,
   buttonClassName,
-  buttonLabel,
 }: {
   children?: React.ReactNode
   fieldName: string
@@ -75,7 +71,10 @@ const EditableText = ({
           inputClassName ? styles[inputClassName] : ""
         }`}
         onBlur={(event) => {
-          if (event.target.value !== value) {
+          if (
+            !/^\s*$/.test(event.target.value) &&
+            event.target.value !== value
+          ) {
             fetcher.submit(event.currentTarget.form)
           }
           setEdit(false)
