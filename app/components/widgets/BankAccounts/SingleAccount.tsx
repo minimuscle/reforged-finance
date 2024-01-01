@@ -1,4 +1,4 @@
-import { Flex, Paper, Stack, Text, Title } from "@mantine/core"
+import { Paper, Stack, Text, Title } from "@mantine/core"
 import EditableText from "~/components/EditableText"
 import { CashProps } from "~/utils/types"
 import { formatter } from "~/utils/utils"
