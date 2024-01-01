@@ -1,0 +1,21 @@
+.btn {
+  border: none;
+  background-color: transparent;
+  padding: 0;
+  text-align: left;
+  cursor: pointer;
+}
+
+.input {
+  border: none;
+  width: 75%;
+  padding: 0px 5px;
+  border-radius: 5px;
+  border: 1px solid #dddddd;
+  margin: -3px 0 -50px -6px;
+  z-index: -1;
+}
+
+.input:focus {
+  outline: none;
+}

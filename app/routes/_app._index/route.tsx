@@ -1,5 +1,5 @@
 import type { MetaFunction } from "@remix-run/node"
-import AssetDistribution from "~/charts/AssetDistribution"
+import AssetDistribution from "~/components/widgets/charts/AssetDistribution"
 import Tile from "~/components/Tile"
 
 export const meta: MetaFunction = () => {
