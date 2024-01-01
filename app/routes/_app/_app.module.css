@@ -62,3 +62,10 @@
   background-color: var(--mantine-color-violet-0);
 }
 
+.menuItem {
+  text-decoration: none;
+}
+
+.menuItem:hover {
+  text-decoration: none;
+}

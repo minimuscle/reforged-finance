@@ -4,6 +4,7 @@ import { formatter } from "../utils"
 import usePendingItems from "./usePendingItems"
 import usePendingDeletion from "./usePendingDeletion"
 import usePendingChanges from "./usePendingChanges"
+import usePendingOrderChange from "./usePendingOrderChange"
 
 export function useModel() {
   const data = useOutletContext()
@@ -13,6 +14,27 @@ export function useModel() {
   const pendingCashItems = usePendingItems()
   const pendingDeletion = usePendingDeletion()
   const pendingChanges = usePendingChanges()
+  const pendingOrderChange = usePendingOrderChange()
+
+  console.log("cashItems: ", cashItems)
+
+  for (const item of pendingOrderChange) {
+    //check if item already exists
+    const exists = cashItems.find(
+      (cashItem: CashProps) => cashItem.id === item.id
+    )
+    if (exists) {
+      const index = cashItems.indexOf(exists)
+      cashItems[index].weight = item.weight
+    }
+  }
+
+  //sort cash items by weight (if it exists)
+  cashItems.sort((a: CashProps, b: CashProps) => {
+    return a.weight - b.weight
+  })
+
+  console.log("cashItems: ", cashItems)
 
   for (const item of pendingCashItems) {
     //check if item already exists

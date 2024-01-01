@@ -5,6 +5,7 @@ import {
   addBankAccount,
   deleteBank,
   updateBankColour,
+  updateBankOrder,
   updateCashField,
 } from "~/utils/supabase"
 
@@ -26,6 +27,9 @@ export const action = async ({ request }: ActionFunctionArgs) => {
         formData.get("id") as string,
         formData.get("colour") as string
       )
+      break
+    case "updateBankOrder":
+      updateBankOrder(request, formData.get("data") as string)
       break
     case "deleteBank":
       deleteBank(request, formData.get("id") as string)

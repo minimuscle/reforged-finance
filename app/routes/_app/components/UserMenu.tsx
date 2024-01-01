@@ -8,7 +8,7 @@ import {
   RiLogoutBoxLine,
 } from "react-icons/ri/index.js"
 import { useState } from "react"
-import { useNavigate } from "@remix-run/react"
+import { Link } from "@remix-run/react"
 
 interface UserMenuProps {
   children: React.ReactNode
@@ -16,7 +16,6 @@ interface UserMenuProps {
 
 export default function UserMenu({ children }: UserMenuProps) {
   const [opened, setOpened] = useState(false)
-  const navigate = useNavigate()
   return (
     <Menu opened={opened} onChange={setOpened} position="bottom-end" withArrow>
       <Menu.Target>
@@ -39,6 +38,10 @@ export default function UserMenu({ children }: UserMenuProps) {
 
       <Menu.Dropdown>
         <Menu.Item
+          component={Link}
+          to={"/settings"}
+          prefetch="intent"
+          className={styles.menuItem}
           leftSection={
             <RiSettings3Line style={{ width: "16px", height: "100%" }} />
           }
@@ -60,7 +63,9 @@ export default function UserMenu({ children }: UserMenuProps) {
           leftSection={
             <RiLogoutBoxLine style={{ width: "16px", height: "100%" }} />
           }
-          onClick={() => navigate("/logout")}
+          component={Link}
+          to={"/logout"}
+          className={styles.menuItem}
         >
           Log Out
         </Menu.Item>

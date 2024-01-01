@@ -39,12 +39,9 @@ export default function Sidebar() {
       <Flex direction={"column"} h={"100%"} justify={"space-between"}>
         <Space />
         <Stack>
+          <Divider />
           <NavLink premium to="/premium" icon={<RiVipCrown2Fill />}>
             Get Premium
-          </NavLink>
-          <Divider />
-          <NavLink to="/settings" icon={<RiSettings3Line />}>
-            Settings
           </NavLink>
         </Stack>
       </Flex>
