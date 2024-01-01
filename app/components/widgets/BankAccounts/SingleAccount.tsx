@@ -1,6 +1,8 @@
 import { Flex, Paper, Stack, Text, Title } from "@mantine/core"
+import EditableText from "~/components/EditableText"
 import { CashProps } from "~/utils/types"
 import { formatter } from "~/utils/utils"
+import styles from "./BankAccounts.module.css"
 
 export default function SingleAccount({ account }: { account: CashProps }) {
   return (
@@ -14,18 +16,30 @@ export default function SingleAccount({ account }: { account: CashProps }) {
       }}
       p={"sm"}
     >
-      <Flex justify={"space-between"} gap={20} p={"0 100px 0 50px"}>
+      <div className={styles.grid}>
         <Stack gap={0}>
-          <Title mb={-5} size={"x-small"} order={6} c={"gray"}>
+          <Title
+            className={styles.title}
+            mb={-5}
+            size={"x-small"}
+            order={6}
+            c={"gray"}
+          >
             Account Name
           </Title>
-          <Text m={0}>{account.name}</Text>
+          <EditableText value={account.name} id={account.id} fieldName="name" />
         </Stack>
         <Stack gap={0}>
           <Title mb={-5} size={"x-small"} order={6} c={"gray"}>
             Balance
           </Title>
-          <Text m={0}>{formatter("AUD", account.balance)}</Text>
+          <EditableText
+            value={account.balance}
+            id={account.id}
+            formatter={formatter}
+            type="currency"
+            fieldName="balance"
+          />
         </Stack>
 
         <Stack gap={0}>
@@ -34,7 +48,7 @@ export default function SingleAccount({ account }: { account: CashProps }) {
           </Title>
           <Text m={0}>{account.currency}</Text>
         </Stack>
-      </Flex>
+      </div>
     </Paper>
   )
 }

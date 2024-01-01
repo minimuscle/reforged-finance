@@ -21,7 +21,6 @@ export const loader = async ({ request }: LoaderFunctionArgs) => {
     .limit(1)
   const lastMonth = lastMonthRes && (lastMonthRes[0] as history)
   const { data: cash } = await supabase.from("cash").select("*")
-  console.log(cash)
   //Takes user to setup page if not setup with a profile
   if (!user) throw redirect("/setup")
 

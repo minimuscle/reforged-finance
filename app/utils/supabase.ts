@@ -25,28 +25,29 @@ export const supabaseCreate = (request: Request) => {
   return supabase
 }
 
-export type userProfile = {
-  id: string
-  name: string
-  created_at: string
-  email: string | null
-  employmentIncome: number
-  currency: string
-  netIncome: number
-  salaryFrequency: string
-  cashGoal: number | null
-  emergencyFundGoal: number | null
-  homeDeposit: boolean
-  depositAmount: number | null
-}
+export const updateCashField = async (request: Request, formData: any) => {
+  const supabase = supabaseCreate(request)
+  const form = Object.fromEntries(formData.entries())
+  const user = (await supabase.auth.getSession()).data.session?.user.id
+  console.log(user)
+  const { data, error } = await supabase
+    .from("cash")
+    .upsert(
+      {
+        id: form?.id,
+        user_id: user,
+        name: form?.name,
+        currency: form?.currency,
+        balance: form?.balance,
+      },
+      { onConflict: "id" }
+    )
+    .select()
+  if (error) {
+    console.log(error)
+    return error
+  }
 
-export type history = {
-  id: number
-  created_at: string
-  user_id: string
-  date: string
-  cash: number
-  super: number
-  debts: number
-  income: number
+  console.log(data)
+  return data
 }
