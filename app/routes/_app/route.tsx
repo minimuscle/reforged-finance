@@ -1,4 +1,4 @@
-import { Outlet, useLoaderData, useRouteError } from "@remix-run/react"
+import { Outlet, useLoaderData } from "@remix-run/react"
 import Sidebar from "./components/Sidebar"
 import Header from "./components/Header"
 import { LoaderFunctionArgs, redirect } from "@remix-run/node"

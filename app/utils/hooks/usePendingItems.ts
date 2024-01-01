@@ -15,6 +15,7 @@ export default function usePendingItems() {
         colour: "var(--mantine-color-gray-3)",
         created_at: String(new Date()),
         user_id: "1",
+        pending: true,
       }
     })
 }
