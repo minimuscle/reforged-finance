@@ -31,7 +31,6 @@ export const addBankAccount = async (request: Request, formData: any) => {
   const { count } = await supabase
     .from("cash")
     .select("*", { count: "exact", head: true })
-  console.log("count", count)
   const { data, error } = await supabase
     .from("cash")
     .insert({
@@ -44,6 +43,20 @@ export const addBankAccount = async (request: Request, formData: any) => {
       weight: count || 0,
     })
     .select()
+}
+
+export const deleteBank = async (request: Request, id: string) => {
+  const supabase = supabaseCreate(request)
+  await supabase.from("cash").delete().eq("id", id)
+}
+
+export const updateBankColour = async (
+  request: Request,
+  id: string,
+  colour: string
+) => {
+  const supabase = supabaseCreate(request)
+  await supabase.from("cash").update({ colour: colour }).eq("id", id)
 }
 
 export const updateCashField = async (request: Request, formData: any) => {
@@ -65,7 +78,6 @@ export const updateCashField = async (request: Request, formData: any) => {
   }
 
   if (form?.balance) {
-    console.log("balance", parseFloat(form?.balance.replace(/[$,]/g, "")))
     upsertData.balance = parseFloat(form?.balance.replace(/[$,]/g, ""))
   }
 
