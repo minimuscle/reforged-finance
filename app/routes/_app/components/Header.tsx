@@ -5,6 +5,7 @@ import {
   Group,
   Image,
   Space,
+  Stack,
   Text,
   Title,
 } from "@mantine/core"
@@ -31,9 +32,15 @@ export default function Header() {
       </Link>
       <Box>
         <UserMenu>
-          <Avatar />
-          <Space w={10} />
-          <Text>{user?.name}</Text>
+          <Avatar mr={10} />
+          <Stack gap={0}>
+            <Title mb={-5} order={5}>
+              {user.name}
+            </Title>
+            <Text c={"gray"} size="xs">
+              {user.email}
+            </Text>
+          </Stack>
         </UserMenu>
       </Box>
     </Flex>

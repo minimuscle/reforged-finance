@@ -45,6 +45,17 @@ export const addBankAccount = async (request: Request, formData: any) => {
     .select()
 }
 
+export const updateBankOrder = async (request: Request, formData: string) => {
+  const supabase = supabaseCreate(request)
+  const form = JSON.parse(formData)
+  const { data, error } = await supabase
+    .from("cash")
+    .upsert(form, { onConflict: "id" })
+    .select()
+  console.log(error)
+  console.log(data)
+}
+
 export const deleteBank = async (request: Request, id: string) => {
   const supabase = supabaseCreate(request)
   await supabase.from("cash").delete().eq("id", id)
