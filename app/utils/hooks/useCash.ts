@@ -31,7 +31,6 @@ export default function useCash() {
       pending: true,
     }
   })
-  console.log("createCash: ", createCash)
 
   createCash.forEach(account => {
     const exists = cash.find((item) => item.id === account.id)
@@ -95,7 +94,6 @@ export default function useCash() {
 
   cash.forEach(account => {
     const exists = deleteCash.find((item) => item.id === account.id)
-    console.log("exists: ", exists)
     if (exists) {
       const index = cash.indexOf(account)
       cash.splice(index, 1)
