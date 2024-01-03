@@ -42,7 +42,7 @@ export default function SingleAccount({ account }: { account: CashProps }) {
       style={style}
       mb={10}
       withBorder
-      shadow="xs"
+      shadow='xs'
       p={"sm"}
       className={styles.paper}
     >
@@ -51,8 +51,8 @@ export default function SingleAccount({ account }: { account: CashProps }) {
           <ActionIcon
             {...attributes}
             {...listeners}
-            variant="transparent"
-            color="gray"
+            variant='transparent'
+            color='gray'
             className={styles.actionIcon}
           >
             <RiDraggable />
@@ -69,12 +69,12 @@ export default function SingleAccount({ account }: { account: CashProps }) {
             Account Name
           </Title>
           {account.pending ? (
-            <Skeleton height={15} mt={6} w={"50%"} radius="md" />
+            <Skeleton height={15} mt={6} w={"50%"} radius='md' />
           ) : (
             <EditableText
               value={account.name}
               id={account.id}
-              fieldName="name"
+              fieldName='name'
             />
           )}
         </Stack>
@@ -89,14 +89,14 @@ export default function SingleAccount({ account }: { account: CashProps }) {
             Balance
           </Title>
           {account.pending ? (
-            <Skeleton height={15} mt={6} w={"50%"} radius="md" />
+            <Skeleton height={15} mt={6} w={"50%"} radius='md' />
           ) : (
             <EditableText
               value={account.balance}
               id={account.id}
               formatter={formatter}
-              type="currency"
-              fieldName="balance"
+              type='currency'
+              fieldName='balance'
             />
           )}
         </Stack>
@@ -112,36 +112,36 @@ export default function SingleAccount({ account }: { account: CashProps }) {
             Currency
           </Title>
           {account.pending ? (
-            <Skeleton height={15} mt={6} w={"50%"} radius="md" />
+            <Skeleton height={15} mt={6} w={"50%"} radius='md' />
           ) : (
             <Text m={0}>{account.currency}</Text>
           )}
         </Stack>
-        <Popover position="top" shadow="md">
+        <Popover position='top' shadow='md'>
           <Popover.Target>
             <Flex w={"100%"} justify={"right"} align={"center"}>
               <ActionIcon
                 disabled={account.pending}
-                variant="subtle"
-                color="gray"
-                aria-label="Settings"
+                variant='subtle'
+                color='gray'
+                aria-label='Settings'
               >
                 <RiMore2Line />
               </ActionIcon>
             </Flex>
           </Popover.Target>
           <Popover.Dropdown p={0}>
-            <Button.Group orientation="vertical">
-              <Popover position="right" shadow="md" withArrow>
+            <Button.Group orientation='vertical'>
+              <Popover position='right' shadow='md' withArrow>
                 <Popover.Target>
                   <Button
-                    color="black"
-                    justify="left"
-                    variant="subtle"
+                    color='black'
+                    justify='left'
+                    variant='subtle'
                     leftSection={<RiDropLine />}
                     rightSection={<RiArrowRightSLine />}
                   >
-                    <Text size="sm">Colour</Text>
+                    <Text size='sm'>Colour</Text>
                   </Button>
                 </Popover.Target>
                 <Popover.Dropdown>
@@ -149,7 +149,7 @@ export default function SingleAccount({ account }: { account: CashProps }) {
                     setColour={(colour) => {
                       fetcher.submit(
                         {
-                          intent: "updateBankColour",
+                          intent: "updateCash",
                           id: account.id,
                           colour: colour,
                         },
@@ -160,19 +160,19 @@ export default function SingleAccount({ account }: { account: CashProps }) {
                 </Popover.Dropdown>
               </Popover>
               <Button
-                justify="left"
-                variant="subtle"
-                color="red"
+                justify='left'
+                variant='subtle'
+                color='red'
                 leftSection={<RiDeleteBinLine />}
-                component="button"
+                component='button'
                 onClick={() => {
                   fetcher.submit(
-                    { intent: "deleteBank", id: account.id },
+                    { intent: "deleteCash", id: account.id },
                     { method: "POST" }
                   )
                 }}
               >
-                <Text size="sm">Delete</Text>
+                <Text size='sm'>Delete</Text>
               </Button>
             </Button.Group>
           </Popover.Dropdown>
