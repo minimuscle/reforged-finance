@@ -22,10 +22,11 @@ import {
   restrictToParentElement,
   restrictToVerticalAxis,
 } from "@dnd-kit/modifiers"
+import useCash from "~/utils/hooks/useCash"
 
 export default function BankAccounts() {
   const { cash, cashTotal }: { cash: CashProps[]; cashTotal: string } =
-    useModel()
+    useCash()
   const fetcher = useFetcher()
 
   const handleDragEnd = (event: DragEndEvent) => {
@@ -38,7 +39,7 @@ export default function BankAccounts() {
     })
     fetcher.submit(
       {
-        intent: "updateBankOrder",
+        intent: "updateCash",
         data: JSON.stringify(newAccount),
       },
       { method: "POST" }
@@ -47,11 +48,11 @@ export default function BankAccounts() {
 
   return (
     <Stack w={"100%"} h={"100%"}>
-      <Flex align={"flex-end"} justify="space-between" gap="xl">
+      <Flex align={"flex-end"} justify='space-between' gap='xl'>
         <Title>Bank Accounts</Title>
         <Group>
-          <Text fw="700">Total Balance:</Text>
-          <Badge mb={"5px"} size="xl" variant="light" radius="sm">
+          <Text fw='700'>Total Balance:</Text>
+          <Badge mb={"5px"} size='xl' variant='light' radius='sm'>
             {cashTotal}
           </Badge>
         </Group>
@@ -70,14 +71,14 @@ export default function BankAccounts() {
         </DndContext>
       </Box>
       <Box>
-        <fetcher.Form method="POST">
+        <fetcher.Form method='POST'>
           <Button
-            type="submit"
-            name="intent"
-            value="addBankAccount"
-            size="xs"
-            variant="light"
-            color="gray"
+            type='submit'
+            name='intent'
+            value='createCash'
+            size='xs'
+            variant='light'
+            color='gray'
           >
             Add Account
           </Button>

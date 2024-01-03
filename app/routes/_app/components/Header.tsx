@@ -21,7 +21,7 @@ export default function Header() {
   return (
     <Flex p={"md"} h={"100%"} justify={"space-between"} align={"center"}>
       <Link
-        prefetch="intent"
+        prefetch='intent'
         to={"/"}
         style={{ textDecoration: "none", color: "unset" }}
       >
@@ -37,7 +37,7 @@ export default function Header() {
             <Title mb={-5} order={5}>
               {user.name}
             </Title>
-            <Text c={"gray"} size="xs">
+            <Text c={"gray"} size='xs'>
               {user.email}
             </Text>
           </Stack>

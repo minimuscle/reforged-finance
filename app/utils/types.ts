@@ -35,3 +35,7 @@ export type history = {
   debts: number
   income: number
 }
+
+export type OutletContext = {
+  user: userProfile
+}

@@ -1,4 +1,5 @@
 import { createServerClient, parse, serialize } from "@supabase/ssr"
+import { CashProps } from "./types"
 
 export const supabaseCreate = (request: Request) => {
   const cookies = parse(request.headers.get("Cookie") ?? "")
@@ -25,7 +26,7 @@ export const supabaseCreate = (request: Request) => {
   return supabase
 }
 
-export const addBankAccount = async (request: Request, formData: any) => {
+export const createCash = async (request: Request, formData: any) => {
   const supabase = supabaseCreate(request)
   const user = (await supabase.auth.getSession()).data.session?.user.id
   const { count } = await supabase
@@ -43,59 +44,56 @@ export const addBankAccount = async (request: Request, formData: any) => {
       weight: count || 0,
     })
     .select()
+  if (error) {
+    console.log(error)
+    return error
+  }
+  return data
 }
 
-export const updateBankOrder = async (request: Request, formData: string) => {
-  const supabase = supabaseCreate(request)
-  const form = JSON.parse(formData)
-  const { data, error } = await supabase
-    .from("cash")
-    .upsert(form, { onConflict: "id" })
-    .select()
-  console.log(error)
-  console.log(data)
-}
-
-export const deleteBank = async (request: Request, id: string) => {
+export const deleteCash = async (request: Request, id: string) => {
   const supabase = supabaseCreate(request)
   await supabase.from("cash").delete().eq("id", id)
 }
 
-export const updateBankColour = async (
-  request: Request,
-  id: string,
-  colour: string
-) => {
-  const supabase = supabaseCreate(request)
-  await supabase.from("cash").update({ colour: colour }).eq("id", id)
-}
-
-export const updateCashField = async (request: Request, formData: any) => {
+export const updateCash = async (request: Request, formData: any) => {
   const supabase = supabaseCreate(request)
   const form = Object.fromEntries(formData.entries())
-  const user = (await supabase.auth.getSession()).data.session?.user.id
-
-  const upsertData: {
-    id?: string
-    user_id: string
-    name?: string
-    currency?: string
-    balance?: number
-  } = {
-    id: form?.id,
-    user_id: user || "",
-    name: form?.name,
-    currency: form?.currency,
+  //If intent is to reorder the cash accounts, ie. data fieled is there
+  if (form?.data) {
+    const items = JSON.parse(form?.data)
+    items.forEach(async (item: CashProps) => {
+      const { data, error } = await supabase
+        .from("cash")
+        .update({ weight: item.weight })
+        .eq("id", item.id)
+      if (error) {
+        console.log(error)
+        return error
+      }
+      return data
+    })
   }
 
-  if (form?.balance) {
-    upsertData.balance = parseFloat(form?.balance.replace(/[$,]/g, ""))
+  //Only update the values that are not null
+  let updateData = {}
+  if (form?.name && form?.name !== "null") updateData = { ...updateData, name: form?.name }
+  if (form?.currency && form?.currency !== "null") updateData = { ...updateData, currency: form?.currency }
+  if (form?.balance && form?.balance !== "null") {
+    updateData = {
+      ...updateData,
+      balance: parseFloat(form?.balance?.replace(/[$,]/g, "")),
+    }
   }
+  if (form?.colour && form?.colour !== "null") updateData = { ...updateData, colour: form?.colour }
+  if (form?.weight && form?.weight !== "null") updateData = { ...updateData, weight: form?.weight }
 
   const { data, error } = await supabase
     .from("cash")
-    .upsert(upsertData, { onConflict: "id" })
-    .select()
+    .update(
+      updateData
+    )
+    .eq("id", form?.id)
   if (error) {
     console.log(error)
     return error
