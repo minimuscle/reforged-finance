@@ -39,9 +39,9 @@ const EditableText = ({
   }
 
   return edit ? (
-    <fetcher.Form method="POST">
-      <input type="hidden" name="intent" value="updateCashField" />
-      <input type="hidden" name="id" value={id} />
+    <fetcher.Form method='POST'>
+      <input type='hidden' name='intent' value='updateCash' />
+      <input type='hidden' name='id' value={id} />
       <IMaskInput
         // eslint-disable-next-line jsx-a11y/no-autofocus
         autoFocus
