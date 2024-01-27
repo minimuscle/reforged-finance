@@ -1,4 +1,5 @@
 import { LineChart } from "@tremor/react"
+import { useMemo } from "react"
 import useHistory from "~/utils/hooks/useHistory"
 import { history } from "~/utils/types"
 
@@ -10,11 +11,12 @@ const valueFormatter = (number: number) => {
   }
 }
 
+//TODO: Stylize this correctly
 const customTooltip = ({ payload, active }: any) => {
   if (!active || !payload) return null
   return (
     <div className="w-56 rounded-tremor-default text-tremor-default bg-tremor-background p-2 shadow-tremor-dropdown border border-tremor-border">
-      {payload.map((category, idx) => (
+      {payload.map((category: any, idx: any) => (
         <div key={idx} className="flex flex-1 space-x-2.5">
           <div
             className={`w-1 flex flex-col bg-${category.color}-500 rounded`}
@@ -31,9 +33,9 @@ const customTooltip = ({ payload, active }: any) => {
   )
 }
 
-const transformData = (history: history[]) => {
+const transformData = (data: history[], filter: string) => {
   //convert date to date object
-  history = history.map((item) => {
+  data = data.map((item) => {
     const date = new Date(item.date)
     const formattedDate = date.toLocaleString("en-US", {
       month: "short",
@@ -41,7 +43,32 @@ const transformData = (history: history[]) => {
     })
     return { ...item, date: formattedDate }
   })
-  return history
+
+  //filter data based on filter
+  switch (filter) {
+    case "1M":
+      data = data.slice(-1)
+      break
+    case "3M":
+      data = data.slice(-3)
+      break
+    case "6M":
+      data = data.slice(-6)
+      break
+    case "1Y":
+      data = data.slice(-12)
+      break
+    case "YTD":
+      data = data.filter((item) => {
+        const date = new Date(item.date)
+        const today = new Date()
+        return date.getFullYear() === today.getFullYear()
+      })
+      break
+    case "ALL":
+      break
+  }
+  return data
 }
 
 const getLowestNetWorth = (history: history[]) => {
@@ -51,13 +78,15 @@ const getLowestNetWorth = (history: history[]) => {
 
 const getHighestNetWorth = (history: history[]) => {
   const netWorths = history.map((item) => item.netWorth) as number[]
-  console.log(Math.max(...netWorths))
   return Math.max(...netWorths)
 }
 
-const NetWorth = () => {
+const NetWorth = ({ filter }: { filter: string }) => {
   const { history } = useHistory()
-  const historyData = transformData(history)
+  const historyData = useMemo(
+    () => transformData(history, filter),
+    [history, filter]
+  )
 
   //set minimum value to 1.5x the lowest net worth rounded to the nearest 1000
   const lowestNetWorth =
