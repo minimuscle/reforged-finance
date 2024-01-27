@@ -6,7 +6,6 @@ import { supabaseCreate } from "~/utils/supabase"
 import styles from "./_app.module.css"
 import { AppShell, Burger } from "@mantine/core"
 import { useDisclosure } from "@mantine/hooks"
-import DataDefer from "~/components/DataDefer"
 
 export const loader = async ({ request }: LoaderFunctionArgs) => {
   const supabase = supabaseCreate(request)
@@ -17,11 +16,11 @@ export const loader = async ({ request }: LoaderFunctionArgs) => {
   if (!userSession) throw redirect("/login")
 
   const data = Promise.all([
-    supabase.from("profiles").select("*").single(),
-    supabase.from("history").select("*"),
-    supabase.from("cash").select("*"),
-    supabase.from("budget").select("*"),
-    //new Promise((resolve) => setTimeout(resolve, 2000)),
+    // supabase.from("profiles").select("*").single(),
+    // supabase.from("history").select("*"),
+    // supabase.from("cash").select("*"),
+    // supabase.from("budget").select("*"),
+    new Promise((resolve) => setTimeout(resolve, 2000)),
   ])
   //if (!user) throw redirect("/setup")
 
