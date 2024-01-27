@@ -19,7 +19,6 @@ export const loader = async ({ request }: LoaderFunctionArgs) => {
     supabase.from("history").select("*"),
     supabase.from("cash").select("*"),
     supabase.from("budget").select("*"),
-    //new Promise((resolve) => setTimeout(resolve, 2000)),
   ])
 
   return defer({ data })
@@ -27,7 +26,6 @@ export const loader = async ({ request }: LoaderFunctionArgs) => {
 export default function Index() {
   const data = useLoaderData<typeof loader>()
   const { colorScheme } = useMantineColorScheme()
-  //const [opened, { toggle }] = useDisclosure()
   return (
     <Flex
       className={`${styles.app} ${
@@ -42,25 +40,4 @@ export default function Index() {
       </Box>
     </Flex>
   )
-
-  // <AppShell
-  //   header={{ height: 60 }}
-  //   navbar={{
-  //     width: 250,
-  //     breakpoint: "sm",
-  //     collapsed: { mobile: !opened },
-  //   }}
-  //   padding="md"
-  // >
-  //   <AppShell.Header className={styles.header}>
-  //     <Burger opened={opened} onClick={toggle} hiddenFrom="sm" size="sm" />
-  //     <Header />
-  //   </AppShell.Header>
-  //   <AppShell.Navbar className={styles.navbar}>
-  //     <Sidebar data={data} />
-  //   </AppShell.Navbar>
-  //   <AppShell.Main className={styles.outlet}>
-  //     <Outlet context={data} />
-  //   </AppShell.Main>
-  // </AppShell>
 }

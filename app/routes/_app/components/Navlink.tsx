@@ -27,7 +27,8 @@ export default function NavLink({
       }`}
     >
       <ThemeIcon
-        color={premium ? "yellow" : active ? "teal" : "black"}
+        className={styles.icon}
+        color={premium ? "yellow" : ""}
         variant="subtle"
       >
         {cloneElement(icon, {
