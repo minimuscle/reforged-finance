@@ -1,3 +1,4 @@
 import { createContext } from "react"
+import { OutletContext } from "../types"
 
-export const DataContext = createContext(null)
+export const DataContext = createContext<OutletContext | null>(null)
