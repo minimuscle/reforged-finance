@@ -1,9 +1,10 @@
 import type { MetaFunction } from "@remix-run/node"
 import { isRouteErrorResponse, useRouteError } from "@remix-run/react"
-import { Title } from "@mantine/core"
+import { Group, Title } from "@mantine/core"
 import NetWorthContainer from "./components/NetWorthContainer"
 import styles from "./_index.module.css"
 import DataDefer from "~/components/DataDefer"
+import AssetsContainer from "./components/AssetsContainer"
 
 export const meta: MetaFunction = () => {
   return [{ title: "Dashboard | Wealthfire" }]
@@ -39,7 +40,10 @@ export default function Index() {
     <>
       <Title className={styles.title}>Dashboard</Title>
       <DataDefer>
-        <NetWorthContainer />
+        <Group gap={0}>
+          <NetWorthContainer />
+          <AssetsContainer />
+        </Group>
       </DataDefer>
     </>
   )

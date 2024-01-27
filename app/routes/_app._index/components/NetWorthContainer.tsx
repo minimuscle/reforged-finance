@@ -21,9 +21,7 @@ const NetWorthContainer = () => {
 
   return (
     <Paper className={styles.netWorthContainer}>
-      <Group className={styles.heading}>
-        <Title size={"sm"}>Total Net Worth</Title>
-      </Group>
+      <Title size={"sm"}>Total Net Worth</Title>
       <Title>{formatter("AUD", netWorth)}</Title>
       <Badge
         leftSection={
