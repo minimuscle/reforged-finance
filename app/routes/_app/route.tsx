@@ -16,11 +16,11 @@ export const loader = async ({ request }: LoaderFunctionArgs) => {
   if (!userSession) throw redirect("/login")
 
   const data = Promise.all([
-    // supabase.from("profiles").select("*").single(),
-    // supabase.from("history").select("*"),
-    // supabase.from("cash").select("*"),
-    // supabase.from("budget").select("*"),
-    new Promise((resolve) => setTimeout(resolve, 2000)),
+    supabase.from("profiles").select("*").single(),
+    supabase.from("history").select("*"),
+    supabase.from("cash").select("*"),
+    supabase.from("budget").select("*"),
+    //new Promise((resolve) => setTimeout(resolve, 2000)),
   ])
   //if (!user) throw redirect("/setup")
 
