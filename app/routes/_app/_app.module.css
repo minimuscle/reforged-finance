@@ -57,7 +57,7 @@
   background-color: var(--mantine-color-white);
   border-right: var(--mantine-color-gray-2) 1px solid;
   border-left: var(--mantine-color-gray-2) 1px solid;
-  border-bottom: var(--mantine-color-gray-2) 2px solid;  
+  border-bottom: var(--mantine-color-gray-2) 3px solid;  
   margin: 0 -0.5px -1px -0.5px;
 }
 
@@ -70,9 +70,11 @@
   text-decoration: none;
   color: var(--mantine-color-white);
   background-color: var(--mantine-color-dark-9);
+  border-right: var(--mantine-color-dark-6) 1px solid;
+  border-left: var(--mantine-color-dark-6) 1px solid;
+  border-bottom: var(--mantine-color-dark-6) 3px solid;  
+  margin: 0 -0.5px -1px -0.5px;
 }
-
-
 
 .icon {
   color: var(--mantine-color-black);
@@ -80,6 +82,10 @@
 
 .dark .icon {
   color: var(--mantine-color-text);
+}
+
+.dark .link.active .icon {
+  color: var(--mantine-color-white);
 }
 
 
