@@ -13,16 +13,6 @@ export default function useHistory() {
     return aDate.getTime() - bDate.getTime()
   })
 
-  //convert date to date object
-  history = history.map((item) => {
-    const date = new Date(item.date)
-    const formattedDate = date.toLocaleString("en-US", {
-      month: "short",
-      year: "numeric",
-    })
-    return { ...item, date: formattedDate }
-  })
-
   //combine cash and super, minus debts per item
   history = history.map((item: history) => {
     const { cash, super: superannuation, debts } = item
