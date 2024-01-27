@@ -36,6 +36,15 @@ export type history = {
   income: number
 }
 
+export type budgetProps = {
+  id: number
+  created_at: string
+  user_id: string
+  name: string
+  cost: number
+  bank_id: string
+}
+
 export type OutletContext = {
   user: userProfile
   cash: CashProps[]

@@ -6,7 +6,7 @@ import { DataContext } from "../contexts/DataContext"
 
 export default function useCash() {
   const data = useContext(DataContext) as any
-  const cash: CashProps[] = data.cash || {}
+  const cash: CashProps[] = data.cash
 
   let cashTotal =
     data.cash
