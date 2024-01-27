@@ -1,17 +1,31 @@
-import { Await } from "@remix-run/react"
-import { ReactElement, Suspense, cloneElement } from "react"
+import { Await, useOutletContext } from "@remix-run/react"
+import { ReactElement, Suspense } from "react"
 import { DataContext } from "~/utils/contexts/DataContext"
 import { OutletContext } from "~/utils/types"
 
 const DataDefer = ({
   children,
+  fallback,
   data,
 }: {
   children: ReactElement
-  data: any
+  fallback?: ReactElement
+  data?: any
 }) => {
+  //If there is no data supplied, use the outletContext.
+  //This is useful for when you want to use the dataDefer component in a route
+  //and saves importing outletContext in the route file
+
+  const outletData = useOutletContext()
+  //first check if outletData is there, if not, throw an error
+  if (!outletData) throw new Error("No data supplied or found in outlet")
+  if (!data) data = outletData
+
+  //Check if fallback is supplied, if not, use a default fallback
+  if (!fallback) fallback = <div>Loading...</div>
+
   return (
-    <Suspense fallback={<div>Loading...</div>}>
+    <Suspense fallback={fallback}>
       <Await resolve={data.data}>
         {(resolvedData) => {
           const transformedData: OutletContext = {

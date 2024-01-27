@@ -8,7 +8,6 @@ import {
   Text,
   Title,
 } from "@mantine/core"
-import { useModel } from "~/utils/hooks/useModel"
 import SingleAccount from "./SingleAccount"
 import { useFetcher } from "@remix-run/react"
 import { CashProps } from "~/utils/types"
@@ -48,11 +47,11 @@ export default function BankAccounts() {
 
   return (
     <Stack w={"100%"} h={"100%"}>
-      <Flex align={"flex-end"} justify='space-between' gap='xl'>
+      <Flex align={"flex-end"} justify="space-between" gap="xl">
         <Title>Bank Accounts</Title>
         <Group>
-          <Text fw='700'>Total Balance:</Text>
-          <Badge mb={"5px"} size='xl' variant='light' radius='sm'>
+          <Text fw="700">Total Balance:</Text>
+          <Badge mb={"5px"} size="xl" variant="light" radius="sm">
             {cashTotal}
           </Badge>
         </Group>
@@ -71,14 +70,14 @@ export default function BankAccounts() {
         </DndContext>
       </Box>
       <Box>
-        <fetcher.Form method='POST'>
+        <fetcher.Form method="POST">
           <Button
-            type='submit'
-            name='intent'
-            value='createCash'
-            size='xs'
-            variant='light'
-            color='gray'
+            type="submit"
+            name="intent"
+            value="createCash"
+            size="xs"
+            variant="light"
+            color="gray"
           >
             Add Account
           </Button>
