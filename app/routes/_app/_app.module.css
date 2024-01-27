@@ -1,16 +1,62 @@
-.outlet {
-  background-color: #F8F9FA;
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); /* This gives 6 columns and 6 rows*/
-  grid-template-rows: repeat(4, 180px);
-  grid-gap: 10px;
+.app {
+  height: 100%;
+  width: 100%;
 }
 
-.navbar {
-  padding: 15px;
-  z-index: 1;
-  box-shadow: 10px 0 10px -10px rgba(0, 0, 0, 0.1);
+.light {
+  background-color: var(--mantine-color-white);
 }
+
+.dark {
+  background-color: var(--mantine-color-dark-9);
+}
+
+.sidebar {
+  width: 300px;
+  padding: 20px;
+}
+
+.light .sidebar {
+  background-color: var(--mantine-color-gray-0);
+}
+
+.dark .sidebar {
+  background-color: var(--mantine-color-dark-8);
+}
+
+.content {
+  width: 100%;
+  padding: 20px 50px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

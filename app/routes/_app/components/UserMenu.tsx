@@ -1,4 +1,13 @@
-import { Flex, Menu, ThemeIcon } from "@mantine/core"
+import {
+  Avatar,
+  Flex,
+  Menu,
+  Stack,
+  Text,
+  ThemeIcon,
+  Title,
+  useMantineColorScheme,
+} from "@mantine/core"
 import styles from "../_app.module.css"
 import {
   RiArrowRightSLine,
@@ -9,18 +18,25 @@ import {
 } from "react-icons/ri/index.js"
 import { useState } from "react"
 import { Link } from "@remix-run/react"
+import useUser from "~/utils/hooks/useUser"
 
-interface UserMenuProps {
-  children: React.ReactNode
-}
-
-export default function UserMenu({ children }: UserMenuProps) {
+export default function UserMenu() {
+  const { user } = useUser()
+  const { setColorScheme, colorScheme } = useMantineColorScheme()
   const [opened, setOpened] = useState(false)
   return (
     <Menu opened={opened} onChange={setOpened} position="bottom-end" withArrow>
       <Menu.Target>
         <Flex align={"center"} className={styles.target}>
-          {children}
+          <Avatar mr={10} />
+          <Stack gap={0}>
+            <Title mb={-5} order={5}>
+              {user.name}
+            </Title>
+            <Text c={"gray"} size="xs">
+              {user.email}
+            </Text>
+          </Stack>
           <ThemeIcon color="gray" variant="white" size={"md"}>
             {opened ? (
               <RiArrowDownSLine
@@ -56,7 +72,14 @@ export default function UserMenu({ children }: UserMenuProps) {
           Help
         </Menu.Item>
         <Menu.Divider />
-        <Menu.Item disabled>Dark Mode (Coming Soon)</Menu.Item>
+        <Menu.Item
+          //disabled
+          onClick={() =>
+            setColorScheme(colorScheme === "light" ? "dark" : "light")
+          }
+        >
+          Set {colorScheme === "light" ? "Dark" : "Light"} Mode (Coming Soon)
+        </Menu.Item>
         <Menu.Divider />
         <Menu.Item
           color="blue"
