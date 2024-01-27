@@ -1,4 +1,4 @@
-import { ThemeIcon } from "@mantine/core"
+import { Text, ThemeIcon } from "@mantine/core"
 import { Link, useLocation } from "@remix-run/react"
 import styles from "../_app.module.css"
 import { cloneElement } from "react"
@@ -9,7 +9,7 @@ interface NavLinkProps {
   to: string
   premium?: boolean
 }
-
+//TODO: Add text option
 export default function NavLink({
   children,
   icon,
@@ -35,7 +35,7 @@ export default function NavLink({
           style: { height: "80%", width: "80%" },
         })}
       </ThemeIcon>
-      {children}
+      <Text className={styles.navText}>{children}</Text>
     </Link>
   )
 }

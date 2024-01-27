@@ -39,9 +39,17 @@
   border-radius: 8px;
 }
 
+/* .link .navText {
+  display: none;
+} */
+
 .light .link:hover {
   text-decoration: none;
   background-color: var(--mantine-color-gray-2);
+}
+
+.light .link:hover .navText {
+  display: block;
 }
 
 .light .link.active {

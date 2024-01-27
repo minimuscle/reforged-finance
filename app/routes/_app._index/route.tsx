@@ -1,7 +1,9 @@
 import type { MetaFunction } from "@remix-run/node"
-import AssetDistribution from "~/components/widgets/charts/AssetDistribution"
-import Tile from "~/components/Tile"
-import { useRouteError } from "@remix-run/react"
+import { isRouteErrorResponse, useRouteError } from "@remix-run/react"
+import { Title } from "@mantine/core"
+import NetWorthContainer from "./components/NetWorthContainer"
+import styles from "./_index.module.css"
+import DataDefer from "~/components/DataDefer"
 
 export const meta: MetaFunction = () => {
   return [{ title: "Dashboard | Wealthfire" }]
@@ -9,23 +11,36 @@ export const meta: MetaFunction = () => {
 
 export const ErrorBoundary = () => {
   const error = useRouteError()
-  return (
-    <div>
-      <h1>Dashboard</h1>
-      <p>{error.status}</p>
-      <p>{error.message}</p>
-    </div>
-  )
+  if (isRouteErrorResponse(error)) {
+    return (
+      <div>
+        <h1>
+          {error.status} {error.statusText}
+        </h1>
+        <p>{error.data}</p>
+      </div>
+    )
+  } else if (error instanceof Error) {
+    return (
+      <div>
+        <h1>Error</h1>
+        <p>{error.message}</p>
+        <p>The stack trace is:</p>
+        <pre>{error.stack}</pre>
+      </div>
+    )
+  } else {
+    return <h1>Unknown Error</h1>
+  }
 }
 
 export default function Index() {
   return (
     <>
-      <Tile rows={2} cols={2}>
-        <AssetDistribution />
-      </Tile>
-      <Tile>2</Tile>
-      <Tile>3</Tile>
+      <Title className={styles.title}>Dashboard</Title>
+      <DataDefer>
+        <NetWorthContainer />
+      </DataDefer>
     </>
   )
 }
