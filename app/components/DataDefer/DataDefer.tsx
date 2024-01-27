@@ -17,9 +17,10 @@ const DataDefer = ({
   //and saves importing outletContext in the route file
 
   const outletData = useOutletContext()
-  //first check if outletData is there, if not, throw an error
-  if (!outletData) throw new Error("No data supplied or found in outlet")
-  if (!data) data = outletData
+  if (!data) {
+    if (!outletData) throw new Error("No data supplied or found in outlet")
+    data = outletData
+  }
 
   //Check if fallback is supplied, if not, use a default fallback
   if (!fallback) fallback = <div>Loading...</div>
