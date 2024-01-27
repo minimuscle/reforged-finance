@@ -38,4 +38,7 @@ export type history = {
 
 export type OutletContext = {
   user: userProfile
+  cash: CashProps[]
+  history: history[]
+  [key: string]: any
 }

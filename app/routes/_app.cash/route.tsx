@@ -2,6 +2,8 @@ import BankAccounts from "~/components/widgets/BankAccounts"
 import Tile from "~/components/Tile"
 import { ActionFunctionArgs } from "@remix-run/node"
 import { createCash, deleteCash, updateCash } from "~/utils/supabase"
+import DataDefer from "~/components/DataDefer"
+import { useOutletContext } from "@remix-run/react"
 
 export const action = async ({ request }: ActionFunctionArgs) => {
   const formData = await request.formData()
@@ -23,10 +25,13 @@ export const action = async ({ request }: ActionFunctionArgs) => {
 }
 
 export default function Cash() {
+  const data = useOutletContext()
   return (
     <>
       <Tile rows={4} cols={3}>
-        <BankAccounts />
+        <DataDefer data={data}>
+          <BankAccounts />
+        </DataDefer>
       </Tile>
     </>
   )
