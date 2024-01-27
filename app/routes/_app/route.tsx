@@ -1,11 +1,12 @@
 import { Outlet, useLoaderData } from "@remix-run/react"
 import Sidebar from "./components/Sidebar"
-//import Header from "./components/Header"
 import { LoaderFunctionArgs, redirect, defer } from "@remix-run/node"
 import { supabaseCreate } from "~/utils/supabase"
 import styles from "./_app.module.css"
 import { AppShell, Burger } from "@mantine/core"
 import { useDisclosure } from "@mantine/hooks"
+import DataDefer from "~/components/DataDefer"
+import Header from "./components/Header"
 
 export const loader = async ({ request }: LoaderFunctionArgs) => {
   const supabase = supabaseCreate(request)
@@ -55,7 +56,9 @@ export default function Index() {
     >
       <AppShell.Header className={styles.header}>
         <Burger opened={opened} onClick={toggle} hiddenFrom="sm" size="sm" />
-        {/* <Header /> */}
+        <DataDefer data={data}>
+          <Header />
+        </DataDefer>
       </AppShell.Header>
       <AppShell.Navbar className={styles.navbar}>
         <Sidebar />
