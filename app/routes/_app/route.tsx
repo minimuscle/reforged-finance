@@ -3,10 +3,8 @@ import Sidebar from "./components/Sidebar"
 import { LoaderFunctionArgs, redirect, defer } from "@remix-run/node"
 import { supabaseCreate } from "~/utils/supabase"
 import styles from "./_app.module.css"
-import { AppShell, Burger } from "@mantine/core"
-import { useDisclosure } from "@mantine/hooks"
-import DataDefer from "~/components/DataDefer"
-import Header from "./components/Header"
+import { Box, Flex, useMantineColorScheme } from "@mantine/core"
+//import { useDisclosure } from "@mantine/hooks"
 
 export const loader = async ({ request }: LoaderFunctionArgs) => {
   const supabase = supabaseCreate(request)
@@ -23,49 +21,46 @@ export const loader = async ({ request }: LoaderFunctionArgs) => {
     supabase.from("budget").select("*"),
     //new Promise((resolve) => setTimeout(resolve, 2000)),
   ])
-  //if (!user) throw redirect("/setup")
 
   return defer({ data })
-  //return { history, cash, budget }
 }
-
-export const action = async () => {
-  return null
-  //return redirect("/login")
-}
-
-/**
- * This is the main layout of the application
- * It should contain the sidebar, header, footer, etc.
- * It should also contain the <Outlet /> component
- *
- */
-
 export default function Index() {
   const data = useLoaderData<typeof loader>()
-  const [opened, { toggle }] = useDisclosure()
+  const { colorScheme } = useMantineColorScheme()
+  //const [opened, { toggle }] = useDisclosure()
   return (
-    <AppShell
-      header={{ height: 60 }}
-      navbar={{
-        width: 250,
-        breakpoint: "sm",
-        collapsed: { mobile: !opened },
-      }}
-      padding="md"
+    <Flex
+      className={`${styles.app} ${
+        colorScheme === "light" ? styles.light : styles.dark
+      }`}
     >
-      <AppShell.Header className={styles.header}>
-        <Burger opened={opened} onClick={toggle} hiddenFrom="sm" size="sm" />
-        <DataDefer data={data}>
-          <Header />
-        </DataDefer>
-      </AppShell.Header>
-      <AppShell.Navbar className={styles.navbar}>
-        <Sidebar />
-      </AppShell.Navbar>
-      <AppShell.Main className={styles.outlet}>
+      <Box className={styles.sidebar}>
+        <Sidebar data={data} />
+      </Box>
+      <Box className={styles.content}>
         <Outlet context={data} />
-      </AppShell.Main>
-    </AppShell>
+      </Box>
+    </Flex>
   )
+
+  // <AppShell
+  //   header={{ height: 60 }}
+  //   navbar={{
+  //     width: 250,
+  //     breakpoint: "sm",
+  //     collapsed: { mobile: !opened },
+  //   }}
+  //   padding="md"
+  // >
+  //   <AppShell.Header className={styles.header}>
+  //     <Burger opened={opened} onClick={toggle} hiddenFrom="sm" size="sm" />
+  //     <Header />
+  //   </AppShell.Header>
+  //   <AppShell.Navbar className={styles.navbar}>
+  //     <Sidebar data={data} />
+  //   </AppShell.Navbar>
+  //   <AppShell.Main className={styles.outlet}>
+  //     <Outlet context={data} />
+  //   </AppShell.Main>
+  // </AppShell>
 }
