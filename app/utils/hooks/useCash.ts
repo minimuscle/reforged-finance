@@ -1,9 +1,11 @@
-import { useFetchers, useOutletContext } from "@remix-run/react";
-import { CashProps } from "../types";
-import { formatter } from "../utils";
+import { useFetchers } from "@remix-run/react"
+import { CashProps } from "../types"
+import { formatter } from "../utils"
+import { useContext } from "react"
+import { DataContext } from "../contexts/DataContext"
 
 export default function useCash() {
-  const data = useOutletContext() as any
+  const data = useContext(DataContext) as any
   const cash: CashProps[] = data.cash || {}
 
   let cashTotal =
@@ -14,29 +16,30 @@ export default function useCash() {
       .toFixed(2) || 0
   cashTotal = formatter("AUD", cashTotal)
 
-
   const fetchers = useFetchers()
-  const createCash = fetchers.filter((fetcher) => {
-    if (!fetcher.formData) return false
-    return fetcher.formData.get("intent") === "createCash"
-  }).map((fetcher) => {
-    return {
-      id: String(fetcher.formData?.get("id")),
-      name: "New Account",
-      currency: "AUD",
-      balance: 0,
-      colour: "var(--mantine-color-gray-3)",
-      created_at: String(new Date()),
-      user_id: "1",
-      pending: true,
-    }
-  })
+  const createCash = fetchers
+    .filter((fetcher) => {
+      if (!fetcher.formData) return false
+      return fetcher.formData.get("intent") === "createCash"
+    })
+    .map((fetcher) => {
+      return {
+        id: String(fetcher.formData?.get("id")),
+        name: "New Account",
+        currency: "AUD",
+        balance: 0,
+        colour: "var(--mantine-color-gray-3)",
+        created_at: String(new Date()),
+        user_id: "1",
+        pending: true,
+      }
+    })
 
-  createCash.forEach(account => {
+  createCash.forEach((account) => {
     const exists = cash.find((item) => item.id === account.id)
     console.log("exists: ", exists)
     if (!exists) {
-        cash.push({
+      cash.push({
         id: account.id,
         name: "New Account",
         currency: "AUD",
@@ -48,26 +51,27 @@ export default function useCash() {
         pending: true,
       })
     }
-  });
-
-  const updateCash = fetchers.filter((fetcher) => {
-    if (!fetcher.formData) return false
-    return fetcher.formData.get("intent") === "updateCash"
-  }
-  ).map((fetcher): CashProps => {
-    return {
-      id: String(fetcher.formData?.get("id")),
-      created_at: String(fetcher.formData?.get("created_at")),
-      user_id: String(fetcher.formData?.get("user_id")),
-      name: String(fetcher.formData?.get("name")),
-      currency: String(fetcher.formData?.get("currency")),
-      balance: Number(fetcher.formData?.get("balance")),
-      weight: Number(fetcher.formData?.get("weight")),
-      colour: String(fetcher.formData?.get("colour")),
-    }
   })
 
-  cash.forEach(account => {
+  const updateCash = fetchers
+    .filter((fetcher) => {
+      if (!fetcher.formData) return false
+      return fetcher.formData.get("intent") === "updateCash"
+    })
+    .map((fetcher): CashProps => {
+      return {
+        id: String(fetcher.formData?.get("id")),
+        created_at: String(fetcher.formData?.get("created_at")),
+        user_id: String(fetcher.formData?.get("user_id")),
+        name: String(fetcher.formData?.get("name")),
+        currency: String(fetcher.formData?.get("currency")),
+        balance: Number(fetcher.formData?.get("balance")),
+        weight: Number(fetcher.formData?.get("weight")),
+        colour: String(fetcher.formData?.get("colour")),
+      }
+    })
+
+  cash.forEach((account) => {
     //update each account with the updateCash only if the value inside updateCash is not null
     const exists = updateCash.find((item) => item.id === account.id)
     if (exists) {
@@ -82,17 +86,18 @@ export default function useCash() {
     return a.weight - b.weight
   })
 
-  const deleteCash = fetchers.filter((fetcher) => {
-    if (!fetcher.formData) return false
-    return fetcher.formData.get("intent") === "deleteCash"
-  }
-  ).map((fetcher) => {
-    return {
-      id: String(fetcher.formData?.get("id")),
-    }
-  })
+  const deleteCash = fetchers
+    .filter((fetcher) => {
+      if (!fetcher.formData) return false
+      return fetcher.formData.get("intent") === "deleteCash"
+    })
+    .map((fetcher) => {
+      return {
+        id: String(fetcher.formData?.get("id")),
+      }
+    })
 
-  cash.forEach(account => {
+  cash.forEach((account) => {
     const exists = deleteCash.find((item) => item.id === account.id)
     if (exists) {
       const index = cash.indexOf(account)
@@ -102,4 +107,3 @@ export default function useCash() {
 
   return { cash, cashTotal }
 }
-

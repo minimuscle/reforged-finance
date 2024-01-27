@@ -22,7 +22,6 @@ module.exports = {
 
   // Base config
   extends: ["eslint:recommended"],
-
   overrides: [
     // React
     {
@@ -67,6 +66,9 @@ module.exports = {
         "plugin:import/recommended",
         "plugin:import/typescript",
       ],
+      rules: {
+        '@typescript-eslint/no-explicit-any': 'off', // Turn off 'no-explicit-any' rule
+      },
     },
 
     // Node
