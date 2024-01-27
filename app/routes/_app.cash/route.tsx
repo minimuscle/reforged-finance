@@ -3,6 +3,7 @@ import Tile from "~/components/Tile"
 import { ActionFunctionArgs } from "@remix-run/node"
 import { createCash, deleteCash, updateCash } from "~/utils/supabase"
 import DataDefer from "~/components/DataDefer"
+import { isRouteErrorResponse, useRouteError } from "@remix-run/react"
 
 export const action = async ({ request }: ActionFunctionArgs) => {
   const formData = await request.formData()
@@ -21,6 +22,31 @@ export const action = async ({ request }: ActionFunctionArgs) => {
       break
   }
   return null
+}
+
+export const ErrorBoundary = () => {
+  const error = useRouteError()
+  if (isRouteErrorResponse(error)) {
+    return (
+      <div>
+        <h1>
+          {error.status} {error.statusText}
+        </h1>
+        <p>{error.data}</p>
+      </div>
+    )
+  } else if (error instanceof Error) {
+    return (
+      <div>
+        <h1>Error</h1>
+        <p>{error.message}</p>
+        <p>The stack trace is:</p>
+        <pre>{error.stack}</pre>
+      </div>
+    )
+  } else {
+    return <h1>Unknown Error</h1>
+  }
 }
 
 export default function Cash() {
