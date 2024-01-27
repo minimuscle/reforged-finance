@@ -1,0 +1,14 @@
+.title {
+  margin-bottom: 20px;
+}
+
+.netWorthContainer {
+  width: 50%;
+  border: var(--mantine-color-gray-2) 2px solid;
+  border-radius: 8px;
+  padding: 10px;
+}
+
+.heading {
+  justify-content: space-between;
+}

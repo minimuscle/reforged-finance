@@ -34,6 +34,7 @@ export type history = {
   super: number
   debts: number
   income: number
+  netWorth?: number
 }
 
 export type budgetProps = {

@@ -74,6 +74,7 @@ export default function Premium() {
           price={5}
         >
           <List>
+            <List.Item>Dark Mode</List.Item>
             <List.Item>Detailed Budgeting System</List.Item>
             <List.Item>Export Overview as PDF</List.Item>
             <List.Item>Export History Details</List.Item>
