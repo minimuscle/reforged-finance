@@ -1,0 +1,16 @@
+.cashContainer {
+  justify-content: flex-start;
+  height: 100%;
+}
+
+.sidebar {
+  width: 300px;
+  height: 100%;
+  padding: 20px;
+  background-color: var(--mantine-color-gray-1); 
+}
+
+.content {
+  flex-grow: 1;
+  padding: 20px 50px;
+}

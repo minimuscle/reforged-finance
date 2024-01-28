@@ -94,7 +94,7 @@ const NetWorth = ({ filter }: { filter: string }) => {
   const highestNetWorth =
     Math.round((getHighestNetWorth(historyData) * 1.5) / 1000) * 1000
 
-  //TODO: Change this to an area chart with the negative red and positive green
+  //TODO: Change this to an area chart with the negative red and positive green from Mantine
   return (
     <LineChart
       className="mt-6"
