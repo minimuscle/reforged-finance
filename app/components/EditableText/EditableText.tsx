@@ -39,9 +39,9 @@ const EditableText = ({
   }
 
   return edit ? (
-    <fetcher.Form method='POST'>
-      <input type='hidden' name='intent' value='updateCash' />
-      <input type='hidden' name='id' value={id} />
+    <fetcher.Form method="POST">
+      <input type="hidden" name="intent" value="updateCash" />
+      <input type="hidden" name="id" value={id} />
       <IMaskInput
         // eslint-disable-next-line jsx-a11y/no-autofocus
         autoFocus
@@ -67,9 +67,7 @@ const EditableText = ({
         placeholder={value ? value.toString() : ""}
         defaultValue={value}
         value={value.toString()}
-        className={`${styles.input} ${
-          inputClassName ? styles[inputClassName] : ""
-        }`}
+        className={`${styles.input} ${inputClassName ? inputClassName : ""}`}
         onBlur={(event) => {
           if (
             !/^\s*$/.test(event.target.value) &&

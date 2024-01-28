@@ -1,5 +1,4 @@
 import BankAccounts from "~/components/widgets/BankAccounts"
-import Tile from "~/components/Tile"
 import { ActionFunctionArgs } from "@remix-run/node"
 import { createCash, deleteCash, updateCash } from "~/utils/supabase"
 import DataDefer from "~/components/DataDefer"
@@ -56,7 +55,9 @@ export default function Cash() {
   return (
     <Group className={styles.cashContainer} gap={0}>
       <Box className={styles.sidebar}>
-        <Sidebar />
+        <DataDefer>
+          <Sidebar />
+        </DataDefer>
       </Box>
       <Box className={styles.content}>
         <DataDefer>
