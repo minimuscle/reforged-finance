@@ -8,7 +8,7 @@ const DataDefer = ({
   fallback,
   data,
 }: {
-  children: ReactElement
+  children: ReactElement[] | ReactElement
   fallback?: ReactElement
   data?: any
 }) => {
