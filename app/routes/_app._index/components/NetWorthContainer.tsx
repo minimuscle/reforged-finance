@@ -21,23 +21,26 @@ const NetWorthContainer = () => {
 
   return (
     <Paper className={styles.netWorthContainer}>
-      <Title size={"sm"}>Total Net Worth</Title>
+      <Group className={styles.header}>
+        <Title size={"sm"}>Total Net Worth</Title>
+        <Badge
+          leftSection={
+            change > 0 ? (
+              <MdKeyboardDoubleArrowUp />
+            ) : (
+              <MdKeyboardDoubleArrowDown />
+            )
+          }
+          radius="md"
+          color={change > 0 ? "teal" : "red"}
+          size="lg"
+          variant="light"
+        >
+          {formatter("AUD", change)} ({changePercent})
+        </Badge>
+      </Group>
+
       <Title>{formatter("AUD", netWorth)}</Title>
-      <Badge
-        leftSection={
-          change > 0 ? (
-            <MdKeyboardDoubleArrowUp />
-          ) : (
-            <MdKeyboardDoubleArrowDown />
-          )
-        }
-        radius="md"
-        color={change > 0 ? "teal" : "red"}
-        size="lg"
-        variant="light"
-      >
-        {formatter("AUD", change)} ({changePercent})
-      </Badge>
       <Group className={styles.filters}>
         <Space />
         <ChartFilters active={active} setActive={setActive} />

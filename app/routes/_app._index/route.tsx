@@ -44,6 +44,9 @@ export default function Index() {
           <NetWorthContainer />
           <AssetsContainer />
         </Group>
+        <Group>
+          <p>Hi</p>
+        </Group>
       </DataDefer>
     </>
   )

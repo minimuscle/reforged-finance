@@ -16,6 +16,7 @@ export default function AssetDistribution() {
       data={chartData}
       category="value"
       index="label"
+      showAnimation
       //valueFormatter={valueFormatter}
       colors={["slate", "violet", "indigo", "rose", "cyan", "amber"]}
     />
