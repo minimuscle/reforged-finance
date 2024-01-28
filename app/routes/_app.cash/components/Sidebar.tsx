@@ -1,10 +1,13 @@
 import { Title } from "@mantine/core"
 import BankAccounts from "./BankAccounts"
+import styles from "../cash.module.css"
 
 const Sidebar = () => {
   return (
     <>
-      <Title size={"h2"}>Bank Accounts</Title>
+      <Title className={styles.header} size={"h2"}>
+        Bank Accounts
+      </Title>
       <BankAccounts />
     </>
   )

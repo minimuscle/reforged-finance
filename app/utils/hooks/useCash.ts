@@ -1,6 +1,5 @@
 import { useFetchers } from "@remix-run/react"
 import { CashProps } from "../types"
-import { formatter } from "../utils"
 import { useContext } from "react"
 import { DataContext } from "../contexts/DataContext"
 
@@ -8,13 +7,12 @@ export default function useCash() {
   const data = useContext(DataContext) as any
   const cash: CashProps[] = data.cash
 
-  let cashTotal =
+  const cashTotal =
     data.cash
       .reduce((acc: number, curr: CashProps) => {
         return acc + curr.balance
       }, 0)
       .toFixed(2) || 0
-  cashTotal = formatter("AUD", cashTotal)
 
   const fetchers = useFetchers()
   const createCash = fetchers

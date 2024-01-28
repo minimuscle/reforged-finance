@@ -7,10 +7,36 @@
   width: 300px;
   height: 100%;
   padding: 20px;
-  background-color: var(--mantine-color-gray-1); 
+  background-color: var(--mantine-color-gray-1);
 }
 
 .content {
   flex-grow: 1;
   padding: 20px 50px;
+}
+
+.accountContainer {
+  background-color: var(--mantine-color-gray-0);
+  width: 100%;
+  border: 1px solid var(--mantine-color-gray-3);
+  border-radius: 10px;
+  justify-content: space-between;
+  padding: 5px 15px;
+  margin-bottom: 10px;
+}
+
+.rightStack {
+  align-items: flex-end;
+}
+
+.leftStack {
+  width: 60%;
+}
+
+.header {
+  margin-bottom: 20px;
+}
+
+.editableText {
+  width: 10%;
 }
