@@ -1,6 +1,6 @@
 import type { MetaFunction } from "@remix-run/node"
 import { isRouteErrorResponse, useRouteError } from "@remix-run/react"
-import { Group, Title } from "@mantine/core"
+import { Box, Group, Title } from "@mantine/core"
 import NetWorthContainer from "./components/NetWorthContainer"
 import styles from "./_index.module.css"
 import DataDefer from "~/components/DataDefer"
@@ -37,7 +37,7 @@ export const ErrorBoundary = () => {
 
 export default function Index() {
   return (
-    <>
+    <Box className={styles.container}>
       <Title className={styles.title}>Dashboard</Title>
       <DataDefer>
         <Group gap={0}>
@@ -48,6 +48,6 @@ export default function Index() {
           <p>Hi</p>
         </Group>
       </DataDefer>
-    </>
+    </Box>
   )
 }

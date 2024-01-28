@@ -4,6 +4,9 @@ import { ActionFunctionArgs } from "@remix-run/node"
 import { createCash, deleteCash, updateCash } from "~/utils/supabase"
 import DataDefer from "~/components/DataDefer"
 import { isRouteErrorResponse, useRouteError } from "@remix-run/react"
+import { Box, Group } from "@mantine/core"
+import Sidebar from "./components/Sidebar"
+import styles from "./cash.module.css"
 
 export const action = async ({ request }: ActionFunctionArgs) => {
   const formData = await request.formData()
@@ -51,12 +54,15 @@ export const ErrorBoundary = () => {
 
 export default function Cash() {
   return (
-    <>
-      <Tile rows={4} cols={3}>
+    <Group className={styles.cashContainer} gap={0}>
+      <Box className={styles.sidebar}>
+        <Sidebar />
+      </Box>
+      <Box className={styles.content}>
         <DataDefer>
           <BankAccounts />
         </DataDefer>
-      </Tile>
-    </>
+      </Box>
+    </Group>
   )
 }
