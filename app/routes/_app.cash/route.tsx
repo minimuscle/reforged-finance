@@ -59,11 +59,7 @@ export default function Cash() {
           <Sidebar />
         </DataDefer>
       </Box>
-      <Box className={styles.content}>
-        <DataDefer>
-          <BankAccounts />
-        </DataDefer>
-      </Box>
+      <Box className={styles.content}></Box>
     </Group>
   )
 }
