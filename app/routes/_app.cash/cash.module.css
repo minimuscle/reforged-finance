@@ -4,7 +4,7 @@
 }
 
 .sidebar {
-  width: 300px;
+  width: 350px;
   height: 100%;
   padding: 20px;
   background-color: var(--mantine-color-gray-1);
@@ -25,6 +25,11 @@
   margin-bottom: 10px;
 }
 
+.maxSpace {
+  width: 80%;
+  justify-content: space-between;
+}
+
 .rightStack {
   width: 40%;
   align-items: flex-end;
@@ -36,6 +41,12 @@
 
 .header {
   margin-bottom: 20px;
+}
+
+.badge {
+  margin-bottom: 20px;
+  justify-content: space-between;
+  width: 100%;
 }
 
 .editableText {
