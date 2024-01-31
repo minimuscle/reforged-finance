@@ -26,6 +26,7 @@
 }
 
 .rightStack {
+  width: 40%;
   align-items: flex-end;
 }
 
