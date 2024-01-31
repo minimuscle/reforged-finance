@@ -37,7 +37,7 @@ const EditableText = ({
       value = String(fetcher.formData.get(fieldName))
     }
   }
-
+  //TODO: Fix the IMaskInput use formatter not a custom component
   return edit ? (
     <fetcher.Form method="POST">
       <input type="hidden" name="intent" value="updateCash" />

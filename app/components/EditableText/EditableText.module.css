@@ -12,13 +12,15 @@
 .input {
   border: none;
   width: 100%;
-  padding: 0px 5px;
   border-radius: 5px;
   border: 1px solid var(--mantine-color-gray-3);
-  margin: -3px 0 -50px -6px;
   z-index: -1;
 }
 
 .input:focus {
   outline: none;
+}
+
+.currency {
+  width: 10%;
 }

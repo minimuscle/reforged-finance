@@ -23,13 +23,13 @@ const BankAccounts = () => {
             style={{ borderLeft: `solid ${account.colour} 5px` }}
             className={styles.accountContainer}
             key={key}
+            gap={0}
           >
             <Stack className={styles.leftStack} gap={0}>
               <EditableText
                 value={account.name}
                 id={account.id}
                 fieldName="name"
-                //inputClassName={styles.editableText}
               />
               {/* <Text size={"lg"}></Text> */}
               <Text size="sm" c={"gray"}>
@@ -37,9 +37,14 @@ const BankAccounts = () => {
               </Text>
             </Stack>
             <Stack className={styles.rightStack} gap={0}>
-              <Text fw={700} size="md">
-                {formatter(account.currency, account.balance)}
-              </Text>
+              <EditableText
+                value={formatter(account.currency, account.balance)}
+                id={account.id}
+                fieldName="balance"
+                inputClassName={styles.balanceInput}
+                type="currency"
+              />
+              <Text fw={700} size="md"></Text>
               <Text size="sm" c={"gray"}>
                 {cashPercentage[key]}
               </Text>
