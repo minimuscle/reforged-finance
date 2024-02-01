@@ -27,7 +27,7 @@ export default function Sidebar({ data }: { data: any }) {
     <Flex h={"100%"} direction={"column"} gap={"md"}>
       <Group>
         <Image h={"auto"} w={"25px"} src={Logo} />
-        <Title size={"h3"}>WealthFire</Title>
+        <Title size={"h3"}>Reforge Finance</Title>
       </Group>
       <NavLink to="/" icon={<RxDashboard />}>
         Dashboard
