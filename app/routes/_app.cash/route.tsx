@@ -1,4 +1,3 @@
-import BankAccounts from "~/components/widgets/BankAccounts"
 import { ActionFunctionArgs } from "@remix-run/node"
 import { createCash, deleteCash, updateCash } from "~/utils/supabase"
 import DataDefer from "~/components/DataDefer"

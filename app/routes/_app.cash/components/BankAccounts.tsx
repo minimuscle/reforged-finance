@@ -1,12 +1,4 @@
-import {
-  ActionIcon,
-  Button,
-  Flex,
-  Group,
-  Popover,
-  Stack,
-  Text,
-} from "@mantine/core"
+import { ActionIcon, Button, Group, Popover, Stack, Text } from "@mantine/core"
 import { useMemo } from "react"
 import useCash from "~/utils/hooks/useCash"
 import { formatter } from "~/utils/utils"
@@ -69,16 +61,15 @@ const BankAccounts = () => {
             </Group>
             <Popover position="top" shadow="md">
               <Popover.Target>
-                <Flex justify={"right"} align={"center"}>
-                  <ActionIcon
-                    disabled={account.pending}
-                    variant="subtle"
-                    color="gray"
-                    aria-label="Settings"
-                  >
-                    <RiMore2Line />
-                  </ActionIcon>
-                </Flex>
+                <ActionIcon
+                  className={styles.actionBtn}
+                  disabled={account.pending}
+                  variant="subtle"
+                  color="gray"
+                  aria-label="Settings"
+                >
+                  <RiMore2Line />
+                </ActionIcon>
               </Popover.Target>
               <Popover.Dropdown p={0}>
                 <Button.Group orientation="vertical">

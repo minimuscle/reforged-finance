@@ -26,8 +26,12 @@
 }
 
 .maxSpace {
-  width: 80%;
+  width: 90%;
   justify-content: space-between;
+}
+
+.actionBtn {
+  margin: 0 -10px 0 -10px;
 }
 
 .rightStack {
