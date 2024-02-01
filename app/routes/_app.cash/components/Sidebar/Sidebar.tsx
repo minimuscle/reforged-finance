@@ -1,6 +1,6 @@
 import { Badge, Button, Group, Text, Title } from "@mantine/core"
 import BankAccounts from "./BankAccounts"
-import styles from "../cash.module.css"
+import styles from "../../cash.module.css"
 import { useFetcher } from "@remix-run/react"
 import { FaPlus } from "react-icons/fa/index.js"
 import useCash from "~/utils/hooks/useCash"

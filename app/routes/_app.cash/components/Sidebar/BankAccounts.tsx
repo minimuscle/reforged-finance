@@ -2,7 +2,7 @@ import { ActionIcon, Button, Group, Popover, Stack, Text } from "@mantine/core"
 import { useMemo } from "react"
 import useCash from "~/utils/hooks/useCash"
 import { formatter } from "~/utils/utils"
-import styles from "../cash.module.css"
+import styles from "../../cash.module.css"
 import EditableText from "~/components/EditableText"
 import {
   RiArrowRightSLine,
