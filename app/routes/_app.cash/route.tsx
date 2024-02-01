@@ -3,7 +3,7 @@ import { createCash, deleteCash, updateCash } from "~/utils/supabase"
 import DataDefer from "~/components/DataDefer"
 import { isRouteErrorResponse, useRouteError } from "@remix-run/react"
 import { Box, Group } from "@mantine/core"
-import Sidebar from "./components/Sidebar"
+import Sidebar from "./components/Sidebar/Sidebar"
 import styles from "./cash.module.css"
 
 export const action = async ({ request }: ActionFunctionArgs) => {
