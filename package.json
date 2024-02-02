@@ -16,6 +16,7 @@
     "@dnd-kit/sortable": "^8.0.0",
     "@dnd-kit/utilities": "^3.2.2",
     "@hello-pangea/dnd": "^16.5.0",
+    "@mantine/charts": "^7.5.1",
     "@mantine/core": "^7.3.2",
     "@mantine/hooks": "^7.3.2",
     "@remix-run/css-bundle": "^2.4.1",
@@ -32,6 +33,7 @@
     "react-dom": "^18.2.0",
     "react-icons": "^4.12.0",
     "react-imask": "^7.3.0",
+    "recharts": "^2.11.0",
     "uuid": "^9.0.1"
   },
   "devDependencies": {
