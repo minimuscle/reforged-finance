@@ -15,15 +15,12 @@ import { useFetcher } from "@remix-run/react"
 
 const BankAccounts = () => {
   const { cash, cashTotal } = useCash()
-  console.log(cashTotal)
   const cashPercentage = useMemo(() => {
     return cash.map((account) => {
       return ((account.balance / cashTotal) * 100).toFixed(2) + "%"
     })
   }, [cash, cashTotal])
   const fetcher = useFetcher()
-
-  console.log(cash)
   return (
     <>
       {cash.map((account, key) => {

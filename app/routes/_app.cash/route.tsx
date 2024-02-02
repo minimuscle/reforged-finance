@@ -5,6 +5,7 @@ import { isRouteErrorResponse, useRouteError } from "@remix-run/react"
 import { Box, Group } from "@mantine/core"
 import Sidebar from "./components/Sidebar/Sidebar"
 import styles from "./cash.module.css"
+import Totals from "./components/Totals"
 
 export const action = async ({ request }: ActionFunctionArgs) => {
   const formData = await request.formData()
@@ -58,7 +59,11 @@ export default function Cash() {
           <Sidebar />
         </DataDefer>
       </Box>
-      <Box className={styles.content}></Box>
+      <Box className={styles.content}>
+        <DataDefer>
+          <Totals />
+        </DataDefer>
+      </Box>
     </Group>
   )
 }
