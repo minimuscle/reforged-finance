@@ -2,10 +2,12 @@ import { ActionFunctionArgs } from "@remix-run/node"
 import { createCash, deleteCash, updateCash } from "~/utils/supabase"
 import DataDefer from "~/components/DataDefer"
 import { isRouteErrorResponse, useRouteError } from "@remix-run/react"
-import { Box, Group } from "@mantine/core"
+import { Box, Group, Stack } from "@mantine/core"
 import Sidebar from "./components/Sidebar/Sidebar"
 import styles from "./cash.module.css"
 import Totals from "./components/Totals"
+import CashHistory from "./components/CashHistory"
+import CashValueHistory from "./components/Charts/CashValueHistory"
 
 export const action = async ({ request }: ActionFunctionArgs) => {
   const formData = await request.formData()
@@ -61,7 +63,13 @@ export default function Cash() {
       </Box>
       <Box className={styles.content}>
         <DataDefer>
-          <Totals />
+          <Stack>
+            <Totals />
+            <CashHistory />
+          </Stack>
+        </DataDefer>
+        <DataDefer>
+          <CashValueHistory />
         </DataDefer>
       </Box>
     </Group>

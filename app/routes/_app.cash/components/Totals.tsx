@@ -12,8 +12,6 @@ const Totals = () => {
     predictedSavings,
   } = useHistory()
   const year = new Date().getFullYear()
-  //FIXME: Fix this
-
   return (
     <Paper className={styles.totals} shadow="md" p={10} withBorder>
       <Stack>

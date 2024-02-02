@@ -4,6 +4,8 @@
 }
 
 .sidebar {
+  position: fixed;
+  top: 0;
   width: 350px;
   height: 100%;
   padding: 20px;
@@ -11,9 +13,13 @@
 }
 
 .content {
+  margin-left: 350px;
   height: 100%;
   flex-grow: 1;
   padding: 20px 50px;
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
 }
 
 .accountContainer {
@@ -60,5 +66,10 @@
 
 .totals {
   width: 100%;
-  max-width: 400px;
+  max-width: 450px;
+}
+
+.charts {
+  flex-grow: 1;
+  min-width: 5px;
 }
