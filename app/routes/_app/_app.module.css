@@ -1,14 +1,7 @@
 .app {
   height: 100%;
   width: 100%;
-}
-
-.light {
-  background-color: var(--mantine-color-white);
-}
-
-.dark {
-  background-color: var(--mantine-color-dark-9);
+  background-color: light-dark(white,var(--mantine-color-dark-9))
 }
 
 .sidebar {
@@ -16,20 +9,13 @@
   height: 100%;
   width: 300px;
   padding: 20px;
-}
-
-.light .sidebar {
-  background-color: var(--mantine-color-gray-0);
-}
-
-.dark .sidebar {
-  background-color: var(--mantine-color-dark-8);
+  background-color: light-dark(var(--mantine-color-gray-0), var(--mantine-color-dark-8));
 }
 
 .content {
+  height: 100%;
   margin-left: 300px;
   width: 100%;
-  height: 100%;
 }
 
 .link {
@@ -42,107 +28,29 @@
   border-radius: 8px;
 }
 
-/* .link .navText {
-  display: none;
-} */
-
-.light .link:hover {
+.link:hover {
   text-decoration: none;
-  background-color: var(--mantine-color-gray-2);
+  background-color: light-dark(var(--mantine-color-gray-2), var(--mantine-color-dark-6));
 }
 
-.light .link:hover .navText {
+.link:hover .navText {
   display: block;
 }
 
-.light .link.active {
+.link.active {
   text-decoration: none;
-  background-color: var(--mantine-color-white);
-  border-right: var(--mantine-color-gray-2) 1px solid;
-  border-left: var(--mantine-color-gray-2) 1px solid;
-  border-bottom: var(--mantine-color-gray-2) 3px solid;  
+  color: light-dark(unset, var(--mantine-color-white));
+  background-color: light-dark(var(--mantine-color-white),var(--mantine-color-dark-9));
+  border-right: light-dark(var(--mantine-color-gray-2),var(--mantine-color-dark-6)) 1px solid;
+  border-left: light-dark(var(--mantine-color-gray-2),var(--mantine-color-dark-6)) 1px solid;
+  border-bottom: light-dark(var(--mantine-color-gray-2),var(--mantine-color-dark-6)) 3px solid;  
   margin: 0 -0.5px -1px -0.5px;
-}
 
-.dark .link:hover {
-  text-decoration: none;
-  background-color: var(--mantine-color-dark-6);
-}
-
-.dark .link.active {
-  text-decoration: none;
-  color: var(--mantine-color-white);
-  background-color: var(--mantine-color-dark-9);
-  border-right: var(--mantine-color-dark-6) 1px solid;
-  border-left: var(--mantine-color-dark-6) 1px solid;
-  border-bottom: var(--mantine-color-dark-6) 3px solid;  
-  margin: 0 -0.5px -1px -0.5px;
+  .icon {
+    color: light-dark(unset, var(--mantine-color-white));
+  }
 }
 
 .icon {
-  color: var(--mantine-color-black);
+  color: light-dark(var(--mantine-color-black),var(--mantine-color-text));
 }
-
-.dark .icon {
-  color: var(--mantine-color-text);
-}
-
-.dark .link.active .icon {
-  color: var(--mantine-color-white);
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-.target {
-  cursor: pointer;
-}
-
-
-.premiumLink {
-  text-decoration: none;
-  color: #fff;
-  font-weight: 600;
-  display: flex;
-  padding: 5px;
-  gap: 5px;
-  align-items: center;
-  background-color: var(--mantine-color-violet-6);
-  border-radius: 5px;
-}
-
-.premiumLink:hover {
-  text-decoration: none;
-  background-color: var(--mantine-color-violet-9);
-}
-
-.premiumLink.premiumActive {
-  text-decoration: none;
-  color: var(--mantine-color-violet-6);
-  background-color: var(--mantine-color-violet-0);
-}
-
-

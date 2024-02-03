@@ -51,7 +51,7 @@
     "eslint-plugin-react": "^7.33.2",
     "eslint-plugin-react-hooks": "^4.6.0",
     "postcss": "^8.4.32",
-    "sass": "^1.70.0",
+    "postcss-preset-mantine": "^1.13.0",
     "typescript": "^5.1.6"
   },
   "engines": {

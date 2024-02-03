@@ -3,8 +3,7 @@ import Sidebar from "./components/Sidebar"
 import { LoaderFunctionArgs, redirect, defer } from "@remix-run/node"
 import { supabaseCreate } from "~/utils/supabase"
 import styles from "./_app.module.css"
-import { Box, Flex, useMantineColorScheme } from "@mantine/core"
-//import { useDisclosure } from "@mantine/hooks"
+import { Box, Flex } from "@mantine/core"
 
 export const loader = async ({ request }: LoaderFunctionArgs) => {
   const supabase = supabaseCreate(request)
@@ -25,13 +24,8 @@ export const loader = async ({ request }: LoaderFunctionArgs) => {
 }
 export default function Index() {
   const data = useLoaderData<typeof loader>()
-  const { colorScheme } = useMantineColorScheme()
   return (
-    <Flex
-      className={`${styles.app} ${
-        colorScheme === "light" ? styles.light : styles.dark
-      }`}
-    >
+    <Flex className={styles.app}>
       <Box className={styles.sidebar}>
         <Sidebar data={data} />
       </Box>
