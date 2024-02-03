@@ -8,6 +8,8 @@ import styles from "./cash.module.css"
 import Totals from "./components/Totals"
 import CashHistory from "./components/CashHistory"
 import CashValueHistory from "./components/Charts/CashValueHistory"
+import SavingsHistory from "./components/Charts/SavingsHistory"
+import SavingsRate from "./components/Charts/SavingsRate"
 
 export const action = async ({ request }: ActionFunctionArgs) => {
   const formData = await request.formData()
@@ -63,13 +65,17 @@ export default function Cash() {
       </Box>
       <Box className={styles.content}>
         <DataDefer>
-          <Stack>
+          <Stack className={styles.totals}>
             <Totals />
             <CashHistory />
           </Stack>
         </DataDefer>
         <DataDefer>
-          <CashValueHistory />
+          <Stack className={styles.charts}>
+            <CashValueHistory />
+            <SavingsHistory />
+            <SavingsRate />
+          </Stack>
         </DataDefer>
       </Box>
     </Group>
