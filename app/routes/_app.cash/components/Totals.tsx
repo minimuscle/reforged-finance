@@ -1,6 +1,6 @@
 import { Badge, Paper, Stack, Table, Text, Title } from "@mantine/core"
 import { formatter } from "~/utils/utils"
-import useTotals from "./useTotals"
+import useTotals from "../hooks/useTotals"
 
 const Totals = () => {
   const {
