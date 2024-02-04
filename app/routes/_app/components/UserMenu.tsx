@@ -22,7 +22,7 @@ import useUser from "~/utils/hooks/useUser"
 
 export default function UserMenu() {
   const { user } = useUser()
-  const { setColorScheme, colorScheme } = useMantineColorScheme()
+  const { toggleColorScheme, colorScheme } = useMantineColorScheme()
   const [opened, setOpened] = useState(false)
   return (
     <Menu opened={opened} onChange={setOpened} position="bottom-end" withArrow>
@@ -74,9 +74,7 @@ export default function UserMenu() {
         <Menu.Divider />
         <Menu.Item
           //disabled
-          onClick={() =>
-            setColorScheme(colorScheme === "light" ? "dark" : "light")
-          }
+          onClick={() => toggleColorScheme()}
         >
           Set {colorScheme === "light" ? "Dark" : "Light"} Mode (Coming Soon)
         </Menu.Item>

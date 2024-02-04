@@ -1,7 +1,7 @@
 .app {
   height: 100%;
   width: 100%;
-  background-color: light-dark(unset,var(--mantine-color-dark-9))
+  background-color: light-dark(unset, var(--mantine-color-dark-9));
 }
 
 .sidebar {
@@ -9,7 +9,29 @@
   height: 100%;
   width: 300px;
   padding: 20px;
-  background-color: light-dark(var(--mantine-color-gray-0), var(--mantine-color-dark-8));
+  background-color: light-dark(
+    var(--mantine-color-gray-0),
+    var(--mantine-color-dark-8)
+  );
+  transition: width 0.3s ease-in-out;
+
+  &.collapsed {
+    width: 80px;
+
+    p {
+      display: none;
+    }
+  }
+
+  @mixin smaller-than 720px {
+    display: none;
+  }
+}
+
+.title {
+  &.collapsed {
+    display: none;
+  }
 }
 
 .content {
@@ -26,24 +48,49 @@
   gap: 5px;
   align-items: center;
   border-radius: 8px;
+  position: relative;
 }
 
 .link:hover {
   text-decoration: none;
-  background-color: light-dark(var(--mantine-color-gray-2), var(--mantine-color-dark-6));
+  background-color: light-dark(
+    var(--mantine-color-gray-2),
+    var(--mantine-color-dark-6)
+  );
 }
 
 .link:hover .navText {
   display: block;
+  left: 45px;
+  width: max-content;
+  background-color: var(--mantine-color-gray-4);
+  padding: 2px 5px;
+  border-radius: 10px;
+  position: absolute;
 }
 
 .link.active {
   text-decoration: none;
   color: light-dark(unset, var(--mantine-color-white));
-  background-color: light-dark(var(--mantine-color-white),var(--mantine-color-dark-9));
-  border-right: light-dark(var(--mantine-color-gray-2),var(--mantine-color-dark-6)) 1px solid;
-  border-left: light-dark(var(--mantine-color-gray-2),var(--mantine-color-dark-6)) 1px solid;
-  border-bottom: light-dark(var(--mantine-color-gray-2),var(--mantine-color-dark-6)) 3px solid;  
+  background-color: light-dark(
+    var(--mantine-color-white),
+    var(--mantine-color-dark-9)
+  );
+  border-right: light-dark(
+      var(--mantine-color-gray-2),
+      var(--mantine-color-dark-6)
+    )
+    1px solid;
+  border-left: light-dark(
+      var(--mantine-color-gray-2),
+      var(--mantine-color-dark-6)
+    )
+    1px solid;
+  border-bottom: light-dark(
+      var(--mantine-color-gray-2),
+      var(--mantine-color-dark-6)
+    )
+    3px solid;
   margin: 0 -0.5px -1px -0.5px;
 
   .icon {
@@ -52,5 +99,11 @@
 }
 
 .icon {
-  color: light-dark(var(--mantine-color-black),var(--mantine-color-text));
+  color: light-dark(var(--mantine-color-black), var(--mantine-color-text));
+}
+
+.chevron {
+  left: 100%;
+  top: 50%;
+  z-index: 1000;
 }

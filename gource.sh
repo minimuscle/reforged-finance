@@ -7,5 +7,5 @@ gource.txt \
 --seconds-per-day 1 \
 --file-idle-time 0 \
 --key \
---title "Wealthfire Personal Finance Development" \
+--title "Personal Finance App Development" \
 --bloom-intensity 0.35

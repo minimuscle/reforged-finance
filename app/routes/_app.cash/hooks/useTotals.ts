@@ -14,8 +14,6 @@ export default function useTotals() {
     (item) => new Date(item.date).getFullYear() == year
   ) // gets just this year
 
-  console.log(thisYear.length)
-
   const monthlyCashSavings = secondLastMonth.cash - lastMonth.cash
 
   const yearlyCashSavings =

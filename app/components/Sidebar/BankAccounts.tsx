@@ -2,7 +2,7 @@ import { ActionIcon, Button, Group, Popover, Stack, Text } from "@mantine/core"
 import { useMemo } from "react"
 import useCash from "~/utils/hooks/useCash"
 import { formatter } from "~/utils/utils"
-import styles from "../../cash.module.css"
+import classes from "./Sidebar.module.css"
 import EditableText from "~/components/EditableText"
 import {
   RiArrowRightSLine,
@@ -27,11 +27,11 @@ const BankAccounts = () => {
         return (
           <Group
             style={{ borderLeft: `solid ${account.colour} 5px` }}
-            className={styles.accountContainer}
+            className={classes.accountContainer}
             key={key}
           >
-            <Group className={styles.maxSpace} gap={0}>
-              <Stack className={styles.leftStack} gap={0}>
+            <Group className={classes.maxSpace} gap={0}>
+              <Stack className={classes.leftStack} gap={0}>
                 <EditableText
                   value={account.name}
                   id={account.id}
@@ -42,12 +42,12 @@ const BankAccounts = () => {
                   $ - {account.currency}
                 </Text>
               </Stack>
-              <Stack className={styles.rightStack} gap={0}>
+              <Stack className={classes.rightStack} gap={0}>
                 <EditableText
                   value={formatter(account.currency, account.balance)}
                   id={account.id}
                   fieldName="balance"
-                  inputClassName={styles.balanceInput}
+                  inputClassName={classes.balanceInput}
                   type="currency"
                 />
                 <Text fw={700} size="md"></Text>
@@ -59,7 +59,7 @@ const BankAccounts = () => {
             <Popover position="top" shadow="md">
               <Popover.Target>
                 <ActionIcon
-                  className={styles.actionBtn}
+                  className={classes.actionBtn}
                   disabled={account.pending}
                   variant="subtle"
                   color="gray"

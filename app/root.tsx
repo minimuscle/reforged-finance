@@ -1,5 +1,5 @@
 import { cssBundleHref } from "@remix-run/css-bundle"
-import type { LinksFunction } from "@remix-run/node"
+import { type ActionFunctionArgs, type LinksFunction } from "@remix-run/node"
 import {
   Links,
   LiveReload,
@@ -12,6 +12,7 @@ import "@mantine/core/styles.css"
 import { ColorSchemeScript, MantineProvider } from "@mantine/core"
 import { theme } from "./theme"
 import "@mantine/charts/styles.css"
+import { collapsedCookie } from "./utils/cookies.server"
 
 export const links: LinksFunction = () => [
   ...(cssBundleHref
@@ -24,6 +25,27 @@ export const links: LinksFunction = () => [
       ]
     : []),
 ]
+
+export const action = async ({ request }: ActionFunctionArgs) => {
+  //if update cookie is set, update the cookie
+  const formData = await request.formData()
+  const intent = formData.get("intent")
+  console.log(intent)
+  switch (intent) {
+    case "updateCollapsed":
+      //Create remix cookie and set it to the value of the form data
+      // eslint-disable-next-line no-case-declarations
+
+      return new Response("Cookie updated", {
+        headers: {
+          "Set-Cookie": await collapsedCookie.serialize(
+            formData.get("collapsed") as string
+          ),
+        },
+      })
+  }
+  return null
+}
 
 export default function App() {
   return (
