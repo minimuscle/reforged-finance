@@ -13,7 +13,7 @@
 }
 
 .accountContainer {
-  background-color: var(--mantine-color-gray-0);
+  background-color: var(--mantine-color-white);
   width: 100%;
   border: 1px solid var(--mantine-color-gray-3);
   border-radius: 10px;
