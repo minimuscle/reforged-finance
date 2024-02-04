@@ -1,6 +1,6 @@
 import { Box, Paper, Title } from "@mantine/core"
 import styles from "../_index.module.css"
-import AssetDistribution from "~/components/widgets/charts/AssetDistribution"
+import AssetDistribution from "./charts/AssetDistribution"
 
 const AssetsContainer = () => {
   return (

@@ -1,5 +1,5 @@
 import { Badge, Group, Paper, Space, Title } from "@mantine/core"
-import NetWorth from "~/components/widgets/charts/NetWorth"
+import NetWorth from "./charts/NetWorth"
 import styles from "../_index.module.css"
 import {
   MdKeyboardDoubleArrowDown,

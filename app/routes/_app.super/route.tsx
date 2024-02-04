@@ -3,13 +3,6 @@ import { createCash, deleteCash, updateCash } from "~/utils/supabase"
 import DataDefer from "~/components/DataDefer"
 import { isRouteErrorResponse, useRouteError } from "@remix-run/react"
 import { Box, Group, Stack } from "@mantine/core"
-import Sidebar from "./components/Sidebar/Sidebar"
-import styles from "./cash.module.css"
-import Totals from "./components/Totals"
-import CashHistory from "./components/CashHistory"
-import CashValueHistory from "./components/Charts/CashValueHistory"
-import SavingsHistory from "./components/Charts/SavingsHistory"
-import SavingsRate from "./components/Charts/SavingsRate"
 
 export const action = async ({ request }: ActionFunctionArgs) => {
   const formData = await request.formData()
@@ -56,28 +49,5 @@ export const ErrorBoundary = () => {
 }
 
 export default function Cash() {
-  return (
-    <Group className={styles.cashContainer} gap={0}>
-      <Box className={styles.sidebar}>
-        <DataDefer>
-          <Sidebar />
-        </DataDefer>
-      </Box>
-      <Box className={styles.content}>
-        <DataDefer>
-          <Stack className={styles.totals}>
-            <Totals />
-            <CashHistory />
-          </Stack>
-        </DataDefer>
-        <DataDefer>
-          <Stack className={styles.charts}>
-            <CashValueHistory />
-            <SavingsHistory />
-            <SavingsRate />
-          </Stack>
-        </DataDefer>
-      </Box>
-    </Group>
-  )
+  return <Group gap={0}></Group>
 }

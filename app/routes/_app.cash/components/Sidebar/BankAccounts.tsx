@@ -10,7 +10,7 @@ import {
   RiDropLine,
   RiMore2Line,
 } from "react-icons/ri/index.js"
-import { ColorSwatches } from "~/components/widgets/BankAccounts/ColorSwatches"
+import { ColorSwatches } from "~/components/BankAccounts/ColorSwatches"
 import { useFetcher } from "@remix-run/react"
 
 const BankAccounts = () => {

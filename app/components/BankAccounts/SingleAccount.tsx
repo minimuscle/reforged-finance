@@ -1,9 +1,7 @@
 import {
   ActionIcon,
-  Button,
   Flex,
   Paper,
-  Popover,
   Skeleton,
   Stack,
   Text,
@@ -13,15 +11,7 @@ import EditableText from "~/components/EditableText"
 import { CashProps } from "~/utils/types"
 import { formatter } from "~/utils/utils"
 import styles from "./BankAccounts.module.css"
-import {
-  RiArrowRightSLine,
-  RiDeleteBinLine,
-  RiDraggable,
-  RiDropLine,
-  RiMore2Line,
-} from "react-icons/ri/index.js"
-import { useFetcher } from "@remix-run/react"
-import { ColorSwatches } from "./ColorSwatches"
+import { RiDraggable } from "react-icons/ri/index.js"
 import { useSortable } from "@dnd-kit/sortable"
 import { CSS } from "@dnd-kit/utilities"
 
@@ -34,7 +24,6 @@ export default function SingleAccount({ account }: { account: CashProps }) {
     borderLeft: `solid ${account.colour} 5px`,
     backgroundColor: `color-mix(in srgb, ${account.colour} 10%, white)`,
   }
-  const fetcher = useFetcher()
 
   return (
     <Paper
