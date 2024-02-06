@@ -37,7 +37,7 @@ export default function Index() {
     <CollapsedContext.Provider value={isCollapsed}>
       <Flex className={styles.app}>
         <Sidebar data={data} setIsCollapsed={setIsCollapsed} />
-        <Box className={styles.content}>
+        <Box className={`${styles.content} ${isCollapsed && styles.collapsed}`}>
           <Outlet context={data} />
         </Box>
       </Flex>

@@ -15,11 +15,82 @@
   );
   transition: width 0.3s ease-in-out;
 
+  .link .navText {
+    opacity: 1;
+    transition: opacity;
+    transition-delay: 0.3s;
+  }
+
+  .link {
+    text-decoration: none;
+    color: var(--mantine-color-text);
+    display: flex;
+    padding: 5px;
+    gap: 5px;
+    align-items: center;
+    border-radius: 8px;
+    position: relative;
+  }
+
+  .link:hover {
+    text-decoration: none;
+    background-color: light-dark(
+      var(--mantine-color-gray-2),
+      var(--mantine-color-dark-6)
+    );
+  }
+
+  .link.active {
+    text-decoration: none;
+    color: light-dark(unset, var(--mantine-color-white));
+    background-color: light-dark(
+      var(--mantine-color-white),
+      var(--mantine-color-dark-9)
+    );
+    border-right: light-dark(
+        var(--mantine-color-gray-2),
+        var(--mantine-color-dark-6)
+      )
+      1px solid;
+    border-left: light-dark(
+        var(--mantine-color-gray-2),
+        var(--mantine-color-dark-6)
+      )
+      1px solid;
+    border-bottom: light-dark(
+        var(--mantine-color-gray-2),
+        var(--mantine-color-dark-6)
+      )
+      3px solid;
+    margin: 0 -0.5px -1px -0.5px;
+
+    .icon {
+      color: light-dark(unset, var(--mantine-color-white));
+    }
+  }
+
   &.collapsed {
     width: 80px;
 
-    p {
-      display: none;
+    .link:hover {
+      margin-top: 2px;
+    }
+
+    .link .navText {
+      opacity: 0;
+      height: 30px;
+      transition: opacity;
+    }
+
+    .link:hover .navText {
+      display: block;
+      opacity: 1;
+      left: 45px;
+      width: max-content;
+      background-color: var(--mantine-color-gray-4);
+      padding: 2px 5px;
+      border-radius: 10px;
+      position: absolute;
     }
   }
 
@@ -29,73 +100,31 @@
 }
 
 .title {
+  opacity: 1;
+  transition: opacity, height;
+  transition-delay: 0.3s;
+  height: 100%;
+
   &.collapsed {
-    display: none;
+    opacity: 0;
+    height: 0;
+    transition: opacity, height;
   }
 }
 
 .content {
   height: 100%;
   margin-left: 300px;
-  width: 100%;
-}
+  flex-grow: 1;
+  transition: margin-left 0.3s ease-in-out;
+  z-index: -1;
+  will-change: margin-left;
 
-.link {
-  text-decoration: none;
-  color: var(--mantine-color-text);
-  display: flex;
-  padding: 5px;
-  gap: 5px;
-  align-items: center;
-  border-radius: 8px;
-  position: relative;
-}
-
-.link:hover {
-  text-decoration: none;
-  background-color: light-dark(
-    var(--mantine-color-gray-2),
-    var(--mantine-color-dark-6)
-  );
-}
-
-.link:hover .navText {
-  display: block;
-  left: 45px;
-  width: max-content;
-  background-color: var(--mantine-color-gray-4);
-  padding: 2px 5px;
-  border-radius: 10px;
-  position: absolute;
-}
-
-.link.active {
-  text-decoration: none;
-  color: light-dark(unset, var(--mantine-color-white));
-  background-color: light-dark(
-    var(--mantine-color-white),
-    var(--mantine-color-dark-9)
-  );
-  border-right: light-dark(
-      var(--mantine-color-gray-2),
-      var(--mantine-color-dark-6)
-    )
-    1px solid;
-  border-left: light-dark(
-      var(--mantine-color-gray-2),
-      var(--mantine-color-dark-6)
-    )
-    1px solid;
-  border-bottom: light-dark(
-      var(--mantine-color-gray-2),
-      var(--mantine-color-dark-6)
-    )
-    3px solid;
-  margin: 0 -0.5px -1px -0.5px;
-
-  .icon {
-    color: light-dark(unset, var(--mantine-color-white));
+  &.collapsed {
+    margin-left: 80px;
   }
+
+  //FIXME: Something covering the on-hover
 }
 
 .icon {
@@ -103,7 +132,7 @@
 }
 
 .chevron {
-  left: 100%;
+  left: calc(100% + 5px);
   top: 50%;
   z-index: 1000;
 }
