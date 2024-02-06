@@ -1,0 +1,75 @@
+.cashContainer {
+  justify-content: flex-start;
+  height: 100%;
+}
+
+.sidebar {
+  position: fixed;
+  top: 0;
+  width: 350px;
+  height: 100%;
+  padding: 20px;
+  background-color: var(--mantine-color-gray-1);
+}
+
+.accountContainer {
+  background-color: var(--mantine-color-gray-0);
+  width: 100%;
+  border: 1px solid var(--mantine-color-gray-3);
+  border-radius: 10px;
+  justify-content: space-between;
+  padding: 5px 15px;
+  margin-bottom: 10px;
+}
+
+.maxSpace {
+  width: 90%;
+  justify-content: space-between;
+}
+
+.actionBtn {
+  margin: 0 -10px 0 -10px;
+}
+
+.rightStack {
+  width: 40%;
+  align-items: flex-end;
+}
+
+.leftStack {
+  width: 60%;
+}
+
+.header {
+  margin-bottom: 20px;
+}
+
+.badge {
+  margin-bottom: 20px;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.editableText {
+  width: 10%;
+}
+
+.content {
+  margin-left: 350px;
+  height: 100%;
+  flex-grow: 1;
+  padding: 20px 50px;
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.totals {
+  width: 100%;
+  max-width: 450px;
+}
+
+.charts {
+  flex-grow: 1;
+}

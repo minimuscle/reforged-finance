@@ -1,0 +1,23 @@
+.heading {
+  text-align: center;
+}
+
+.forgot {
+  text-align: right;
+  font-size: 14px;
+}
+
+a {
+  text-decoration: none;
+  color: var(--mantine-color-blue-6)
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+.signup {
+  margin-top: 20px;
+  text-align: left;
+  font-size: 14px;
+}
