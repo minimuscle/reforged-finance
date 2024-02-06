@@ -93,10 +93,6 @@
       position: absolute;
     }
   }
-
-  @mixin smaller-than 720px {
-    display: none;
-  }
 }
 
 .title {
@@ -131,7 +127,7 @@
 }
 
 .chevron {
-  left: calc(100% + 5px);
+  position: absolute;
+  right: -14px;
   top: 50%;
-  z-index: 1000;
 }

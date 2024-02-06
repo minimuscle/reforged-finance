@@ -41,21 +41,6 @@ export default function Sidebar({
 
   return (
     <Box className={`${classes.sidebar} ${isCollapsed && classes.collapsed}`}>
-      <ActionIcon
-        className={classes.chevron}
-        radius="xl"
-        color="gray"
-        type="submit"
-        onClick={() => {
-          setIsCollapsed(!isCollapsed)
-          fetcher.submit(
-            { intent: "updateCollapsed", collapsed: !isCollapsed },
-            { method: "POST", action: "/" }
-          )
-        }}
-      >
-        {isCollapsed ? <BsChevronRight /> : <BsChevronLeft />}
-      </ActionIcon>
       <Flex h={"100%"} direction={"column"} gap={"md"}>
         <Group>
           <Image h={"auto"} w={"25px"} src={Logo} />
@@ -102,6 +87,21 @@ export default function Sidebar({
           </Stack>
         </Flex>
       </Flex>
+      <ActionIcon
+        className={classes.chevron}
+        radius="xl"
+        color="gray"
+        type="submit"
+        onClick={() => {
+          setIsCollapsed(!isCollapsed)
+          fetcher.submit(
+            { intent: "updateCollapsed", collapsed: !isCollapsed },
+            { method: "POST", action: "/" }
+          )
+        }}
+      >
+        {isCollapsed ? <BsChevronRight /> : <BsChevronLeft />}
+      </ActionIcon>
     </Box>
   )
 }
