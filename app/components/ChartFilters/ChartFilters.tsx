@@ -10,9 +10,6 @@ const ChartFilters = ({
 }) => {
   return (
     <Group gap={0}>
-      <FilterButton name="1M" active={active} setActive={setActive}>
-        1M
-      </FilterButton>
       <FilterButton name="3M" active={active} setActive={setActive}>
         3M
       </FilterButton>
@@ -21,6 +18,9 @@ const ChartFilters = ({
       </FilterButton>
       <FilterButton name="1Y" active={active} setActive={setActive}>
         1Y
+      </FilterButton>
+      <FilterButton name="5Y" active={active} setActive={setActive}>
+        5Y
       </FilterButton>
       <FilterButton name="YTD" active={active} setActive={setActive}>
         YTD

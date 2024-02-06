@@ -19,9 +19,6 @@ const transformData = (data: history[], filter: string) => {
 
   //filter data based on filter
   switch (filter) {
-    case "1M":
-      data = data.slice(-1)
-      break
     case "3M":
       data = data.slice(-3)
       break
@@ -30,6 +27,9 @@ const transformData = (data: history[], filter: string) => {
       break
     case "1Y":
       data = data.slice(-12)
+      break
+    case "5Y":
+      data = data.slice(-60)
       break
     case "YTD":
       data = data.filter((item) => {

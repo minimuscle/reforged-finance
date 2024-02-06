@@ -63,7 +63,7 @@ export default function Cash() {
       </DataDefer>
       <Box className={styles.content}>
         <DataDefer>
-          <Stack className={styles.totals}>
+          <Stack>
             <Totals />
             <CashHistory />
           </Stack>
