@@ -5,3 +5,11 @@
 .title {
   margin-bottom: 20px;
 }
+
+.positive {
+  color: var(--mantine-color-green-6);
+}
+
+.negative {
+  color: var(--mantine-color-red-6);
+}

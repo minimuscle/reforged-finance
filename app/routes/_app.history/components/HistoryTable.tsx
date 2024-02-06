@@ -1,13 +1,13 @@
 import { Paper, Table } from "@mantine/core"
 import useHistory from "~/utils/hooks/useHistory"
 import { formatter } from "~/utils/utils"
-import styles from "../history.module.css"
+import classes from "../history.module.css"
 
 const HistoryTable = () => {
   const { history } = useHistory()
 
   return (
-    <Paper className={styles.totals} shadow="md">
+    <Paper className={classes.totals} shadow="md">
       <Table
         verticalSpacing="md"
         stickyHeader
@@ -48,18 +48,39 @@ const HistoryTable = () => {
               <Table.Tr key={key}>
                 <Table.Td>{date}</Table.Td>
                 <Table.Td>{formatter("AUD", item.cash)}</Table.Td>
-                <Table.Td>
-                  {key > 0 ? `${formatter("AUD", gain)}` : "-"} ({" "}
-                  {gain > 0 ? "+" + gainPercentage : gainPercentage}% )
+                <Table.Td
+                  className={`${
+                    gain > 0 ? classes.positive : classes.negative
+                  }`}
+                >
+                  {key > 0
+                    ? `${formatter("AUD", gain)} ( 
+                  ${gain > 0 ? "+" + gainPercentage : gainPercentage}
+                  % )`
+                    : "-"}
                 </Table.Td>
-                <Table.Td>{savingsRate}%</Table.Td>
+                <Table.Td
+                  className={`${
+                    gain > 0 ? classes.positive : classes.negative
+                  }`}
+                >
+                  {savingsRate}%
+                </Table.Td>
                 <Table.Td>{formatter("AUD", item.super)}</Table.Td>
-                <Table.Td>
-                  {key > 0 ? `${formatter("AUD", superGain)}` : "-"} ({" "}
-                  {superGain > 0
-                    ? "+" + superGainPercentage
-                    : superGainPercentage}
-                  % )
+                <Table.Td
+                  className={`${
+                    superGain > 0 ? classes.positive : classes.negative
+                  }`}
+                >
+                  {key > 0
+                    ? `${formatter("AUD", superGain)} ( 
+                  ${
+                    superGain > 0
+                      ? "+" + superGainPercentage
+                      : superGainPercentage
+                  }
+                  % )`
+                    : "-"}
                 </Table.Td>
                 <Table.Td>{formatter("AUD", item.debts)}</Table.Td>
                 <Table.Td>{formatter("AUD", item.income)}</Table.Td>

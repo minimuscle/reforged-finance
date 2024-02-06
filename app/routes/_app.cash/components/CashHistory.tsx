@@ -43,8 +43,11 @@ const CashHistory = () => {
                   <Table.Td>{date}</Table.Td>
                   <Table.Td>{formatter("AUD", item.cash)}</Table.Td>
                   <Table.Td>
-                    {key > 0 ? `${formatter("AUD", gain)}` : "-"} ({" "}
-                    {gain > 0 ? "+" + gainPercentage : gainPercentage}% )
+                    {key > 0
+                      ? `${formatter("AUD", gain)} ( 
+                  ${gain > 0 ? "+" + gainPercentage : gainPercentage}
+                  % )`
+                      : "-"}
                   </Table.Td>
                   <Table.Td>{savingsRate}%</Table.Td>
                 </Table.Tr>
