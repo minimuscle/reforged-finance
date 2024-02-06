@@ -10,7 +10,6 @@
 .content {
   margin-left: 350px;
   height: 100%;
-  flex-grow: 1;
   padding: 20px 50px;
   display: flex;
   gap: 15px;
@@ -24,5 +23,5 @@
 }
 
 .charts {
-  flex-grow: 1;
+  flex: 1 1 300px;
 }
