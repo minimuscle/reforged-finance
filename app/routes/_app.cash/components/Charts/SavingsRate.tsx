@@ -16,7 +16,7 @@ const SavingsHistory = () => {
   const percentage = useMemo(
     () =>
       gain.map((item, key) => {
-        return key > 0 ? ((item / history[key - 1]?.cash) * 100).toFixed(0) : 0
+        return key > 0 ? +((item / history[key - 1]?.cash) * 100).toFixed(0) : 0
       }),
     [history, gain]
   )
@@ -25,6 +25,9 @@ const SavingsHistory = () => {
   const chartData = history.map((item, key) => {
     return { ...item, percentage: percentage[key] }
   })
+
+  const max = Math.max(...percentage)
+  const min = Math.min(...percentage)
 
   return (
     <Paper shadow="md" p={10} withBorder>
@@ -35,6 +38,7 @@ const SavingsHistory = () => {
           data={chartData}
           dataKey="date"
           series={[{ name: "percentage", color: "red.6" }]}
+          yAxisProps={{ domain: [min, max] }}
           tickLine="x"
         />
       </Stack>
