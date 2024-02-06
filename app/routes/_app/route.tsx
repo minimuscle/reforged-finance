@@ -10,6 +10,8 @@ import { collapsedCookie } from "~/utils/cookies.server"
 
 export const loader = async ({ request }: LoaderFunctionArgs) => {
   const supabase = supabaseCreate(request)
+
+  //FIXME: This should not call the database on every page load, it should be cached
   const session = await supabase.auth.getSession()
   const userSession = session?.data?.session?.user
   //Takes user to login page if not logged in

@@ -34,14 +34,19 @@ const CashHistory = () => {
               const gain = item.cash - history[key - 1]?.cash
               const gainPercentage =
                 key > 0 ? ((gain / history[key - 1]?.cash) * 100).toFixed(0) : 0
+              const savingsRate =
+                key > 0
+                  ? ((gain / history[key - 1]?.income) * 100).toFixed(0)
+                  : 0
               return (
                 <Table.Tr key={key}>
                   <Table.Td>{date}</Table.Td>
                   <Table.Td>{formatter("AUD", item.cash)}</Table.Td>
                   <Table.Td>
-                    {key > 0 ? `${formatter("AUD", gain)}` : "-"}
+                    {key > 0 ? `${formatter("AUD", gain)}` : "-"} ({" "}
+                    {gain > 0 ? "+" + gainPercentage : gainPercentage}% )
                   </Table.Td>
-                  <Table.Td>{gainPercentage}%</Table.Td>
+                  <Table.Td>{savingsRate}%</Table.Td>
                 </Table.Tr>
               )
             })}
