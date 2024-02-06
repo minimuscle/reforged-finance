@@ -72,10 +72,7 @@ export default function UserMenu() {
           Help
         </Menu.Item>
         <Menu.Divider />
-        <Menu.Item
-          //disabled
-          onClick={() => toggleColorScheme()}
-        >
+        <Menu.Item disabled onClick={() => toggleColorScheme()}>
           Set {colorScheme === "light" ? "Dark" : "Light"} Mode (Coming Soon)
         </Menu.Item>
         <Menu.Divider />
