@@ -20,6 +20,12 @@
 .totals {
   width: 100%;
   max-width: 450px;
+  height: 755px;
+}
+
+.totalsTable {
+  height: 680px;
+  overflow-y: auto;
 }
 
 .charts {
