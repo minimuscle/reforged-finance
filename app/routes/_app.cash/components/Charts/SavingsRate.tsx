@@ -30,9 +30,13 @@ const SavingsHistory = ({
   )
 
   //add gain to history
-  const chartData = data.map((item, key) => {
-    return { ...item, percentage: percentage[key] }
-  })
+  const chartData = useMemo(
+    () =>
+      data.map((item, key) => {
+        return { ...item, percentage: percentage[key] }
+      }),
+    [data, percentage]
+  )
 
   const max = Math.max(...percentage)
   const min = Math.min(...percentage)
@@ -48,7 +52,7 @@ const SavingsHistory = ({
           h={300}
           data={chartData}
           dataKey="date"
-          series={[{ name: "percentage", color: "red.6" }]}
+          series={[{ name: "percentage", color: "cyan.6" }]}
           yAxisProps={{ domain: [min, max] }}
           tickLine="x"
         />

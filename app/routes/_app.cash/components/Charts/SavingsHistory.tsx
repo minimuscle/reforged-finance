@@ -16,15 +16,27 @@ const SavingsHistory = ({
   const gain = useMemo(
     () =>
       data.map((item, key) => {
-        return key > 0 ? item.cash - data[key - 1]?.cash : 0
+        return key > 0
+          ? Math.round(
+              (item.cash - data[key - 1]?.cash + Number.EPSILON) * 100
+            ) / 100
+          : 0
       }),
     [data]
   )
 
   //add gain to history
-  const chartData = data.map((item, key) => {
-    return { ...item, gain: gain[key] }
-  })
+  const chartData = useMemo(
+    () =>
+      data.map((item, key) => {
+        if (gain[key] >= 0) {
+          return { ...item, positive: gain[key] }
+        } else {
+          return { ...item, negative: gain[key] }
+        }
+      }),
+    [data, gain]
+  )
 
   return (
     <Paper shadow="md" p={10} withBorder>
@@ -35,9 +47,13 @@ const SavingsHistory = ({
         </Group>
         <BarChart
           h={300}
+          type="stacked"
           data={chartData}
           dataKey="date"
-          series={[{ name: "gain", color: "green.6" }]}
+          series={[
+            { name: "positive", color: "green.6" },
+            { name: "negative", color: "red.6" },
+          ]}
           tickLine="x"
         />
       </Stack>
