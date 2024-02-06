@@ -1,28 +1,36 @@
-import { Paper, Stack, Title } from "@mantine/core"
-import useHistory from "~/utils/hooks/useHistory"
+import { Group, Paper, Stack, Title } from "@mantine/core"
 import { LineChart } from "@mantine/charts"
 import { useMemo } from "react"
+import { history } from "~/utils/types"
+import ChartFilters from "~/components/ChartFilters"
 
-const SavingsHistory = () => {
-  const { history } = useHistory()
+const SavingsHistory = ({
+  data,
+  active,
+  setActive,
+}: {
+  data: history[]
+  active: string
+  setActive: React.Dispatch<React.SetStateAction<string>>
+}) => {
   const gain = useMemo(
     () =>
-      history.map((item, key) => {
-        return key > 0 ? item.cash - history[key - 1]?.cash : 0
+      data.map((item, key) => {
+        return key > 0 ? item.cash - data[key - 1]?.cash : 0
       }),
-    [history]
+    [data]
   )
 
   const percentage = useMemo(
     () =>
       gain.map((item, key) => {
-        return key > 0 ? +((item / history[key - 1]?.cash) * 100).toFixed(0) : 0
+        return key > 0 ? +((item / data[key - 1]?.cash) * 100).toFixed(0) : 0
       }),
-    [history, gain]
+    [data, gain]
   )
 
   //add gain to history
-  const chartData = history.map((item, key) => {
+  const chartData = data.map((item, key) => {
     return { ...item, percentage: percentage[key] }
   })
 
@@ -32,7 +40,10 @@ const SavingsHistory = () => {
   return (
     <Paper shadow="md" p={10} withBorder>
       <Stack>
-        <Title>Savings Rate</Title>
+        <Group justify="space-between">
+          <Title>Savings Rate</Title>
+          <ChartFilters active={active} setActive={setActive} />
+        </Group>
         <LineChart
           h={300}
           data={chartData}

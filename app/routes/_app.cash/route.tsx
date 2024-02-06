@@ -6,10 +6,8 @@ import { Box, Group, Stack } from "@mantine/core"
 import styles from "./cash.module.css"
 import Totals from "./components/Totals"
 import CashHistory from "./components/CashHistory"
-import CashValueHistory from "./components/Charts/CashValueHistory"
-import SavingsHistory from "./components/Charts/SavingsHistory"
-import SavingsRate from "./components/Charts/SavingsRate"
 import Sidebar from "~/components/Sidebar"
+import ChartsContainer from "./components/ChartsContainer"
 
 export const action = async ({ request }: ActionFunctionArgs) => {
   const formData = await request.formData()
@@ -69,11 +67,7 @@ export default function Cash() {
           </Stack>
         </DataDefer>
         <DataDefer>
-          <Stack className={styles.charts}>
-            <CashValueHistory />
-            <SavingsHistory />
-            <SavingsRate />
-          </Stack>
+          <ChartsContainer />
         </DataDefer>
       </Box>
     </Group>
