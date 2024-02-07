@@ -1,10 +1,10 @@
 import useHistory from "~/utils/hooks/useHistory"
-import SuperValueHistory from "./Charts/SuperValueHistory"
 import SavingsHistory from "./Charts/SavingsHistory"
 import { useMemo, useState } from "react"
 import { transformData } from "~/utils/utils"
 import { Stack } from "@mantine/core"
 import classes from "../debts.module.css"
+import LiabilitiesBreakdown from "./Charts/LiabilitiesBreakdown"
 
 const ChartsContainer = () => {
   const { history } = useHistory()
@@ -15,11 +15,7 @@ const ChartsContainer = () => {
   )
   return (
     <Stack className={classes.charts}>
-      <SuperValueHistory
-        data={historyData}
-        active={active}
-        setActive={setActive}
-      />
+      <LiabilitiesBreakdown />
       <SavingsHistory
         data={historyData}
         active={active}

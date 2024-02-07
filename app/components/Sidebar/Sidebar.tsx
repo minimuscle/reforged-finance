@@ -32,7 +32,7 @@ const Sidebar = ({
           <Text fw={700}>{formatter("AUD", totalBalance)}</Text>
         </Badge>
       </Group>
-      <BankAccounts totalBalance={totalBalance} data={data} />
+      <BankAccounts totalBalance={totalBalance} data={data} type={type} />
       <fetcher.Form method="POST">
         <Button
           type="submit"

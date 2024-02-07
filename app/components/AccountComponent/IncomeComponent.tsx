@@ -18,6 +18,9 @@ const IncomeComponent = ({
   return (
     <Group className={classes.maxSpace} gap={0}>
       <Stack className={classes.leftStack} gap={0}>
+        <Text size="xs" c={"gray"} fw={700}>
+          Name
+        </Text>
         <EditableText value={account.name} id={account.id} fieldName="name" />
         {/* <Text size={"lg"}></Text> */}
         <Text size="sm" c={"gray"}>
@@ -25,6 +28,9 @@ const IncomeComponent = ({
         </Text>
       </Stack>
       <Stack className={classes.rightStack} gap={0}>
+        <Text size="xs" c={"gray"} fw={700}>
+          Balance
+        </Text>
         <EditableText
           value={formatter(account.currency, account.balance)}
           id={account.id}

@@ -33,7 +33,7 @@ const BankAccounts = ({
             {type === "income" ? (
               <IncomeComponent totalBalance={totalBalance} account={account} />
             ) : (
-              <DebtComponent />
+              <DebtComponent totalBalance={totalBalance} account={account} />
             )}
             <Popover position="top" shadow="md">
               <Popover.Target>
