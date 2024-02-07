@@ -22,7 +22,7 @@ const CashValueHistory = ({
 
         <BarChart
           h={300}
-          data={data}
+          data={data.slice(1)}
           barChartProps={{ syncId: "cash" }}
           dataKey="date"
           series={[{ name: "cash", color: "violet.6" }]}

@@ -50,7 +50,7 @@ const SavingsHistory = ({
         </Group>
         <LineChart
           h={300}
-          data={chartData}
+          data={chartData.slice(1)}
           lineChartProps={{ syncId: "cash" }}
           dataKey="date"
           series={[{ name: "percentage", color: "cyan.6" }]}

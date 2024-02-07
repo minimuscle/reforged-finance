@@ -48,7 +48,7 @@ const SavingsHistory = ({
         <BarChart
           h={300}
           type="stacked"
-          data={chartData}
+          data={chartData.slice(1)}
           dataKey="date"
           barChartProps={{ syncId: "cash" }}
           series={[
