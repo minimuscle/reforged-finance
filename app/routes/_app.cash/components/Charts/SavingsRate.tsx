@@ -27,7 +27,7 @@ const SavingsHistory = ({
         return key > 0 ? ((item / data[key - 1]?.income) * 100).toFixed(0) : 0
       }),
     [data, gain]
-  )
+  ) as number[]
 
   //add gain to history
   const chartData = useMemo(
