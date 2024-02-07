@@ -40,7 +40,7 @@ const EditableText = ({
   //TODO: Fix the IMaskInput use formatter not a custom component
   return edit ? (
     <fetcher.Form method="POST">
-      <input type="hidden" name="intent" value="updateCash" />
+      <input type="hidden" name="intent" value="updateData" />
       <input type="hidden" name="id" value={id} />
       <IMaskInput
         // eslint-disable-next-line jsx-a11y/no-autofocus

@@ -22,7 +22,7 @@ const SuperValueHistory = ({
 
         <BarChart
           h={300}
-          data={data}
+          data={data.slice(1)}
           barChartProps={{ syncId: "super" }}
           dataKey="date"
           series={[{ name: "super", color: "violet.6" }]}

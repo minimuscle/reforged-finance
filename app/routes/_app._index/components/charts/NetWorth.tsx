@@ -17,7 +17,7 @@ const NetWorth = ({ filter }: { filter: string }) => {
   return (
     <AreaChart
       h={"80%"}
-      data={historyData}
+      data={historyData.slice(1)}
       dataKey="date"
       series={[{ name: "netWorth", color: "red.6" }]}
       curveType="linear"

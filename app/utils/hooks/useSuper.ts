@@ -5,7 +5,7 @@ import { DataContext } from "../contexts/DataContext"
 //FIXME: Fix the flashing when adding new account and other optimistic ui
 export default function useSuper() {
   const data = useContext(DataContext) as any
-  const superData = data.cash
+  const superData = data.super
 
   const superDataTotal =
     superData

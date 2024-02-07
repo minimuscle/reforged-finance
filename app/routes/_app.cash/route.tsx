@@ -1,5 +1,4 @@
 import { ActionFunctionArgs } from "@remix-run/node"
-import { createCash, deleteCash, updateCash } from "~/utils/supabase"
 import DataDefer from "~/components/DataDefer"
 import { isRouteErrorResponse, useRouteError } from "@remix-run/react"
 import { Box, Group, Stack } from "@mantine/core"
@@ -8,6 +7,7 @@ import Totals from "./components/Totals"
 import CashHistory from "./components/CashHistory"
 import ChartsContainer from "./components/ChartsContainer"
 import SidebarContainer from "./components/SidebarContainer"
+import { createItem, deleteItem, updateItem } from "~/utils/supabase"
 
 export const action = async ({ request }: ActionFunctionArgs) => {
   const formData = await request.formData()
@@ -16,13 +16,13 @@ export const action = async ({ request }: ActionFunctionArgs) => {
 
   switch (intent) {
     case "createData":
-      createCash(request, formData)
+      createItem(request, formData, "cash")
       break
     case "updateData":
-      updateCash(request, formData)
+      updateItem(request, formData, "cash")
       break
     case "deleteData":
-      deleteCash(request, formData.get("id") as string)
+      deleteItem(request, formData.get("id") as string, "cash")
       break
   }
   return null

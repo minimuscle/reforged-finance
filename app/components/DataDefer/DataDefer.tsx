@@ -34,6 +34,7 @@ const DataDefer = ({
             history: resolvedData[1].data,
             cash: resolvedData[2].data,
             budget: resolvedData[3].data,
+            super: resolvedData[4].data,
           }
           //the below code passes the data to the children via props
           return (

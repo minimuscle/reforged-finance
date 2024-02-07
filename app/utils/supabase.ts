@@ -26,14 +26,18 @@ export const supabaseCreate = (request: Request) => {
   return supabase
 }
 
-export const createCash = async (request: Request, formData: any) => {
+export const createItem = async (
+  request: Request,
+  formData: any,
+  item: string
+) => {
   const supabase = supabaseCreate(request)
   const user = (await supabase.auth.getSession()).data.session?.user.id
   const { count } = await supabase
-    .from("cash")
+    .from(item)
     .select("*", { count: "exact", head: true })
   const { data, error } = await supabase
-    .from("cash")
+    .from(item)
     .insert({
       id: formData.id,
       user_id: user,
@@ -51,22 +55,30 @@ export const createCash = async (request: Request, formData: any) => {
   return data
 }
 
-export const deleteCash = async (request: Request, id: string) => {
+export const deleteItem = async (
+  request: Request,
+  id: string,
+  item: string
+) => {
   const supabase = supabaseCreate(request)
-  await supabase.from("cash").delete().eq("id", id)
+  await supabase.from(item).delete().eq("id", id)
 }
 
-export const updateCash = async (request: Request, formData: any) => {
+export const updateItem = async (
+  request: Request,
+  formData: any,
+  item: string
+) => {
   const supabase = supabaseCreate(request)
   const form = Object.fromEntries(formData.entries())
   //If intent is to reorder the cash accounts, ie. data fieled is there
   if (form?.data) {
     const items = JSON.parse(form?.data)
-    items.forEach(async (item: CashProps) => {
+    items.forEach(async (rowItem: CashProps) => {
       const { data, error } = await supabase
-        .from("cash")
-        .update({ weight: item.weight })
-        .eq("id", item.id)
+        .from(item)
+        .update({ weight: rowItem.weight })
+        .eq("id", rowItem.id)
       if (error) {
         console.log(error)
         return error
@@ -77,22 +89,24 @@ export const updateCash = async (request: Request, formData: any) => {
 
   //Only update the values that are not null
   let updateData = {}
-  if (form?.name && form?.name !== "null") updateData = { ...updateData, name: form?.name }
-  if (form?.currency && form?.currency !== "null") updateData = { ...updateData, currency: form?.currency }
+  if (form?.name && form?.name !== "null")
+    updateData = { ...updateData, name: form?.name }
+  if (form?.currency && form?.currency !== "null")
+    updateData = { ...updateData, currency: form?.currency }
   if (form?.balance && form?.balance !== "null") {
     updateData = {
       ...updateData,
       balance: parseFloat(form?.balance?.replace(/[$,]/g, "")),
     }
   }
-  if (form?.colour && form?.colour !== "null") updateData = { ...updateData, colour: form?.colour }
-  if (form?.weight && form?.weight !== "null") updateData = { ...updateData, weight: form?.weight }
+  if (form?.colour && form?.colour !== "null")
+    updateData = { ...updateData, colour: form?.colour }
+  if (form?.weight && form?.weight !== "null")
+    updateData = { ...updateData, weight: form?.weight }
 
   const { data, error } = await supabase
-    .from("cash")
-    .update(
-      updateData
-    )
+    .from(item)
+    .update(updateData)
     .eq("id", form?.id)
   if (error) {
     console.log(error)
