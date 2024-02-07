@@ -24,7 +24,7 @@ const SavingsHistory = ({
   const percentage = useMemo(
     () =>
       gain.map((item, key) => {
-        return key > 0 ? +((item / data[key - 1]?.cash) * 100).toFixed(0) : 0
+        return key > 0 ? ((item / data[key - 1]?.income) * 100).toFixed(0) : 0
       }),
     [data, gain]
   )
@@ -51,6 +51,7 @@ const SavingsHistory = ({
         <LineChart
           h={300}
           data={chartData}
+          lineChartProps={{ syncId: "cash" }}
           dataKey="date"
           series={[{ name: "percentage", color: "cyan.6" }]}
           yAxisProps={{ domain: [min, max] }}

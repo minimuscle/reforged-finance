@@ -50,6 +50,7 @@ const SavingsHistory = ({
           type="stacked"
           data={chartData}
           dataKey="date"
+          barChartProps={{ syncId: "cash" }}
           series={[
             { name: "positive", color: "green.6" },
             { name: "negative", color: "red.6" },

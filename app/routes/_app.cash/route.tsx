@@ -6,8 +6,8 @@ import { Box, Group, Stack } from "@mantine/core"
 import styles from "./cash.module.css"
 import Totals from "./components/Totals"
 import CashHistory from "./components/CashHistory"
-import Sidebar from "~/components/Sidebar"
 import ChartsContainer from "./components/ChartsContainer"
+import SidebarContainer from "./components/SidebarContainer"
 
 export const action = async ({ request }: ActionFunctionArgs) => {
   const formData = await request.formData()
@@ -15,13 +15,13 @@ export const action = async ({ request }: ActionFunctionArgs) => {
   console.log(intent)
 
   switch (intent) {
-    case "createCash":
+    case "createData":
       createCash(request, formData)
       break
-    case "updateCash":
+    case "updateData":
       updateCash(request, formData)
       break
-    case "deleteCash":
+    case "deleteData":
       deleteCash(request, formData.get("id") as string)
       break
   }
@@ -57,7 +57,7 @@ export default function Cash() {
   return (
     <Group className={styles.cashContainer} gap={0}>
       <DataDefer>
-        <Sidebar />
+        <SidebarContainer />
       </DataDefer>
       <Box className={styles.content}>
         <DataDefer>

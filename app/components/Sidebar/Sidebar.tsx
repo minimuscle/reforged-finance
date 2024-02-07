@@ -7,14 +7,22 @@ import useCash from "~/utils/hooks/useCash"
 import { formatter } from "~/utils/utils"
 
 //TODO: Have it slide out on load
-const Sidebar = () => {
+const Sidebar = ({
+  title,
+  totalBalance,
+  data,
+}: {
+  title: string
+  totalBalance: number
+  data: any[]
+}) => {
   const fetcher = useFetcher()
   const { cashTotal } = useCash()
 
   return (
     <Box className={`${classes.sidebar} ${false && classes.collapsed}`}>
       <Title className={classes.header} size={"h2"}>
-        Bank Accounts
+        {title}
       </Title>
       <Group gap={0} className={classes.badge}>
         <Text fw={700}>Total Balance:</Text>
@@ -22,12 +30,12 @@ const Sidebar = () => {
           <Text fw={700}>{formatter("AUD", cashTotal)}</Text>
         </Badge>
       </Group>
-      <BankAccounts />
+      <BankAccounts totalBalance={totalBalance} data={data} />
       <fetcher.Form method="POST">
         <Button
           type="submit"
           name="intent"
-          value="createCash"
+          value="createData"
           size="xs"
           variant="subtle"
           color="gray"

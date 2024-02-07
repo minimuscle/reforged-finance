@@ -1,6 +1,5 @@
 import { ActionIcon, Button, Group, Popover, Stack, Text } from "@mantine/core"
 import { useMemo } from "react"
-import useCash from "~/utils/hooks/useCash"
 import { formatter } from "~/utils/utils"
 import classes from "./Sidebar.module.css"
 import EditableText from "~/components/EditableText"
@@ -13,17 +12,22 @@ import {
 import { ColorSwatches } from "~/components/Sidebar/ColorSwatches"
 import { useFetcher } from "@remix-run/react"
 
-const BankAccounts = () => {
-  const { cash, cashTotal } = useCash()
-  const cashPercentage = useMemo(() => {
-    return cash.map((account) => {
-      return ((account.balance / cashTotal) * 100).toFixed(2) + "%"
+const BankAccounts = ({
+  totalBalance,
+  data,
+}: {
+  totalBalance: number
+  data: any[]
+}) => {
+  const percentage = useMemo(() => {
+    return data.map((account) => {
+      return ((account.balance / totalBalance) * 100).toFixed(2) + "%"
     })
-  }, [cash, cashTotal])
+  }, [data, totalBalance])
   const fetcher = useFetcher()
   return (
     <>
-      {cash.map((account, key) => {
+      {data.map((account, key) => {
         return (
           <Group
             style={{ borderLeft: `solid ${account.colour} 5px` }}
@@ -52,7 +56,7 @@ const BankAccounts = () => {
                 />
                 <Text fw={700} size="md"></Text>
                 <Text size="sm" c={"gray"}>
-                  {cashPercentage[key]}
+                  {percentage[key]}
                 </Text>
               </Stack>
             </Group>
@@ -87,7 +91,7 @@ const BankAccounts = () => {
                         setColour={(colour) => {
                           fetcher.submit(
                             {
-                              intent: "updateCash",
+                              intent: "updateData",
                               id: account.id,
                               colour: colour,
                             },
@@ -105,7 +109,7 @@ const BankAccounts = () => {
                     component="button"
                     onClick={() => {
                       fetcher.submit(
-                        { intent: "deleteCash", id: account.id },
+                        { intent: "deleteData", id: account.id },
                         { method: "POST" }
                       )
                     }}

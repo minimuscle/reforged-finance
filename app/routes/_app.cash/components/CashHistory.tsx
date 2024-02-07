@@ -2,9 +2,11 @@ import { Paper, Stack, Table, Title } from "@mantine/core"
 import useHistory from "~/utils/hooks/useHistory"
 import { formatter } from "~/utils/utils"
 import styles from "../cash.module.css"
+import { useMemo } from "react"
 
 const CashHistory = () => {
   const { history } = useHistory()
+  const historyData = history.reverse()
 
   return (
     <Paper className={styles.totals} shadow="md" p={10} withBorder>
@@ -27,7 +29,7 @@ const CashHistory = () => {
               </Table.Tr>
             </Table.Thead>
             <Table.Tbody>
-              {history.map((item, key) => {
+              {historyData.map((item, key) => {
                 const date = new Date(item.date).toLocaleString("en-AU", {
                   month: "short",
                   year: "numeric",
