@@ -1,29 +1,25 @@
-import { ActionIcon, Button, Group, Popover, Stack, Text } from "@mantine/core"
-import { useMemo } from "react"
-import { formatter } from "~/utils/utils"
-import classes from "./Sidebar.module.css"
-import EditableText from "~/components/EditableText"
+import { ActionIcon, Button, Group, Popover, Text } from "@mantine/core"
+import classes from "./Account.module.css"
 import {
   RiArrowRightSLine,
   RiDeleteBinLine,
   RiDropLine,
   RiMore2Line,
 } from "react-icons/ri/index.js"
-import { ColorSwatches } from "~/components/Sidebar/ColorSwatches"
+import { ColorSwatches } from "~/components/AccountComponent/ColorSwatches"
 import { useFetcher } from "@remix-run/react"
+import IncomeComponent from "./IncomeComponent"
+import DebtComponent from "./DebtComponent"
 
 const BankAccounts = ({
   totalBalance,
   data,
+  type = "income",
 }: {
   totalBalance: number
   data: any[]
+  type: "income" | "debt"
 }) => {
-  const percentage = useMemo(() => {
-    return data.map((account) => {
-      return ((account.balance / totalBalance) * 100).toFixed(2) + "%"
-    })
-  }, [data, totalBalance])
   const fetcher = useFetcher()
   return (
     <>
@@ -34,32 +30,11 @@ const BankAccounts = ({
             className={classes.accountContainer}
             key={key}
           >
-            <Group className={classes.maxSpace} gap={0}>
-              <Stack className={classes.leftStack} gap={0}>
-                <EditableText
-                  value={account.name}
-                  id={account.id}
-                  fieldName="name"
-                />
-                {/* <Text size={"lg"}></Text> */}
-                <Text size="sm" c={"gray"}>
-                  $ - {account.currency}
-                </Text>
-              </Stack>
-              <Stack className={classes.rightStack} gap={0}>
-                <EditableText
-                  value={formatter(account.currency, account.balance)}
-                  id={account.id}
-                  fieldName="balance"
-                  inputClassName={classes.balanceInput}
-                  type="currency"
-                />
-                <Text fw={700} size="md"></Text>
-                <Text size="sm" c={"gray"}>
-                  {percentage[key]}
-                </Text>
-              </Stack>
-            </Group>
+            {type === "income" ? (
+              <IncomeComponent totalBalance={totalBalance} account={account} />
+            ) : (
+              <DebtComponent />
+            )}
             <Popover position="top" shadow="md">
               <Popover.Target>
                 <ActionIcon

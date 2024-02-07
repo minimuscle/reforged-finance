@@ -1,5 +1,5 @@
 import { Badge, Box, Button, Group, Text, Title } from "@mantine/core"
-import BankAccounts from "./BankAccounts"
+import BankAccounts from "../AccountComponent/BankAccounts"
 import classes from "./Sidebar.module.css"
 import { useFetcher } from "@remix-run/react"
 import { FaPlus } from "react-icons/fa/index.js"
