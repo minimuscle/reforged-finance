@@ -4,7 +4,7 @@ import { useMemo } from "react"
 import { history } from "~/utils/types"
 import ChartFilters from "~/components/ChartFilters"
 
-const SavingsHistory = ({
+const DebtsHistory = ({
   data,
   active,
   setActive,
@@ -42,7 +42,7 @@ const SavingsHistory = ({
     <Paper shadow="md" p={10} withBorder>
       <Stack>
         <Group justify="space-between">
-          <Title>Super Gains History</Title>
+          <Title>Liabilities History</Title>
           <ChartFilters active={active} setActive={setActive} />
         </Group>
         <BarChart
@@ -62,4 +62,4 @@ const SavingsHistory = ({
   )
 }
 
-export default SavingsHistory
+export default DebtsHistory

@@ -1,5 +1,5 @@
 import useHistory from "~/utils/hooks/useHistory"
-import SavingsHistory from "./Charts/SavingsHistory"
+import DebtsHistory from "./Charts/DebtsHistory"
 import { useMemo, useState } from "react"
 import { transformData } from "~/utils/utils"
 import { Stack } from "@mantine/core"
@@ -16,11 +16,7 @@ const ChartsContainer = () => {
   return (
     <Stack className={classes.charts}>
       <LiabilitiesBreakdown />
-      <SavingsHistory
-        data={historyData}
-        active={active}
-        setActive={setActive}
-      />
+      <DebtsHistory data={historyData} active={active} setActive={setActive} />
     </Stack>
   )
 }
