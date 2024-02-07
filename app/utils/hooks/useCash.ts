@@ -9,7 +9,7 @@ export default function useCash() {
   const cash: CashProps[] = data.cash
 
   const cashTotal =
-    data.cash
+    cash
       .reduce((acc: number, curr: CashProps) => {
         return acc + curr.balance
       }, 0)

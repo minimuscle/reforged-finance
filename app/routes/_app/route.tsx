@@ -27,6 +27,7 @@ export const loader = async ({ request }: LoaderFunctionArgs) => {
     supabase.from("cash").select("*"),
     supabase.from("budget").select("*"),
     supabase.from("super").select("*"),
+    supabase.from("debts").select("*"),
   ])
 
   return defer({ isCollapsed: collapsed, data })

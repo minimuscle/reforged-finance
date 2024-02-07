@@ -1,25 +1,24 @@
 import { useFetchers } from "@remix-run/react"
-import { CashProps } from "../types"
 import { useContext } from "react"
 import { DataContext } from "../contexts/DataContext"
 
 //FIXME: Fix the flashing when adding new account and other optimistic ui
-export default function useCash() {
+export default function useDebts() {
   const data = useContext(DataContext) as any
-  const cash: CashProps[] = data.cash
+  const debts = data.debts
 
-  const cashTotal =
-    data.cash
-      .reduce((acc: number, curr: CashProps) => {
+  const debtsTotal =
+    debts
+      .reduce((acc: number, curr) => {
         return acc + curr.balance
       }, 0)
       .toFixed(2) || 0
 
   const fetchers = useFetchers()
-  const createCash = fetchers
+  const createdebts = fetchers
     .filter((fetcher) => {
       if (!fetcher.formData) return false
-      return fetcher.formData.get("intent") === "createCash"
+      return fetcher.formData.get("intent") === "createdebts"
     })
     .map((fetcher) => {
       return {
@@ -34,11 +33,11 @@ export default function useCash() {
       }
     })
 
-  createCash.forEach((account) => {
-    const exists = cash.find((item) => item.id === account.id)
+  createdebts.forEach((account) => {
+    const exists = debts.find((item) => item.id === account.id)
     console.log("exists: ", exists)
     if (!exists) {
-      cash.push({
+      debts.push({
         id: account.id,
         name: "New Account",
         currency: "AUD",
@@ -46,18 +45,18 @@ export default function useCash() {
         colour: "var(--mantine-color-gray-3)",
         created_at: String(new Date()),
         user_id: "1",
-        weight: cash.length,
+        weight: debts.length,
         pending: true,
       })
     }
   })
 
-  const updateCash = fetchers
+  const updatedebts = fetchers
     .filter((fetcher) => {
       if (!fetcher.formData) return false
-      return fetcher.formData.get("intent") === "updateCash"
+      return fetcher.formData.get("intent") === "updatedebts"
     })
-    .map((fetcher): CashProps => {
+    .map((fetcher) => {
       return {
         id: String(fetcher.formData?.get("id")),
         created_at: String(fetcher.formData?.get("created_at")),
@@ -70,9 +69,9 @@ export default function useCash() {
       }
     })
 
-  cash.forEach((account) => {
-    //update each account with the updateCash only if the value inside updateCash is not null
-    const exists = updateCash.find((item) => item.id === account.id)
+  debts.forEach((account) => {
+    //update each account with the updatedebts only if the value inside updatedebts is not null
+    const exists = updatedebts.find((item) => item.id === account.id)
     if (exists) {
       if (exists.created_at !== "null") account.created_at = exists.created_at
       if (exists.user_id !== "null") account.user_id = exists.user_id
@@ -81,14 +80,14 @@ export default function useCash() {
       if (exists.colour !== "null") account.colour = exists.colour
     }
   })
-  cash.sort((a: CashProps, b: CashProps) => {
+  debts.sort((a, b) => {
     return a.weight - b.weight
   })
 
-  const deleteCash = fetchers
+  const deletedebts = fetchers
     .filter((fetcher) => {
       if (!fetcher.formData) return false
-      return fetcher.formData.get("intent") === "deleteCash"
+      return fetcher.formData.get("intent") === "deletedebts"
     })
     .map((fetcher) => {
       return {
@@ -96,13 +95,13 @@ export default function useCash() {
       }
     })
 
-  cash.forEach((account) => {
-    const exists = deleteCash.find((item) => item.id === account.id)
+  debts.forEach((account) => {
+    const exists = deletedebts.find((item) => item.id === account.id)
     if (exists) {
-      const index = cash.indexOf(account)
-      cash.splice(index, 1)
+      const index = debts.indexOf(account)
+      debts.splice(index, 1)
     }
   })
 
-  return { cash, cashTotal }
+  return { debts, debtsTotal }
 }

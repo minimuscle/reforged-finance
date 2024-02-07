@@ -10,10 +10,12 @@ const Sidebar = ({
   title,
   totalBalance,
   data,
+  type = "income",
 }: {
   title: string
   totalBalance: number
   data: any[]
+  type: "income" | "debt"
 }) => {
   const fetcher = useFetcher()
 
@@ -23,7 +25,9 @@ const Sidebar = ({
         {title}
       </Title>
       <Group gap={0} className={classes.badge}>
-        <Text fw={700}>Total Balance:</Text>
+        <Text fw={700}>
+          {type === "income" ? "Total Balance:" : "Total Owing:"}
+        </Text>
         <Badge size="xl" variant="light" radius="sm">
           <Text fw={700}>{formatter("AUD", totalBalance)}</Text>
         </Badge>
