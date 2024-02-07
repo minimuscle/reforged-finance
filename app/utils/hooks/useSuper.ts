@@ -1,25 +1,24 @@
 import { useFetchers } from "@remix-run/react"
-import { CashProps } from "../types"
 import { useContext } from "react"
 import { DataContext } from "../contexts/DataContext"
 
 //FIXME: Fix the flashing when adding new account and other optimistic ui
-export default function useCash() {
+export default function useSuper() {
   const data = useContext(DataContext) as any
-  const cash: CashProps[] = data.cash
+  const superData = data.cash
 
-  const cashTotal =
-    data.cash
-      .reduce((acc: number, curr: CashProps) => {
+  const superDataTotal =
+    superData
+      .reduce((acc: number, curr: any) => {
         return acc + curr.balance
       }, 0)
       .toFixed(2) || 0
 
   const fetchers = useFetchers()
-  const createCash = fetchers
+  const createsuperData = fetchers
     .filter((fetcher) => {
       if (!fetcher.formData) return false
-      return fetcher.formData.get("intent") === "createCash"
+      return fetcher.formData.get("intent") === "createsuperData"
     })
     .map((fetcher) => {
       return {
@@ -34,11 +33,11 @@ export default function useCash() {
       }
     })
 
-  createCash.forEach((account) => {
-    const exists = cash.find((item) => item.id === account.id)
+  createsuperData.forEach((account) => {
+    const exists = superData.find((item) => item.id === account.id)
     console.log("exists: ", exists)
     if (!exists) {
-      cash.push({
+      superData.push({
         id: account.id,
         name: "New Account",
         currency: "AUD",
@@ -46,18 +45,18 @@ export default function useCash() {
         colour: "var(--mantine-color-gray-3)",
         created_at: String(new Date()),
         user_id: "1",
-        weight: cash.length,
+        weight: superData.length,
         pending: true,
       })
     }
   })
 
-  const updateCash = fetchers
+  const updatesuperData = fetchers
     .filter((fetcher) => {
       if (!fetcher.formData) return false
-      return fetcher.formData.get("intent") === "updateCash"
+      return fetcher.formData.get("intent") === "updatesuperData"
     })
-    .map((fetcher): CashProps => {
+    .map((fetcher) => {
       return {
         id: String(fetcher.formData?.get("id")),
         created_at: String(fetcher.formData?.get("created_at")),
@@ -70,9 +69,9 @@ export default function useCash() {
       }
     })
 
-  cash.forEach((account) => {
-    //update each account with the updateCash only if the value inside updateCash is not null
-    const exists = updateCash.find((item) => item.id === account.id)
+  superData.forEach((account) => {
+    //update each account with the updatesuperData only if the value inside updatesuperData is not null
+    const exists = updatesuperData.find((item) => item.id === account.id)
     if (exists) {
       if (exists.created_at !== "null") account.created_at = exists.created_at
       if (exists.user_id !== "null") account.user_id = exists.user_id
@@ -81,14 +80,14 @@ export default function useCash() {
       if (exists.colour !== "null") account.colour = exists.colour
     }
   })
-  cash.sort((a: CashProps, b: CashProps) => {
+  superData.sort((a, b) => {
     return a.weight - b.weight
   })
 
-  const deleteCash = fetchers
+  const deletesuperData = fetchers
     .filter((fetcher) => {
       if (!fetcher.formData) return false
-      return fetcher.formData.get("intent") === "deleteCash"
+      return fetcher.formData.get("intent") === "deletesuperData"
     })
     .map((fetcher) => {
       return {
@@ -96,13 +95,13 @@ export default function useCash() {
       }
     })
 
-  cash.forEach((account) => {
-    const exists = deleteCash.find((item) => item.id === account.id)
+  superData.forEach((account) => {
+    const exists = deletesuperData.find((item) => item.id === account.id)
     if (exists) {
-      const index = cash.indexOf(account)
-      cash.splice(index, 1)
+      const index = superData.indexOf(account)
+      superData.splice(index, 1)
     }
   })
 
-  return { cash, cashTotal }
+  return { superData, superDataTotal }
 }

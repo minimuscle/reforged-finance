@@ -20,12 +20,12 @@
 .totals {
   width: 100%;
   max-width: 450px;
-  height: 755px;
+  height: 780px;
 }
 
 .totalsTable {
   border: 1px solid var(--mantine-color-gray-3);
-  height: 680px;
+  height: 700px;
   overflow-y: auto;
 }
 

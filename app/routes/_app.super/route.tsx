@@ -2,7 +2,11 @@ import { ActionFunctionArgs } from "@remix-run/node"
 import { createCash, deleteCash, updateCash } from "~/utils/supabase"
 import DataDefer from "~/components/DataDefer"
 import { isRouteErrorResponse, useRouteError } from "@remix-run/react"
-import { Box, Group, Stack } from "@mantine/core"
+import { Box, Group } from "@mantine/core"
+import classes from "./super.module.css"
+import CashHistory from "./components/SuperHistory"
+import ChartsContainer from "./components/ChartsContainer"
+import SidebarContainer from "./components/SidebarContainer"
 
 export const action = async ({ request }: ActionFunctionArgs) => {
   const formData = await request.formData()
@@ -10,13 +14,13 @@ export const action = async ({ request }: ActionFunctionArgs) => {
   console.log(intent)
 
   switch (intent) {
-    case "createCash":
+    case "createData":
       createCash(request, formData)
       break
-    case "updateCash":
+    case "updateData":
       updateCash(request, formData)
       break
-    case "deleteCash":
+    case "deleteData":
       deleteCash(request, formData.get("id") as string)
       break
   }
@@ -48,6 +52,20 @@ export const ErrorBoundary = () => {
   }
 }
 
-export default function Cash() {
-  return <Group gap={0}></Group>
+export default function Super() {
+  return (
+    <Group className={classes.cashContainer} gap={0}>
+      <DataDefer>
+        <SidebarContainer />
+      </DataDefer>
+      <Box className={classes.content}>
+        <DataDefer>
+          <CashHistory />
+        </DataDefer>
+        <DataDefer>
+          <ChartsContainer />
+        </DataDefer>
+      </Box>
+    </Group>
+  )
 }
