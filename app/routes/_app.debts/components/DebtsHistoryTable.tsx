@@ -3,14 +3,14 @@ import useHistory from "~/utils/hooks/useHistory"
 import { formatter } from "~/utils/utils"
 import classes from "../debts.module.css"
 
-const CashHistory = () => {
+const DebtsHistoryTable = () => {
   const { history } = useHistory()
   const historyData = history.reverse()
 
   return (
     <Paper className={classes.totals} shadow="md" p={10} withBorder>
       <Stack>
-        <Title>Super History</Title>
+        <Title>Liabilities History</Title>
         <Table.ScrollContainer className={classes.totalsTable} minWidth="100%">
           <Table
             verticalSpacing="md"
@@ -22,8 +22,8 @@ const CashHistory = () => {
             <Table.Thead>
               <Table.Tr>
                 <Table.Th>Date</Table.Th>
-                <Table.Th>Total Super</Table.Th>
-                <Table.Th>Super Gain</Table.Th>
+                <Table.Th>Total Debt</Table.Th>
+                <Table.Th>Debt Gain / Loss</Table.Th>
               </Table.Tr>
             </Table.Thead>
             <Table.Tbody>
@@ -32,18 +32,18 @@ const CashHistory = () => {
                   month: "short",
                   year: "numeric",
                 })
-                const gain = item.super - history[key + 1]?.super
+                const gain = item.debts - history[key + 1]?.debts
                 const gainPercentage =
                   key > 0
-                    ? ((gain / history[key + 1]?.super) * 100).toFixed(0)
+                    ? ((gain / history[key + 1]?.debts) * 100).toFixed(0)
                     : 0
                 return (
                   <Table.Tr key={key}>
                     <Table.Td>{date}</Table.Td>
-                    <Table.Td>{formatter("AUD", item.super)}</Table.Td>
+                    <Table.Td>{formatter("AUD", item.debts)}</Table.Td>
                     <Table.Td
                       className={`${
-                        gain > 0 ? classes.positive : classes.negative
+                        gain <= 0 ? classes.positive : classes.negative
                       }`}
                     >
                       {key < historyData.length - 1
@@ -63,4 +63,4 @@ const CashHistory = () => {
   )
 }
 
-export default CashHistory
+export default DebtsHistoryTable

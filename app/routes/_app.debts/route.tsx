@@ -3,10 +3,10 @@ import DataDefer from "~/components/DataDefer"
 import { isRouteErrorResponse, useRouteError } from "@remix-run/react"
 import { Box, Group } from "@mantine/core"
 import classes from "./debts.module.css"
-import CashHistory from "./components/SuperHistory"
 import ChartsContainer from "./components/ChartsContainer"
 import SidebarContainer from "./components/SidebarContainer"
 import { createItem, deleteItem, updateItem } from "~/utils/supabase"
+import DebtsHistoryTable from "./components/DebtsHistoryTable"
 
 export const action = async ({ request }: ActionFunctionArgs) => {
   const formData = await request.formData()
@@ -60,7 +60,7 @@ export default function Debts() {
       </DataDefer>
       <Box className={classes.content}>
         <DataDefer>
-          <CashHistory />
+          <DebtsHistoryTable />
         </DataDefer>
         <DataDefer>
           <ChartsContainer />
