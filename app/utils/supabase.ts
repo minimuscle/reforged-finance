@@ -88,6 +88,8 @@ export const updateItem = async (
   }
 
   //Only update the values that are not null
+
+  //TODO: Handle debts, super etc. that have different fields
   let updateData = {}
   if (form?.name && form?.name !== "null")
     updateData = { ...updateData, name: form?.name }

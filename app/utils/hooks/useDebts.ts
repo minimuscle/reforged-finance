@@ -35,7 +35,6 @@ export default function useDebts() {
 
   createdebts.forEach((account) => {
     const exists = debts.find((item) => item.id === account.id)
-    console.log("exists: ", exists)
     if (!exists) {
       debts.push({
         id: account.id,

@@ -12,7 +12,6 @@ import { createItem, deleteItem, updateItem } from "~/utils/supabase"
 export const action = async ({ request }: ActionFunctionArgs) => {
   const formData = await request.formData()
   const intent = formData.get("intent")
-  console.log(intent)
 
   switch (intent) {
     case "createData":

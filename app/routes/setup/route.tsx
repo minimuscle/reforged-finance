@@ -116,7 +116,6 @@ export default function Setup() {
     switch (active) {
       case 0:
         if (formData.name?.length) {
-          console.log(formData.name?.length)
           setDisabled(false)
         } else {
           setDisabled(true)
@@ -130,7 +129,6 @@ export default function Setup() {
         }
         break
       case 2:
-        console.log(formData.gross)
         if (formData.gross && formData.gross >= 0) {
           setDisabled(false)
         } else {
@@ -145,7 +143,6 @@ export default function Setup() {
         }
         break
       case 4:
-        console.log(typeof formData.goal)
         if (
           formData.goal &&
           formData.goal >= 0 &&

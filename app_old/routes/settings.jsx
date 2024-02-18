@@ -34,7 +34,6 @@ export const action = async ({ request }) => {
 
   const { data: user, error: userError } = await supabase.auth.getUser()
   if (userError) {
-    console.log(userError)
     return null
   }
 
@@ -85,7 +84,6 @@ export const action = async ({ request }) => {
     )
     .select()
   if (error) {
-    console.log("error ", error)
     return null
   }
   return profile

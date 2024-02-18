@@ -19,8 +19,6 @@ export default function SignupCard() {
   const confirmPasswordError = actionData?.errors?.confirmPassword
   const passwordError: password | undefined = actionData?.errors?.password
 
-  console.log(passwordError)
-
   const passwordErrorDisplay = () => {
     if (typeof passwordError === "object" && passwordError !== null) {
       // return an alert for each error, showing red if false, green if true

@@ -4,7 +4,6 @@ import useDebts from "~/utils/hooks/useDebts"
 
 const LiabilitiesBreakdown = () => {
   const { debts } = useDebts()
-  console.log(debts)
   return (
     <Paper shadow="md" p={10} withBorder>
       <Stack>

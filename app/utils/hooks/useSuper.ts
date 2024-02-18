@@ -35,7 +35,6 @@ export default function useSuper() {
 
   createsuperData.forEach((account) => {
     const exists = superData.find((item) => item.id === account.id)
-    console.log("exists: ", exists)
     if (!exists) {
       superData.push({
         id: account.id,

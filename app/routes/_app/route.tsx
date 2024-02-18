@@ -19,7 +19,6 @@ export const loader = async ({ request }: LoaderFunctionArgs) => {
 
   const cookie = request.headers.get("Cookie")
   const collapsed = await collapsedCookie.parse(cookie)
-  console.log(collapsed)
 
   const data = Promise.all([
     supabase.from("profiles").select("*").single(),
@@ -28,6 +27,7 @@ export const loader = async ({ request }: LoaderFunctionArgs) => {
     supabase.from("budget").select("*"),
     supabase.from("super").select("*"),
     supabase.from("debts").select("*"),
+    supabase.from("sideIncome").select("*"),
   ])
 
   return defer({ isCollapsed: collapsed, data })

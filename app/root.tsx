@@ -30,7 +30,6 @@ export const action = async ({ request }: ActionFunctionArgs) => {
   //if update cookie is set, update the cookie
   const formData = await request.formData()
   const intent = formData.get("intent")
-  console.log(intent)
   switch (intent) {
     case "updateCollapsed":
       //Create remix cookie and set it to the value of the form data
