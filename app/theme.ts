@@ -2,8 +2,7 @@ import { createTheme } from "@mantine/core"
 
 export const theme = createTheme({
   headings: {
-    fontFamily: "Inter, sans-serif",
+    fontFamily: "Comfortaa, sans-serif",
   },
-
-  fontFamily: "Lato, serif",
+  fontFamily: "Noto Sans, sans-serif",
 })

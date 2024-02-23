@@ -1,10 +1,12 @@
 import type { MetaFunction } from "@remix-run/node"
 import { isRouteErrorResponse, useRouteError } from "@remix-run/react"
-import { Box, Group, Title } from "@mantine/core"
+import { Box, Button, Group, Title } from "@mantine/core"
 import NetWorthContainer from "./components/NetWorthContainer"
 import styles from "./_index.module.css"
 import DataDefer from "~/components/DataDefer"
 import AssetsContainer from "./components/AssetsContainer"
+import { useDisclosure } from "@mantine/hooks"
+import MonthModal from "./components/Modal/MonthModal"
 
 export const meta: MetaFunction = () => {
   return [{ title: "Dashboard | Wealthfire" }]
@@ -36,9 +38,14 @@ export const ErrorBoundary = () => {
 }
 
 export default function Index() {
+  const [opened, { open, close }] = useDisclosure(false)
   return (
     <Box className={styles.container}>
-      <Title className={styles.title}>Dashboard</Title>
+      <MonthModal opened={opened} close={close} />
+      <Group justify="space-between">
+        <Title className={styles.title}>Dashboard</Title>
+        <Button onClick={open}>Complete Month</Button>
+      </Group>
       <DataDefer>
         <Group gap={0}>
           <NetWorthContainer />
