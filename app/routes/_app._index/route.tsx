@@ -9,7 +9,7 @@ import { useDisclosure } from "@mantine/hooks"
 import MonthModal from "./components/Modal/MonthModal"
 
 export const meta: MetaFunction = () => {
-  return [{ title: "Dashboard | Wealthfire" }]
+  return [{ title: "Dashboard | Reforged Finance" }]
 }
 
 export const ErrorBoundary = () => {
