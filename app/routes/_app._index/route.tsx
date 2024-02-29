@@ -1,15 +1,15 @@
-import type { MetaFunction } from "@remix-run/node"
-import { isRouteErrorResponse, useRouteError } from "@remix-run/react"
-import { Box, Button, Group, Title } from "@mantine/core"
-import NetWorthContainer from "./components/NetWorthContainer"
-import styles from "./_index.module.css"
-import DataDefer from "~/components/DataDefer"
-import AssetsContainer from "./components/AssetsContainer"
-import { useDisclosure } from "@mantine/hooks"
-import MonthModal from "./components/Modal/MonthModal"
+import type { MetaFunction } from '@remix-run/node'
+import { isRouteErrorResponse, useRouteError } from '@remix-run/react'
+import { Box, Group } from '@mantine/core'
+import NetWorthContainer from './components/NetWorthContainer'
+import styles from './_index.module.css'
+import DataDefer from '~/components/DataDefer'
+import AssetsContainer from './components/AssetsContainer'
+import NetworthTrend from './components/NetworthTrend'
+import { useDisclosure } from '@mantine/hooks'
 
 export const meta: MetaFunction = () => {
-  return [{ title: "Dashboard | Reforged Finance" }]
+  return [{ title: 'Dashboard | Reforged Finance' }]
 }
 
 export const ErrorBoundary = () => {
@@ -41,18 +41,15 @@ export default function Index() {
   const [opened, { open, close }] = useDisclosure(false)
   return (
     <Box className={styles.container}>
-      <MonthModal opened={opened} close={close} />
-      <Group justify="space-between">
-        <Title className={styles.title}>Dashboard</Title>
-        <Button onClick={open}>Complete Month</Button>
-      </Group>
       <DataDefer>
-        <Group gap={0}>
+        <Group gap={0} mb={10}>
           <NetWorthContainer />
           <AssetsContainer />
         </Group>
         <Group>
-          <p>Hi</p>
+          <NetworthTrend />
+          <NetworthTrend />
+          <NetworthTrend />
         </Group>
       </DataDefer>
     </Box>

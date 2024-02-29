@@ -1,9 +1,15 @@
-.container { 
+.container {
   padding: 20px 50px;
 }
 
 .title {
   margin-bottom: 20px;
+}
+
+.tile {
+  border: var(--mantine-color-gray-2) 2px solid;
+  padding: 10px;
+  flex-grow: 1;
 }
 
 .netWorthContainer {
