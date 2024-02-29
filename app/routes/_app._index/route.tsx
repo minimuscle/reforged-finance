@@ -7,6 +7,7 @@ import DataDefer from '~/components/DataDefer'
 import AssetsContainer from './components/AssetsContainer'
 import NetworthTrend from './components/NetworthTrend'
 import { useDisclosure } from '@mantine/hooks'
+import EmergencyFund from './components/EmergencyFund'
 
 export const meta: MetaFunction = () => {
   return [{ title: 'Dashboard | Reforged Finance' }]
@@ -48,7 +49,7 @@ export default function Index() {
         </Group>
         <Group>
           <NetworthTrend />
-          <NetworthTrend />
+          <EmergencyFund />
           <NetworthTrend />
         </Group>
       </DataDefer>
