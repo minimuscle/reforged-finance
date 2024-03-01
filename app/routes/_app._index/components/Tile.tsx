@@ -5,10 +5,12 @@ const Tile = ({
   children,
   title,
   rightComponent,
+  footer,
 }: {
   children: React.ReactNode
   title: string
   rightComponent?: React.ReactNode
+  footer?: React.ReactNode
 }) => {
   return (
     <Paper className={classes.tile}>
@@ -16,8 +18,9 @@ const Tile = ({
         <Title size='h3'>{title}</Title>
         {rightComponent}
       </Flex>
+      <Title>{children}</Title>
 
-      {children}
+      {footer}
     </Paper>
   )
 }
