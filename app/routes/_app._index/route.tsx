@@ -6,7 +6,6 @@ import styles from './_index.module.css'
 import DataDefer from '~/components/DataDefer'
 import AssetsContainer from './components/AssetsContainer'
 import NetworthTrend from './components/NetworthTrend'
-import { useDisclosure } from '@mantine/hooks'
 import SafetyNet from './components/SafetyNet'
 import TotalSavingsRate from './components/TotalSavingsRate'
 import Breakdown from './components/Breakdown/Breakdown'
@@ -41,7 +40,6 @@ export const ErrorBoundary = () => {
 }
 
 export default function Index() {
-  const [opened, { open, close }] = useDisclosure(false)
   return (
     <Box className={styles.container}>
       <DataDefer>

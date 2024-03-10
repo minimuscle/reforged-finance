@@ -1,26 +1,26 @@
-import { ActionFunctionArgs } from "@remix-run/node"
-import DataDefer from "~/components/DataDefer"
-import { isRouteErrorResponse, useRouteError } from "@remix-run/react"
-import { Box, Group } from "@mantine/core"
-import classes from "./SideIncome.module.css"
-import SideIncomeHistory from "./components/SideIncomeHistory"
-import ChartsContainer from "./components/ChartsContainer"
-import SidebarContainer from "./components/SidebarContainer"
-import { createItem, deleteItem, updateItem } from "~/utils/supabase"
+import { ActionFunctionArgs } from '@remix-run/node'
+import DataDefer from '~/components/DataDefer'
+import { isRouteErrorResponse, useRouteError } from '@remix-run/react'
+import { Box, Group } from '@mantine/core'
+import classes from './SideIncome.module.css'
+import SideIncomeHistory from './components/SideIncomeHistory'
+import ChartsContainer from './components/ChartsContainer'
+import SidebarContainer from './components/SidebarContainer'
+import { createItem, deleteItem, updateItem } from '~/utils/supabase'
 
 export const action = async ({ request }: ActionFunctionArgs) => {
   const formData = await request.formData()
-  const intent = formData.get("intent")
+  const intent = formData.get('intent')
 
   switch (intent) {
-    case "createIncomeData":
-      createItem(request, formData, "sideIncome")
+    case 'createIncomeData':
+      createItem(request, formData, 'sideIncome')
       break
-    case "updateIncomeData":
-      updateItem(request, formData, "sideIncome")
+    case 'updateIncomeData':
+      updateItem(request, formData, 'sideIncome')
       break
-    case "deleteIncomeData":
-      deleteItem(request, formData.get("id") as string, "sideIncome")
+    case 'deleteIncomeData':
+      deleteItem(request, formData.get('id') as string, 'sideIncome')
       break
   }
   return null
