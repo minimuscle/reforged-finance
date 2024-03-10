@@ -1,7 +1,7 @@
-import { Text, ThemeIcon } from "@mantine/core"
-import { Link, useLocation } from "@remix-run/react"
-import styles from "../_app.module.css"
-import { cloneElement } from "react"
+import { Text, ThemeIcon } from '@mantine/core'
+import { Link, useLocation } from '@remix-run/react'
+import styles from '../_app.module.css'
+import { cloneElement } from 'react'
 
 interface NavLinkProps {
   children: React.ReactNode
@@ -20,7 +20,7 @@ export default function NavLink({
   const active = location.pathname === to
   return (
     <Link
-      prefetch="intent"
+      prefetch='intent'
       to={to}
       className={`${premium ? styles.premiumLink : styles.link} ${
         premium ? active && styles.premiumActive : active && styles.active
@@ -28,11 +28,11 @@ export default function NavLink({
     >
       <ThemeIcon
         className={styles.icon}
-        color={premium ? "yellow" : ""}
-        variant="subtle"
+        color={premium ? 'yellow' : ''}
+        variant='subtle'
       >
         {cloneElement(icon, {
-          style: { height: "80%", width: "80%" },
+          style: { height: '80%', width: '80%' },
         })}
       </ThemeIcon>
       <Text className={styles.navText}>{children}</Text>

@@ -1,0 +1,36 @@
+/** GLOBAL CSS VALUES
+* These apply to all components and pages
+*/
+
+/* COLORS */
+.mantine-Title-root {
+  color: light-dark(var(--text-primary), var(--text-primary-dark));
+}
+
+.mantine-Text-root {
+  color: light-dark(var(--text-secondary), var(--text-secondary-dark));
+}
+
+:root {
+  --text-primary: #111729;
+  --text-secondary: #97a3b6;
+  --text-primary-dark: #e8e8e8;
+  --text-secondary-dark: #a3a3a3;
+  --color-light: #ffffff;
+  --color-dark: #1e1f20;
+  --color-accent: #287f71;
+  --color-accent-2: #eb862a;
+  --color-accent-3: #abbdd3;
+  --color-background-light: #fafbfc;
+  --color-background-dark: #131415;
+  --color-border-light: #ebeff4;
+  --color-border-dark: #29292a;
+}
+
+html {
+  height: 100%;
+}
+
+body {
+  height: 100%;
+}

@@ -1,3 +1,67 @@
+@import '../../global.css';
+
+.app {
+  height: 100%;
+  flex-direction: column-reverse;
+
+  @mixin larger-than 768px {
+    flex-direction: row;
+  }
+}
+
+.sidebar {
+  height: 100%;
+  width: rem(300px);
+  display: none;
+  position: fixed;
+  background-color: light-dark(var(--color-light), var(--color-dark));
+  border-right: rem(2px) solid var(--color-border-dark);
+
+  @mixin larger-than 768px {
+    display: unset;
+  }
+}
+
+.mobileBar {
+  position: fixed;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  z-index: 1000;
+  width: 100%;
+  height: rem(80px);
+  justify-content: space-evenly;
+  padding: 0 rem(10px);
+  border-top: rem(2px) solid var(--color-border-dark);
+  background-color: light-dark(var(--color-light), var(--color-dark));
+
+  @mixin larger-than 768px {
+    display: none;
+  }
+
+  .link {
+    text-decoration: none;
+    text-align: center;
+    color: light-dark(var(--color-text), var(--color-text-dark));
+  }
+  .icon {
+    color: light-dark(var(--color-text), var(--color-text-dark));
+  }
+}
+
+.content {
+  width: 100%;
+  height: 100%;
+  background-color: light-dark(
+    var(--color-background-light),
+    var(--color-background-dark)
+  );
+
+  @mixin larger-than 768px {
+    margin-left: rem(300px);
+  }
+}
+
+/* 
 .app {
   height: 100%;
   width: 100%;
@@ -120,7 +184,7 @@
     margin-left: 80px;
   }
 
-  //FIXME: Something covering the on-hover
+  /** //FIXME: Something covering the on-hover */ /*
 }
 
 .icon {
@@ -131,4 +195,4 @@
   position: absolute;
   right: -14px;
   top: 50%;
-}
+} */

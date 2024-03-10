@@ -1,5 +1,4 @@
 import {
-  ActionIcon,
   Box,
   Button,
   Divider,
@@ -16,8 +15,6 @@ import { RiBankLine, RiVipCrown2Fill } from 'react-icons/ri/index.js'
 import { RxDashboard } from 'react-icons/rx/index.js'
 import {
   BsCash,
-  BsChevronLeft,
-  BsChevronRight,
   BsClipboard,
   BsClockHistory,
   BsCurrencyDollar,
@@ -28,44 +25,52 @@ import DataDefer from '~/components/DataDefer'
 import Logo from '~/assets/images/Logo.png'
 import classes from '../_app.module.css'
 import { useFetcher } from '@remix-run/react'
-import { useContext } from 'react'
-import { CollapsedContext } from '~/utils/contexts/CollapsedContext'
 
-export default function Sidebar({
-  data,
-  setIsCollapsed,
-}: {
-  data: any
-  setIsCollapsed: React.Dispatch<React.SetStateAction<boolean>>
-}) {
+export default function MobileBar({ data }: { data: any }) {
   const fetcher = useFetcher()
-  const isCollapsed = useContext(CollapsedContext)
-  const { toggleColorScheme, colorScheme } = useMantineColorScheme()
 
   /**<ActionIcon
-        className={classes.chevron}
-        radius="xl"
-        color="gray"
-        type="submit"
-        onClick={() => {
-          setIsCollapsed(!isCollapsed)
-          fetcher.submit(
-            { intent: "updateCollapsed", collapsed: !isCollapsed },
-            { method: "POST", action: "/" }
-          )
-        }}
-      >
-        {isCollapsed ? <BsChevronRight /> : <BsChevronLeft />}
-      </ActionIcon> */
+          className={classes.chevron}
+          radius="xl"
+          color="gray"
+          type="submit"
+          onClick={() => {
+            setIsCollapsed(!isCollapsed)
+            fetcher.submit(
+              { intent: "updateCollapsed", collapsed: !isCollapsed },
+              { method: "POST", action: "/" }
+            )
+          }}
+        >
+          {isCollapsed ? <BsChevronRight /> : <BsChevronLeft />}
+        </ActionIcon> */
   return (
-    <Box className={`${classes.sidebar} ${isCollapsed && classes.collapsed}`}>
-      <Flex h={'100%'} direction={'column'} gap={'md'}>
+    <Group className={`${classes.mobileBar}`}>
+      <NavLink to='/' icon={<RxDashboard />}>
+        Dashboard
+      </NavLink>
+      <NavLink to='/cash' icon={<BsCash />}>
+        Cash
+      </NavLink>
+      <NavLink to='/' icon={<RiBankLine />}>
+        Select
+      </NavLink>
+      <NavLink to='/history' icon={<BsClockHistory />}>
+        History
+      </NavLink>
+      <NavLink to='/' icon={<BsClipboard />}>
+        Account
+      </NavLink>
+    </Group>
+  )
+}
+
+/**
+ * 
+ * <Flex h={'100%'} direction={'column'} gap={'md'}>
         <Group gap={'5px'}>
           <Image h={'auto'} w={'40px'} src={Logo} />
-          <Title
-            className={`${classes.title} ${isCollapsed && classes.collapsed}`}
-            size={'h3'}
-          >
+          <Title className={`${classes.title}`} size={'h3'}>
             Reforged Finance
           </Title>
         </Group>
@@ -93,13 +98,7 @@ export default function Sidebar({
 
         <Flex direction={'column'} h={'100%'} justify={'space-between'}>
           <Space />
-          <Button h='80px' w='80%' m='auto' onClick={() => toggleColorScheme()}>
-            Toggle Light/Dark mode
-          </Button>
           <Stack>
-            <NavLink premium to='/premium' icon={<RiVipCrown2Fill />}>
-              Get Premium
-            </NavLink>
             <Divider />
             <Box>
               <DataDefer data={data}>
@@ -109,6 +108,4 @@ export default function Sidebar({
           </Stack>
         </Flex>
       </Flex>
-    </Box>
-  )
-}
+ */
