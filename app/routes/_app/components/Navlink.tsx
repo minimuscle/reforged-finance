@@ -1,41 +1,32 @@
 import { Text, ThemeIcon } from '@mantine/core'
-import { Link, useLocation } from '@remix-run/react'
-import styles from '../_app.module.css'
+import { NavLink as Link } from '@remix-run/react'
+import classes from '../_app.module.css'
 import { cloneElement } from 'react'
 
 interface NavLinkProps {
   children: React.ReactNode
   icon: React.ReactElement
   to: string
-  premium?: boolean
+  target?: '_blank'
 }
 //TODO: Add text option
-export default function NavLink({
-  children,
-  icon,
-  to,
-  premium = false,
-}: NavLinkProps) {
-  const location = useLocation()
-  const active = location.pathname === to
+export default function NavLink({ children, icon, to, target }: NavLinkProps) {
   return (
     <Link
+      target={target ? target : ''}
+      rel={target ? 'noreferrer' : ''}
       prefetch='intent'
       to={to}
-      className={`${premium ? styles.premiumLink : styles.link} ${
-        premium ? active && styles.premiumActive : active && styles.active
-      }`}
+      className={({ isActive }) =>
+        `${classes.link} ${isActive ? classes.active : ''}`
+      }
     >
-      <ThemeIcon
-        className={styles.icon}
-        color={premium ? 'yellow' : ''}
-        variant='subtle'
-      >
+      <ThemeIcon className={classes.icon} variant='subtle'>
         {cloneElement(icon, {
           style: { height: '80%', width: '80%' },
         })}
       </ThemeIcon>
-      <Text className={styles.navText}>{children}</Text>
+      <Text className={classes.navText}>{children}</Text>
     </Link>
   )
 }

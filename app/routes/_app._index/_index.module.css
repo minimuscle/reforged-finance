@@ -1,5 +1,9 @@
 .container {
   padding: 20px 50px;
+  background-color: light-dark(
+    var(--color-background-light),
+    var(--color-background-dark)
+  );
 }
 
 .title {

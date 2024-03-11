@@ -7,17 +7,17 @@ export const theme = createTheme({
   },
   fontFamily: 'Noto Sans, sans-serif',
   colors: {
-    test: [
-      '#ffe8e8',
-      '#ffcfcf',
-      '#ff9b9c',
-      '#ff6464',
-      '#fe3837',
-      '#fe1b19',
-      '#ff0909',
-      '#e40000',
-      '#cb0000',
-      '#b10000',
+    dark: [
+      '#a4a4a6',
+      '#8d8e90',
+      '#76777a',
+      '#5f6064',
+      '#49494d',
+      '#323337',
+      '#1b1c21',
+      '#18191e',
+      '#16161a',
+      '#131417',
     ],
   },
 })

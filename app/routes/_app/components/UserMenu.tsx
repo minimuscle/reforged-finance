@@ -1,23 +1,24 @@
 import {
   Avatar,
   Flex,
+  Group,
   Menu,
   Stack,
+  Switch,
   Text,
   ThemeIcon,
   Title,
   useMantineColorScheme,
 } from '@mantine/core'
-import styles from '../_app.module.css'
 import {
   RiArrowRightSLine,
-  RiArrowDownSLine,
   RiSettings3Line,
   RiQuestionLine,
   RiLogoutBoxLine,
 } from 'react-icons/ri/index.js'
 import { useState } from 'react'
 import { Link } from '@remix-run/react'
+import classes from '../_app.module.css'
 import useUser from '~/utils/hooks/useUser'
 
 export default function UserMenu() {
@@ -25,31 +26,20 @@ export default function UserMenu() {
   const { toggleColorScheme, colorScheme } = useMantineColorScheme()
   const [opened, setOpened] = useState(false)
   return (
-    <Menu opened={opened} onChange={setOpened} position='bottom-end' withArrow>
+    <Menu opened={opened} onChange={setOpened} offset={25} position='right-end'>
       <Menu.Target>
-        <Flex align={'center'} className={styles.target}>
-          <Avatar mr={10} />
-          <Stack gap={0}>
-            <Title mb={-5} order={5}>
-              {user.name}
-            </Title>
-            <Text c={'gray'} size='xs'>
-              {user.email}
-            </Text>
-          </Stack>
-          <ThemeIcon color='gray' variant='white' size={'md'}>
-            {opened ? (
-              <RiArrowDownSLine
-                style={{
-                  width: '100%',
-                  height: '100%',
-                }}
-              />
-            ) : (
-              <RiArrowRightSLine style={{ width: '100%', height: '100%' }} />
-            )}
+        <Group className={classes.userButton}>
+          <Flex className={classes.avatar}>
+            <Avatar color='blue' radius={'md'} />
+            <Stack className={classes.user}>
+              <Title size='h5'>{user.name}</Title>
+              <Text size='xs'>{user.email}</Text>
+            </Stack>
+          </Flex>
+          <ThemeIcon className={classes.icon} variant='transparent' size={'md'}>
+            <RiArrowRightSLine />
           </ThemeIcon>
-        </Flex>
+        </Group>
       </Menu.Target>
 
       <Menu.Dropdown>
@@ -57,7 +47,7 @@ export default function UserMenu() {
           component={Link}
           to={'/settings'}
           prefetch='intent'
-          className={styles.menuItem}
+          className={classes.menuItem}
           leftSection={
             <RiSettings3Line style={{ width: '16px', height: '100%' }} />
           }
@@ -72,8 +62,15 @@ export default function UserMenu() {
           Help
         </Menu.Item>
         <Menu.Divider />
-        <Menu.Item disabled onClick={() => toggleColorScheme()}>
-          Set {colorScheme === 'light' ? 'Dark' : 'Light'} Mode (Coming Soon)
+        <Menu.Item closeMenuOnClick={false} component='div'>
+          <Group>
+            Dark Mode
+            <Switch
+              size='xs'
+              onChange={() => toggleColorScheme()}
+              defaultChecked={colorScheme === 'dark'}
+            />
+          </Group>
         </Menu.Item>
         <Menu.Divider />
         <Menu.Item
@@ -83,7 +80,7 @@ export default function UserMenu() {
           }
           component={Link}
           to={'/logout'}
-          className={styles.menuItem}
+          className={classes.menuItem}
         >
           Log Out
         </Menu.Item>

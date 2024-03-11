@@ -7,7 +7,7 @@ import { Box, Flex } from '@mantine/core'
 import { CollapsedContext } from '~/utils/contexts/CollapsedContext'
 import { useState } from 'react'
 import { collapsedCookie } from '~/utils/cookies.server'
-import MobileBar from './components/MobileBar'
+//import MobileBar from './components/MobileBar'
 
 export const loader = async ({ request }: LoaderFunctionArgs) => {
   const supabase = supabaseCreate(request)
@@ -40,7 +40,7 @@ export default function Index() {
   return (
     <CollapsedContext.Provider value={isCollapsed}>
       <Flex className={classes.app}>
-        <MobileBar data={data} />
+        {/* <MobileBar data={data} /> //TODO: Fix this mobile */}
         <Sidebar data={data} setIsCollapsed={setIsCollapsed} />
         <Box
           className={`${classes.content} ${isCollapsed && classes.collapsed}`}
