@@ -6,7 +6,7 @@ export default function UserMenuSkeleton() {
   return (
     <Group className={classes.userButton}>
       <Flex className={classes.avatar}>
-        <Avatar color='blue' radius={'md'} />
+        <Avatar color='brand' radius={'md'} />
         <Stack className={classes.user}>
           <Skeleton />
           <Skeleton />

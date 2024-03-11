@@ -2,13 +2,16 @@ import type { MetaFunction } from '@remix-run/node'
 import { isRouteErrorResponse, useRouteError } from '@remix-run/react'
 import { Box, Group } from '@mantine/core'
 import NetWorthContainer from './components/NetWorthContainer'
-import styles from './_index.module.css'
+import classes from './_index.module.css'
 import DataDefer from '~/components/DataDefer'
 import AssetsContainer from './components/AssetsContainer'
 import NetworthTrend from './components/NetworthTrend'
 import SafetyNet from './components/SafetyNet'
 import TotalSavingsRate from './components/TotalSavingsRate'
 import Breakdown from './components/Breakdown/Breakdown'
+import TilesSkeleton from './components/TilesSkeleton'
+import Heading from '~/components/Heading'
+import BreakdownSkeleton from './components/Breakdown/BeankdownSkeleton'
 
 export const meta: MetaFunction = () => {
   return [{ title: 'Dashboard | Reforged Finance' }]
@@ -41,17 +44,22 @@ export const ErrorBoundary = () => {
 
 export default function Index() {
   return (
-    <Box className={styles.container}>
+    <Box className={classes.container}>
+      <Heading title='Dashboard' buttonText='Add Month' />
       <DataDefer>
-        <Group gap={0} mb={20}>
+        <Group className={classes.graph}>
           <NetWorthContainer />
           <AssetsContainer />
         </Group>
-        <Group mb={20}>
+      </DataDefer>
+      <Group className={classes.tiles}>
+        <DataDefer fallback={<TilesSkeleton />}>
           <NetworthTrend />
           <SafetyNet />
           <TotalSavingsRate />
-        </Group>
+        </DataDefer>
+      </Group>
+      <DataDefer fallback={<BreakdownSkeleton />}>
         <Breakdown />
       </DataDefer>
     </Box>

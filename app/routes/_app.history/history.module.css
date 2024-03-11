@@ -1,9 +1,14 @@
 .container {
-  padding: 20px 50px;
-}
+  padding-bottom: rem(30px);
 
-.title {
-  margin-bottom: 20px;
+  --skeleton-height: rem(20px);
+
+  table {
+    --table-border-color: light-dark(
+      var(--color-border-light),
+      var(--color-border-dark)
+    );
+  }
 }
 
 .positive {

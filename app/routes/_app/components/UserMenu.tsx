@@ -30,7 +30,7 @@ export default function UserMenu() {
       <Menu.Target>
         <Group className={classes.userButton}>
           <Flex className={classes.avatar}>
-            <Avatar color='blue' radius={'md'} />
+            <Avatar radius={'md'} />
             <Stack className={classes.user}>
               <Title size='h5'>{user.name}</Title>
               <Text size='xs'>{user.email}</Text>

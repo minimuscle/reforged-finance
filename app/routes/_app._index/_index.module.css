@@ -1,44 +1,60 @@
-.container {
-  padding: 20px 50px;
-  background-color: light-dark(
-    var(--color-background-light),
-    var(--color-background-dark)
-  );
-}
-
-.title {
-  margin-bottom: 20px;
+.tiles {
+  gap: rem(20px);
+  margin-bottom: rem(20px);
 }
 
 .tile {
-  border: var(--mantine-color-gray-2) 2px solid;
-  padding: 10px;
+  border: light-dark(var(--color-border-light), var(--color-border-dark))
+    rem(2px) solid;
+  padding: rem(10px);
   flex-grow: 1;
-  border-radius: 10px;
+  border-radius: rem(10px);
+
+  --skeleton-height: rem(44px);
+  --skeleton-width: 50%;
+  --skeleton-border-radius: rem(10px);
+}
+
+.tableSkeleton {
+  margin-top: rem(30px);
+  --skeleton-height: rem(300px);
+  --skeleton-width: 100%;
+  --skeleton-border-radius: rem(10px);
+}
+
+.graph {
+  gap: 0;
+  margin-bottom: rem(20px);
 }
 
 .netWorthContainer {
-  width: 60%;
-  height: 500px;
-  border: var(--mantine-color-gray-2) 2px solid;
-  border-top-left-radius: 10px;
-  border-bottom-left-radius: 10px;
-  border-top-right-radius: 0px;
-  border-bottom-right-radius: 0px;
-  padding: 10px;
+  width: rem(60%);
+  height: rem(500px);
+  padding: rem(10px);
+  border: light-dark(var(--color-border-light), var(--color-border-dark))
+    rem(2px) solid;
+  border-top-left-radius: rem(10px);
+  border-bottom-left-radius: rem(10px);
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
 }
 
 .assetsContainer {
-  height: 500px;
-  width: 40%;
-  background-color: var(--mantine-color-gray-0);
-  border: var(--mantine-color-gray-2) 2px solid;
-  margin-left: -3px;
-  border-top-right-radius: 10px;
-  border-bottom-right-radius: 10px;
-  border-bottom-left-radius: 0px;
-  border-top-left-radius: 0px;
-  padding: 10px;
+  width: rem(40%);
+  height: rem(500px);
+  background-color: light-dark(var(--color-light), var(--color-dark));
+  border: light-dark(var(--color-border-light), var(--color-border-dark))
+    rem(2px) solid;
+  margin-left: rem(-3px);
+  border-top-right-radius: rem(10px);
+  border-bottom-right-radius: rem(10px);
+  border-bottom-left-radius: rem(0px);
+  border-top-left-radius: rem(0px);
+  padding: rem(10px);
+}
+
+.header {
+  justify-content: space-between;
 }
 
 .chartContainer {
@@ -46,8 +62,8 @@
   width: 100%;
 }
 
-.header {
-  justify-content: space-between;
+.title {
+  margin-bottom: rem(20px);
 }
 
 .filters {

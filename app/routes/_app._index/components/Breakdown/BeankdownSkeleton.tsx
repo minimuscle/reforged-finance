@@ -1,10 +1,8 @@
-import { Button, Flex, Paper, Title } from '@mantine/core'
+import { Button, Flex, Paper, Skeleton, Title } from '@mantine/core'
 import classes from '../../_index.module.css'
 import { useState } from 'react'
-import Assets from './Assets'
-import Liabilities from './Liabilities'
 
-const Breakdown = () => {
+const BreakdownSkeleton = () => {
   const [breakdown, setBreakdown] = useState('assets')
   return (
     <Paper className={classes.tile}>
@@ -27,9 +25,9 @@ const Breakdown = () => {
           </Button>
         </Button.Group>
       </Flex>
-      {breakdown === 'assets' ? <Assets /> : <Liabilities />}
+      <Skeleton className={classes.tableSkeleton} />
     </Paper>
   )
 }
 
-export default Breakdown
+export default BreakdownSkeleton
