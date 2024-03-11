@@ -27,6 +27,8 @@
   --color-border-dark: #29292a;
   --color-hover-light: #e5e6e8;
   --color-hover-dark: #36363c;
+
+  font-size: rem(14px);
 }
 
 html {
@@ -35,8 +37,5 @@ html {
 
 body {
   height: 100%;
-  background-color: light-dark(
-    var(--color-background-light),
-    var(--color-background-dark)
-  );
+  background-color: light-dark(var(--color-background-light), var(--color-background-dark));
 }

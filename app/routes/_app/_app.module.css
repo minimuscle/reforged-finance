@@ -11,8 +11,7 @@
   position: fixed;
   padding: rem(20px);
   background-color: light-dark(var(--color-light), var(--color-dark));
-  border-right: rem(2px) solid
-    light-dark(var(--color-border-light), var(--color-border-dark));
+  border-right: rem(2px) solid light-dark(var(--color-border-light), var(--color-border-dark));
 
   .logo {
     gap: 0;
@@ -56,17 +55,14 @@
     display: flex;
     text-decoration: none;
     align-items: center;
-    justify-content: start;
+    justify-content: flex-start;
     gap: rem(5px);
     padding: rem(5px);
     border-radius: rem(8px);
     margin-top: rem(10px);
 
     &:hover {
-      background-color: light-dark(
-        var(--color-hover-light),
-        var(--color-hover-dark)
-      );
+      background-color: light-dark(var(--color-hover-light), var(--color-hover-dark));
     }
 
     .navText {
@@ -75,10 +71,7 @@
     }
 
     &.active {
-      background-color: light-dark(
-        var(--color-accent),
-        darken(var(--color-accent), 0.5)
-      );
+      background-color: light-dark(var(--color-accent), darken(var(--color-accent), 0.5));
 
       .icon {
         color: var(--mantine-color-white);
@@ -93,20 +86,13 @@
   .userButton {
     justify-content: space-between;
     cursor: pointer;
-    border: rem(2px) solid
-      light-dark(var(--color-border-light), var(--color-border-dark));
+    border: rem(2px) solid light-dark(var(--color-border-light), var(--color-border-dark));
     border-radius: rem(8px);
     padding: rem(10px);
-    background-color: light-dark(
-      var(--mantine-background-light),
-      var(--color-background-dark)
-    );
+    background-color: light-dark(var(--mantine-background-light), var(--color-background-dark));
 
     &:hover {
-      background-color: light-dark(
-        var(--color-hover-light),
-        var(--color-hover-dark)
-      );
+      background-color: light-dark(var(--color-hover-light), var(--color-hover-dark));
     }
   }
 
@@ -128,10 +114,7 @@
   }
 
   .premium {
-    background-color: light-dark(
-      var(--color-accent),
-      darken(var(--color-accent), 0.5)
-    );
+    background-color: light-dark(var(--color-accent), darken(var(--color-accent), 0.5));
     height: rem(175px);
     border-radius: rem(8px);
     padding: rem(20px);
