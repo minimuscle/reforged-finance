@@ -2,7 +2,7 @@
   justify-content: space-between;
   align-items: center;
   background-color: light-dark(var(--color-light), var(--color-dark));
-  margin: rem(-30px) rem(-30px) rem(30px) rem(-30px);
+  margin: rem(-20px) rem(-20px) rem(20px) rem(-20px);
   padding: rem(10px) rem(30px);
   border-bottom: rem(2px) solid
     light-dark(var(--color-border-light), var(--color-border-dark));

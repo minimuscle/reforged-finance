@@ -13,6 +13,14 @@
   --skeleton-height: rem(44px);
   --skeleton-width: 50%;
   --skeleton-border-radius: rem(10px);
+
+  p span {
+    font-size: rem(20px);
+  }
+
+  h1 {
+    margin-bottom: rem(5px);
+  }
 }
 
 .tableSkeleton {
@@ -37,6 +45,10 @@
   border-bottom-left-radius: rem(10px);
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;
+
+  .netWorthChart {
+    height: 75%;
+  }
 }
 
 .assetsContainer {
@@ -55,15 +67,29 @@
 
 .header {
   justify-content: space-between;
+
+  .title {
+    text-transform: capitalize;
+    font-size: rem(20px);
+  }
+}
+
+.netWorth {
+  position: relative;
+  margin-left: rem(20px);
+  font-size: rem(48px);
+  span {
+    font-size: rem(24px);
+    color: light-dark(var(--text-secondary), var(--text-secondary-dark));
+    position: absolute;
+    top: rem(8px);
+    left: rem(-20px);
+  }
 }
 
 .chartContainer {
   height: 90%;
   width: 100%;
-}
-
-.title {
-  margin-bottom: rem(20px);
 }
 
 .filters {

@@ -1,4 +1,4 @@
-import { Flex, Paper, Title } from '@mantine/core'
+import { Flex, Paper, Text, Title } from '@mantine/core'
 import classes from '../_index.module.css'
 
 const Tile = ({
@@ -15,11 +15,12 @@ const Tile = ({
   return (
     <Paper className={classes.tile}>
       <Flex justify='space-between' align='center'>
-        <Title size='h3'>{title}</Title>
+        <Text>
+          <span>{title}</span>
+        </Text>
         {rightComponent}
       </Flex>
       <Title>{children}</Title>
-
       {footer}
     </Paper>
   )
