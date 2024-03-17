@@ -11,7 +11,9 @@ import TotalSavingsRate from './components/TotalSavingsRate'
 import Breakdown from './components/Breakdown/Breakdown'
 import TilesSkeleton from './components/TilesSkeleton'
 import Heading from '~/components/Heading'
-import BreakdownSkeleton from './components/Breakdown/BeankdownSkeleton'
+import BreakdownSkeleton from './components/Breakdown/BreakdownSkeleton'
+import NetWorthContainerSkeleton from './components/NetWorthContainerSkeleton'
+import AssetsContainerSkeleton from './components/AssetsContainerSkeleton'
 
 export const meta: MetaFunction = () => {
   return [{ title: 'Dashboard | Reforged Finance' }]
@@ -46,7 +48,14 @@ export default function Index() {
   return (
     <Box className={classes.container}>
       <Heading title='Dashboard' buttonText='Add Month' />
-      <DataDefer>
+      <DataDefer
+        fallback={
+          <Group className={classes.graph}>
+            <NetWorthContainerSkeleton />
+            <AssetsContainerSkeleton />
+          </Group>
+        }
+      >
         <Group className={classes.graph}>
           <NetWorthContainer />
           <AssetsContainer />

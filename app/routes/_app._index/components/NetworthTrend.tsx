@@ -11,7 +11,7 @@ import { useEffect, useState } from 'react'
 const NetworthTrend = () => {
   const { history } = useHistory()
   const [netWorth, setNetWorth] = useState('Update Month')
-  const [change, setChange] = useState(0)
+  const [change, setChange] = useState(0.001)
 
   useEffect(() => {
     if (history.length < 2) return
@@ -41,7 +41,6 @@ const NetworthTrend = () => {
 }
 
 const Footer = ({ change }: { change: number }) => {
-  console.log(change)
   return (
     <Group>
       <Badge
@@ -59,7 +58,7 @@ const Footer = ({ change }: { change: number }) => {
       >
         {formatter('AUD', change)}
       </Badge>
-      <Text>Since last month</Text>
+      <Text>Since Last Month</Text>
     </Group>
   )
 }
