@@ -13,9 +13,10 @@ export default function Premium() {
         <Title order={4}>Get Premium</Title>
       </Group>
       <Text size='sm'>Exports, budget tracking and much more</Text>
-      <Link to='/premium' prefetch='intent'>
+      <a>Comning Soon</a>
+      {/* <Link to='/premium' prefetch='intent'>
         Upgrade Now
-      </Link>
+      </Link> */}
     </Box>
   )
 }
