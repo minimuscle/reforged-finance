@@ -13,7 +13,7 @@
 
 :root {
   --text-primary: #111729;
-  --text-secondary: #8690a1;
+  --text-secondary: #778090;
   --text-primary-dark: #e8e8e8;
   --text-secondary-dark: #a3a3a3;
   --color-light: #ffffff;
@@ -27,7 +27,6 @@
   --color-border-dark: #29292a;
   --color-hover-light: #e5e6e8;
   --color-hover-dark: #36363c;
-
   font-size: rem(14px);
 }
 
