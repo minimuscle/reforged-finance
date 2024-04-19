@@ -6,10 +6,13 @@ import classes from './_app.module.css'
 import { Box, Flex } from '@mantine/core'
 import { CollapsedContext } from '~/utils/contexts/CollapsedContext'
 import { useState } from 'react'
-import { collapsedCookie } from '~/utils/cookies.server'
+import { authCookie, collapsedCookie } from '~/utils/cookies.server'
 //import MobileBar from './components/MobileBar'
 
 export const loader = async ({ request }: LoaderFunctionArgs) => {
+  const cookie = request.headers.get('Cookie')
+  const auth = (await authCookie.parse(cookie)) || {}
+
   const supabase = supabaseCreate(request)
 
   const session = await supabase.auth.getSession()
@@ -17,7 +20,6 @@ export const loader = async ({ request }: LoaderFunctionArgs) => {
   //Takes user to login page if not logged in
   if (!userSession) throw redirect('/login')
 
-  const cookie = request.headers.get('Cookie')
   const collapsed = await collapsedCookie.parse(cookie)
 
   const data = Promise.all([
@@ -42,9 +44,7 @@ export default function Index() {
       <Flex className={classes.app}>
         {/* <MobileBar data={data} /> //TODO: Fix this mobile */}
         <Sidebar data={data} setIsCollapsed={setIsCollapsed} />
-        <Box
-          className={`${classes.content} ${isCollapsed && classes.collapsed}`}
-        >
+        <Box className={`${classes.content} ${isCollapsed && classes.collapsed}`}>
           <Outlet context={data} />
         </Box>
       </Flex>

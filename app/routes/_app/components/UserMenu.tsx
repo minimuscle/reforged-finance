@@ -1,21 +1,5 @@
-import {
-  Avatar,
-  Flex,
-  Group,
-  Menu,
-  Stack,
-  Switch,
-  Text,
-  ThemeIcon,
-  Title,
-  useMantineColorScheme,
-} from '@mantine/core'
-import {
-  RiArrowRightSLine,
-  RiSettings3Line,
-  RiQuestionLine,
-  RiLogoutBoxLine,
-} from 'react-icons/ri/index.js'
+import { Avatar, Flex, Group, Menu, Stack, Switch, Text, ThemeIcon, Title, useMantineColorScheme } from '@mantine/core'
+import { RiArrowRightSLine, RiSettings3Line, RiQuestionLine, RiLogoutBoxLine } from 'react-icons/ri/index.js'
 import { useState } from 'react'
 import { Link } from '@remix-run/react'
 import classes from '../_app.module.css'
@@ -26,7 +10,7 @@ export default function UserMenu() {
   const { toggleColorScheme, colorScheme } = useMantineColorScheme()
   const [opened, setOpened] = useState(false)
   return (
-    <Menu opened={opened} onChange={setOpened} offset={25} position='right-end'>
+    <Menu opened={opened} onChange={setOpened} offset={25} position='right-end' shadow='lg'>
       <Menu.Target>
         <Group className={classes.userButton}>
           <Flex className={classes.avatar}>
@@ -42,42 +26,28 @@ export default function UserMenu() {
         </Group>
       </Menu.Target>
 
-      <Menu.Dropdown>
+      <Menu.Dropdown className={classes.dropdown}>
         <Menu.Item
           component={Link}
           to={'/settings'}
           prefetch='intent'
           className={classes.menuItem}
-          leftSection={
-            <RiSettings3Line style={{ width: '16px', height: '100%' }} />
-          }
+          leftSection={<RiSettings3Line style={{ width: '16px', height: '100%' }} />}
         >
           Settings
         </Menu.Item>
-        <Menu.Item
-          leftSection={
-            <RiQuestionLine style={{ width: '16px', height: '100%' }} />
-          }
-        >
-          Help
-        </Menu.Item>
+        <Menu.Item leftSection={<RiQuestionLine style={{ width: '16px', height: '100%' }} />}>Help</Menu.Item>
         <Menu.Divider />
         <Menu.Item closeMenuOnClick={false} component='div'>
           <Group>
             Dark Mode
-            <Switch
-              size='xs'
-              onChange={() => toggleColorScheme()}
-              defaultChecked={colorScheme === 'dark'}
-            />
+            <Switch size='xs' onChange={() => toggleColorScheme()} defaultChecked={colorScheme === 'dark'} />
           </Group>
         </Menu.Item>
         <Menu.Divider />
         <Menu.Item
           color='blue'
-          leftSection={
-            <RiLogoutBoxLine style={{ width: '16px', height: '100%' }} />
-          }
+          leftSection={<RiLogoutBoxLine style={{ width: '16px', height: '100%' }} />}
           component={Link}
           to={'/logout'}
           className={classes.menuItem}
