@@ -19,7 +19,7 @@ export default function useHistory() {
     let total = 0
     if (cash) total += cash
     if (superannuation) total += superannuation
-    if (debts) total += debts
+    if (debts) total -= debts
     return { ...item, netWorth: total }
   })
 

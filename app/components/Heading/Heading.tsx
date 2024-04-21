@@ -1,26 +1,17 @@
-import { Button, Flex, Title } from '@mantine/core'
+import { Flex, Title } from '@mantine/core'
 import classes from './Heading.module.css'
 
 export default function Heading({
   title,
-  buttonText,
+  children
 }: {
   title: string
-  buttonText?: string
+  children?: React.ReactNode
 }) {
   return (
     <Flex className={classes.header}>
       <Title>{title}</Title>
-      {buttonText && (
-        <>
-          <Button color='dark' darkHidden>
-            {buttonText}
-          </Button>
-          <Button color='dark' variant='white' lightHidden>
-            {buttonText}
-          </Button>
-        </>
-      )}
+      {children}
     </Flex>
   )
 }
