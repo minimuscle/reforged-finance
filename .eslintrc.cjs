@@ -19,9 +19,11 @@ module.exports = {
     commonjs: true,
     es6: true,
   },
+  ignorePatterns: ["!**/.server", "!**/.client"],
 
   // Base config
   extends: ["eslint:recommended"],
+
   overrides: [
     // React
     {
@@ -42,6 +44,9 @@ module.exports = {
           { name: "Link", linkAttribute: "to" },
           { name: "NavLink", linkAttribute: "to" },
         ],
+        "import/resolver": {
+          typescript: {},
+        },
       },
     },
 
@@ -66,14 +71,14 @@ module.exports = {
         "plugin:import/recommended",
         "plugin:import/typescript",
       ],
-      rules: {
-        '@typescript-eslint/no-explicit-any': 'off', // Turn off 'no-explicit-any' rule
+       rules: {
+        "@typescript-eslint/no-explicit-any": "off", // Disable no-explicit-any
       },
     },
 
     // Node
     {
-      files: [".eslintrc.js"],
+      files: [".eslintrc.cjs"],
       env: {
         node: true,
       },
