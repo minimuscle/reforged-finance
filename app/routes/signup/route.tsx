@@ -9,8 +9,9 @@ export async function action({ request }: ActionFunctionArgs) {
   const formData = await request.formData()
   const token = formData.get("token") as string
   const uid = formData.get("uid") as string
+  const email = formData.get("email") as string
 
-  await createNewUser(uid)
+  await createNewUser(uid, email)
   return createUserSession(token)
 }
 
@@ -25,7 +26,11 @@ export default function Signup() {
 
     const { user } = await createUserWithEmailAndPassword(auth, email, password)
     submit(
-      { token: await user.getIdToken(), uid: user.uid },
+      {
+        token: await user.getIdToken(),
+        uid: user.uid,
+        email: user.email,
+      },
       { method: "post" }
     )
   }

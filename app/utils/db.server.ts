@@ -22,10 +22,10 @@ export async function getSessionToken(idToken: string) {
   return auth.createSessionCookie(idToken, { expiresIn: twoWeeks });
 }
 
-export async function createNewUser(uid: string) {
+export async function createNewUser(uid: string, email: string) {
   const user: User = {
     name: '',
-    email: '',
+    email: email,
     country: '',
     currency: Currency.AUD,
     netIncome: 0,
@@ -34,9 +34,7 @@ export async function createNewUser(uid: string) {
     emergencyFundGoal: 0,
     savingForHomeDeposit: false,
     homeDepositGoal: 0,
-    super: {
-      0: { name: 'Superannuation', currency: Currency.AUD, balance: 0}
-    },
+    super: {},
     cash: {},
     debts: {},
     sideIncome: {},

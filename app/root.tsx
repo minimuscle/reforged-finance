@@ -36,6 +36,7 @@ export async function loader({ request }: LoaderFunctionArgs) {
   if (!decodedClaims) {
     return null
   }
+  console.log(decodedClaims)
   const user = await db.collection("users").doc(decodedClaims.uid).get()
   const userData = user.data()
   if (!userData) {
