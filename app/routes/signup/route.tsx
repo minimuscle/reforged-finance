@@ -1,24 +1,32 @@
 import { type ActionFunctionArgs } from '@remix-run/node'
-import { Form } from '@remix-run/react'
-import { signUp } from '~/utils/db.server'
+import { Form, useSubmit } from '@remix-run/react'
+import { createUserWithEmailAndPassword } from 'firebase/auth'
+import { auth } from '~/utils/auth'
 import { createUserSession } from '~/utils/session.server'
 
 export async function action({ request }: ActionFunctionArgs) {
   const formData = await request.formData()
-  const email = formData.get('email') as string
-  const password = formData.get('password') as string
-  console.log('got passed form data')
-  const user = await signUp(email, password)
-  const token = await user.getIdToken()
-  console.log('got passed token')
+  const token = formData.get('token') as string
   return createUserSession(token)
 }
 
 export default function Signup() {
+  const submit = useSubmit()
+
+  const createUser = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    const form = new FormData(e.currentTarget)
+    const email = form.get('email') as string
+    const password = form.get('password') as string
+
+    const { user } = await createUserWithEmailAndPassword(auth, email, password)
+    submit({ token: await user.getIdToken() }, { method: 'post' })
+  }
+
   return (
     <div>
       <h1>Signup</h1>
-      <Form method='post'>
+      <Form method='post' onSubmit={(e) => createUser(e)}>
         <label>
           Email
           <input type='email' name='email' required />
