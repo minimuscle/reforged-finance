@@ -1,5 +1,5 @@
 import type { MetaFunction } from "@remix-run/node"
-import { useOutletContext } from "@remix-run/react"
+import { Link, useOutletContext } from "@remix-run/react"
 import { User } from "~/utils/types"
 export const meta: MetaFunction = () => {
   return [
@@ -15,6 +15,7 @@ export default function Index() {
       New Reforged Finance Version 0.4.0
       <br />
       <p>{user.name}</p>
+      <Link to="/logout">Log Out</Link>
     </div>
   )
 }

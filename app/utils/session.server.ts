@@ -22,6 +22,18 @@ export async function createUserSession(idToken: string) {
   });
 }
 
+export async function destroyUserSession(request: any) {
+  const session = await storage.getSession(
+    request.headers.get("Cookie")
+  );
+  return redirect("/login", {
+    headers: {
+      "Set-Cookie": await storage.destroySession(session),
+    },
+  });
+  
+}
+
 export const isSessionValid = async (request: any) => {
   const session = await storage.getSession(request.headers.get("cookie"));
   try {
