@@ -1,4 +1,4 @@
-import { LoaderFunctionArgs, createCookieSessionStorage, redirect } from "@remix-run/node";
+import { createCookieSessionStorage, redirect } from "@remix-run/node";
 import { getSessionToken, verifySessionCookie } from "./db.server";
 
 const storage = createCookieSessionStorage({
