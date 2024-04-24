@@ -2,6 +2,7 @@ import 'dotenv/config'
 import { getAuth } from 'firebase-admin/auth'
 import { applicationDefault, getApp, getApps, initializeApp} from 'firebase-admin/app'
 import { getFirestore } from 'firebase-admin/firestore'
+import { Currency, type User } from './types'
 
 if (!getApps().length) {
     initializeApp({
@@ -19,6 +20,28 @@ export async function getSessionToken(idToken: string) {
   }
   const twoWeeks = 60 * 60 * 24 * 14 * 1000;
   return auth.createSessionCookie(idToken, { expiresIn: twoWeeks });
+}
+
+export async function createNewUser(uid: string) {
+  const user: User = {
+    name: '',
+    email: '',
+    country: '',
+    currency: Currency.AUD,
+    netIncome: 0,
+    salaryFrequency: '',
+    cashGoal: 0,
+    emergencyFundGoal: 0,
+    savingForHomeDeposit: false,
+    homeDepositGoal: 0,
+    super: {
+      0: { name: 'Superannuation', currency: Currency.AUD, balance: 0}
+    },
+    cash: {},
+    debts: {},
+    sideIncome: {},
+  };
+  db.collection("users").doc(uid).set(user);
 }
 
 export async function verifySessionCookie(sessionCookie: string) {

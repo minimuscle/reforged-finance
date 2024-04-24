@@ -28,8 +28,13 @@ export const isSessionValid = async (request: any) => {
     const decodedClaims = await verifySessionCookie(session.get("token"))
     return { success: true, decodedClaims };
   } catch (error: Error | any) {
-    // Session cookie is unavailable or invalid. Force user to login.
-    // return { error: error?.message };
+    const url = new URL(request.url)
+    const path = url.pathname
+
+    if (path == "/login" || path == "/signup") {
+      return { success: false, decodedClaims: null };
+    }
+
     throw redirect("/login", {
       statusText: error?.message,
     });
