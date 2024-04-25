@@ -1,6 +1,10 @@
 import { ActionFunctionArgs } from "@remix-run/node"
 import { Form, useSubmit } from "@remix-run/react"
-import { signInWithEmailAndPassword } from "firebase/auth"
+import {
+  GoogleAuthProvider,
+  signInWithEmailAndPassword,
+  signInWithPopup,
+} from "firebase/auth"
 import { auth } from "~/utils/auth"
 import { createUserSession } from "~/utils/session.server"
 
@@ -23,9 +27,16 @@ export default function Login() {
     submit({ token: await user.getIdToken() }, { method: "post" })
   }
 
+  const loginWithGoogle = async () => {
+    const provider = new GoogleAuthProvider()
+    const { user } = await signInWithPopup(auth, provider)
+    submit({ token: await user.getIdToken() }, { method: "post" })
+  }
+
   return (
     <div>
       <h1>Login</h1>
+      <button onClick={() => loginWithGoogle()}>Login with Google</button>
       <Form method="post" onSubmit={(e) => loginUser(e)}>
         <label>
           Email
