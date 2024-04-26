@@ -1,12 +1,12 @@
 import 'dotenv/config'
 import { getAuth } from 'firebase-admin/auth'
-import { applicationDefault, getApp, getApps, initializeApp} from 'firebase-admin/app'
+import { applicationDefault, cert, getApp, getApps, initializeApp} from 'firebase-admin/app'
 import { getFirestore } from 'firebase-admin/firestore'
 import { Currency, type User } from './types'
 
 if (!getApps().length) {
     initializeApp({
-        credential: applicationDefault(),
+        credential: cert(JSON.parse(process.env.GOOGLE_APPLICATION_CREDENTIALS!)),
         databaseURL: `https://${process.env.FIREBASE_PROJECT_ID}.australia-southeast1.firebasedatabase.app`
     })
 }
