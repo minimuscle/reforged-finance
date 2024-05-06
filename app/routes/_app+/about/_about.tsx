@@ -1,3 +1,4 @@
+import { Title } from '@mantine/core'
 import { useLoaderData } from '@remix-run/react'
 
 export function loader() {
@@ -8,7 +9,7 @@ export default function Loader() {
   const loader = useLoaderData<string>()
   return (
     <div>
-      <h1>About</h1>
+      <Title>About</Title>
       <p>{loader}</p>
     </div>
   )

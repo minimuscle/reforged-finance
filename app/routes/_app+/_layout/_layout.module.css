@@ -1,0 +1,9 @@
+.divider {
+  margin: 0 -16px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}

@@ -12,7 +12,8 @@ import { isSessionValid } from './utils/session.server'
 import { LoaderFunctionArgs } from '@remix-run/node'
 import { db } from './utils/db.server'
 import { User } from './utils/types'
-import { ColorSchemeScript, MantineProvider } from '@mantine/core'
+import { ColorSchemeScript, MantineProvider, Title } from '@mantine/core'
+import '@mantine/core/styles.css'
 
 export function Layout({ children }: { children: React.ReactNode }) {
   return (
@@ -24,7 +25,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Links />
         <ColorSchemeScript />
       </head>
-      <body>
+      <body style={{ margin: 0 }}>
         <MantineProvider>{children}</MantineProvider>
         <ScrollRestoration />
         <Scripts />

@@ -1,3 +1,4 @@
+import { Title } from '@mantine/core'
 import { ActionFunctionArgs } from '@remix-run/node'
 import { Form, useSubmit } from '@remix-run/react'
 import { GoogleAuthProvider, signInWithEmailAndPassword, signInWithPopup } from 'firebase/auth'
@@ -32,7 +33,7 @@ export default function Login() {
 
   return (
     <div>
-      <h1>Login</h1>
+      <Title>Login</Title>
       <button onClick={() => loginWithGoogle()}>Login with Google</button>
       <Form method='post' onSubmit={(e) => loginUser(e)}>
         <label>
