@@ -1,9 +1,10 @@
 .divider {
-  margin: 0 -16px;
+  margin: 15px -16px;
 }
 
 .header {
   display: flex;
   justify-content: space-between;
-  margin-top: 10px;
+  align-items: center;
+  margin-top: 15px;
 }
