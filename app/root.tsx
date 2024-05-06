@@ -7,23 +7,25 @@ import {
   isRouteErrorResponse,
   useLoaderData,
   useRouteError,
-} from "@remix-run/react"
-import { isSessionValid } from "./utils/session.server"
-import { LoaderFunctionArgs } from "@remix-run/node"
-import { db } from "./utils/db.server"
-import { User } from "./utils/types"
+} from '@remix-run/react'
+import { isSessionValid } from './utils/session.server'
+import { LoaderFunctionArgs } from '@remix-run/node'
+import { db } from './utils/db.server'
+import { User } from './utils/types'
+import { ColorSchemeScript, MantineProvider } from '@mantine/core'
 
 export function Layout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
+    <html lang='en'>
       <head>
-        <meta charSet="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta charSet='utf-8' />
+        <meta name='viewport' content='width=device-width, initial-scale=1' />
         <Meta />
         <Links />
+        <ColorSchemeScript />
       </head>
       <body>
-        {children}
+        <MantineProvider>{children}</MantineProvider>
         <ScrollRestoration />
         <Scripts />
       </body>
@@ -36,11 +38,10 @@ export async function loader({ request }: LoaderFunctionArgs) {
   if (!decodedClaims) {
     return null
   }
-  console.log(decodedClaims)
-  const user = await db.collection("users").doc(decodedClaims.uid).get()
+  const user = await db.collection('users').doc(decodedClaims.uid).get()
   const userData = user.data()
   if (!userData) {
-    throw new Error("User not found")
+    throw new Error('User not found')
   }
   return userData
 }
