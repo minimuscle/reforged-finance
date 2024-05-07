@@ -1,4 +1,4 @@
-import { Container, Divider } from '@mantine/core'
+import { Box, Container, Divider } from '@mantine/core'
 import { Outlet, useOutletContext } from '@remix-run/react'
 import { User } from '~/utils/types'
 import Header from './Header'
@@ -7,20 +7,21 @@ import classes from './_layout.module.css'
 function Layout() {
   const user = useOutletContext<User>()
   return (
-    <div>
+    <Container>
       {/** MOBILE LAYOUT VIEW */}
-      <Container className={classes.mobile} hiddenFrom='md'>
+      <Box hiddenFrom='md'>
         <Header />
         <Divider className={classes.divider} />
-        <Outlet context={user} />
-      </Container>
+      </Box>
 
       {/** DESKTOP LAYOUT VIEW */}
-      <Container visibleFrom='md'>
-        <h1>Sidebar</h1>
+      <Box visibleFrom='md'></Box>
+
+      {/** CONTENT SECTION */}
+      <Box className={classes.content}>
         <Outlet context={user} />
-      </Container>
-    </div>
+      </Box>
+    </Container>
   )
 }
 

@@ -1,6 +1,6 @@
 import 'dotenv/config'
 import { getAuth } from 'firebase-admin/auth'
-import { applicationDefault, cert, getApp, getApps, initializeApp} from 'firebase-admin/app'
+import { cert, getApp, getApps, initializeApp} from 'firebase-admin/app'
 import { getFirestore } from 'firebase-admin/firestore'
 import { Currency, type User } from './types'
 
