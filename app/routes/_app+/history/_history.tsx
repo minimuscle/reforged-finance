@@ -2,6 +2,7 @@ import { LoaderFunctionArgs } from '@remix-run/node'
 import { useLoaderData } from '@remix-run/react'
 import { db } from '~/utils/db.server'
 import { isSessionValid } from '~/utils/session.server'
+import HistoryTable from './Table'
 
 export async function loader({ request }: LoaderFunctionArgs) {
   const { decodedClaims } = await isSessionValid(request)
@@ -18,11 +19,7 @@ export default function History() {
   return (
     <div>
       <h1>History</h1>
-      <ul>
-        {history.map((item) => (
-          <li key={item.id}>{item.test}</li>
-        ))}
-      </ul>
+      <HistoryTable history={history} />
     </div>
   )
 }
