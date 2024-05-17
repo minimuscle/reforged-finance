@@ -1,4 +1,15 @@
 import { Table } from '@mantine/core'
+import { History } from '~/utils/types'
+
+function dateFormat(epoch: number) {
+  const date = new Date(epoch * 1000)
+
+  //Return month and year
+  return date.toLocaleString('en-AU', {
+    month: 'long',
+    year: 'numeric',
+  })
+}
 
 export default function HistoryTable({ history }: any) {
   return (
@@ -14,9 +25,9 @@ export default function HistoryTable({ history }: any) {
         </Table.Tr>
       </Table.Thead>
       <Table.Tbody>
-        {history.map((item: any) => (
-          <Table.Tr key={item.id}>
-            <Table.Td>{item.date}</Table.Td>
+        {history.map((item: History, key: number) => (
+          <Table.Tr key={key}>
+            <Table.Td>{dateFormat(item.date._seconds)}</Table.Td>
             <Table.Td>{item.cash}</Table.Td>
             <Table.Td>{item.debts}</Table.Td>
             <Table.Td>{item.income}</Table.Td>

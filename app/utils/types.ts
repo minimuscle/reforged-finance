@@ -40,12 +40,24 @@ interface Account {
  * `DebtAccount` extends Account and has additional properties for debts
  */
 interface DebtAccount extends Account {
-  startDate: Date
+  startDate: { _seconds: number, _nanoseconds: number}
   interestFrequency: number
   annualInterest: number
   startingBalance: number
   regularPayment: number
   balancePaid: number
+}
+
+/**
+ * `History` is a list of all the previous months data saved
+ */
+export interface History {
+  cash: number
+  date: { _seconds: number, _nanoseconds: number}
+  debts: number
+  income: number
+  side_income: number
+  super: number
 }
 
 /**
