@@ -1,54 +1,70 @@
-export type CashProps = {
-  id: string
-  created_at: string
-  user_id: string
+/**
+ * `User` is the main object that contains all the data for the user.
+ * 
+ *
+ */
+export interface User {
   name: string
-  currency: string
-  balance: number
-  weight: number
-  colour: string
-  pending?: boolean
-}
-
-export type userProfile = {
-  id: string
-  name: string
-  created_at: string
-  email: string | null
-  employmentIncome: number
-  currency: string
+  email: string
+  country: string
+  currency: Currency
   netIncome: number
   salaryFrequency: string
-  cashGoal: number | null
-  emergencyFundGoal: number | null
-  homeDeposit: boolean
-  depositAmount: number | null
+  cashGoal: number
+  emergencyFundGoal: number
+  savingForHomeDeposit: boolean
+  homeDepositGoal: number
+  super?: Map
+  cash?: Map
+  debts?: Map
+  sideIncome?: Map
+  taxSystemB?: Map
+}
+/**
+ * `Map` is an object that stores `Accounts`
+ */
+interface Map {
+  [key: number]: Account | DebtAccount
 }
 
-export type history = {
-  id: number
-  created_at: string
-  user_id: string
-  date: string
+/**
+ * All `Accounts` have a name, currency and balance
+ */
+interface Account {
+  name: string
+  currency: Currency
+  balance: number
+}
+
+/**
+ * `DebtAccount` extends Account and has additional properties for debts
+ */
+interface DebtAccount extends Account {
+  startDate: { _seconds: number, _nanoseconds: number}
+  interestFrequency: number
+  annualInterest: number
+  startingBalance: number
+  regularPayment: number
+  balancePaid: number
+}
+
+/**
+ * `History` is a list of all the previous months data saved
+ */
+export interface History {
   cash: number
-  super: number
+  date: { _seconds: number, _nanoseconds: number}
   debts: number
   income: number
-  netWorth?: number
+  side_income: number
+  super: number
 }
 
-export type budgetProps = {
-  id: number
-  created_at: string
-  user_id: string
-  name: string
-  cost: number
-  bank_id: string
-}
-
-export type OutletContext = {
-  user: userProfile
-  cash: CashProps[]
-  history: history[]
-  [key: string]: any
-}
+/**
+ * `Currency` is the list of supported currencies in the app
+ */
+export const Currency = {
+  AUD: 'AUD',
+  USD: 'USD',
+} as const
+export type Currency = typeof Currency[keyof typeof Currency]

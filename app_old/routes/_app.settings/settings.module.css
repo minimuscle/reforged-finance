@@ -1,0 +1,10 @@
+.container {
+  padding-bottom: rem(30px);
+  --skeleton-height: rem(20px);
+}
+
+.tile {
+  padding: rem(10px);
+  width: 100%;
+  max-width: rem(400px);
+}

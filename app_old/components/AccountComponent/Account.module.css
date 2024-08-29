@@ -1,0 +1,33 @@
+.accountContainer {
+  background-color: var(--mantine-color-white);
+  width: 100%;
+  border: 1px solid var(--mantine-color-gray-3);
+  border-radius: 10px;
+  justify-content: space-between;
+  padding: 5px 15px;
+  margin-bottom: 10px;
+}
+
+.maxSpace {
+  width: 90%;
+  justify-content: space-between;
+}
+
+.maxSpaceDebts {
+  width: 90%;
+  justify-content: space-between;
+  padding: 5px 0;
+}
+
+.actionBtn {
+  margin: 0 -10px 0 -10px;
+}
+
+.rightStack {
+  width: 40%;
+  align-items: flex-end;
+}
+
+.leftStack {
+  width: 60%;
+}

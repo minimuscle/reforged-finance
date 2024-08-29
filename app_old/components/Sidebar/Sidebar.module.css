@@ -1,0 +1,32 @@
+.sidebar {
+  position: fixed;
+  top: 0;
+  width: 350px;
+  height: 100%;
+  padding: 20px;
+  background-color: var(--mantine-color-gray-1);
+
+  &.collapsed {
+    margin-left: -220px;
+  }
+}
+
+.header {
+  margin-bottom: 20px;
+}
+
+.badge {
+  margin-bottom: 20px;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.header {
+  margin-bottom: 20px;
+}
+
+.badge {
+  margin-bottom: 20px;
+  justify-content: space-between;
+  width: 100%;
+}

@@ -1,70 +1,81 @@
-import { cssBundleHref } from "@remix-run/css-bundle"
-import { type ActionFunctionArgs, type LinksFunction } from "@remix-run/node"
 import {
   Links,
-  LiveReload,
   Meta,
   Outlet,
   Scripts,
   ScrollRestoration,
-} from "@remix-run/react"
-import "@mantine/core/styles.css"
-import { ColorSchemeScript, MantineProvider } from "@mantine/core"
-import { theme } from "./theme"
-import "@mantine/charts/styles.css"
-import { collapsedCookie } from "./utils/cookies.server"
+  isRouteErrorResponse,
+  useLoaderData,
+  useRouteError,
+} from '@remix-run/react'
+import { isSessionValid } from './utils/session.server'
+import { LoaderFunctionArgs } from '@remix-run/node'
+import { db } from './utils/db.server'
+import { User } from './utils/types'
+import { ColorSchemeScript, MantineProvider } from '@mantine/core'
+import '@mantine/core/styles.css'
+import './global.css'
 
-export const links: LinksFunction = () => [
-  ...(cssBundleHref
-    ? [
-        { rel: "stylesheet", href: cssBundleHref },
-        {
-          rel: "stylesheet",
-          href: "https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap",
-        },
-      ]
-    : []),
-]
-
-export const action = async ({ request }: ActionFunctionArgs) => {
-  //if update cookie is set, update the cookie
-  const formData = await request.formData()
-  const intent = formData.get("intent")
-  console.log(intent)
-  switch (intent) {
-    case "updateCollapsed":
-      //Create remix cookie and set it to the value of the form data
-      // eslint-disable-next-line no-case-declarations
-
-      return new Response("Cookie updated", {
-        headers: {
-          "Set-Cookie": await collapsedCookie.serialize(
-            formData.get("collapsed") as string
-          ),
-        },
-      })
-  }
-  return null
-}
-
-export default function App() {
+export function Layout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
+    <html lang='en'>
       <head>
-        <meta charSet="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta charSet='utf-8' />
+        <meta name='viewport' content='width=device-width, initial-scale=1' />
         <Meta />
         <Links />
         <ColorSchemeScript />
       </head>
       <body>
-        <MantineProvider theme={theme}>
-          <Outlet />
-          <ScrollRestoration />
-          <Scripts />
-          <LiveReload />
-        </MantineProvider>
+        <MantineProvider>{children}</MantineProvider>
+        <ScrollRestoration />
+        <Scripts />
       </body>
     </html>
   )
+}
+
+export async function loader({ request }: LoaderFunctionArgs) {
+  const { decodedClaims } = await isSessionValid(request)
+  if (!decodedClaims) {
+    return null
+  }
+  const user = await db.collection('users').doc(decodedClaims.uid).get()
+  const userData = user.data()
+  if (!userData) {
+    throw new Error('User not found')
+  }
+  return userData
+}
+
+//TODO: This needs to be a custom design for the error boundary
+export function ErrorBoundary() {
+  const error = useRouteError()
+
+  if (isRouteErrorResponse(error)) {
+    return (
+      <div>
+        <h1>
+          {error.status} {error.statusText}
+        </h1>
+        <p>{error.data}</p>
+      </div>
+    )
+  } else if (error instanceof Error) {
+    return (
+      <div>
+        <h1>Error</h1>
+        <p>{error.message}</p>
+        <p>The stack trace is:</p>
+        <pre>{error.stack}</pre>
+      </div>
+    )
+  } else {
+    return <h1>Unknown Error</h1>
+  }
+}
+
+export default function App() {
+  const user = useLoaderData() as User
+  return <Outlet context={user} />
 }
