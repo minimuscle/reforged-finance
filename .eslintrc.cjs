@@ -72,9 +72,13 @@ module.exports = {
         "plugin:import/recommended",
         "plugin:import/typescript",
       ],
+    },
+
+    {
       rules: {
         "no-unused-vars": ["warn"],
         "no-undef": "warn",
+        "@typescript-eslint/no-explicit-any": "off",
       },
     },
 

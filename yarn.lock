@@ -6768,6 +6768,7 @@ __metadata:
     isbot: "npm:^4.1.0"
     postcss: "npm:^8.4.38"
     postcss-preset-mantine: "npm:^1.17.0"
+    postcss-simple-vars: "npm:^7.0.1"
     react: "npm:^18.2.0"
     react-dom: "npm:^18.2.0"
     remix-flat-routes: "npm:^0.6.5"
@@ -6966,7 +6967,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"postcss-simple-vars@npm:^7.0.0":
+"postcss-simple-vars@npm:^7.0.0, postcss-simple-vars@npm:^7.0.1":
   version: 7.0.1
   resolution: "postcss-simple-vars@npm:7.0.1"
   peerDependencies:
