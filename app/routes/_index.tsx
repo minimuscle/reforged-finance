@@ -1,47 +1,30 @@
-import type { LoaderFunctionArgs, MetaFunction } from "@remix-run/node";
+import type { LoaderFunctionArgs, MetaFunction } from "@remix-run/node"
 import {
   createServerClient,
   parseCookieHeader,
   serializeCookieHeader,
-} from "@supabase/ssr";
-import React from "react";
+} from "@supabase/ssr"
+import React from "react"
+import { API } from "~/api/test_table.server"
 
 export const meta: MetaFunction = () => {
   return [
     { title: "New Remix App" },
     { name: "description", content: "Welcome to Remix!" },
-  ];
-};
+  ]
+}
 
 export async function loader({ request }: LoaderFunctionArgs) {
-  const headers = new Headers();
+  const res = await API.test.GET.user("1", request)
+  console.log(res)
+  return null
+  //console.log(res)
 
-  const supabase = createServerClient(
-    process.env.SUPABASE_URL!,
-    process.env.SUPABASE_ANON_KEY!,
-    {
-      cookies: {
-        getAll() {
-          return parseCookieHeader(request.headers.get("Cookie") ?? "");
-        },
-        setAll(cookiesToSet) {
-          cookiesToSet.forEach(({ name, value, options }) =>
-            headers.append(
-              "Set-Cookie",
-              serializeCookieHeader(name, value, options)
-            )
-          );
-        },
-      },
-    }
-  );
+  //login test
+  // const login = await API.test.POST.login("1", request)
+  // console.log("login:", login.cookieResponse)
 
-  const res = await supabase.from("test_table").select("name");
-  console.log(res);
-
-  return new Response("...", {
-    headers,
-  });
+  // return new Response("...", login.cookieResponse)
 }
 
 export default function Index() {
@@ -81,5 +64,5 @@ export default function Index() {
         </li>
       </ul>
     </div>
-  );
+  )
 }
