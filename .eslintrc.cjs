@@ -1,3 +1,4 @@
+/* eslint-disable */
 /**
  * This is intended to be a basic starting point for linting in your app.
  * It relies on recommended configs out of the box for simplicity, but you can
@@ -71,8 +72,9 @@ module.exports = {
         "plugin:import/recommended",
         "plugin:import/typescript",
       ],
-       rules: {
-        "@typescript-eslint/no-explicit-any": "off", // Disable no-explicit-any
+      rules: {
+        "no-unused-vars": ["warn"],
+        "no-undef": "warn",
       },
     },
 
