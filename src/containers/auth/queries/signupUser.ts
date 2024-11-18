@@ -16,14 +16,7 @@ function _useMutation() {
     mutationFn: ({ email, password }: SignupUserInput) => {
       return auth.POST.signup(email, password)
     },
-    onError: (error) => {
-      console.log("ERROR")
-      console.error(error)
-    },
-    onSuccess: (data) => {
-      console.log("SUCCESS")
-      console.log(data)
-    },
+    //TODO: Combine multiple onSuccess functions so that they can be called together
   })
 }
 

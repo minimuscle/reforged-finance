@@ -1,4 +1,4 @@
-import { supabase } from "../utils/supabase"
+import { API, supabase } from "../utils/supabase"
 
 export const auth = {
   GET: {
@@ -8,12 +8,8 @@ export const auth = {
     },
   },
   POST: {
-    signup: async (email: string, password: string) => {
-      const test = await supabase.auth.signUp({ email, password })
-      if (test.error) {
-        throw new Error(test.error.message)
-      }
-      return test
+    signup: (email: string, password: string) => {
+      return API(supabase.auth.signUp({ email, password }))
     },
   },
 }

@@ -3,6 +3,7 @@ import "@mantine/core/styles.css"
 import "@mantine/notifications/styles.css"
 import "./utils/globalStyles.css"
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools"
+import { Notifications } from "@mantine/notifications"
 /******************************************************************
  *  CONSTS                                                        *
  ******************************************************************/
@@ -15,6 +16,7 @@ export function App() {
   return (
     <>
       <Outlet />
+      <Notifications position="top-right" />
       <ReactQueryDevtools />
     </>
   )
