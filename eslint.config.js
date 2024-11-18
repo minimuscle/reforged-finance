@@ -21,6 +21,12 @@ export default tseslint.config(
       ...reactHooks.configs.recommended.rules,
       "react-refresh/only-export-components": ["warn", { allowConstantExport: true }],
       "no-multiple-empty-lines": ["warn", { max: 1, maxEOF: 1, maxBOF: 0 }],
+      "react-hooks/hook-naming": [
+        "error",
+        {
+          patterns: ["^use", "^_use"],
+        },
+      ],
     },
   }
 )
