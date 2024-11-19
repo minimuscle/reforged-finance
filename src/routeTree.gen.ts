@@ -28,7 +28,7 @@ const AppRouteRoute = AppRouteImport.update({
   id: '/_app',
   getParentRoute: () => rootRoute,
 } as any)
-./routes/_app/cash.lazy
+
 const AppIndexLazyRoute = AppIndexLazyImport.update({
   id: '/',
   path: '/',

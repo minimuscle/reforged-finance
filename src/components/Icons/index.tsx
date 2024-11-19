@@ -1,8 +1,9 @@
-import { RiAlertLine, RiCheckLine, RiCloseLine, RiInformationLine } from "@remixicon/react"
+import { RiAlertLine, RiCheckLine, RiCloseLine, RiDashboardFill, RiInformationLine } from "@remixicon/react"
 
 export const Icon = {
   Check: () => <RiCheckLine />,
   Close: () => <RiCloseLine />,
+  Dashboard: () => <RiDashboardFill />,
   Exclaimation: () => <RiAlertLine />,
   Info: () => <RiInformationLine />,
 }
