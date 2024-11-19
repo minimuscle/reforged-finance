@@ -11,6 +11,8 @@ export const Route = createRootRouteWithContext<{
     const res = await auth.GET.session()
     if (!res && window.location.pathname !== "/login" && window.location.pathname !== "/signup") {
       throw redirect({ to: "/login" })
+    } else if (res && (window.location.pathname === "/login" || window.location.pathname === "/signup")) {
+      throw redirect({ to: "/" })
     }
   },
   component: App,

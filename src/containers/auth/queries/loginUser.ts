@@ -1,11 +1,10 @@
 import { useMutation } from "@tanstack/react-query"
 import { auth } from "../../../api/auth"
-import { notifications } from "@mantine/notifications"
-import { successNotification } from "../../../utils/notifications"
+import { useNavigate } from "@tanstack/react-router"
 /******************************************************************
  *  TYPE DEFINITIONS                                              *
  ******************************************************************/
-interface SignupUserInput {
+interface LoginUserInput {
   email: string
   password: string
 }
@@ -14,12 +13,13 @@ interface SignupUserInput {
  *  COMPONENT START                                               *
  ******************************************************************/
 function _useMutation() {
+  const navigate = useNavigate()
   return useMutation({
-    mutationFn: ({ email, password }: SignupUserInput) => {
-      return auth.POST.signup(email, password)
+    mutationFn: ({ email, password }: LoginUserInput) => {
+      return auth.POST.login(email, password)
     },
     onSuccess: () => {
-      notifications.show(successNotification("Account created successfully."))
+      return navigate({ to: "/" })
     },
   })
 }
@@ -27,6 +27,6 @@ function _useMutation() {
 /******************************************************************
  *  COMPONENT END                                                 *
  ******************************************************************/
-export const signupUser = Object.freeze({
+export const loginUser = Object.freeze({
   useMutation: _useMutation,
 })

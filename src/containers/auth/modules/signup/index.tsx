@@ -2,8 +2,7 @@ import { useForm } from "react-hook-form"
 import "./_signup.scss"
 import { Link } from "@tanstack/react-router"
 import { queries } from "../../../../utils/queryTree"
-import { Close, Icon } from "../../../../components/Icons"
-import { RiCloseLine } from "@remixicon/react"
+import { Icon } from "../../../../components/Icons"
 
 /******************************************************************
  *  COMPONENT START                                               *

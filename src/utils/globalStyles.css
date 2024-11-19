@@ -15,3 +15,11 @@
 * {
   font-family: "Numans", "Inter", sans-serif;
 }
+
+body {
+  height: 100dvh;
+}
+
+#root {
+  height: 100%;
+}

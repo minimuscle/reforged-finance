@@ -11,5 +11,9 @@ export const auth = {
     signup: (email: string, password: string) => {
       return API(supabase.auth.signUp({ email, password }))
     },
+
+    login: (email: string, password: string) => {
+      return API(supabase.auth.signInWithPassword({ email, password }))
+    },
   },
 }
