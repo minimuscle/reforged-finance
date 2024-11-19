@@ -10,6 +10,9 @@ export function Sidebar() {
   return (
     <div className="Sidebar">
       <div className="Sidebar__item">
+        <div className="Sidebar__header">
+          <h1>Logo</h1>
+        </div>
         {navOptions.map((navOption) => (
           <NavButton key={navOption.label} {...navOption} />
         ))}

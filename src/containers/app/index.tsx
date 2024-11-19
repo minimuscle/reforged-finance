@@ -6,7 +6,9 @@ export function App() {
   return (
     <div className="App">
       <Sidebar />
-      <Outlet />
+      <div className="AppContent">
+        <Outlet />
+      </div>
     </div>
   )
 }

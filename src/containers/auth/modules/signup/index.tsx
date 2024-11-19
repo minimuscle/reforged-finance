@@ -1,8 +1,8 @@
 import { useForm } from "react-hook-form"
 import "./_signup.scss"
 import { Link } from "@tanstack/react-router"
-import { queries } from "../../../../utils/queryTree"
 import { Icon } from "../../../../components/Icons"
+import { auth } from "../../queries"
 
 /******************************************************************
  *  COMPONENT START                                               *
@@ -10,7 +10,7 @@ import { Icon } from "../../../../components/Icons"
 export function Signup() {
   /**********  HOOKS  **********/
   const methods = useForm()
-  const { mutate: signupUser } = queries.auth.signupUser.useMutation()
+  const { mutate: signupUser } = auth.signupUser.useMutation()
 
   /********  FUNCTIONS  ********/
   function handleSubmit(data: any) {
