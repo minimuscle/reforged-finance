@@ -3,4 +3,17 @@
   width: 300px;
   display: flex;
   flex-direction: column;
+  padding: 20px 0;
+  justify-content: space-between;
+
+  &__item {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  &__divider {
+    margin: 5px 20px;
+    border-color: var(--mantine-color-gray-3);
+  }
 }

@@ -3,7 +3,7 @@
   font-style: normal;
   font-weight: 400;
   src: url("/src/assets/fonts/Numans.ttf"), format("truetype");
-  unicode-range: U+30-39;
+  unicode-range: U+30-39, U+24;
 }
 
 @font-face {

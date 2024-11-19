@@ -5,16 +5,34 @@ export const navOptions: NavButtonProps[] = [
   {
     label: "Dashboard",
     to: "/",
-    icon: Icon.Dashboard(),
+    icon: Icon.Dashboard,
   },
+  {
+    label: "Cash",
+    to: "/cash",
+    icon: Icon.Cash,
+  },
+  {
+    label: "$505",
+    to: "/notifications",
+    icon: Icon.Exclaimation,
+  },
+]
+
+export const bottonNavOptions: NavButtonProps[] = [
   {
     label: "Settings",
     to: "/settings",
-    icon: Icon.Info(),
+    icon: Icon.Settings,
   },
   {
-    label: "Notifications",
-    to: "/notifications",
-    icon: Icon.Exclaimation(),
+    label: "Help",
+    to: "/help",
+    icon: Icon.Question,
+  },
+  {
+    label: "Logout",
+    to: "/logout",
+    icon: Icon.Logout,
   },
 ]

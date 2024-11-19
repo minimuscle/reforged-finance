@@ -5,7 +5,7 @@ export function errorNotification(err: Error) {
     title: "Error",
     message: err.message,
     color: "error",
-    icon: Icon.Close(),
+    icon: Icon.Close,
   }
 }
 
@@ -14,7 +14,7 @@ export function successNotification(message: string, title?: string) {
     title: title ?? "Success",
     message,
     color: "success",
-    icon: Icon.Check(),
+    icon: Icon.Check,
   }
 }
 
@@ -23,7 +23,7 @@ export function warningNotification(message: string, title?: string) {
     title: title ?? "Warning",
     message,
     color: "warning",
-    icon: Icon.Exclaimation(),
+    icon: Icon.Exclaimation,
   }
 }
 
@@ -32,6 +32,6 @@ export function infoNotification(message: string, title?: string) {
     title: title ?? "Info",
     message,
     color: "info",
-    icon: Icon.Info(),
+    icon: Icon.Info,
   }
 }
