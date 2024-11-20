@@ -1,13 +1,16 @@
 .NavButton {
   text-decoration: none;
-  margin: 0 10px;
   border-radius: 8px;
 
   &Content {
     padding: 5px 10px;
     display: flex;
     gap: 10px;
-    color: var(--mantine-color-gray-7);
+    color: var(--mantine-color-gray-5);
+
+    &.active {
+      color: var(--mantine-color-gray-7);
+    }
 
     svg {
       margin-top: 2px;
@@ -17,8 +20,9 @@
   }
 
   &.active {
-    background-color: white;
-    border: 1px solid var(--mantine-color-gray-4);
+    background-color: var(--mantine-color-white);
+    border: 1px solid var(--mantine-color-gray-3);
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin: -1px;
   }
 }

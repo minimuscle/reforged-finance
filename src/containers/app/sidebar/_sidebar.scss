@@ -3,7 +3,7 @@
   width: 300px;
   display: flex;
   flex-direction: column;
-  padding: 20px 0;
+  padding: 20px 10px;
   justify-content: space-between;
   border-radius: 8px;
 
@@ -15,6 +15,10 @@
 
   &__divider {
     margin: 5px 20px;
-    border-color: var(--mantine-color-gray-3);
+    border-color: var(--mantine-color-gray-2);
+  }
+
+  &__header {
+    display: flex;
   }
 }

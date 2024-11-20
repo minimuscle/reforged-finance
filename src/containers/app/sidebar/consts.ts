@@ -13,9 +13,29 @@ export const navOptions: NavButtonProps[] = [
     icon: Icon.Cash(),
   },
   {
-    label: "$505",
-    to: "/notifications",
-    icon: Icon.Exclaimation(),
+    label: "Debts / Liabilities",
+    to: "/debts",
+    icon: Icon.Cash(),
+  },
+  {
+    label: "Side Income",
+    to: "/side-income",
+    icon: Icon.Cash(),
+  },
+  {
+    label: "Superannuation",
+    to: "/super",
+    icon: Icon.Cash(),
+  },
+  {
+    label: "Budget",
+    to: "/budget",
+    icon: Icon.Cash(),
+  },
+  {
+    label: "History",
+    to: "/history",
+    icon: Icon.Cash(),
   },
 ]
 
@@ -34,5 +54,6 @@ export const bottonNavOptions: NavButtonProps[] = [
     label: "Logout",
     to: "/logout",
     icon: Icon.Logout(),
+    preload: false,
   },
 ]

@@ -21,7 +21,15 @@ import { Route as AuthLoginImport } from './routes/_auth/login'
 // Create Virtual Routes
 
 const AppIndexLazyImport = createFileRoute('/_app/')()
+const AppSuperLazyImport = createFileRoute('/_app/super')()
+const AppSideIncomeLazyImport = createFileRoute('/_app/side-income')()
+const AppSettingsLazyImport = createFileRoute('/_app/settings')()
+const AppPremiumLazyImport = createFileRoute('/_app/premium')()
+const AppHistoryLazyImport = createFileRoute('/_app/history')()
+const AppHelpLazyImport = createFileRoute('/_app/help')()
+const AppDebtsLazyImport = createFileRoute('/_app/debts')()
 const AppCashLazyImport = createFileRoute('/_app/cash')()
+const AppBudgetLazyImport = createFileRoute('/_app/budget')()
 
 // Create/Update Routes
 
@@ -36,11 +44,61 @@ const AppIndexLazyRoute = AppIndexLazyImport.update({
   getParentRoute: () => AppRouteRoute,
 } as any).lazy(() => import('./routes/_app/index.lazy').then((d) => d.Route))
 
+const AppSuperLazyRoute = AppSuperLazyImport.update({
+  id: '/super',
+  path: '/super',
+  getParentRoute: () => AppRouteRoute,
+} as any).lazy(() => import('./routes/_app/super.lazy').then((d) => d.Route))
+
+const AppSideIncomeLazyRoute = AppSideIncomeLazyImport.update({
+  id: '/side-income',
+  path: '/side-income',
+  getParentRoute: () => AppRouteRoute,
+} as any).lazy(() =>
+  import('./routes/_app/side-income.lazy').then((d) => d.Route),
+)
+
+const AppSettingsLazyRoute = AppSettingsLazyImport.update({
+  id: '/settings',
+  path: '/settings',
+  getParentRoute: () => AppRouteRoute,
+} as any).lazy(() => import('./routes/_app/settings.lazy').then((d) => d.Route))
+
+const AppPremiumLazyRoute = AppPremiumLazyImport.update({
+  id: '/premium',
+  path: '/premium',
+  getParentRoute: () => AppRouteRoute,
+} as any).lazy(() => import('./routes/_app/premium.lazy').then((d) => d.Route))
+
+const AppHistoryLazyRoute = AppHistoryLazyImport.update({
+  id: '/history',
+  path: '/history',
+  getParentRoute: () => AppRouteRoute,
+} as any).lazy(() => import('./routes/_app/history.lazy').then((d) => d.Route))
+
+const AppHelpLazyRoute = AppHelpLazyImport.update({
+  id: '/help',
+  path: '/help',
+  getParentRoute: () => AppRouteRoute,
+} as any).lazy(() => import('./routes/_app/help.lazy').then((d) => d.Route))
+
+const AppDebtsLazyRoute = AppDebtsLazyImport.update({
+  id: '/debts',
+  path: '/debts',
+  getParentRoute: () => AppRouteRoute,
+} as any).lazy(() => import('./routes/_app/debts.lazy').then((d) => d.Route))
+
 const AppCashLazyRoute = AppCashLazyImport.update({
   id: '/cash',
   path: '/cash',
   getParentRoute: () => AppRouteRoute,
 } as any).lazy(() => import('./routes/_app/cash.lazy').then((d) => d.Route))
+
+const AppBudgetLazyRoute = AppBudgetLazyImport.update({
+  id: '/budget',
+  path: '/budget',
+  getParentRoute: () => AppRouteRoute,
+} as any).lazy(() => import('./routes/_app/budget.lazy').then((d) => d.Route))
 
 const AuthSignupRoute = AuthSignupImport.update({
   id: '/_auth/signup',
@@ -92,11 +150,67 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthSignupImport
       parentRoute: typeof rootRoute
     }
+    '/_app/budget': {
+      id: '/_app/budget'
+      path: '/budget'
+      fullPath: '/budget'
+      preLoaderRoute: typeof AppBudgetLazyImport
+      parentRoute: typeof AppRouteImport
+    }
     '/_app/cash': {
       id: '/_app/cash'
       path: '/cash'
       fullPath: '/cash'
       preLoaderRoute: typeof AppCashLazyImport
+      parentRoute: typeof AppRouteImport
+    }
+    '/_app/debts': {
+      id: '/_app/debts'
+      path: '/debts'
+      fullPath: '/debts'
+      preLoaderRoute: typeof AppDebtsLazyImport
+      parentRoute: typeof AppRouteImport
+    }
+    '/_app/help': {
+      id: '/_app/help'
+      path: '/help'
+      fullPath: '/help'
+      preLoaderRoute: typeof AppHelpLazyImport
+      parentRoute: typeof AppRouteImport
+    }
+    '/_app/history': {
+      id: '/_app/history'
+      path: '/history'
+      fullPath: '/history'
+      preLoaderRoute: typeof AppHistoryLazyImport
+      parentRoute: typeof AppRouteImport
+    }
+    '/_app/premium': {
+      id: '/_app/premium'
+      path: '/premium'
+      fullPath: '/premium'
+      preLoaderRoute: typeof AppPremiumLazyImport
+      parentRoute: typeof AppRouteImport
+    }
+    '/_app/settings': {
+      id: '/_app/settings'
+      path: '/settings'
+      fullPath: '/settings'
+      preLoaderRoute: typeof AppSettingsLazyImport
+      parentRoute: typeof AppRouteImport
+    }
+    '/_app/side-income': {
+      id: '/_app/side-income'
+      path: '/side-income'
+      fullPath: '/side-income'
+      preLoaderRoute: typeof AppSideIncomeLazyImport
+      parentRoute: typeof AppRouteImport
+    }
+    '/_app/super': {
+      id: '/_app/super'
+      path: '/super'
+      fullPath: '/super'
+      preLoaderRoute: typeof AppSuperLazyImport
       parentRoute: typeof AppRouteImport
     }
     '/_app/': {
@@ -112,12 +226,28 @@ declare module '@tanstack/react-router' {
 // Create and export the route tree
 
 interface AppRouteRouteChildren {
+  AppBudgetLazyRoute: typeof AppBudgetLazyRoute
   AppCashLazyRoute: typeof AppCashLazyRoute
+  AppDebtsLazyRoute: typeof AppDebtsLazyRoute
+  AppHelpLazyRoute: typeof AppHelpLazyRoute
+  AppHistoryLazyRoute: typeof AppHistoryLazyRoute
+  AppPremiumLazyRoute: typeof AppPremiumLazyRoute
+  AppSettingsLazyRoute: typeof AppSettingsLazyRoute
+  AppSideIncomeLazyRoute: typeof AppSideIncomeLazyRoute
+  AppSuperLazyRoute: typeof AppSuperLazyRoute
   AppIndexLazyRoute: typeof AppIndexLazyRoute
 }
 
 const AppRouteRouteChildren: AppRouteRouteChildren = {
+  AppBudgetLazyRoute: AppBudgetLazyRoute,
   AppCashLazyRoute: AppCashLazyRoute,
+  AppDebtsLazyRoute: AppDebtsLazyRoute,
+  AppHelpLazyRoute: AppHelpLazyRoute,
+  AppHistoryLazyRoute: AppHistoryLazyRoute,
+  AppPremiumLazyRoute: AppPremiumLazyRoute,
+  AppSettingsLazyRoute: AppSettingsLazyRoute,
+  AppSideIncomeLazyRoute: AppSideIncomeLazyRoute,
+  AppSuperLazyRoute: AppSuperLazyRoute,
   AppIndexLazyRoute: AppIndexLazyRoute,
 }
 
@@ -130,7 +260,15 @@ export interface FileRoutesByFullPath {
   '/login': typeof AuthLoginRoute
   '/logout': typeof AuthLogoutRoute
   '/signup': typeof AuthSignupRoute
+  '/budget': typeof AppBudgetLazyRoute
   '/cash': typeof AppCashLazyRoute
+  '/debts': typeof AppDebtsLazyRoute
+  '/help': typeof AppHelpLazyRoute
+  '/history': typeof AppHistoryLazyRoute
+  '/premium': typeof AppPremiumLazyRoute
+  '/settings': typeof AppSettingsLazyRoute
+  '/side-income': typeof AppSideIncomeLazyRoute
+  '/super': typeof AppSuperLazyRoute
   '/': typeof AppIndexLazyRoute
 }
 
@@ -138,7 +276,15 @@ export interface FileRoutesByTo {
   '/login': typeof AuthLoginRoute
   '/logout': typeof AuthLogoutRoute
   '/signup': typeof AuthSignupRoute
+  '/budget': typeof AppBudgetLazyRoute
   '/cash': typeof AppCashLazyRoute
+  '/debts': typeof AppDebtsLazyRoute
+  '/help': typeof AppHelpLazyRoute
+  '/history': typeof AppHistoryLazyRoute
+  '/premium': typeof AppPremiumLazyRoute
+  '/settings': typeof AppSettingsLazyRoute
+  '/side-income': typeof AppSideIncomeLazyRoute
+  '/super': typeof AppSuperLazyRoute
   '/': typeof AppIndexLazyRoute
 }
 
@@ -148,22 +294,65 @@ export interface FileRoutesById {
   '/_auth/login': typeof AuthLoginRoute
   '/_auth/logout': typeof AuthLogoutRoute
   '/_auth/signup': typeof AuthSignupRoute
+  '/_app/budget': typeof AppBudgetLazyRoute
   '/_app/cash': typeof AppCashLazyRoute
+  '/_app/debts': typeof AppDebtsLazyRoute
+  '/_app/help': typeof AppHelpLazyRoute
+  '/_app/history': typeof AppHistoryLazyRoute
+  '/_app/premium': typeof AppPremiumLazyRoute
+  '/_app/settings': typeof AppSettingsLazyRoute
+  '/_app/side-income': typeof AppSideIncomeLazyRoute
+  '/_app/super': typeof AppSuperLazyRoute
   '/_app/': typeof AppIndexLazyRoute
 }
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '' | '/login' | '/logout' | '/signup' | '/cash' | '/'
+  fullPaths:
+    | ''
+    | '/login'
+    | '/logout'
+    | '/signup'
+    | '/budget'
+    | '/cash'
+    | '/debts'
+    | '/help'
+    | '/history'
+    | '/premium'
+    | '/settings'
+    | '/side-income'
+    | '/super'
+    | '/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/login' | '/logout' | '/signup' | '/cash' | '/'
+  to:
+    | '/login'
+    | '/logout'
+    | '/signup'
+    | '/budget'
+    | '/cash'
+    | '/debts'
+    | '/help'
+    | '/history'
+    | '/premium'
+    | '/settings'
+    | '/side-income'
+    | '/super'
+    | '/'
   id:
     | '__root__'
     | '/_app'
     | '/_auth/login'
     | '/_auth/logout'
     | '/_auth/signup'
+    | '/_app/budget'
     | '/_app/cash'
+    | '/_app/debts'
+    | '/_app/help'
+    | '/_app/history'
+    | '/_app/premium'
+    | '/_app/settings'
+    | '/_app/side-income'
+    | '/_app/super'
     | '/_app/'
   fileRoutesById: FileRoutesById
 }
@@ -201,7 +390,15 @@ export const routeTree = rootRoute
     "/_app": {
       "filePath": "_app/route.tsx",
       "children": [
+        "/_app/budget",
         "/_app/cash",
+        "/_app/debts",
+        "/_app/help",
+        "/_app/history",
+        "/_app/premium",
+        "/_app/settings",
+        "/_app/side-income",
+        "/_app/super",
         "/_app/"
       ]
     },
@@ -214,8 +411,40 @@ export const routeTree = rootRoute
     "/_auth/signup": {
       "filePath": "_auth/signup.tsx"
     },
+    "/_app/budget": {
+      "filePath": "_app/budget.lazy.tsx",
+      "parent": "/_app"
+    },
     "/_app/cash": {
       "filePath": "_app/cash.lazy.tsx",
+      "parent": "/_app"
+    },
+    "/_app/debts": {
+      "filePath": "_app/debts.lazy.tsx",
+      "parent": "/_app"
+    },
+    "/_app/help": {
+      "filePath": "_app/help.lazy.tsx",
+      "parent": "/_app"
+    },
+    "/_app/history": {
+      "filePath": "_app/history.lazy.tsx",
+      "parent": "/_app"
+    },
+    "/_app/premium": {
+      "filePath": "_app/premium.lazy.tsx",
+      "parent": "/_app"
+    },
+    "/_app/settings": {
+      "filePath": "_app/settings.lazy.tsx",
+      "parent": "/_app"
+    },
+    "/_app/side-income": {
+      "filePath": "_app/side-income.lazy.tsx",
+      "parent": "/_app"
+    },
+    "/_app/super": {
+      "filePath": "_app/super.lazy.tsx",
       "parent": "/_app"
     },
     "/_app/": {

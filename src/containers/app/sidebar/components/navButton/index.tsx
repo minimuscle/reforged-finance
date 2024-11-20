@@ -9,15 +9,16 @@ export interface NavButtonProps {
   icon: JSX.Element
   label: string
   to: LinkProps["to"]
+  preload?: false | "intent"
 }
 
 /******************************************************************
  *  COMPONENT START                                               *
  ******************************************************************/
-export function NavButton({ icon, label, to }: NavButtonProps) {
+export function NavButton({ icon, label, to, preload = "intent" }: NavButtonProps) {
   /*********  RENDER  *********/
   return (
-    <Link to={to} className="NavButton" preload="intent">
+    <Link to={to} className="NavButton" preload={preload}>
       {({ isActive }) => {
         return (
           <div className={clsx("NavButtonContent", { active: isActive })}>
