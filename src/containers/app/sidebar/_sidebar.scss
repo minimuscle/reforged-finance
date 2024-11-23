@@ -6,6 +6,7 @@
   padding: 20px 10px;
   justify-content: space-between;
   border-radius: 8px;
+  position: relative;
 
   &__item {
     display: flex;
@@ -20,5 +21,11 @@
 
   &__header {
     display: flex;
+  }
+
+  &__toggle {
+    position: absolute;
+    color: var(--mantine-color-gray-5);
+    right: 20px;
   }
 }

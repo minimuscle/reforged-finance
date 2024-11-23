@@ -15,27 +15,27 @@ export const navOptions: NavButtonProps[] = [
   {
     label: "Debts / Liabilities",
     to: "/debts",
-    icon: Icon.Cash(),
+    icon: Icon.ArrowRightDownBox(),
   },
   {
     label: "Side Income",
     to: "/side-income",
-    icon: Icon.Cash(),
+    icon: Icon.AddBox(),
   },
   {
     label: "Superannuation",
     to: "/super",
-    icon: Icon.Cash(),
+    icon: Icon.Hands(),
   },
   {
     label: "Budget",
     to: "/budget",
-    icon: Icon.Cash(),
+    icon: Icon.Pie(),
   },
   {
     label: "History",
     to: "/history",
-    icon: Icon.Cash(),
+    icon: Icon.FileChart(),
   },
 ]
 
