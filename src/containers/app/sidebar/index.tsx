@@ -1,5 +1,5 @@
 import { Divider } from "@mantine/core"
-import "./_sidebar.scss"
+import "./_sidebar.css"
 import { NavButton } from "./components/navButton"
 import { bottonNavOptions, navOptions } from "./consts"
 import { Text } from "components/Text"
@@ -51,7 +51,7 @@ export function Sidebar({ isSidebarHidden, setIsSidebarHidden }: SidebarProps) {
                   transition={{ delay: 0.2 }}
                   exit={{ x: -50, opacity: 0, transition: { delay: 0, duration: 0.2 } }}
                 >
-                  <Flex gap={0}>
+                  <Flex direction="column" gap={0}>
                     <Text className="Sidebar__header--title">Reforged Finance</Text>
                     <Text size="xs" color="gray" className="Sidebar__header--subtitle">
                       Personal Wealth Tracker

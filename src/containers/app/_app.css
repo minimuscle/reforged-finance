@@ -1,3 +1,5 @@
+@import "/src/utils/_variables.css";
+
 .App {
   height: 100%;
   display: grid;
@@ -20,6 +22,8 @@
       padding: 15px;
       background-color: var(--mantine-color-gray-1);
       border-radius: 8px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
     }
 
     &__header {

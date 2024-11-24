@@ -1,7 +1,7 @@
 import { Link, LinkProps } from "@tanstack/react-router"
 import { clsx } from "clsx"
 import { AnimatePresence, motion } from "motion/react"
-import "./_navButton.scss"
+import "./_navButton.css"
 import type { ForwardRefExoticComponent, RefAttributes } from "react"
 
 /******************************************************************

@@ -1,5 +1,5 @@
 import { useForm } from "react-hook-form"
-import "./_login.scss"
+import "./_login.css"
 import { Link } from "@tanstack/react-router"
 import { auth } from "containers/auth/queries"
 

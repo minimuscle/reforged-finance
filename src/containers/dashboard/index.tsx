@@ -1,3 +1,5 @@
+import { Button } from "@mantine/core"
+import { Panel } from "components/Panel"
 import { Text } from "components/Text"
 
 /******************************************************************
@@ -5,10 +7,8 @@ import { Text } from "components/Text"
  ******************************************************************/
 export function Dashboard() {
   return (
-    <div>
-      <Text as="h1">
-        Hello Test!<Text as="h1">This should be a span</Text>
-      </Text>
-    </div>
+    <Panel heading="Net Worth" subtitle="An overview of your progress" actions={<Button>Export</Button>}>
+      <Text>This is the main content section</Text>
+    </Panel>
   )
 }

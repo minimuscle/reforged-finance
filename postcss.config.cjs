@@ -1,5 +1,7 @@
 module.exports = {
   plugins: {
+    "postcss-import": {},
+    "postcss-nested": {},
     "postcss-preset-mantine": {},
     "postcss-simple-vars": {
       variables: {

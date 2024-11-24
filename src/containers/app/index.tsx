@@ -1,5 +1,5 @@
 import { Outlet, useLocation } from "@tanstack/react-router"
-import "./_app.scss"
+import "./_app.css"
 import { useState } from "react"
 import clsx from "clsx"
 import { Sidebar } from "containers/app/sidebar"
@@ -18,7 +18,7 @@ export function App() {
       {!isMobile && <Sidebar isSidebarHidden={isSidebarHidden} setIsSidebarHidden={setIsSidebarHidden} />}
       <div className="AppContent">
         <div className="AppContent__header">
-          <Text size="xxl" weight="bold" as="h1">
+          <Text size="xxl" bold as="h1">
             {heading}
           </Text>
         </div>
