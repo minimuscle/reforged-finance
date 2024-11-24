@@ -1,41 +1,58 @@
-import { Icon } from "../../../components/Icons"
 import { NavButtonProps } from "./components/navButton"
+import {
+  IconCash,
+  IconChartPie,
+  IconChartPieFilled,
+  IconCoins,
+  IconHeartHandshake,
+  IconHelpCircle,
+  IconHelpCircleFilled,
+  IconHistory,
+  IconHome,
+  IconHomeFilled,
+  IconLogout2,
+  IconSettings,
+  IconSettingsFilled,
+  IconTrendingDown,
+} from "@tabler/icons-react"
 
 export const navOptions: NavButtonProps[] = [
   {
     label: "Dashboard",
     to: "/",
-    icon: Icon.Dashboard(),
+    icon: IconHome,
+    activeIcon: IconHomeFilled,
   },
   {
     label: "Cash",
     to: "/cash",
-    icon: Icon.Cash(),
+    icon: IconCoins,
   },
   {
     label: "Debts / Liabilities",
     to: "/debts",
-    icon: Icon.ArrowRightDownBox(),
+    icon: IconTrendingDown,
   },
   {
     label: "Side Income",
     to: "/side-income",
-    icon: Icon.AddBox(),
+    icon: IconCash,
   },
   {
     label: "Superannuation",
     to: "/super",
-    icon: Icon.Hands(),
+    icon: IconHeartHandshake,
   },
   {
     label: "Budget",
     to: "/budget",
-    icon: Icon.Pie(),
+    icon: IconChartPie,
+    activeIcon: IconChartPieFilled,
   },
   {
     label: "History",
     to: "/history",
-    icon: Icon.FileChart(),
+    icon: IconHistory,
   },
 ]
 
@@ -43,17 +60,19 @@ export const bottonNavOptions: NavButtonProps[] = [
   {
     label: "Settings",
     to: "/settings",
-    icon: Icon.Settings(),
+    icon: IconSettings,
+    activeIcon: IconSettingsFilled,
   },
   {
     label: "Help",
     to: "/help",
-    icon: Icon.Question(),
+    icon: IconHelpCircle,
+    activeIcon: IconHelpCircleFilled,
   },
   {
     label: "Logout",
     to: "/logout",
-    icon: Icon.Logout(),
+    icon: IconLogout2,
     preload: false,
   },
 ]

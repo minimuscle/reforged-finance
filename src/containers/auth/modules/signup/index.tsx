@@ -1,7 +1,6 @@
 import { useForm } from "react-hook-form"
 import "./_signup.scss"
 import { Link } from "@tanstack/react-router"
-import { Icon } from "../../../../components/Icons"
 import { auth } from "../../queries"
 
 /******************************************************************
@@ -37,7 +36,6 @@ export function Signup() {
           Already registered? <Link to="/login">Login here</Link>
         </p>
         <button type="submit">Signup</button>
-        <Icon.Close />
       </form>
     </div>
   )

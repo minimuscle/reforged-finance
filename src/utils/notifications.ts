@@ -1,11 +1,16 @@
-import { Icon } from "../components/Icons"
+import {
+  IconAlertSquareFilled,
+  IconHelpSquareFilled,
+  IconSquareRoundedCheckFilled,
+  IconSquareRoundedXFilled,
+} from "@tabler/icons-react"
 
 export function errorNotification(err: Error) {
   return {
     title: "Error",
     message: err.message,
     color: "error",
-    icon: Icon.Close(),
+    icon: IconSquareRoundedXFilled,
   }
 }
 
@@ -14,7 +19,7 @@ export function successNotification(message: string, title?: string) {
     title: title ?? "Success",
     message,
     color: "success",
-    icon: Icon.Check(),
+    icon: IconSquareRoundedCheckFilled,
   }
 }
 
@@ -23,7 +28,7 @@ export function warningNotification(message: string, title?: string) {
     title: title ?? "Warning",
     message,
     color: "warning",
-    icon: Icon.Exclaimation(),
+    icon: IconAlertSquareFilled,
   }
 }
 
@@ -32,6 +37,6 @@ export function infoNotification(message: string, title?: string) {
     title: title ?? "Info",
     message,
     color: "info",
-    icon: Icon.Info(),
+    icon: IconHelpSquareFilled,
   }
 }
