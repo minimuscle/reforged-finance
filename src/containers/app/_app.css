@@ -22,8 +22,10 @@
       padding: 15px;
       background-color: var(--mantine-color-gray-1);
       border-radius: 8px;
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      display: flex;
+      gap: 15px;
+      flex-wrap: wrap;
+      height: 100%;
     }
 
     &__header {

@@ -12,6 +12,7 @@
     }
   }
 
-  &.width {
+  &.fullWidth {
+    width: 100%;
   }
 }

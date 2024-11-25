@@ -9,10 +9,11 @@ import { Text } from "components/Text"
 
 export function App() {
   const [isSidebarHidden, setIsSidebarHidden] = useState(false)
-  const isMobile = useAppViewport(["xs", "sm"])
+  const isMobile = useAppViewport(["xs"])
   const location = useLocation()
   const heading = navOptions.find((nav) => nav.to === location.pathname)?.label
 
+  console.log("isMobile", isMobile)
   return (
     <div className={clsx("App", isSidebarHidden && "SidebarHidden", { mobile: isMobile })}>
       {!isMobile && <Sidebar isSidebarHidden={isSidebarHidden} setIsSidebarHidden={setIsSidebarHidden} />}

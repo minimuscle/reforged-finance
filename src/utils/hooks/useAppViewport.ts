@@ -5,7 +5,7 @@ import { useViewportSize } from "@mantine/hooks"
  ******************************************************************/
 const breakpoints = {
   xs: "0",
-  sm: "480",
+  sm: "576",
   md: "768",
   lg: "1024",
   xl: "1280",
@@ -23,8 +23,17 @@ export function useAppViewport(size: Breakpoints[]) {
   const { width } = useViewportSize()
   const orderedSizes = size.sort((a, b) => Object.keys(breakpoints).indexOf(a) - Object.keys(breakpoints).indexOf(b))
 
+  //Get the last size in the array
+  const getKeys = Object.keys(breakpoints)
+  const lastSize =
+    orderedSizes.length === 1
+      ? (getKeys[
+          getKeys.findIndex((key) => key === orderedSizes[orderedSizes.length - 1]) + 1
+        ] as keyof typeof breakpoints)
+      : (orderedSizes[orderedSizes.length - 1] as keyof typeof breakpoints)
+
   if (width > Number(breakpoints[orderedSizes[0]])) {
-    if (width < Number(breakpoints[orderedSizes[orderedSizes.length - 1]])) {
+    if (width < Number(breakpoints[lastSize])) {
       return true
     }
   }
