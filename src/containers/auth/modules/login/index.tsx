@@ -7,18 +7,30 @@ import { Text } from "components/Text"
 import { Flex } from "components/Flex"
 import { Button } from "@mantine/core"
 import { Input } from "components/Form/Input"
+import * as z from "zod"
+import { zodResolver } from "@hookform/resolvers/zod"
 
+/******************************************************************
+ *  TYPE DEFINITIONS                                              *
+ ******************************************************************/
+const schema = z.object({
+  email: z.string({ message: "Email is required" }).email({ message: "Invalid email address" }),
+  password: z.string().min(1, "Password is required"),
+})
+
+type Schema = z.infer<typeof schema>
 /******************************************************************
  *  COMPONENT START                                               *
  ******************************************************************/
 export function Login() {
   /**********  HOOKS  **********/
-  const methods = useForm()
+  const methods = useForm<Schema>({
+    resolver: zodResolver(schema),
+  })
   const { mutate: loginUser } = auth.loginUser.useMutation()
 
   /********  FUNCTIONS  ********/
-  function handleSubmit(data: any) {
-    console.log(data)
+  function handleSubmit(data: Schema) {
     loginUser(data)
   }
 
@@ -35,7 +47,7 @@ export function Login() {
               <Input.HookForm name="email" label="Email" />
               <Input.HookForm name="password" label="Password" type="password" />
 
-              <Text className="login__forgot" size="sm">
+              <Text className="login__forgot" size="sm" alignRight>
                 <Link to="/">Forgot Password?</Link>
               </Text>
               <Button color="emerald" type="submit">

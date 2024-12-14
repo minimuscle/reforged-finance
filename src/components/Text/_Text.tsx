@@ -5,7 +5,7 @@ import { Children, cloneElement, isValidElement, ReactElement } from "react"
  *  TYPE DEFINITIONS                                              *
  ******************************************************************/
 type TextSizes = "xxs" | "xs" | "sm" | "md" | "lg" | "xl" | "xxl" | "xxxl"
-type TextColors = "primary" | "secondary" | "default" | "gray"
+type TextColors = "primary" | "secondary" | "default" | "gray" | "error" | "success" | "warning" | "info"
 type TextWeights =
   | { bold: true; regular?: never; semiBold?: never; black?: never }
   | { regular: true; bold?: never; semiBold?: never; black?: never }

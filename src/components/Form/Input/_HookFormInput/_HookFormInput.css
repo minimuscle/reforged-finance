@@ -1,0 +1,9 @@
+@import "/src/utils/styles/_variables.css";
+
+.HookFormInput {
+  &.error {
+    input {
+      border: 2px solid $red-5;
+    }
+  }
+}
