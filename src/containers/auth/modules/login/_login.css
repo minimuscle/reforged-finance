@@ -2,11 +2,12 @@
 
 .login {
   display: flex;
-  justify-content: center;
   align-items: center;
-  height: 100vh;
+  min-height: 100vh;
   background-color: $gray-0;
-  position: relative;
+  flex-direction: column;
+  gap: 50px;
+  padding-top: 150px;
 
   &__card.Panel {
     padding: 20px;
@@ -14,11 +15,5 @@
 
   &__forgot {
     margin-bottom: 20px;
-  }
-
-  &__logo {
-    position: absolute;
-    top: 15%;
-    margin: 0 auto;
   }
 }

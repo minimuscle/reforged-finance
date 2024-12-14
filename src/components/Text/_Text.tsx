@@ -4,7 +4,7 @@ import { Children, cloneElement, isValidElement, ReactElement } from "react"
 /******************************************************************
  *  TYPE DEFINITIONS                                              *
  ******************************************************************/
-type TextSizes = "xxs" | "xs" | "sm" | "md" | "lg" | "xl" | "xxl" | "xxxl"
+type TextSizes = "xxs" | "xs" | "sm" | "md" | "lg" | "xl" | "xxl" | "xxxl" | number
 type TextColors = "primary" | "secondary" | "default" | "gray" | "error" | "success" | "warning" | "info"
 type TextWeights =
   | { bold: true; regular?: never; semiBold?: never; black?: never }
@@ -72,12 +72,13 @@ export function _Text({
     <Component
       className={clsx(
         "Text",
-        size && `Text--size-${size}`,
+        typeof size === "string" && size && `Text--size-${size}`,
         color && `Text--color-${color}`,
         weight && `Text--weight-${weight}`,
         align && `Text--${align}`,
         className
       )}
+      style={typeof size === "number" ? { fontSize: size } : undefined}
     >
       {renderChildren}
     </Component>

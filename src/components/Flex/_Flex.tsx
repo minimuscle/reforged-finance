@@ -12,12 +12,13 @@ interface FlexProps {
   direction?: "row" | "row-reverse" | "column" | "column-reverse"
   wrap?: "nowrap" | "wrap" | "wrap-reverse"
   gap?: number | string
+  fullWidth?: boolean
 }
 
 /******************************************************************
  *  COMPONENT START                                               *
  ******************************************************************/
-export function _Flex({ children, className, justify, align, direction, wrap, gap }: FlexProps) {
+export function _Flex({ children, className, justify, align, direction, wrap, gap, fullWidth }: FlexProps) {
   /*********  RENDER  *********/
   return (
     <div
@@ -27,7 +28,8 @@ export function _Flex({ children, className, justify, align, direction, wrap, ga
         justify && `Flex--justify-${justify}`,
         align && `Flex--align-${align}`,
         direction && `Flex--direction-${direction}`,
-        wrap && `Flex--wrap-${wrap}`
+        wrap && `Flex--wrap-${wrap}`,
+        fullWidth && "Flex--fullWidth"
       )}
       style={{ gap }}
     >

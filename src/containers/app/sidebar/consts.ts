@@ -4,6 +4,7 @@ import {
   IconChartPie,
   IconChartPieFilled,
   IconCoins,
+  IconHeartFilled,
   IconHeartHandshake,
   IconHelpCircle,
   IconHelpCircleFilled,
@@ -42,6 +43,7 @@ export const navOptions: NavButtonProps[] = [
     label: "Superannuation",
     to: "/super",
     icon: IconHeartHandshake,
+    activeIcon: IconHeartFilled,
   },
   {
     label: "Budget",

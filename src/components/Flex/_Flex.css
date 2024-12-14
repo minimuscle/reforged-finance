@@ -58,4 +58,8 @@
   &--wrap-wrap-reverse {
     flex-wrap: wrap-reverse;
   }
+
+  &--fullWidth {
+    width: 100%;
+  }
 }

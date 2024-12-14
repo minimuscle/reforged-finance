@@ -3,6 +3,7 @@ import { Card } from "components/Card"
 import { Text } from "components/Text"
 import "./_Dashboard.css"
 import { TrendCard } from "containers/dashboard/components/trendCard"
+import { Flex } from "components/Flex"
 
 /******************************************************************
  *  COMPONENT START                                               *
@@ -16,11 +17,15 @@ export function Dashboard() {
         className="Dashboard__Networth"
         heading="Net Worth"
         subtitle="An overview of your progress"
-        actions={<Button>Export</Button>}
+        actions={<Button color="sky">Export</Button>}
       >
         <Text>This is the main content section</Text>
       </Card>
-      <TrendCard />
+      <Flex gap={20} fullWidth>
+        <TrendCard />
+        <TrendCard />
+        <TrendCard />
+      </Flex>
     </>
   )
 }
