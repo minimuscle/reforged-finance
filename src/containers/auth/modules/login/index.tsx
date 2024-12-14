@@ -1,4 +1,4 @@
-import { useForm } from "react-hook-form"
+import { FormProvider, useForm } from "react-hook-form"
 import "./_login.css"
 import { Link } from "@tanstack/react-router"
 import { auth } from "containers/auth/queries"
@@ -18,6 +18,7 @@ export function Login() {
 
   /********  FUNCTIONS  ********/
   function handleSubmit(data: any) {
+    console.log(data)
     loginUser(data)
   }
 
@@ -29,20 +30,22 @@ export function Login() {
           Login
         </Text>
         <form onSubmit={methods.handleSubmit(handleSubmit)}>
-          <Flex direction="column" gap="10px">
-            <Input.HookForm name="email" label="Email" />
-            <Input.HookForm name="password" label="Password" type="password" />
+          <FormProvider {...methods}>
+            <Flex direction="column" gap="10px">
+              <Input.HookForm name="email" label="Email" />
+              <Input.HookForm name="password" label="Password" type="password" />
 
-            <Text className="login__forgot" size="sm">
-              <Link to="/">Forgot Password?</Link>
-            </Text>
-            <Button color="emerald" type="submit">
-              Login
-            </Button>
-            <Text size="sm" color="gray">
-              Not registered? <Link to="/signup">Signup here</Link>
-            </Text>
-          </Flex>
+              <Text className="login__forgot" size="sm">
+                <Link to="/">Forgot Password?</Link>
+              </Text>
+              <Button color="emerald" type="submit">
+                Login
+              </Button>
+              <Text size="sm" color="gray">
+                Not registered? <Link to="/signup">Signup here</Link>
+              </Text>
+            </Flex>
+          </FormProvider>
         </form>
       </Card>
     </div>

@@ -11,7 +11,13 @@ export function _Input({ label, placeholder, type, className, ...rest }: Input.I
   const { value: passwordShown, toggle: toggleShowPassword } = useBoolean(false)
 
   return (
-    <div className={clsx("Input", { [className as string]: Boolean(className) })}>
+    <div
+      className={clsx(
+        "Input",
+        { [className as string]: Boolean(className) },
+        { password: Boolean(type === "password") }
+      )}
+    >
       <label className="Input__label">{label}</label>
       <input {...rest} placeholder={placeholder} type={passwordShown ? "text" : type} />
       {type === "password" &&

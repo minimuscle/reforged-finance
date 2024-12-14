@@ -248,13 +248,13 @@ export const theme = createTheme({
                 backgroundColor: theme.colors.red[1],
               },
               title: {
-                color: theme.colors.red[9],
+                color: theme.colors.red[8],
               },
               description: {
                 color: theme.colors.red[7],
               },
               icon: {
-                backgroundColor: theme.colors.red[9],
+                color: theme.colors.red[8],
               },
             }
           case "warning":
@@ -263,13 +263,13 @@ export const theme = createTheme({
                 backgroundColor: theme.colors.yellow[1],
               },
               title: {
-                color: theme.colors.yellow[9],
+                color: theme.colors.yellow[8],
               },
               description: {
                 color: theme.colors.yellow[7],
               },
               icon: {
-                backgroundColor: theme.colors.yellow[9],
+                color: theme.colors.yellow[8],
               },
             }
           case "success":
@@ -278,13 +278,13 @@ export const theme = createTheme({
                 backgroundColor: theme.colors.green[1],
               },
               title: {
-                color: theme.colors.green[9],
+                color: theme.colors.green[8],
               },
               description: {
                 color: theme.colors.green[7],
               },
               icon: {
-                backgroundColor: theme.colors.green[9],
+                color: theme.colors.green[8],
               },
             }
           case "info":
@@ -293,13 +293,13 @@ export const theme = createTheme({
                 backgroundColor: theme.colors.blue[1],
               },
               title: {
-                color: theme.colors.blue[9],
+                color: theme.colors.blue[8],
               },
               description: {
                 color: theme.colors.blue[7],
               },
               icon: {
-                backgroundColor: theme.colors.blue[9],
+                color: theme.colors.blue[8],
               },
             }
           default:

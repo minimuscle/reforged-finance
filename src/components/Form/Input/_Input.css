@@ -1,4 +1,4 @@
-@import "/src/utils/_variables.css";
+@import "/src/utils/styles/_variables.css";
 
 .Input {
   display: flex;
@@ -16,6 +16,12 @@
     top: 50%;
     color: $gray-5;
     cursor: pointer;
+  }
+
+  &.password {
+    input[type="password"] {
+      font-size: 12px;
+    }
   }
 
   input {
