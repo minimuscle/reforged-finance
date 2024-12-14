@@ -12,18 +12,25 @@ interface CardProps {
   actions?: React.ReactNode
   className?: string
   fullWidth?: boolean
+  smallHeader?: boolean
 }
 
 /******************************************************************
  *  COMPONENT START                                               *
  ******************************************************************/
-export function Card({ children, heading, subtitle, fullWidth, actions, className }: CardProps) {
+export function Card({ children, heading, subtitle, fullWidth, actions, className, smallHeader }: CardProps) {
   return (
     <div className={clsx("Panel", { fullWidth: fullWidth }, className)}>
       {(heading || subtitle || actions) && (
-        <Flex direction="row" justify="space-between" className="Panel__header">
+        <Flex direction="row" justify="space-between" className={clsx("Panel__header", { smallHeader: smallHeader })}>
           <Flex direction="column">
-            <Text as="h2" size="lg" semiBold className="Panel__header--text">
+            <Text
+              as="h2"
+              size={smallHeader ? "sm" : "lg"}
+              semiBold={!smallHeader}
+              color={smallHeader ? "gray" : "default"}
+              className="Panel__header--text"
+            >
               {heading}
             </Text>
             <Text size="sm" color="gray">

@@ -3,7 +3,7 @@ import { auth } from "../../api/auth"
 
 export const Route = createFileRoute("/_auth/logout")({
   beforeLoad: async () => {
-    auth.DELETE.logout().then(() => {
+    auth.POST.logout().then(() => {
       redirect({ to: "/login" })
     })
   },

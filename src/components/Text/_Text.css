@@ -47,6 +47,20 @@
     }
   }
 
+  &--align {
+    &Left {
+      text-align: left;
+    }
+
+    &Center {
+      text-align: center;
+    }
+
+    &Right {
+      text-align: right;
+    }
+  }
+
   &--color {
     &-default {
       color: var(--mantine-color-gray-9);
@@ -54,6 +68,19 @@
 
     &-gray {
       color: var(--mantine-color-gray-5);
+    }
+  }
+
+  a {
+    color: var(--mantine-color-blue-4);
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+
+    &:visited {
+      color: var(--mantine-color-blue-4);
     }
   }
 }

@@ -26,6 +26,7 @@
       gap: 15px;
       flex-wrap: wrap;
       height: 100%;
+      align-content: flex-start;
     }
 
     &__header {

@@ -1,9 +1,6 @@
 import { createLazyFileRoute } from "@tanstack/react-router"
+import { History } from "containers/history"
 
 export const Route = createLazyFileRoute("/_app/history")({
-  component: RouteComponent,
+  component: History,
 })
-
-function RouteComponent() {
-  return "Hello /_app/history!"
-}

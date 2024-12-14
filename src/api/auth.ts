@@ -15,8 +15,6 @@ export const auth = {
     login: (email: string, password: string) => {
       return API(supabase.auth.signInWithPassword({ email, password }))
     },
-  },
-  DELETE: {
     logout: () => {
       return API(supabase.auth.signOut())
     },
