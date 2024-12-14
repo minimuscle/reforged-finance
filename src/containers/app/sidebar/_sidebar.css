@@ -1,0 +1,65 @@
+.Sidebar {
+  background-color: var(--mantine-color-white);
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+  padding: 20px 10px;
+  justify-content: space-between;
+  position: relative;
+  transition: 200ms ease-in-out;
+  box-shadow: 2px 0 2px rgba(0, 0, 0, 0.1);
+  z-index: 2;
+
+  &.small {
+    width: 60px;
+    transition: 200ms ease-in-out;
+  }
+
+  &__item {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  &__divider {
+    margin: 5px 20px;
+    border-color: var(--mantine-color-gray-2);
+  }
+
+  &__header {
+    margin-top: 10px;
+    margin-left: -10px;
+    height: 50px;
+    display: flex;
+    margin-top: -15px;
+    padding-left: 10px;
+    align-content: center;
+    display: flex;
+    align-items: center;
+
+    img {
+      width: 60px;
+      object-fit: contain;
+    }
+
+    &--title {
+      margin-top: -7px !important;
+    }
+
+    &--subtitle {
+      margin-top: -5px !important;
+    }
+  }
+
+  &__toggle {
+    position: absolute;
+    color: var(--mantine-color-gray-5);
+    top: 15px;
+    right: 20px;
+    cursor: pointer;
+
+    &:hover {
+      color: var(--mantine-color-gray-8);
+    }
+  }
+}

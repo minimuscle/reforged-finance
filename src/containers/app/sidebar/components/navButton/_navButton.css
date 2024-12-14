@@ -1,0 +1,49 @@
+.NavButton {
+  text-decoration: none;
+  border-radius: 5px;
+  position: relative;
+
+  &Content {
+    padding: 5px 10px;
+    display: flex;
+    gap: 10px;
+    color: var(--mantine-color-gray-5);
+
+    &.active {
+      color: var(--mantine-color-gray-8);
+    }
+
+    svg {
+      margin-top: 2px;
+      width: 20px;
+      height: 20px;
+      z-index: 1;
+    }
+
+    &:hover {
+      color: var(--mantine-color-gray-8);
+      background-color: var(--mantine-color-gray-0);
+      border-radius: 5px;
+    }
+  }
+
+  &__label {
+    position: absolute;
+    left: 50px;
+    z-index: 1;
+  }
+
+  .activeBtn {
+    position: absolute;
+    height: 36px;
+    width: 280px;
+    top: 0px;
+    border-radius: 5px;
+    background-color: var(--mantine-color-gray-1);
+    margin: -1px;
+
+    &.small {
+      width: 44px;
+    }
+  }
+}

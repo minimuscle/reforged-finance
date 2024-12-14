@@ -1,0 +1,39 @@
+@import "/src/utils/styles/_variables.css";
+
+.App {
+  height: 100%;
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  transition: 200ms ease-in-out;
+
+  &.SidebarHidden {
+    grid-template-columns: 60px 1fr;
+    transition: 200ms ease-in-out;
+  }
+
+  &.mobile {
+    grid-template-columns: 1fr;
+  }
+
+  &Content {
+    display: grid;
+    grid-template-rows: 50px 1fr;
+    &__outlet {
+      padding: 15px;
+      background-color: var(--mantine-color-gray-1);
+      border-radius: 8px;
+      display: flex;
+      gap: 15px;
+      flex-wrap: wrap;
+      height: 100%;
+      align-content: flex-start;
+    }
+
+    &__header {
+      padding-left: 25px;
+      align-content: center;
+      box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1);
+      z-index: 1;
+    }
+  }
+}

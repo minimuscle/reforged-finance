@@ -1,0 +1,100 @@
+@import "/src/utils/styles/_variables.css";
+
+.Text {
+  color: var(--mantine-color-gray-9);
+  margin: 0;
+
+  &--size {
+    &-xxs {
+      font-size: 10px;
+    }
+    &-xs {
+      font-size: 12px;
+    }
+    &-sm {
+      font-size: 14px;
+    }
+    &-md {
+      font-size: 16px;
+    }
+    &-lg {
+      font-size: 18px;
+    }
+    &-xl {
+      font-size: 20px;
+    }
+    &-xxl {
+      font-size: 24px;
+    }
+    &-xxxl {
+      font-size: 32px;
+    }
+  }
+
+  &--weight {
+    &-regular {
+      font-weight: 400;
+    }
+
+    &-semiBold {
+      font-weight: 550;
+    }
+
+    &-bold {
+      font-weight: 700;
+    }
+
+    &-black {
+      font-weight: 900;
+    }
+  }
+
+  &--align {
+    &Left {
+      text-align: left;
+    }
+
+    &Center {
+      text-align: center;
+    }
+
+    &Right {
+      text-align: right;
+    }
+  }
+
+  &--color {
+    &-default {
+      color: var(--mantine-color-gray-9);
+    }
+
+    &-gray {
+      color: var(--mantine-color-gray-5);
+    }
+    &-error {
+      color: $red-5;
+    }
+    &-success {
+      color: $green-5;
+    }
+    &-warning {
+      color: $yellow-5;
+    }
+    &-info {
+      color: $blue-5;
+    }
+  }
+
+  a {
+    color: var(--mantine-color-blue-4);
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+
+    &:visited {
+      color: var(--mantine-color-blue-4);
+    }
+  }
+}

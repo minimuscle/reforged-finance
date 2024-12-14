@@ -1,0 +1,40 @@
+@import "/src/utils/styles/_variables.css";
+
+.Input {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+
+  &__label {
+    color: $gray-5;
+    font-size: 14px;
+  }
+
+  &__icon {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    color: $gray-5;
+    cursor: pointer;
+  }
+
+  &.password {
+    input[type="password"] {
+      font-size: 12px;
+    }
+  }
+
+  input {
+    border-radius: 4px;
+    border: 0px;
+    height: 35px;
+    padding: 0 10px;
+    background-color: $gray-2;
+    color: $gray-7;
+    font-size: 16px;
+
+    &::placeholder {
+      color: $gray-4;
+    }
+  }
+}

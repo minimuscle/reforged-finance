@@ -1,0 +1,26 @@
+@font-face {
+  font-family: "Numans";
+  font-style: normal;
+  font-weight: 400;
+  src: url("/src/assets/fonts/Numans.ttf"), format("truetype");
+  unicode-range: U+30-39, U+24;
+}
+
+@font-face {
+  font-family: "Inter";
+  src: url("/src/assets/fonts/Inter.ttf"), format("truetype");
+  font-weight: 100 900;
+}
+
+* {
+  font-family: "Numans", "Inter", sans-serif;
+}
+
+body {
+  height: 100dvh;
+  max-width: 100dvw;
+}
+
+#root {
+  height: 100%;
+}
