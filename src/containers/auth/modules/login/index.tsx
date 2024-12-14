@@ -9,6 +9,8 @@ import { Button } from "@mantine/core"
 import { Input } from "components/Form/Input"
 import * as z from "zod"
 import { zodResolver } from "@hookform/resolvers/zod"
+import { useState } from "react"
+import { LogoCard } from "components/Logo"
 
 /******************************************************************
  *  TYPE DEFINITIONS                                              *
@@ -37,6 +39,7 @@ export function Login() {
   /*********  RENDER  *********/
   return (
     <div className="login">
+      <LogoCard className="login__logo" />
       <Card className="login__card">
         <Text as="h1" size="xxl" alignCenter>
           Login
@@ -50,7 +53,8 @@ export function Login() {
               <Text className="login__forgot" size="sm" alignRight>
                 <Link to="/">Forgot Password?</Link>
               </Text>
-              <Button color="emerald" type="submit">
+
+              <Button color="sky" type="submit">
                 Login
               </Button>
               <Text size="sm" color="gray">

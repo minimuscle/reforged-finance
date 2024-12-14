@@ -1,0 +1,9 @@
+.Logo {
+  &__image {
+    width: 250px;
+  }
+
+  &__subtitle {
+    margin-top: -5px;
+  }
+}

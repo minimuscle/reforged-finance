@@ -37,3 +37,47 @@
     }
   }
 }
+
+.ErrorBoundary {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 100vh;
+  background-color: $gray-0;
+
+  h1 {
+    color: $gray-7;
+    font-size: 48px;
+    margin-top: -50px;
+    margin-bottom: 0;
+  }
+  h2 {
+    color: $gray-7;
+    font-size: 36px;
+    margin-bottom: -10px;
+  }
+  p {
+    color: $gray-7;
+    margin-bottom: 30px;
+  }
+
+  button {
+    padding: 10px 20px;
+    text-transform: uppercase;
+    font-weight: bold;
+    background-color: $sky-5;
+    color: $sky-0;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+
+    &:hover {
+      background-color: $sky-4;
+    }
+
+    &:active {
+      background-color: $sky-6;
+    }
+  }
+}

@@ -16,7 +16,7 @@ export const auth = {
       return API(supabase.auth.signInWithPassword({ email, password }))
     },
     logout: () => {
-      return API(supabase.auth.signOut())
+      return supabase.auth.signOut()
     },
   },
 }

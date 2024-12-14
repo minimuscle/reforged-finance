@@ -1,9 +1,12 @@
+@import "/src/utils/styles/_variables.css";
+
 .login {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background-color: #f5f5f5;
+  background-color: $gray-0;
+  position: relative;
 
   &__card.Panel {
     padding: 20px;
@@ -11,5 +14,11 @@
 
   &__forgot {
     margin-bottom: 20px;
+  }
+
+  &__logo {
+    position: absolute;
+    top: 15%;
+    margin: 0 auto;
   }
 }
