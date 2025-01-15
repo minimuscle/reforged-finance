@@ -25,6 +25,7 @@ type TextProps = {
   size?: TextSizes
   color?: TextColors
   as?: "p" | "span" | "div" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6"
+  uppercase?: boolean
 } & TextWeights &
   TextAlign
 
@@ -40,6 +41,7 @@ export function _Text({
    * Defines the component to render, purely for semantic purposes and accessibility
    */
   as: Component = "p",
+  uppercase = false,
   ...otherProps
 }: TextProps) {
   const renderChildren = Children.map(children, (child) => {
@@ -76,6 +78,7 @@ export function _Text({
         color && `Text--color-${color}`,
         weight && `Text--weight-${weight}`,
         align && `Text--${align}`,
+        uppercase && "Text--uppercase",
         className
       )}
       style={typeof size === "number" ? { fontSize: size } : undefined}

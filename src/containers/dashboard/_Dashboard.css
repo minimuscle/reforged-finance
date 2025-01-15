@@ -1,5 +1,10 @@
 .Dashboard {
-  &__Networth {
+  &__networth {
     height: 400px;
+  }
+
+  &__assetsTable {
+    max-width: 50%;
+    width: 100%;
   }
 }
