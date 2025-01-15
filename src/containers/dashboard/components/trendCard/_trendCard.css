@@ -1,0 +1,12 @@
+.TrendCard {
+  &__content {
+    &__value {
+      flex: 0;
+      white-space: nowrap;
+    }
+
+    &__chart {
+      flex: 1;
+    }
+  }
+}

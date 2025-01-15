@@ -1,38 +1,46 @@
 import { Badge } from "@mantine/core"
-import { IconArrowUpCircle, IconCircleArrowUp } from "@tabler/icons-react"
+import { IconCircleArrowUp } from "@tabler/icons-react"
 import { Card } from "components/Card"
 import { Flex } from "components/Flex"
 import { Text } from "components/Text"
-import Chart from "react-apexcharts"
+import { Sparkline } from "@mantine/charts"
+import "./_trendCard.css"
 
 /******************************************************************
  *  COMPONENT START                                               *
  ******************************************************************/
 export function TrendCard() {
-  const options = {
-    chart: {
-      id: "apexchart-example",
-    },
-    sparkline: {
-      enabled: true,
-    },
-    xaxis: {
-      categories: [],
-    },
-  }
-  const series = [
-    {
-      name: "series-1",
-      data: [30, 40, 35, 50, 49, 60, 70, 91, 125],
-    },
-  ]
-
+  /*********  RENDER  *********/
   return (
-    <Card heading="Networth Trend" smallHeader fullWidth>
-      <Text size={32}>+$15,204</Text>
-      {/* <Chart options={options} series={series} type="area" width={500} height={320} /> */}
+    <Card
+      heading="Networth Trend"
+      smallHeader
+      fullWidth
+      actions={
+        <Badge size="md" variant="light" color="green" radius="sm">
+          ON TRACK
+        </Badge>
+      }
+    >
+      <Flex justify="space-between" align="center" className="TrendCard__content" gap={10}>
+        <div className="TrendCard__content__value">
+          <Text size={32}>+$1,034,232</Text>
+        </div>
+        <div className="TrendCard__content__chart">
+          <Sparkline
+            h={50}
+            w={"100%"}
+            data={[10, 20, 40, 20, 40, 10, 50]}
+            curveType="monotone"
+            color="violet"
+            fillOpacity={0.6}
+            strokeWidth={2}
+          />
+        </div>
+      </Flex>
+
       <Flex gap={5} align="center">
-        <Badge size="lg" variant="light" color="green" radius="md" leftSection={<IconCircleArrowUp size={20} />}>
+        <Badge size="lg" variant="light" color="green" radius="sm" leftSection={<IconCircleArrowUp size={16} />}>
           25.35%
         </Badge>
         <Text size="sm" color="gray">
