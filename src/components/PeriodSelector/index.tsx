@@ -1,12 +1,13 @@
 import "./_PeriodSelector.css"
 import clsx from "clsx"
 import { periods } from "utils/config"
+import { Periods } from "utils/types"
 
 /******************************************************************
  *  TYPE DEFINITIONS                                              *
  ******************************************************************/
 interface PeriodSelectorProps {
-  onSelect: (period: string) => void
+  onSelect: (period: Periods) => void
   selectedPeriod: string
 }
 /******************************************************************
