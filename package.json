@@ -27,9 +27,9 @@
     "motion": "^11.18.0",
     "postcss-import": "^16.1.0",
     "postcss-nested": "^7.0.2",
-    "react": "^19.0.0",
+    "react": "^18.3.1",
     "react-apexcharts": "^1.7.0",
-    "react-dom": "^19.0.0",
+    "react-dom": "^18.3.1",
     "react-hook-form": "^7.54.2",
     "zod": "^3.24.1"
   },

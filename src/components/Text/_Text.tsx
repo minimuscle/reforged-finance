@@ -1,11 +1,13 @@
 import clsx from "clsx"
 import "./_Text.css"
 import { Children, cloneElement, isValidElement, ReactElement } from "react"
+import { MantineColor, MantineColorShade } from "@mantine/core"
 /******************************************************************
  *  TYPE DEFINITIONS                                              *
  ******************************************************************/
 type TextSizes = "xxs" | "xs" | "sm" | "md" | "lg" | "xl" | "xxl" | "xxxl" | number
 type TextColors = "primary" | "secondary" | "default" | "gray" | "error" | "success" | "warning" | "info"
+type TextCustomColors = `${MantineColor}-${MantineColorShade}`
 type TextWeights =
   | { bold: true; regular?: never; semiBold?: never; black?: never }
   | { regular: true; bold?: never; semiBold?: never; black?: never }
@@ -23,7 +25,7 @@ type TextProps = {
   children: React.ReactNode
   className?: string
   size?: TextSizes
-  color?: TextColors
+  color?: TextColors | TextCustomColors
   as?: "p" | "span" | "div" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6"
   uppercase?: boolean
 } & TextWeights &
@@ -69,19 +71,25 @@ export function _Text({
     align = "alignRight"
   }
 
+  function isCustomColor(color: string): color is TextCustomColors {
+    return color.includes("-")
+  }
   /*********  RENDER  *********/
   return (
     <Component
       className={clsx(
         "Text",
         typeof size === "string" && size && `Text--size-${size}`,
-        color && `Text--color-${color}`,
+        color && !isCustomColor(color) && `Text--color-${color}`,
         weight && `Text--weight-${weight}`,
         align && `Text--${align}`,
         uppercase && "Text--uppercase",
         className
       )}
-      style={typeof size === "number" ? { fontSize: size } : undefined}
+      style={{
+        fontSize: typeof size === "number" ? size : undefined,
+        color: color && isCustomColor(color) ? `var(--mantine-color-${color})` : undefined,
+      }}
     >
       {renderChildren}
     </Component>

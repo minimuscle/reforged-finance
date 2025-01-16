@@ -1,6 +1,6 @@
 .Table {
   border-radius: 5px;
-  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
   &__header {
     border-top-left-radius: 10px;
 
@@ -10,7 +10,6 @@
     }
 
     th:not(:first-child) {
-      //border-left: 1px solid var(--mantine-color-gray-2);
       p {
         text-align: right !important;
       }
@@ -19,10 +18,17 @@
 
   &__body {
     tr {
-      border-bottom: 1px solid var(--mantine-color-gray-2);
       td {
+        border-top: 1px solid var(--mantine-color-gray-2);
         padding: 10px;
       }
+      td:not(:first-child) {
+        text-align: right !important;
+      }
+    }
+
+    tr:nth-child(even) {
+      background-color: var(--mantine-color-gray-0);
     }
   }
 

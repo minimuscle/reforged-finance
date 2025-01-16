@@ -65,11 +65,11 @@
 
   &--color {
     &-default {
-      color: var(--mantine-color-gray-9);
+      color: $gray-8;
     }
 
     &-gray {
-      color: var(--mantine-color-gray-5);
+      color: $gray-5;
     }
     &-error {
       color: $red-5;

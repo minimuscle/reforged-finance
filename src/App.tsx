@@ -1,13 +1,11 @@
 import { CatchBoundary, Outlet } from "@tanstack/react-router"
 import "@mantine/core/styles.css"
 import "@mantine/notifications/styles.css"
+import "@mantine/charts/styles.css"
 import "./utils/styles/globalStyles.css"
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools"
 import { Notifications } from "@mantine/notifications"
 import { ErrorBoundary } from "containers/app/errorBoundary"
-/******************************************************************
- *  CONSTS                                                        *
- ******************************************************************/
 
 /******************************************************************
  *  COMPONENT START                                               *
