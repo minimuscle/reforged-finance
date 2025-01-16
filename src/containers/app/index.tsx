@@ -18,11 +18,7 @@ export function App() {
   const heading = navOptions.find((nav) => nav.to === location.pathname)?.label
 
   return (
-    <motion.div
-      className={clsx("App", isSidebarHidden && "SidebarHidden", { mobile: isMobile })}
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1, transition: { duration: 1 } }}
-    >
+    <motion.div className={clsx("App", isSidebarHidden && "SidebarHidden", { mobile: isMobile })}>
       {!isMobile && <Sidebar isSidebarHidden={isSidebarHidden} setIsSidebarHidden={setIsSidebarHidden} />}
       <div className="AppContent">
         <div className="AppContent__header">
