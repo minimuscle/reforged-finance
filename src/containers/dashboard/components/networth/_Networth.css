@@ -1,0 +1,6 @@
+.Networth {
+  &__donutChart {
+    margin-top: -50px;
+    height: 350px;
+  }
+}

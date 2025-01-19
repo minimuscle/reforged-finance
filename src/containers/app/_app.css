@@ -2,6 +2,7 @@
 
 .App {
   height: 100%;
+  width: 100vw;
   display: grid;
   grid-template-columns: 300px 1fr;
   transition: 200ms ease-in-out;
@@ -16,6 +17,8 @@
   }
 
   &Content {
+    margin-left: 300px;
+    width: calc(100vw - 300px);
     display: grid;
     grid-template-rows: 50px 1fr;
     &__outlet {
@@ -27,6 +30,12 @@
       flex-wrap: wrap;
       height: 100%;
       align-content: flex-start;
+    }
+
+    &.SidebarHidden {
+      margin-left: 60px;
+      width: calc(100vw - 60px);
+      transition: 200ms ease-in-out;
     }
 
     &__header {

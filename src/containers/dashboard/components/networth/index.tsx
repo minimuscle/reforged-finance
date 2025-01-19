@@ -4,9 +4,9 @@ import { Card } from "components/Card"
 import { Flex } from "components/Flex"
 import { PeriodSelector } from "components/PeriodSelector"
 import { useState } from "react"
-import { periods } from "utils/config"
 import { filterData } from "utils/methods"
 import { Periods } from "utils/types"
+import "./_Networth.css"
 
 const areaData = [
   {
@@ -116,7 +116,7 @@ export function Networth() {
         <GridCol span={2}>
           <PeriodSelector onSelect={setPeriod} selectedPeriod={period} />
           <AreaChart
-            h={300}
+            h={400}
             data={filteredData}
             dataKey="date"
             series={[{ name: "Networth", color: "indigo.5" }]}
@@ -125,7 +125,7 @@ export function Networth() {
         </GridCol>
         <GridCol span={1}>
           <Flex direction="column" justify="center" align="center" gap={10}>
-            <DonutChart thickness={30} data={donutData} size={200} />
+            <DonutChart className="Networth__donutChart" thickness={50} data={donutData} size={350} />
             <BarChart
               h={100}
               data={barData}
