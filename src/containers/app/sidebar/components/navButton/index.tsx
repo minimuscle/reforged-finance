@@ -2,18 +2,18 @@ import { Link, LinkProps } from "@tanstack/react-router"
 import { clsx } from "clsx"
 import { AnimatePresence, motion } from "motion/react"
 import "./_navButton.css"
-import type { ForwardRefExoticComponent, RefAttributes } from "react"
+import { IconType } from "utils/types"
 
 /******************************************************************
  *  TYPE DEFINITIONS                                              *
  ******************************************************************/
 export interface NavButtonProps {
-  icon: ForwardRefExoticComponent<any & RefAttributes<any>>
+  icon: IconType
   label: string
   to: LinkProps["to"]
   isSidebarHidden?: boolean
   preload?: false | "intent"
-  activeIcon?: ForwardRefExoticComponent<any & RefAttributes<any>>
+  activeIcon?: IconType
 }
 
 /******************************************************************

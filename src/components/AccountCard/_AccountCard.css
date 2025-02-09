@@ -1,0 +1,44 @@
+@import "src/utils/styles/_variables.css";
+
+.AccountCard {
+  background-color: $white;
+  padding: 10px;
+  border-radius: 5px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  border: 1px solid $gray-2;
+  border-radius: 5px;
+  border-left: $red-6 3px solid;
+  height: 100px;
+  position: relative;
+
+  &__icon {
+    position: absolute;
+    top: 50%;
+    right: 30px;
+    transform: translateY(-50%);
+    color: $gray-2;
+    height: auto;
+    width: 95px;
+  }
+
+  &__menu,
+  &__menu--isHovered {
+    position: absolute;
+    top: 50%;
+    right: 5px;
+    transform: translateY(-50%);
+    color: $gray-4;
+
+    &:active {
+      transform: translateY(-50%);
+    }
+  }
+
+  &__menu {
+    display: none;
+
+    &--isHovered {
+      display: unset;
+    }
+  }
+}

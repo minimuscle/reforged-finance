@@ -1,2 +1,6 @@
-.History {
+.Cash {
+  &__accounts {
+    max-width: 350px;
+    width: 100%;
+  }
 }
