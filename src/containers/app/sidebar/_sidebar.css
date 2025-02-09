@@ -37,6 +37,7 @@
     align-content: center;
     display: flex;
     align-items: center;
+    text-decoration: none;
 
     img {
       width: 60px;

@@ -11,6 +11,7 @@ import { Flex } from "components/Flex"
 import { AnimatePresence, motion } from "motion/react"
 import { PremiumAd } from "containers/app/sidebar/components/premiumAd"
 import { useAppContext } from "containers/app/appContext"
+import { Link } from "@tanstack/react-router"
 
 /******************************************************************
  *  COMPONENT START                                               *
@@ -27,7 +28,7 @@ export function Sidebar() {
       </div>
 
       <div className="Sidebar__item">
-        <div className="Sidebar__header">
+        <Link to="/" className="Sidebar__header">
           <AnimatePresence>
             {!isSidebarHidden && (
               <>
@@ -59,7 +60,7 @@ export function Sidebar() {
               </>
             )}
           </AnimatePresence>
-        </div>
+        </Link>
         {navOptions.map((navOption) => (
           <NavButton key={navOption.label} {...navOption} isSidebarHidden={isSidebarHidden} />
         ))}
