@@ -1,20 +1,8 @@
-import { Link, LinkProps } from "@tanstack/react-router"
+import { Link } from "@tanstack/react-router"
 import { clsx } from "clsx"
 import { AnimatePresence, motion } from "motion/react"
 import "./_navButton.css"
-import { IconType } from "utils/types"
-
-/******************************************************************
- *  TYPE DEFINITIONS                                              *
- ******************************************************************/
-export interface NavButtonProps {
-  icon: IconType
-  label: string
-  to: LinkProps["to"]
-  isSidebarHidden?: boolean
-  preload?: false | "intent"
-  activeIcon?: IconType
-}
+import { NavButtonProps } from "containers/app/sidebar/types"
 
 /******************************************************************
  *  COMPONENT START                                               *

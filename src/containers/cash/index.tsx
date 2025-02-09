@@ -5,6 +5,8 @@ import "./_Cash.css"
 import { AccountCard } from "components/AccountCard"
 import { Flex } from "components/Flex"
 import { IconPigMoney } from "@tabler/icons-react"
+import { IconCashBanknote } from "@tabler/icons-react"
+import { IconBuildingBank } from "@tabler/icons-react"
 
 /******************************************************************
  *  COMPONENT START                                               *
@@ -27,16 +29,16 @@ export function Cash() {
             icon={IconPigMoney}
           />
           <AccountCard
-            title="2Up Savings Account"
+            title="Up Savings"
             value={1000000}
             currency={{ name: "AUD", symbol: "$" }}
-            icon={IconPigMoney}
+            icon={IconCashBanknote}
           />
           <AccountCard
             title="2Up Savings Account"
-            value={1000000}
+            value={56534.75}
             currency={{ name: "AUD", symbol: "$" }}
-            icon={IconPigMoney}
+            icon={IconBuildingBank}
           />
         </Flex>
       </Card>

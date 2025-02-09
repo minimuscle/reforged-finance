@@ -9,22 +9,20 @@ import Logo from "assets/Images/Logo.png"
 import { IconLayoutSidebarLeftCollapseFilled, IconLayoutSidebarLeftExpandFilled } from "@tabler/icons-react"
 import { Flex } from "components/Flex"
 import { AnimatePresence, motion } from "motion/react"
-/******************************************************************
- *  TYPE DEFINITIONS                                              *
- ******************************************************************/
-interface SidebarProps {
-  isSidebarHidden: boolean
-  setIsSidebarHidden: (isHidden: boolean) => void
-}
+import { PremiumAd } from "containers/app/sidebar/components/premiumAd"
+import { useAppContext } from "containers/app/appContext"
 
 /******************************************************************
  *  COMPONENT START                                               *
  ******************************************************************/
-export function Sidebar({ isSidebarHidden, setIsSidebarHidden }: SidebarProps) {
+export function Sidebar() {
+  /**********  HOOKS  **********/
+  const { isSidebarHidden, setSidebarHidden } = useAppContext()
+
   /*********  RENDER  *********/
   return (
     <div className={clsx("Sidebar", isSidebarHidden && "small")}>
-      <div className="Sidebar__toggle" onClick={() => setIsSidebarHidden(!isSidebarHidden)}>
+      <div className="Sidebar__toggle" onClick={() => setSidebarHidden(!isSidebarHidden)}>
         {isSidebarHidden ? <IconLayoutSidebarLeftExpandFilled /> : <IconLayoutSidebarLeftCollapseFilled />}
       </div>
 
@@ -67,6 +65,7 @@ export function Sidebar({ isSidebarHidden, setIsSidebarHidden }: SidebarProps) {
         ))}
       </div>
       <div className="Sidebar__item">
+        <PremiumAd />
         <Divider className="Sidebar__divider" />
         {bottonNavOptions.map((navOption) => (
           <NavButton key={navOption.label} {...navOption} isSidebarHidden={isSidebarHidden} />

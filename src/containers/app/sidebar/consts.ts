@@ -1,4 +1,3 @@
-import { NavButtonProps } from "./components/navButton"
 import {
   IconCash,
   IconChartPie,
@@ -16,8 +15,9 @@ import {
   IconSettingsFilled,
   IconTrendingDown,
 } from "@tabler/icons-react"
+import { NavButtonProps } from "containers/app/sidebar/types"
 
-export const navOptions: NavButtonProps[] = [
+export const navOptions: Array<NavButtonProps> = [
   {
     label: "Dashboard",
     to: "/",
@@ -58,7 +58,7 @@ export const navOptions: NavButtonProps[] = [
   },
 ]
 
-export const bottonNavOptions: NavButtonProps[] = [
+export const bottonNavOptions: Array<NavButtonProps> = [
   {
     label: "Settings",
     to: "/settings",
@@ -76,5 +76,12 @@ export const bottonNavOptions: NavButtonProps[] = [
     to: "/logout",
     icon: IconLogout2,
     preload: false,
+  },
+]
+
+export const otherNavOptions: Array<Partial<NavButtonProps>> = [
+  {
+    label: "Premium",
+    to: "/premium",
   },
 ]

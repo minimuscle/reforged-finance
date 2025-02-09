@@ -6,6 +6,7 @@ import "./utils/styles/globalStyles.css"
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools"
 import { Notifications } from "@mantine/notifications"
 import { ErrorBoundary } from "containers/app/errorBoundary"
+import { AppProvider } from "containers/app/appContext"
 
 /******************************************************************
  *  COMPONENT START                                               *
@@ -19,7 +20,9 @@ export function App() {
         onCatch={(error) => console.error("error!!!", error)}
         errorComponent={ErrorBoundary}
       >
-        <Outlet />
+        <AppProvider>
+          <Outlet />
+        </AppProvider>
       </CatchBoundary>
 
       <Notifications position="top-right" />

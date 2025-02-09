@@ -1,0 +1,24 @@
+@import "/src/utils/styles/_variables.css";
+
+.PremiumAd {
+  height: 160px;
+  width: 100%;
+  border-radius: 5px;
+  padding: 20px;
+  background: linear-gradient(45deg, $purple-4 0%, $fuchsia-4 100%);
+  color: $white;
+  font-weight: bold;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
+}
+
+.PremiumAdSmall {
+  height: 40px;
+  border-radius: 5px;
+  padding: 5px;
+  color: $white;
+  background: linear-gradient(45deg, $purple-4 0%, $fuchsia-4 100%);
+
+  &:hover {
+    background: linear-gradient(45deg, $purple-5 0%, $fuchsia-5 100%);
+  }
+}
