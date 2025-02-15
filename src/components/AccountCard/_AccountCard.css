@@ -40,5 +40,19 @@
     &--isHovered {
       display: unset;
     }
+
+    &Dropdown {
+      color: $gray-4;
+    }
+  }
+
+  &__colorMenu {
+    padding: 10px;
+    width: 200px;
+    height: 190px;
+
+    .Flex {
+      margin-top: 5px;
+    }
   }
 }

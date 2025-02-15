@@ -9,10 +9,10 @@ type TextSizes = "xxs" | "xs" | "sm" | "md" | "lg" | "xl" | "xxl" | "xxxl" | num
 type TextColors = "primary" | "secondary" | "default" | "gray" | "error" | "success" | "warning" | "info"
 type TextCustomColors = `${MantineColor}-${MantineColorShade}`
 type TextWeights =
-  | { bold: true; regular?: never; semiBold?: never; black?: never }
-  | { regular: true; bold?: never; semiBold?: never; black?: never }
-  | { semiBold: true; bold?: never; regular?: never; black?: never }
-  | { black: true; bold?: never; regular?: never; semiBold?: never }
+  | { bold: boolean; regular?: never; semiBold?: never; black?: never }
+  | { regular: boolean; bold?: never; semiBold?: never; black?: never }
+  | { semiBold: boolean; bold?: never; regular?: never; black?: never }
+  | { black: boolean; bold?: never; regular?: never; semiBold?: never }
   | { bold?: never; regular?: never; semiBold?: never; black?: never }
 
 type TextAlign =

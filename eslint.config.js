@@ -27,6 +27,7 @@ export default tseslint.config(
           patterns: ["^use", "^_use"],
         },
       ],
+      "no-extra-semi": "off",
     },
   }
 )

@@ -40,11 +40,11 @@ export function PremiumCard({
       </div>
 
       {typeof cost === "string" ? (
-        <Text size={72} semiBold color="orange-6">
+        <Text size={72} semiBold color="teal-6">
           {cost}
         </Text>
       ) : (
-        <Text size={72} black color="orange-6" className="premiumCard__cost">
+        <Text size={72} black color="teal-6" className="premiumCard__cost">
           <Text color="gray" className="premiumCard__costSign">
             $
           </Text>
@@ -61,7 +61,7 @@ export function PremiumCard({
         </ul>
       </div>
       <div className="premiumCard__footer">
-        <Button disabled={selected} className="premiumCard__button" color="orange">
+        <Button disabled={selected} className="premiumCard__button" color="teal">
           {selected ? "Current Plan" : "Buy Now"}
         </Button>
       </div>
