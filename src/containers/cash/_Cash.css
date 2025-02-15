@@ -1,6 +1,14 @@
 .Cash {
-  &__accounts {
-    max-width: 400px;
-    width: 100%;
+  max-width: 400px;
+
+  &__total {
+    position: relative;
+    margin-left: 15px;
+    &DollarSign {
+      position: absolute;
+      top: 8px;
+      left: -15px;
+      vertical-align: text-top;
+    }
   }
 }

@@ -1,3 +1,5 @@
+@import "/src/utils/styles/_variables.css";
+
 @font-face {
   font-family: "Numans";
   font-style: normal;
@@ -23,4 +25,17 @@ body {
 
 #root {
   height: 100%;
+}
+
+.Button {
+  &__white {
+    margin: 10px 0 0;
+    background-color: $gray-1;
+    color: $gray-6;
+
+    &:hover {
+      background-color: $gray-3;
+      color: $gray-6;
+    }
+  }
 }
