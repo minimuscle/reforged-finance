@@ -9,6 +9,7 @@ import clsx from "clsx"
  *  COMPONENT START                                               *
  ******************************************************************/
 export function _HookFormInput({ name, ...rest }: Input.HookFormInputProps) {
+  /**********  HOOKS  **********/
   const {
     register,
     formState: { errors },
@@ -16,6 +17,7 @@ export function _HookFormInput({ name, ...rest }: Input.HookFormInputProps) {
 
   const className = clsx("HookFormInput", { error: Boolean(errors[name]) })
 
+  /*********  RENDER  *********/
   return (
     <div className={className}>
       <_Input {...register(name)} {...rest} />

@@ -8,8 +8,10 @@ import { useBoolean } from "utils/hooks/useBoolean"
  *  COMPONENT START                                               *
  ******************************************************************/
 export function _Input({ label, placeholder, type, className, ...rest }: Input.InputProps) {
+  /**********  HOOKS  **********/
   const { value: passwordShown, toggle: toggleShowPassword } = useBoolean(false)
 
+  /*********  RENDER  *********/
   return (
     <div
       className={clsx(

@@ -8,17 +8,31 @@ import { Text } from "components/Text"
 import { Flex } from "components/Flex"
 import { Input } from "components/Form/Input"
 import { Button, Space } from "@mantine/core"
+import { zodResolver } from "@hookform/resolvers/zod"
+import { z } from "zod"
+
+/******************************************************************
+ *  TYPE DEFINITIONS                                              *
+ ******************************************************************/
+const schema = z.object({
+  email: z.string({ message: "Email is required" }).email({ message: "Invalid email address" }),
+  password: z.string().min(1, "Password is required"),
+})
+
+type Schema = z.infer<typeof schema>
 
 /******************************************************************
  *  COMPONENT START                                               *
  ******************************************************************/
 export function Signup() {
   /**********  HOOKS  **********/
-  const methods = useForm()
+  const methods = useForm<Schema>({
+    resolver: zodResolver(schema),
+  })
   const { mutate: signupUser } = auth.signupUser.useMutation()
 
   /********  FUNCTIONS  ********/
-  function handleSubmit(data: any) {
+  function handleSubmit(data: Schema) {
     signupUser(data)
   }
 
