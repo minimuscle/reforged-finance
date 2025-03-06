@@ -39,10 +39,18 @@
     }
 
     &__header {
-      padding-left: 25px;
+      padding: 0 15px 0 25px;
       align-content: center;
       box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1);
       z-index: 1;
+
+      &Button {
+        padding: 0 5px;
+
+        &Icon {
+          color: $gray-4;
+        }
+      }
     }
   }
 }

@@ -50,6 +50,7 @@ const colors = [
   "gray",
   "transparent",
 ]
+//TODO: check if this can be imported from the theme
 
 /******************************************************************
  *  COMPONENT START                                               *
