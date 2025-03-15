@@ -12,12 +12,7 @@ import { Flex } from "components/Flex"
 export function AccountsList() {
   /*********  RENDER  *********/
   return (
-    <Card
-      className="Cash__accounts"
-      heading="Accounts"
-      subtitle="Your Cash Accounts"
-      actions={<Button color="sky">Export</Button>}
-    >
+    <Card className="Cash__accounts" heading="Accounts" subtitle="Your Cash Accounts">
       <Flex direction="column" gap={10}>
         <AccountCard
           title="2Up Savings Account"

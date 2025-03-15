@@ -5,7 +5,7 @@
   justify-content: end;
   align-items: center;
   gap: 5px;
-  margin: -40px 0 25px;
+  margin: -20px 0 0px;
 
   &__button,
   &__buttonLarge {

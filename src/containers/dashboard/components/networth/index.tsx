@@ -105,13 +105,7 @@ export function Networth() {
 
   /*********  RENDER  *********/
   return (
-    <Card
-      fullWidth
-      className="Dashboard__networth"
-      heading="Net Worth"
-      subtitle="An overview of your progress"
-      actions={<Button color="sky">Export</Button>}
-    >
+    <Card fullWidth className="Dashboard__networth" heading="Net Worth" subtitle="An overview of your progress">
       <Grid columns={3}>
         <GridCol span={2}>
           <PeriodSelector onSelect={setPeriod} selectedPeriod={period} />

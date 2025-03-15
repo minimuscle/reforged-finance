@@ -1,23 +1,20 @@
 import "./_PeriodSelector.css"
 import clsx from "clsx"
 import { periods } from "utils/config"
-import { Periods } from "utils/types"
+import { usePeriod } from "utils/hooks/usePeriod"
+import { Period } from "utils/types"
 
-/******************************************************************
- *  TYPE DEFINITIONS                                              *
- ******************************************************************/
-interface PeriodSelectorProps {
-  onSelect: (period: Periods) => void
-  selectedPeriod: string
-}
 /******************************************************************
  *  COMPONENT START                                               *
  ******************************************************************/
 /**
  * Selects the period for the data to be displayed.
- * Requires a function to handle the selected period, which should be tied to the parent and chart
+ * Hooks into the usePeriod hook to manage the selected period.
  */
-export function PeriodSelector({ onSelect, selectedPeriod }: PeriodSelectorProps) {
+export function PeriodSelector() {
+  /**********  HOOKS  **********/
+  const { period: selectedPeriod, setPeriod } = usePeriod()
+
   /*********  RENDER  *********/
   return (
     <div className="PeriodSelector">
@@ -29,7 +26,7 @@ export function PeriodSelector({ onSelect, selectedPeriod }: PeriodSelectorProps
             selectedPeriod === period && "PeriodSelector__button--active",
             period.length > 2 && "PeriodSelector__buttonLarge"
           )}
-          onClick={() => onSelect(period)}
+          onClick={() => setPeriod(period)}
         >
           {period}
         </button>

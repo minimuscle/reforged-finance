@@ -2,10 +2,11 @@ import { Flex } from "components/Flex"
 import { Text } from "components/Text"
 import "./_Card.css"
 import clsx from "clsx"
+import { _ChartCard } from "components/Card/ChartCard"
 /******************************************************************
  *  TYPE DEFINITIONS                                              *
  ******************************************************************/
-interface CardProps {
+export interface CardProps {
   children: React.ReactNode
   heading?: string
   subtitle?: string
@@ -18,7 +19,7 @@ interface CardProps {
 /******************************************************************
  *  COMPONENT START                                               *
  ******************************************************************/
-export function Card({ children, heading, subtitle, fullWidth, actions, className, smallHeader }: CardProps) {
+function _Card({ children, heading, subtitle, fullWidth, actions, className, smallHeader }: CardProps) {
   return (
     <div className={clsx("Panel", { fullWidth: fullWidth }, className)}>
       {(heading || subtitle || actions) && (
@@ -45,3 +46,7 @@ export function Card({ children, heading, subtitle, fullWidth, actions, classNam
     </div>
   )
 }
+
+export const Card = Object.assign(_Card, {
+  Chart: _ChartCard,
+})

@@ -1,4 +1,4 @@
-import { Periods } from "utils/types"
+import { Period } from "utils/types"
 
 export declare namespace MethodTypes {
   interface FilterData {
@@ -6,6 +6,6 @@ export declare namespace MethodTypes {
       date: string
       [key: string]: string | number
     }>
-    period: Periods
+    period: Period
   }
 }

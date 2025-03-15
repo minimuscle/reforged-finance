@@ -44,6 +44,9 @@ importers:
       '@tanstack/react-router':
         specifier: ^1.105.0
         version: 1.105.0(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
+      '@tanstack/react-store':
+        specifier: ^0.7.0
+        version: 0.7.0(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       apexcharts:
         specifier: ^4.4.0
         version: 4.4.0
