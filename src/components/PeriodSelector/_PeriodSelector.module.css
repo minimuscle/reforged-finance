@@ -1,14 +1,19 @@
 @import "/src/utils/styles/_variables.css";
 
-.PeriodSelector {
+.periodSelector {
   display: flex;
   justify-content: end;
   align-items: center;
   gap: 5px;
-  margin: -20px 0 0px;
+  margin-top: -20px;
+  padding-bottom: 20px;
 
-  &__button,
-  &__buttonLarge {
+  &.withSubtitle {
+    padding: -45px 0 20px;
+  }
+
+  .button,
+  .buttonLarge {
     background-color: $gray-1;
     border: none;
     width: 35px;
@@ -18,7 +23,7 @@
     font-size: 12px;
     color: $gray-7;
 
-    &Large {
+    &.large {
       width: 45px;
     }
 
@@ -26,7 +31,7 @@
       background-color: $gray-2;
     }
 
-    &--active {
+    &.active {
       background-color: $gray-3;
     }
   }

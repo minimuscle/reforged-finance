@@ -1,4 +1,4 @@
-import "./_Dashboard.css"
+import styles from "./_Dashboard.module.css"
 import { TrendCard } from "containers/dashboard/components/trendCard"
 import { Flex } from "components/Flex"
 import { Breakdown } from "containers/dashboard/components/breakdown"

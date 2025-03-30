@@ -11,11 +11,11 @@ const data = [
   },
   {
     date: "2023-12",
-    Networth: 1000,
+    Networth: -2345,
   },
   {
     date: "2024-01",
-    Networth: 1000,
+    Networth: -2355,
   },
   {
     date: "2024-02",
@@ -43,11 +43,11 @@ const data = [
   },
   {
     date: "2024-08",
-    Networth: 6334,
+    Networth: 2423,
   },
   {
     date: "2024-09",
-    Networth: 17000,
+    Networth: -3232,
   },
   {
     date: "2024-10",
@@ -62,13 +62,14 @@ const data = [
 /******************************************************************
  *  COMPONENT START                                               *
  ******************************************************************/
-export function CashValueHistoryChart() {
+export function CashSavings() {
   /*********  RENDER  *********/
   return (
     <Card.Chart className="Cash__chart" heading="Cash Value History">
       <BarChart
         data={data}
         h={"100%"}
+        getBarColor={(value) => (value > 0 ? "green.5" : "red.5")}
         series={[{ name: "Networth", label: "Cash", color: "violet.5" }]}
         dataKey="date"
       />

@@ -1,12 +1,11 @@
 import { AreaChart, BarChart, DonutChart } from "@mantine/charts"
-import { Button, Grid, GridCol } from "@mantine/core"
+import { Grid, GridCol } from "@mantine/core"
 import { Card } from "components/Card"
 import { Flex } from "components/Flex"
 import { PeriodSelector } from "components/PeriodSelector"
-import { useState } from "react"
 import { filterData } from "utils/methods"
-import { Periods } from "utils/types"
-import "./_Networth.css"
+import styles from "./_Networth.module.css"
+import { usePeriod } from "utils/hooks/usePeriod"
 
 const areaData = [
   {
@@ -99,16 +98,15 @@ const barData = [
  ******************************************************************/
 export function Networth() {
   /**********  HOOKS  **********/
-  const [period, setPeriod] = useState<Periods>("1Y")
-
+  const { period } = usePeriod()
   const filteredData = filterData({ data: areaData, period })
 
   /*********  RENDER  *********/
   return (
-    <Card fullWidth className="Dashboard__networth" heading="Net Worth" subtitle="An overview of your progress">
+    <Card fullWidth className={styles.networth} heading="Net Worth" subtitle="An overview of your progress">
       <Grid columns={3}>
         <GridCol span={2}>
-          <PeriodSelector onSelect={setPeriod} selectedPeriod={period} />
+          <PeriodSelector withSubtitle />
           <AreaChart
             h={400}
             data={filteredData}
@@ -119,7 +117,7 @@ export function Networth() {
         </GridCol>
         <GridCol span={1}>
           <Flex direction="column" justify="center" align="center" gap={10}>
-            <DonutChart className="Networth__donutChart" thickness={50} data={donutData} size={350} />
+            <DonutChart className={styles.donutChart} thickness={50} data={donutData} size={350} />
             <BarChart
               h={100}
               data={barData}

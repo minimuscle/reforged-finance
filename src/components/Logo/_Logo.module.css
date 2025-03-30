@@ -1,9 +1,9 @@
-.Logo {
-  &__image {
+.logo {
+  .image {
     width: 250px;
   }
 
-  &__subtitle {
+  .subtitle {
     margin-top: -5px;
   }
 }

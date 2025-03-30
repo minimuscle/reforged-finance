@@ -1,9 +1,9 @@
-.NavButton {
+.navButton {
   text-decoration: none;
   border-radius: 5px;
   position: relative;
 
-  &Content {
+  .content {
     padding: 5px 10px;
     display: flex;
     gap: 10px;
@@ -27,7 +27,7 @@
     }
   }
 
-  &__label {
+  .label {
     position: absolute;
     left: 50px;
     z-index: 1;

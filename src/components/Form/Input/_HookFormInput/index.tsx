@@ -1,7 +1,7 @@
 import { _Input } from "components/Form/Input/_Input"
 import type { Input } from "components/Form/types"
 import { useFormContext } from "react-hook-form"
-import "./_HookFormInput.css"
+import styles from "./_HookFormInput.module.css"
 import { Text } from "components/Text"
 import clsx from "clsx"
 
@@ -15,7 +15,7 @@ export function _HookFormInput({ name, ...rest }: Input.HookFormInputProps) {
     formState: { errors },
   } = useFormContext()
 
-  const className = clsx("HookFormInput", { error: Boolean(errors[name]) })
+  const className = clsx(styles.hookFormInput, { [styles.error]: Boolean(errors[name]) })
 
   /*********  RENDER  *********/
   return (

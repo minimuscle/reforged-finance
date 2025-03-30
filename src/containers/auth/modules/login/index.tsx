@@ -1,5 +1,5 @@
 import { FormProvider, useForm } from "react-hook-form"
-import "./_login.css"
+import styles from "./_login.module.css"
 import { Link } from "@tanstack/react-router"
 import { auth } from "containers/auth/queries"
 import { Card } from "components/Card"
@@ -37,9 +37,9 @@ export function Login() {
 
   /*********  RENDER  *********/
   return (
-    <div className="login">
-      <LogoCard className="login__logo" />
-      <Card className="login__card">
+    <div className={styles.login}>
+      <LogoCard />
+      <Card>
         <Text as="h1" size="xxl" alignCenter>
           Login
         </Text>
@@ -49,7 +49,7 @@ export function Login() {
               <Input.HookForm name="email" label="Email" />
               <Input.HookForm name="password" label="Password" type="password" />
 
-              <Text className="login__forgot" size="sm" alignRight>
+              <Text className={styles.forgot} size="sm" alignRight>
                 <Link to="/">Forgot Password?</Link>
               </Text>
 

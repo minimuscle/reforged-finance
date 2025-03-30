@@ -1,4 +1,4 @@
-.Sidebar {
+.sidebar {
   background-color: var(--mantine-color-white);
   width: 300px;
   height: 100vh;
@@ -16,18 +16,18 @@
     transition: 200ms ease-in-out;
   }
 
-  &__item {
+  .item {
     display: flex;
     flex-direction: column;
     gap: 10px;
   }
 
-  &__divider {
+  .divider {
     margin: 5px 20px;
     border-color: var(--mantine-color-gray-2);
   }
 
-  &__header {
+  .header {
     margin-top: 10px;
     margin-left: -10px;
     height: 50px;
@@ -44,16 +44,16 @@
       object-fit: contain;
     }
 
-    &--title {
+    .title {
       margin-top: -7px !important;
     }
 
-    &--subtitle {
+    .subtitle {
       margin-top: -5px !important;
     }
   }
 
-  &__toggle {
+  .toggle {
     position: absolute;
     color: var(--mantine-color-gray-5);
     top: 15px;

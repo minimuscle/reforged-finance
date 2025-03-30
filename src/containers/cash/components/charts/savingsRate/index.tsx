@@ -62,7 +62,7 @@ const data = [
 /******************************************************************
  *  COMPONENT START                                               *
  ******************************************************************/
-export function CashValueHistoryChart() {
+export function CashSavingsRate() {
   /*********  RENDER  *********/
   return (
     <Card.Chart className="Cash__chart" heading="Cash Value History">

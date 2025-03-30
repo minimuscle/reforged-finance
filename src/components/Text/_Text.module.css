@@ -1,87 +1,93 @@
 @import "/src/utils/styles/_variables.css";
 
-.Text {
+.text {
   color: var(--mantine-color-gray-9);
   margin: 0;
 
-  &--size {
-    &-xxs {
+  &.size {
+    &.xxs {
       font-size: 10px;
     }
-    &-xs {
+    &.xs {
       font-size: 12px;
     }
-    &-sm {
+    &.sm {
       font-size: 14px;
     }
-    &-md {
+    &.md {
       font-size: 16px;
     }
-    &-lg {
+    &.lg {
       font-size: 18px;
     }
-    &-xl {
+    &.xl {
       font-size: 20px;
     }
-    &-xxl {
+    &.xxl {
       font-size: 24px;
     }
-    &-xxxl {
+    &.xxxl {
       font-size: 32px;
     }
   }
 
-  &--weight {
-    &-regular {
+  &.weight {
+    &.regular {
       font-weight: 400;
     }
 
-    &-semiBold {
+    &.semiBold {
       font-weight: 550;
     }
 
-    &-bold {
+    &.bold {
       font-weight: 700;
     }
 
-    &-black {
+    &.black {
       font-weight: 900;
     }
   }
 
-  &--align {
-    &Left {
-      text-align: left;
-    }
-
-    &Center {
-      text-align: center;
-    }
-
-    &Right {
-      text-align: right;
-    }
+  &.alignLeft {
+    text-align: left;
+  }
+  &.alignCenter {
+    text-align: center;
+  }
+  &.alignRight {
+    text-align: right;
   }
 
-  &--color {
-    &-default {
+  &.color {
+    &.default {
       color: $gray-8;
     }
+    &.primary {
+      color: $sky-5;
+    }
+    &.secondary {
+      color: $teal-5;
+    }
 
-    &-gray {
+    &.gray {
       color: $gray-5;
     }
-    &-error {
+    &.error {
       color: $red-5;
     }
-    &-success {
+    &.success {
       color: $green-5;
     }
-    &-warning {
+    &.warning {
       color: $yellow-5;
     }
-    &-info {
+    &.info {
       color: $blue-5;
+    }
+
+    &.white {
+      color: $white;
     }
   }
 
@@ -98,7 +104,7 @@
     }
   }
 
-  &--uppercase {
+  &.uppercase {
     text-transform: uppercase;
   }
 }

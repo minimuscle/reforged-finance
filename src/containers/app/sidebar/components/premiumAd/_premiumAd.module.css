@@ -1,6 +1,6 @@
 @import "/src/utils/styles/_variables.css";
 
-.PremiumAd {
+.premiumAd {
   height: 160px;
   width: 100%;
   border-radius: 5px;
@@ -11,7 +11,7 @@
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
 }
 
-.PremiumAdSmall {
+.premiumAdSmall {
   height: 40px;
   border-radius: 5px;
   padding: 5px;

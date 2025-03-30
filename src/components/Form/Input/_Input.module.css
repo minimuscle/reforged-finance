@@ -1,16 +1,16 @@
 @import "/src/utils/styles/_variables.css";
 
-.Input {
+.input {
   display: flex;
   flex-direction: column;
   position: relative;
 
-  &__label {
+  .label {
     color: $gray-5;
     font-size: 14px;
   }
 
-  &__icon {
+  .icon {
     position: absolute;
     right: 10px;
     top: 50%;

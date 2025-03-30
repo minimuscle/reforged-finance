@@ -1,5 +1,5 @@
 import clsx from "clsx"
-import "./_Flex.css"
+import styles from "./_Flex.module.css"
 
 /******************************************************************
  *  TYPE DEFINITIONS                                              *
@@ -23,13 +23,13 @@ export function _Flex({ children, className, justify, align, direction, wrap, ga
   return (
     <div
       className={clsx(
-        "Flex",
-        className,
-        justify && `Flex--justify-${justify}`,
-        align && `Flex--align-${align}`,
-        direction && `Flex--direction-${direction}`,
-        wrap && `Flex--wrap-${wrap}`,
-        fullWidth && "Flex--fullWidth"
+        styles.flex,
+        justify && styles[`justify-${justify}`],
+        align && styles[`align-${align}`],
+        direction && styles[`direction-${direction}`],
+        wrap && styles[`wrap-${wrap}`],
+        fullWidth && styles.fullWidth,
+        className
       )}
       style={{ gap }}
     >

@@ -1,5 +1,5 @@
 import { Divider } from "@mantine/core"
-import "./_sidebar.css"
+import styles from "./_sidebar.module.css"
 import { NavButton } from "./components/navButton"
 import { bottonNavOptions, navOptions } from "./consts"
 import { Text } from "components/Text"
@@ -22,13 +22,13 @@ export function Sidebar() {
 
   /*********  RENDER  *********/
   return (
-    <div className={clsx("Sidebar", isSidebarHidden && "small")}>
-      <div className="Sidebar__toggle" onClick={() => setSidebarHidden(!isSidebarHidden)}>
+    <div className={clsx(styles.sidebar, { [styles.small]: isSidebarHidden })}>
+      <div className={styles.toggle} onClick={() => setSidebarHidden(!isSidebarHidden)}>
         {isSidebarHidden ? <IconLayoutSidebarLeftExpandFilled /> : <IconLayoutSidebarLeftCollapseFilled />}
       </div>
 
-      <div className="Sidebar__item">
-        <Link to="/" className="Sidebar__header">
+      <div className={styles.item}>
+        <Link to="/" className={styles.header}>
           <AnimatePresence>
             {!isSidebarHidden && (
               <>
@@ -51,8 +51,8 @@ export function Sidebar() {
                   exit={{ x: -50, opacity: 0, transition: { delay: 0, duration: 0.2 } }}
                 >
                   <Flex direction="column" gap={0}>
-                    <Text className="Sidebar__header--title">Reforged Finance</Text>
-                    <Text size="xs" color="gray" className="Sidebar__header--subtitle">
+                    <Text className={styles.title}>Reforged Finance</Text>
+                    <Text size="xs" color="gray" className={styles.subtitle}>
                       Personal Wealth Tracker
                     </Text>
                   </Flex>
@@ -65,9 +65,9 @@ export function Sidebar() {
           <NavButton key={navOption.label} {...navOption} isSidebarHidden={isSidebarHidden} />
         ))}
       </div>
-      <div className="Sidebar__item">
+      <div className={styles.item}>
         <PremiumAd />
-        <Divider className="Sidebar__divider" />
+        <Divider className={styles.divider} />
         {bottonNavOptions.map((navOption) => (
           <NavButton key={navOption.label} {...navOption} isSidebarHidden={isSidebarHidden} />
         ))}

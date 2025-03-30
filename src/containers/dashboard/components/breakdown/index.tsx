@@ -3,7 +3,7 @@ import { Flex } from "components/Flex"
 import { Text } from "components/Text"
 import { Assets } from "containers/dashboard/components/breakdown/assets"
 import { Liabilities } from "containers/dashboard/components/breakdown/liabilities"
-import "./_breakdown.css"
+import styles from "./_breakdown.module.css"
 
 /******************************************************************
  *  COMPONENT START                                               *
@@ -11,7 +11,12 @@ import "./_breakdown.css"
 export function Breakdown() {
   /*********  RENDER  *********/
   return (
-    <Card fullWidth className="breakdown" heading="Breakdown" subtitle="An overview of your assets and liabilities">
+    <Card
+      fullWidth
+      className={styles.breakdown}
+      heading="Breakdown"
+      subtitle="An overview of your assets and liabilities"
+    >
       <Flex gap={20}>
         <Flex direction="column" gap={5} fullWidth>
           <Text size="xl">Assets</Text>

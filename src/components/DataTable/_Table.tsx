@@ -1,5 +1,5 @@
 import clsx from "clsx"
-import "./_Table.css"
+import styles from "./_Table.module.css"
 
 /******************************************************************
  *  COMPONENT START                                               *
@@ -7,7 +7,7 @@ import "./_Table.css"
 export function _Table({ children, className }: { children?: React.ReactNode; className?: string }) {
   /*********  RENDER  *********/
   return (
-    <table className={clsx("Table", className)} border={0} cellPadding={0} cellSpacing={0}>
+    <table className={clsx(styles.table, className)} border={0} cellPadding={0} cellSpacing={0}>
       {children}
     </table>
   )

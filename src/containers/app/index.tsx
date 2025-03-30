@@ -1,5 +1,5 @@
 import { Outlet, useLocation } from "@tanstack/react-router"
-import "./_app.css"
+import styles from "./_app.module.css"
 import clsx from "clsx"
 import { Sidebar } from "containers/app/sidebar"
 import { useAppViewport } from "utils/hooks/useAppViewport"
@@ -32,10 +32,10 @@ export function App() {
 
   /*********  RENDER  *********/
   return (
-    <motion.div className={clsx("App", { mobile: isMobile, SidebarHidden: isSidebarHidden })}>
+    <motion.div className={clsx(styles.app, { [styles.mobile]: isMobile, [styles.sidebarHidden]: isSidebarHidden })}>
       {!isMobile && <Sidebar />}
-      <div className={clsx("AppContent", { SidebarHidden: isSidebarHidden })}>
-        <Flex align="center" justify="space-between" className="AppContent__header">
+      <div className={clsx(styles.content, { [styles.sidebarHidden]: isSidebarHidden })}>
+        <Flex align="center" justify="space-between" className={styles.header}>
           <Text size="xxl" bold as="h1">
             {heading}
           </Text>
@@ -50,15 +50,15 @@ export function App() {
                 </Button>
                 <Menu>
                   <Menu.Target>
-                    <Button disabled color="sky" className="AppContent__headerButton">
+                    <Button disabled color="sky" className={styles.button}>
                       <IconChevronDown />
                     </Button>
                   </Menu.Target>
                   <Menu.Dropdown>
-                    <Menu.Item leftSection={<IconFileExport className="AppContent__headerButtonIcon" />} color="gray">
+                    <Menu.Item leftSection={<IconFileExport className={styles.icon} />} color="gray">
                       Export Page
                     </Menu.Item>
-                    <Menu.Item leftSection={<IconReport className="AppContent__headerButtonIcon" />} color="gray">
+                    <Menu.Item leftSection={<IconReport className={styles.icon} />} color="gray">
                       Export All
                     </Menu.Item>
                   </Menu.Dropdown>
@@ -67,7 +67,7 @@ export function App() {
             </Tooltip>
           </Flex>
         </Flex>
-        <div className="AppContent__outlet">
+        <div className={styles.outlet}>
           <Outlet />
         </div>
       </div>

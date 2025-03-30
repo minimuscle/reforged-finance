@@ -1,12 +1,12 @@
 import clsx from "clsx"
-import "./_Text.css"
+import styles from "./_Text.module.css"
 import { Children, cloneElement, isValidElement, ReactElement } from "react"
 import { MantineColor, MantineColorShade } from "@mantine/core"
 /******************************************************************
  *  TYPE DEFINITIONS                                              *
  ******************************************************************/
 type TextSizes = "xxs" | "xs" | "sm" | "md" | "lg" | "xl" | "xxl" | "xxxl" | number
-type TextColors = "primary" | "secondary" | "default" | "gray" | "error" | "success" | "warning" | "info"
+type TextColors = "primary" | "secondary" | "default" | "gray" | "error" | "success" | "warning" | "info" | "white"
 type TextCustomColors = `${MantineColor}-${MantineColorShade}`
 type TextWeights =
   | { bold: boolean; regular?: never; semiBold?: never; black?: never }
@@ -53,9 +53,11 @@ export function _Text({
     return child
   })
 
-  let weight = "regular"
+  let weight: keyof TextWeights = "regular"
 
-  if (otherProps.bold) {
+  if (otherProps.regular) {
+    weight = "regular"
+  } else if (otherProps.bold) {
     weight = "bold"
   } else if (otherProps.semiBold) {
     weight = "semiBold"
@@ -63,9 +65,11 @@ export function _Text({
     weight = "black"
   }
 
-  let align = "alignLeft"
+  let align: keyof TextAlign = "alignLeft"
 
-  if (otherProps.alignCenter) {
+  if (otherProps.alignLeft) {
+    align = "alignLeft"
+  } else if (otherProps.alignCenter) {
     align = "alignCenter"
   } else if (otherProps.alignRight) {
     align = "alignRight"
@@ -74,16 +78,17 @@ export function _Text({
   function isCustomColor(color: string): color is TextCustomColors {
     return color.includes("-")
   }
+
   /*********  RENDER  *********/
   return (
     <Component
       className={clsx(
-        "Text",
-        typeof size === "string" && size && `Text--size-${size}`,
-        color && !isCustomColor(color) && `Text--color-${color}`,
-        weight && `Text--weight-${weight}`,
-        align && `Text--${align}`,
-        uppercase && "Text--uppercase",
+        styles.text,
+        [styles.size, typeof size === "string" && styles[size]],
+        [styles.color, color && !isCustomColor(color) && styles[color]],
+        styles[weight],
+        styles[align],
+        { [styles.uppercase]: uppercase },
         className
       )}
       style={{

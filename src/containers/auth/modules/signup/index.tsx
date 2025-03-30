@@ -1,5 +1,5 @@
 import { FormProvider, useForm } from "react-hook-form"
-import "./_signup.css"
+import styles from "./_signup.module.css"
 import { Link } from "@tanstack/react-router"
 import { auth } from "../../queries"
 import { LogoCard } from "components/Logo"
@@ -38,9 +38,9 @@ export function Signup() {
 
   /*********  RENDER  *********/
   return (
-    <div className="login">
-      <LogoCard className="login__logo" />
-      <Card className="login__card">
+    <div className={styles.signup}>
+      <LogoCard />
+      <Card>
         <Text as="h1" size="xxl" alignCenter>
           Sign Up
         </Text>

@@ -1,10 +1,6 @@
-import { Flex } from "components/Flex"
-import { Text } from "components/Text"
-import "../_Card.css"
-import clsx from "clsx"
 import { Card, CardProps } from "components/Card"
 import { PeriodSelector } from "components/PeriodSelector"
-import { usePeriod } from "utils/hooks/usePeriod"
+import styles from "./_ChartCard.module.css"
 
 /******************************************************************
  *  COMPONENT START                                               *
@@ -12,9 +8,9 @@ import { usePeriod } from "utils/hooks/usePeriod"
 export function _ChartCard({ children, ...props }: CardProps) {
   /*********  RENDER  *********/
   return (
-    <Card smallHeader {...props}>
+    <Card smallHeader {...props} className="chartCard">
       <PeriodSelector />
-      {children}
+      <div className="chartCard__content">{children}</div>
     </Card>
   )
 }

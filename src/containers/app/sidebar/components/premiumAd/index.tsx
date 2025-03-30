@@ -1,5 +1,5 @@
 import { Text } from "components/Text"
-import "./_premiumAd.css"
+import styles from "./_premiumAd.module.css"
 import { IconSparkles } from "@tabler/icons-react"
 import { Flex } from "components/Flex"
 import { Button } from "@mantine/core"
@@ -16,21 +16,21 @@ export function PremiumAd() {
   /*********  RENDER  *********/
   if (isSidebarHidden) {
     return (
-      <Link to="/premium" className="PremiumAdSmall">
+      <Link to="/premium" className={styles.premiumAdSmall}>
         <IconSparkles size={28} />
       </Link>
     )
   }
 
   return (
-    <Flex direction="column" gap={10} className="PremiumAd">
+    <Flex direction="column" gap={10} className={styles.premiumAd}>
       <Flex gap={10}>
         <IconSparkles size={28} />
-        <Text color="white-0" semiBold size={"lg"}>
+        <Text color="white-0" semiBold size="lg">
           Upgrade to Premium
         </Text>
       </Flex>
-      <Text color="white-0" size="sm">
+      <Text color="white" size="sm">
         Unlock all features and support the development of Reforged Finance
       </Text>
       <Link to="/premium">

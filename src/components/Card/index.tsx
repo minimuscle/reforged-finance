@@ -1,6 +1,6 @@
 import { Flex } from "components/Flex"
 import { Text } from "components/Text"
-import "./_Card.css"
+import styles from "./_Card.module.css"
 import clsx from "clsx"
 import { _ChartCard } from "components/Card/ChartCard"
 /******************************************************************
@@ -21,16 +21,20 @@ export interface CardProps {
  ******************************************************************/
 function _Card({ children, heading, subtitle, fullWidth, actions, className, smallHeader }: CardProps) {
   return (
-    <div className={clsx("Panel", { fullWidth: fullWidth }, className)}>
+    <div className={clsx(styles.card, { [styles.fullWidth]: fullWidth }, className)}>
       {(heading || subtitle || actions) && (
-        <Flex direction="row" justify="space-between" className={clsx("Panel__header", { smallHeader: smallHeader })}>
+        <Flex
+          direction="row"
+          justify="space-between"
+          className={clsx(styles.header, { [styles.smallHeader]: smallHeader })}
+        >
           <Flex direction="column">
             <Text
               as="h2"
               size={smallHeader ? "sm" : "lg"}
               semiBold={!smallHeader}
               color={smallHeader ? "gray" : "default"}
-              className="Panel__header--text"
+              className={styles.text}
             >
               {heading}
             </Text>

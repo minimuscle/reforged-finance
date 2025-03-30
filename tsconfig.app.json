@@ -30,7 +30,8 @@
       "utils/*": ["src/utils/*"],
       "containers/*": ["src/containers/*"],
       "routes/*": ["src/routes/*"]
-    }
+    },
+    "plugins": [{ "name": "typescript-plugin-css-modules" }]
   },
   "include": ["src"]
 }

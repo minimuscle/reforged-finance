@@ -1,4 +1,5 @@
 import { Text } from "components/Text"
+import styles from "./_Table.module.css"
 
 /******************************************************************
  *  COMPONENT START                                               *
@@ -6,7 +7,7 @@ import { Text } from "components/Text"
 export function _THeading({ children }: { children?: string }) {
   /*********  RENDER  *********/
   return (
-    <th className="Table__heading">
+    <th className={styles.heading}>
       <Text uppercase size="sm" className="Table__heading--text">
         {children}
       </Text>

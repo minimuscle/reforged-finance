@@ -1,0 +1,10 @@
+.content {
+  .value {
+    flex: 0;
+    white-space: nowrap;
+  }
+
+  .chart {
+    flex: 1;
+  }
+}

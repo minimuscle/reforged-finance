@@ -8,7 +8,7 @@ import { Text } from "components/Text"
 export function Liabilities() {
   /*********  RENDER  *********/
   return (
-    <DataTable className="table">
+    <DataTable>
       <DataTable.Head>
         <DataTable.Row>
           <DataTable.Heading>Type</DataTable.Heading>

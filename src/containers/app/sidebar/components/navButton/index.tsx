@@ -1,7 +1,7 @@
 import { Link } from "@tanstack/react-router"
 import { clsx } from "clsx"
 import { AnimatePresence, motion } from "motion/react"
-import "./_navButton.css"
+import styles from "./_navButton.module.css"
 import { NavButtonProps } from "containers/app/sidebar/types"
 
 /******************************************************************
@@ -20,8 +20,8 @@ export function NavButton({
     <Link to={to} preload={preload}>
       {({ isActive }) => {
         return (
-          <div className="NavButton">
-            <div className={clsx("NavButtonContent", { active: isActive })}>
+          <div className={styles.navButton}>
+            <div className={clsx(styles.content, { [styles.active]: isActive })}>
               {isActive && ActiveIcon ? <ActiveIcon /> : <Icon />}
               <AnimatePresence>
                 {!isSidebarHidden && (
@@ -33,7 +33,7 @@ export function NavButton({
                     }}
                     transition={{ delay: 0.2 }}
                     exit={{ x: -50, opacity: 0, transition: { delay: 0, duration: 0.2 } }}
-                    className="NavButton__label"
+                    className={styles.label}
                   >
                     {label}
                   </motion.div>
@@ -44,7 +44,7 @@ export function NavButton({
               <motion.div
                 layoutId="activeBtn"
                 transition={{ duration: 0.15 }}
-                className={clsx("activeBtn", { small: isSidebarHidden })}
+                className={clsx(styles.activeBtn, { [styles.small]: isSidebarHidden })}
               />
             )}
           </div>

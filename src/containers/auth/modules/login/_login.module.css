@@ -1,6 +1,6 @@
 @import "/src/utils/styles/_variables.css";
 
-.signup {
+.login {
   display: flex;
   align-items: center;
   min-height: 100vh;
@@ -9,11 +9,7 @@
   gap: 50px;
   padding-top: 150px;
 
-  &__card.Panel {
-    padding: 20px;
-  }
-
-  &__forgot {
+  .forgot {
     margin-bottom: 20px;
   }
 }

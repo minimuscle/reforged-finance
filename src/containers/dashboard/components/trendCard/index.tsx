@@ -4,7 +4,7 @@ import { Card } from "components/Card"
 import { Flex } from "components/Flex"
 import { Text } from "components/Text"
 import { Sparkline } from "@mantine/charts"
-import "./_trendCard.css"
+import styles from "./_trendCard.module.css"
 
 /******************************************************************
  *  COMPONENT START                                               *
@@ -22,11 +22,11 @@ export function TrendCard() {
         </Badge>
       }
     >
-      <Flex justify="space-between" align="center" className="TrendCard__content" gap={10}>
-        <div className="TrendCard__content__value">
+      <Flex justify="space-between" align="center" className={styles.content} gap={10}>
+        <div className={styles.value}>
           <Text size={32}>+$1,034,232</Text>
         </div>
-        <div className="TrendCard__content__chart">
+        <div className={styles.chart}>
           <Sparkline
             h={50}
             w={"100%"}

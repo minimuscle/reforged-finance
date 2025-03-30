@@ -1,8 +1,8 @@
-.Table {
+.table {
   width: 100%;
   border-radius: 5px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-  &__header {
+  .header {
     border-top-left-radius: 10px;
 
     th {
@@ -17,7 +17,7 @@
     }
   }
 
-  &__body {
+  .body {
     tr {
       td {
         border-top: 1px solid var(--mantine-color-gray-2);
@@ -46,7 +46,7 @@
     border-bottom-left-radius: 5px;
   }
 
-  &__heading {
+  .heading {
     &--text {
       color: var(--mantine-color-gray-6);
     }

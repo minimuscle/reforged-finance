@@ -1,6 +1,6 @@
 import clsx from "clsx"
 import type { Input } from "components/Form/types"
-import "./_Input.css"
+import styles from "./_Input.module.css"
 import { IconEye, IconEyeClosed } from "@tabler/icons-react"
 import { useBoolean } from "utils/hooks/useBoolean"
 
@@ -13,20 +13,14 @@ export function _Input({ label, placeholder, type, className, ...rest }: Input.I
 
   /*********  RENDER  *********/
   return (
-    <div
-      className={clsx(
-        "Input",
-        { [className as string]: Boolean(className) },
-        { password: Boolean(type === "password") }
-      )}
-    >
-      <label className="Input__label">{label}</label>
+    <div className={clsx(styles.input, { [styles.password]: Boolean(type === "password") }, className)}>
+      <label className={styles.label}>{label}</label>
       <input {...rest} placeholder={placeholder} type={passwordShown ? "text" : type} />
       {type === "password" &&
         (passwordShown ? (
-          <IconEyeClosed className="Input__icon" onClick={toggleShowPassword} />
+          <IconEyeClosed className={styles.icon} onClick={toggleShowPassword} />
         ) : (
-          <IconEye className="Input__icon" onClick={toggleShowPassword} />
+          <IconEye className={styles.icon} onClick={toggleShowPassword} />
         ))}
     </div>
   )
