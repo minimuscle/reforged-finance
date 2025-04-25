@@ -28,6 +28,7 @@ export default tseslint.config(
         },
       ],
       "no-extra-semi": "off",
+      "react-hooks/react-compiler": "error"
     },
   }
 )

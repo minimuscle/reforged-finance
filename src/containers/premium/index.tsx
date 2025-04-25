@@ -36,7 +36,6 @@ export function Premium() {
           "Priority support",
         ]}
         cost={5}
-        discountedCost={50}
         selected={isPremium}
       />
       <PremiumCard

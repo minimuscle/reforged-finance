@@ -12,10 +12,9 @@
     .text {
       margin-bottom: -5px;
     }
-
-    .smallHeader {
-      height: 20px;
-    }
+  }
+  .smallHeader {
+    height: 20px;
   }
 
   &.fullWidth {

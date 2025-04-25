@@ -12,21 +12,13 @@ interface PremiumCardProps {
   features: string[]
   cost: string | number
   period?: "monthly" | "lifetime"
-  discountedCost?: number
   selected?: boolean
 }
 
 /******************************************************************
  *  COMPONENT START                                               *
  ******************************************************************/
-export function PremiumCard({
-  title,
-  description,
-  features,
-  cost,
-  discountedCost,
-  selected = false,
-}: PremiumCardProps) {
+export function PremiumCard({ title, description, features, cost, selected = false }: PremiumCardProps) {
   /**********  HOOKS  **********/
 
   /*********  RENDER  *********/
