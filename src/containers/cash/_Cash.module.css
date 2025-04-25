@@ -1,14 +1,3 @@
-.Cash {
+.cash {
   max-width: 400px;
-
-  &__total {
-    position: relative;
-    margin-left: 15px;
-    &DollarSign {
-      position: absolute;
-      top: 8px;
-      left: -15px;
-      vertical-align: text-top;
-    }
-  }
 }

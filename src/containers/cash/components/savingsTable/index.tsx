@@ -1,7 +1,7 @@
 import { Badge, Space } from "@mantine/core"
 import { Card } from "components/Card"
 import { DataTable } from "components/DataTable"
-import "./_savingsTable.css"
+import styles from "./_savingsTable.module.css"
 
 /******************************************************************
  *  COMPONENT START                                               *
@@ -14,7 +14,7 @@ export function SavingsTable() {
 
   /*********  RENDER  *********/
   return (
-    <Card heading={`${year} Cash Savings`} smallHeader className="savingsTable">
+    <Card heading={`${year} Cash Savings`} smallHeader className={styles.savingsTable}>
       <Space h="md" />
       <DataTable>
         <DataTable.Body>

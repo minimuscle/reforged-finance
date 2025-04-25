@@ -5,15 +5,15 @@
   padding: 20px;
   position: relative;
 
-  &__title {
+  .title {
     margin-bottom: 10px;
   }
 
-  &__header {
+  .header {
     height: 120px;
   }
 
-  &__content {
+  .content {
     margin-top: 30px;
 
     li:not(:last-child) {
@@ -23,17 +23,17 @@
     }
   }
 
-  &__cost {
+  .cost {
     position: relative;
     margin-left: 10px;
-    &Sign {
+    .sign {
       position: absolute;
       top: 25%;
       left: -10px;
     }
   }
 
-  &__footer {
+  .footer {
     position: absolute;
     bottom: 0;
     left: 0;
@@ -41,7 +41,7 @@
     width: 100%;
   }
 
-  &__button {
+  .button {
     width: 100%;
   }
 }

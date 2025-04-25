@@ -1,5 +1,5 @@
 import { TotalSavings } from "containers/cash/components/totalSavings"
-import "./_Cash.css"
+import styles from "./_Cash.module.css"
 import { Flex } from "components/Flex"
 import { AccountsList } from "containers/cash/components/accountsList"
 import { SavingsTable } from "containers/cash/components/savingsTable"
@@ -15,7 +15,7 @@ export function Cash() {
   /*********  RENDER  *********/
   return (
     <Flex fullWidth gap={15}>
-      <Flex direction="column" fullWidth gap={15} className="Cash">
+      <Flex direction="column" fullWidth gap={15} className={styles.cash}>
         <TotalSavings />
         <SavingsTable />
         <AccountsList />

@@ -1,6 +1,6 @@
 @import "src/utils/styles/_variables.css";
 
-.AccountCard {
+.accountCard {
   background-color: $white;
   padding: 10px;
   border-radius: 5px;
@@ -11,7 +11,7 @@
   height: 100px;
   position: relative;
 
-  &__icon {
+  .icon {
     position: absolute;
     top: 50%;
     right: 30px;
@@ -21,8 +21,8 @@
     width: 95px;
   }
 
-  &__menu,
-  &__menu--isHovered {
+  .menu,
+  .menu--isHovered {
     position: absolute;
     top: 50%;
     right: 5px;
@@ -34,19 +34,19 @@
     }
   }
 
-  &__menu {
+  .menu {
     display: none;
 
-    &--isHovered {
+    .isHovered {
       display: unset;
     }
 
-    &Dropdown {
+    .dropdown {
       color: $gray-4;
     }
   }
 
-  &__colorMenu {
+  .colorMenu {
     padding: 10px;
     width: 200px;
     height: 190px;

@@ -1,7 +1,7 @@
 import { Button } from "@mantine/core"
 import { Card } from "components/Card"
 import { Text } from "components/Text"
-import "./_History.css"
+import styles from "./_History.module.css"
 
 /******************************************************************
  *  COMPONENT START                                               *
@@ -12,7 +12,7 @@ export function History() {
     <>
       <Card
         fullWidth
-        className="History"
+        className={styles.history}
         heading="History"
         subtitle="An overview of your progress"
         actions={<Button>Export</Button>}

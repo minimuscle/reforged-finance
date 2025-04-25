@@ -1,5 +1,5 @@
 import { Text } from "components/Text"
-import "./_AccountCard.css"
+import styles from "./_AccountCard.module.css"
 import { IconType } from "utils/types"
 import { IconDotsVertical } from "@tabler/icons-react"
 import { ActionIcon, ColorSwatch, Menu, NumberFormatter } from "@mantine/core"
@@ -65,7 +65,7 @@ export function AccountCard({ title, value, currency, icon: Icon }: AccountCardP
   /*********  RENDER  *********/
   return (
     <div
-      className="AccountCard"
+      className={styles.accountCard}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => {
         switch (true) {
@@ -79,7 +79,7 @@ export function AccountCard({ title, value, currency, icon: Icon }: AccountCardP
         }
       }}
     >
-      <Icon className="AccountCard__icon" />
+      <Icon className={styles.icon} />
       <Text color="gray-5">{title}</Text>
       <Text color="gray-8" size="xxl">
         <NumberFormatter prefix="$" value={value} thousandSeparator decimalScale={2} />
@@ -99,7 +99,7 @@ export function AccountCard({ title, value, currency, icon: Icon }: AccountCardP
       >
         <Menu.Target>
           <ActionIcon
-            className={clsx(isHovered ? "AccountCard__menu--isHovered" : "AccountCard__menu")}
+            className={clsx(isHovered ? styles["menu--isHovered"] : styles.menu)}
             color="gray"
             variant="transparent"
           >
@@ -107,14 +107,14 @@ export function AccountCard({ title, value, currency, icon: Icon }: AccountCardP
           </ActionIcon>
         </Menu.Target>
         <Menu.Dropdown>
-          <Menu.Item leftSection={<IconEdit className="AccountCard__menuDropdown" />} color="gray">
+          <Menu.Item leftSection={<IconEdit className={styles.dropdown} />} color="gray">
             Edit
           </Menu.Item>
           <SubMenu
             isMenuOpen={isIconMenuOpened}
             menuHandler={iconMenu}
             target={
-              <Menu.Item leftSection={<IconPlaneTilt className="AccountCard__menuDropdown" />} color="gray">
+              <Menu.Item leftSection={<IconPlaneTilt className={styles.dropdown} />} color="gray">
                 Set Icon
               </Menu.Item>
             }
@@ -130,12 +130,12 @@ export function AccountCard({ title, value, currency, icon: Icon }: AccountCardP
             isMenuOpen={isColorMenuOpened}
             menuHandler={colorMenu}
             target={
-              <Menu.Item leftSection={<IconPalette className="AccountCard__menuDropdown" />} color="gray">
+              <Menu.Item leftSection={<IconPalette className={styles.dropdown} />} color="gray">
                 Colour
               </Menu.Item>
             }
           >
-            <div className="AccountCard__colorMenu">
+            <div className={styles.colorMenu}>
               <Text color="gray">Select a colour:</Text>
               <Flex gap={10} wrap="wrap">
                 {colors.map((color) => (

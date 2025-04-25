@@ -1,8 +1,8 @@
 import { Card } from "components/Card"
-import "./_premiumCard.css"
+import styles from "./_premiumCard.module.css"
 import { Text } from "components/Text"
 import { Button } from "@mantine/core"
-import { useAppContext } from "containers/app/appContext"
+
 /******************************************************************
  *  TYPE DEFINITIONS                                              *
  ******************************************************************/
@@ -31,12 +31,12 @@ export function PremiumCard({
 
   /*********  RENDER  *********/
   return (
-    <Card className="premiumCard">
-      <div className="premiumCard__header">
-        <Text semiBold as="h2" size={"xxl"} color="gray" className="premiumCard__title">
+    <Card className={styles.premiumCard}>
+      <div className={styles.header}>
+        <Text semiBold as="h2" size={"xxl"} color="gray" className={styles.title}>
           {title}
         </Text>
-        <Text className="premiumCard__description">{description}</Text>
+        <Text>{description}</Text>
       </div>
 
       {typeof cost === "string" ? (
@@ -44,15 +44,15 @@ export function PremiumCard({
           {cost}
         </Text>
       ) : (
-        <Text size={72} black color="teal-6" className="premiumCard__cost">
-          <Text color="gray" className="premiumCard__costSign">
+        <Text size={72} black color="teal-6" className={styles.cost}>
+          <Text color="gray" className={styles.sign}>
             $
           </Text>
           {cost}
           <Text color="gray">/month</Text>
         </Text>
       )}
-      <div className="premiumCard__content">
+      <div className={styles.content}>
         <Text>Features:</Text>
         <ul>
           {features.map((feature, index) => (
@@ -60,8 +60,8 @@ export function PremiumCard({
           ))}
         </ul>
       </div>
-      <div className="premiumCard__footer">
-        <Button disabled={selected} className="premiumCard__button" color="teal">
+      <div className={styles.footer}>
+        <Button disabled={selected} className={styles.button} color="teal">
           {selected ? "Current Plan" : "Buy Now"}
         </Button>
       </div>

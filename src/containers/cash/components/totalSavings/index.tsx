@@ -2,6 +2,7 @@ import { Badge } from "@mantine/core"
 import { IconCircleArrowUp } from "@tabler/icons-react"
 import { Card } from "components/Card"
 import { Text } from "components/Text"
+import styles from "./totalSavings.module.css"
 
 /******************************************************************
  *  COMPONENT START                                               *
@@ -18,8 +19,8 @@ export function TotalSavings() {
         </Badge>
       }
     >
-      <Text size={36} className="Cash__total">
-        <Text color="gray" size={20} className="Cash__totalDollarSign">
+      <Text size={36} className={styles.total}>
+        <Text color="gray" size={20} className={styles.dollarSign}>
           $
         </Text>
         25,945.23

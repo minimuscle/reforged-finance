@@ -1,5 +1,5 @@
 import { PremiumCard } from "containers/premium/components/premiumCard"
-import "./_Premium.css"
+import styles from "./_Premium.module.css"
 import { Flex } from "components/Flex"
 import { useAppContext } from "containers/app/appContext"
 
@@ -12,7 +12,7 @@ export function Premium() {
 
   /*********  RENDER  *********/
   return (
-    <Flex fullWidth align="center" justify="center" gap={50} className="Premium">
+    <Flex fullWidth align="center" justify="center" gap={50} className={styles.premium}>
       <PremiumCard
         title="Free"
         description="Track your net worth effortlessly with essential tools to stay on top of your finances."
