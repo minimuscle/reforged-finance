@@ -140,6 +140,7 @@ export function AccountCard({ title, value, currency, icon: Icon }: AccountCardP
               <Flex gap={10} wrap="wrap">
                 {colors.map((color) => (
                   <ColorSwatch
+                    key={color}
                     component="button"
                     onClick={() => console.log(color, " clicked")}
                     color={`var(--mantine-color-${color}-5)`}
