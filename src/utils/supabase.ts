@@ -2,7 +2,7 @@ import { createClient } from "@supabase/supabase-js"
 
 export const supabase = createClient(import.meta.env.VITE_SUPABASE_URL, import.meta.env.VITE_SUPABASE_ANON_KEY!)
 
-async function _API(fn: Promise<any>) {
+export async function API<T>(fn: Promise<{ data: T; error: Error | null }>) {
   const { data, error } = await fn
 
   if (error) throw error
@@ -10,5 +10,3 @@ async function _API(fn: Promise<any>) {
 
   return data
 }
-
-export const API = Object.assign(_API)

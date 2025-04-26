@@ -21,14 +21,10 @@ export default tseslint.config(
       ...reactHooks.configs.recommended.rules,
       "react-refresh/only-export-components": ["warn", { allowConstantExport: true }],
       "no-multiple-empty-lines": ["warn", { max: 1, maxEOF: 1, maxBOF: 0 }],
-      "react-hooks/hook-naming": [
-        "error",
-        {
-          patterns: ["^use", "^_use"],
-        },
-      ],
       "no-extra-semi": "off",
-      "react-hooks/react-compiler": "error"
+      "react-hooks/react-compiler": "error",
+      "@typescript-eslint/no-namespace": ["error", { allowDeclarations: true }],
+      "@typescript-eslint/no-unused-vars": "warn",
     },
   }
 )

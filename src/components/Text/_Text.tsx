@@ -2,6 +2,7 @@ import clsx from "clsx"
 import styles from "./_Text.module.css"
 import { Children, cloneElement, isValidElement, ReactElement } from "react"
 import { MantineColor, MantineColorShade } from "@mantine/core"
+
 /******************************************************************
  *  TYPE DEFINITIONS                                              *
  ******************************************************************/

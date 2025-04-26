@@ -1,6 +1,6 @@
 import { notifications } from "@mantine/notifications"
 import { QueryClient } from "@tanstack/react-query"
-import { errorNotification, infoNotification, successNotification, warningNotification } from "./notifications"
+import { errorNotification, successNotification } from "./notifications"
 
 export const queryClient = new QueryClient({
   defaultOptions: {
@@ -8,9 +8,10 @@ export const queryClient = new QueryClient({
       onError: (err) => {
         notifications.show(errorNotification(err))
       },
-      onSuccess: (response: any) => {
-        if (response?.message) {
-          notifications.show(successNotification(response.message))
+      onSuccess: (response: unknown) => {
+        const message = (response as { message?: string })?.message
+        if (message) {
+          notifications.show(successNotification(message))
         }
       },
     },

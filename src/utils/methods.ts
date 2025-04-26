@@ -1,4 +1,4 @@
-import { MethodTypes } from "utils/types/methodTypes"
+import type { MethodTypes } from "utils/types/methodTypes"
 
 /**
  * Filters data into the selected period, and adds a label
