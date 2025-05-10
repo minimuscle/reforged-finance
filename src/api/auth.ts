@@ -1,3 +1,4 @@
+import { Database, Tables } from "utils/types/database.types"
 import { API, supabase } from "../utils/query/supabase"
 
 export const auth = {
@@ -5,13 +6,6 @@ export const auth = {
     session: async () => {
       const { data } = await supabase.auth.getSession()
       return data.session?.user ?? false
-    },
-    test: (): { example: { layer2: string } } => {
-      return new Promise((resolve) => {
-        setTimeout(() => {
-          resolve({ example: { layer2: "found_me" } })
-        }, 6000)
-      }) as any
     },
   },
   POST: {
@@ -24,6 +18,9 @@ export const auth = {
     },
     logout: () => {
       return supabase.auth.signOut()
+    },
+    test: async (attributes: Tables<"test">["colname"]) => {
+      return await supabase.from("test").insert({ colname: attributes })
     },
   },
 }

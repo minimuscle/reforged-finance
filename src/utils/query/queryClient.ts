@@ -6,6 +6,7 @@ export const queryClient = new QueryClient({
   defaultOptions: {
     mutations: {
       onError: (err) => {
+        console.log("error: ", err)
         notifications.show(errorNotification(err))
       },
       onSuccess: (response: unknown) => {

@@ -1,12 +1,16 @@
 import { createClient } from "@supabase/supabase-js"
+import { Database } from "utils/types/database.types"
 
-export const supabase = createClient(import.meta.env.VITE_SUPABASE_URL, import.meta.env.VITE_SUPABASE_ANON_KEY!)
+export const supabase = createClient<Database>(
+  import.meta.env.VITE_SUPABASE_URL,
+  import.meta.env.VITE_SUPABASE_ANON_KEY!
+)
 
-export async function API<T>(fn: Promise<{ data: T; error: Error | null }>) {
-  const { data, error } = await fn
-
+//FIXME: need to properly define the supabase type here tbh, this is just a stopgap
+export async function API<T>(fn: Promise<{ data: T; error: Error | null; status: number }>) {
+  const { data, error, status } = await fn
   if (error) throw error
-  if (!data) throw new Error("Something unexpected happened. Please contact support")
+  if (!data && status > 399) throw new Error("Something unexpected happened. Please contact support")
 
   return data
 }

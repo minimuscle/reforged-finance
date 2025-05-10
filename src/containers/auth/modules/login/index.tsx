@@ -10,7 +10,6 @@ import { Input } from "components/Form/Input"
 import * as z from "zod"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { LogoCard } from "components/Logo"
-import { getUserData } from "containers/auth/queries/queries/getUserData"
 
 /******************************************************************
  *  TYPE DEFINITIONS                                              *
@@ -30,17 +29,20 @@ export function Login() {
     resolver: zodResolver(schema),
   })
   const { mutate: loginUser } = auth.loginUser.useMutation()
-  const { data: test, isPending } = getUserData.useQuery("user_ID", { select: (data) => data })
-  console.log("test: ", isPending, test)
+  const { mutate: testUser } = auth.testUser.useMutation()
 
   /********  FUNCTIONS  ********/
   function handleSubmit(data: Schema) {
     loginUser(data)
+    // testUser({ test: "WORKING" })
   }
 
   /*********  RENDER  *********/
   return (
     <div className={styles.login}>
+      <button onClick={() => testUser("test working", { onSuccess: () => console.log("inner success!") })}>
+        TEST TEST
+      </button>
       <LogoCard />
       <Card>
         <Text as="h1" size="xxl" alignCenter>
