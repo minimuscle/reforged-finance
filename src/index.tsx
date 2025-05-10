@@ -3,7 +3,7 @@ import ReactDOM from "react-dom/client"
 import { RouterProvider, createRouter } from "@tanstack/react-router"
 import { routeTree } from "./routeTree.gen"
 import { QueryClientProvider } from "@tanstack/react-query"
-import { queryClient } from "./utils/queryClient"
+import { queryClient } from "./utils/query/queryClient"
 import { MantineProvider } from "@mantine/core"
 import { theme } from "./utils/theme"
 

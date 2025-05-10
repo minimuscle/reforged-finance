@@ -7,6 +7,7 @@ import { CashValueHistoryChart } from "containers/cash/components/charts/cashVal
 import { CashSavings } from "containers/cash/components/charts/cashSavings"
 import { CashSavingsRate } from "containers/cash/components/charts/savingsRate"
 import { CashSavingsBreakdown } from "containers/cash/components/charts/savingsBreakdown"
+import { HistoryTable } from "containers/cash/components/historyTable"
 
 /******************************************************************
  *  COMPONENT START                                               *
@@ -25,6 +26,7 @@ export function Cash() {
         <CashValueHistoryChart />
         <CashSavings />
         <CashSavingsRate />
+        <HistoryTable />
       </Flex>
     </Flex>
   )

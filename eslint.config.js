@@ -25,6 +25,12 @@ export default tseslint.config(
       "react-hooks/react-compiler": "error",
       "@typescript-eslint/no-namespace": ["error", { allowDeclarations: true }],
       "@typescript-eslint/no-unused-vars": "warn",
+      "react-hooks/rules-of-hooks": [
+        "error",
+        {
+          custom: "^(_)?use[A-Z0-9].*$",
+        },
+      ],
     },
   }
 )

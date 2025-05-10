@@ -24,6 +24,7 @@ export default defineConfig({
       utils: path.resolve(__dirname, "src/utils"),
       containers: path.resolve(__dirname, "src/containers"),
       routes: path.resolve(__dirname, "src/routes"),
+      api: path.resolve(__dirname, "src/api"),
       "@tabler/icons-react": "@tabler/icons-react/dist/esm/icons/index.mjs", // This fixes the slow loading in dev due to dynamic imports that starts from verison 3.18.0
     },
   },

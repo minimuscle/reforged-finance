@@ -1,0 +1,31 @@
+import { Badge } from "@mantine/core"
+import { IconCircleArrowUp } from "@tabler/icons-react"
+import { Card } from "components/Card"
+import { Text } from "components/Text"
+import styles from "./totalDebts.module.css"
+import { IconCircleArrowDown } from "@tabler/icons-react"
+
+/******************************************************************
+ *  COMPONENT START                                               *
+ ******************************************************************/
+export function TotalDebts() {
+  /*********  RENDER  *********/
+  return (
+    <Card
+      heading="Total Owing"
+      smallHeader
+      actions={
+        <Badge size="lg" variant="light" color="green" radius="sm" leftSection={<IconCircleArrowDown size={16} />}>
+          25.35%
+        </Badge>
+      }
+    >
+      <Text size={36} className={styles.total}>
+        <Text color="gray" size={20} className={styles.dollarSign}>
+          $
+        </Text>
+        25,945.23
+      </Text>
+    </Card>
+  )
+}

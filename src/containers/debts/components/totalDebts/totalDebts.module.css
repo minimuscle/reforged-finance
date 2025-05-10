@@ -1,0 +1,11 @@
+.total {
+  position: relative;
+  margin-left: 15px;
+
+  .dollarSign {
+    position: absolute;
+    top: 8px;
+    left: -15px;
+    vertical-align: text-top;
+  }
+}

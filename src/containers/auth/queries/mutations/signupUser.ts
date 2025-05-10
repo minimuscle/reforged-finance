@@ -1,7 +1,7 @@
 import { useMutation } from "@tanstack/react-query"
-import { auth } from "../../../api/auth"
+import { auth } from "../../../../api/auth"
 import { notifications } from "@mantine/notifications"
-import { successNotification } from "../../../utils/notifications"
+import { successNotification } from "../../../../utils/notifications"
 /******************************************************************
  *  TYPE DEFINITIONS                                              *
  ******************************************************************/

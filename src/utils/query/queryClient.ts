@@ -1,6 +1,6 @@
 import { notifications } from "@mantine/notifications"
 import { QueryClient } from "@tanstack/react-query"
-import { errorNotification, successNotification } from "./notifications"
+import { errorNotification, successNotification } from "../notifications"
 
 export const queryClient = new QueryClient({
   defaultOptions: {

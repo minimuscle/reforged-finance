@@ -29,7 +29,8 @@
       "assets/*": ["src/assets/*"],
       "utils/*": ["src/utils/*"],
       "containers/*": ["src/containers/*"],
-      "routes/*": ["src/routes/*"]
+      "routes/*": ["src/routes/*"],
+      "api/*": ["src/api/*"]
     },
     "plugins": [{ "name": "typescript-plugin-css-modules" }]
   },

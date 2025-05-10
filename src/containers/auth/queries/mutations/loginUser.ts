@@ -1,5 +1,5 @@
 import { useMutation } from "@tanstack/react-query"
-import { auth } from "../../../api/auth"
+import { auth } from "../../../../api/auth"
 import { useNavigate } from "@tanstack/react-router"
 /******************************************************************
  *  TYPE DEFINITIONS                                              *

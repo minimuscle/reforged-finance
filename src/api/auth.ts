@@ -1,10 +1,17 @@
-import { API, supabase } from "../utils/supabase"
+import { API, supabase } from "../utils/query/supabase"
 
 export const auth = {
   GET: {
     session: async () => {
       const { data } = await supabase.auth.getSession()
       return data.session?.user ?? false
+    },
+    test: (): { example: { layer2: string } } => {
+      return new Promise((resolve) => {
+        setTimeout(() => {
+          resolve({ example: { layer2: "found_me" } })
+        }, 6000)
+      }) as any
     },
   },
   POST: {

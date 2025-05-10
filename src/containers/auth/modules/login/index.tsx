@@ -10,6 +10,7 @@ import { Input } from "components/Form/Input"
 import * as z from "zod"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { LogoCard } from "components/Logo"
+import { getUserData } from "containers/auth/queries/queries/getUserData"
 
 /******************************************************************
  *  TYPE DEFINITIONS                                              *
@@ -29,6 +30,8 @@ export function Login() {
     resolver: zodResolver(schema),
   })
   const { mutate: loginUser } = auth.loginUser.useMutation()
+  const { data: test, isPending } = getUserData.useSuspenseQuery("user_ID", { select: (data) => data })
+  console.log("test: ", isPending, test)
 
   /********  FUNCTIONS  ********/
   function handleSubmit(data: Schema) {
