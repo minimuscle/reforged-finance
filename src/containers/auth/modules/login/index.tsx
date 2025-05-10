@@ -30,7 +30,7 @@ export function Login() {
     resolver: zodResolver(schema),
   })
   const { mutate: loginUser } = auth.loginUser.useMutation()
-  const { data: test, isPending } = getUserData.useSuspenseQuery("user_ID", { select: (data) => data })
+  const { data: test, isPending } = getUserData.useQuery("user_ID", { select: (data) => data })
   console.log("test: ", isPending, test)
 
   /********  FUNCTIONS  ********/

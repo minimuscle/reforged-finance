@@ -30,13 +30,17 @@ export function createQuery<TVariables, TQueryFnData, TError = unknown, TData = 
   ) {
     const baseConfig = configFn(variables)
 
-    const mergedSelect =
+    const mergedSelect: ((data: TQueryFnData) => TFinalData) | undefined =
       baseConfig.select && options?.select
-        ? (data: TQueryFnData) => options.select!(baseConfig.select!(data))
-        : (baseConfig.select ?? options?.select)
+        ? (data) => options.select!(baseConfig.select!(data))
+        : baseConfig.select
+          ? (data) => baseConfig.select!(data) as unknown as TFinalData
+          : options?.select
+            ? (data) => options.select!(data as unknown as TData)
+            : undefined
 
     return _useQuery<TQueryFnData, TError, TFinalData, QueryKey>({
-      ...(baseConfig as any),
+      ...baseConfig,
       ...options,
       select: mergedSelect,
     })
@@ -47,10 +51,14 @@ export function createQuery<TVariables, TQueryFnData, TError = unknown, TData = 
    */
   function useSelectQuery<TFinalData = TData>(variables: TVariables, select: (data: TData) => TFinalData) {
     const baseConfig = configFn(variables)
-    const mergedSelect = baseConfig.select ? (data: TQueryFnData) => select(baseConfig.select!(data)) : select
+    const mergedSelect: ((data: TQueryFnData) => TFinalData) | undefined = baseConfig.select
+      ? (data) => select(baseConfig.select!(data))
+      : baseConfig.select
+        ? (data) => baseConfig.select!(data) as unknown as TFinalData
+        : (data) => select(data as unknown as TData)
 
     return _useQuery<TQueryFnData, TError, TFinalData, QueryKey>({
-      ...(baseConfig as any),
+      ...baseConfig,
       select: mergedSelect,
     })
   }
@@ -66,13 +74,17 @@ export function createQuery<TVariables, TQueryFnData, TError = unknown, TData = 
   ) {
     const baseConfig = configFn(variables)
 
-    const mergedSelect =
+    const mergedSelect: ((data: TQueryFnData) => TFinalData) | undefined =
       baseConfig.select && options?.select
-        ? (data: TQueryFnData) => options.select!(baseConfig.select!(data))
-        : (baseConfig.select ?? options?.select)
+        ? (data) => options.select!(baseConfig.select!(data))
+        : baseConfig.select
+          ? (data) => baseConfig.select!(data) as unknown as TFinalData
+          : options?.select
+            ? (data) => options.select!(data as unknown as TData)
+            : undefined
 
     return _useSuspenseQuery<TQueryFnData, TError, TFinalData, QueryKey>({
-      ...(baseConfig as any),
+      ...baseConfig,
       ...options,
       select: mergedSelect,
     })
@@ -83,10 +95,14 @@ export function createQuery<TVariables, TQueryFnData, TError = unknown, TData = 
    */
   function useSuspenseSelectQuery<TFinalData = TData>(variables: TVariables, select: (data: TData) => TFinalData) {
     const baseConfig = configFn(variables)
-    const mergedSelect = baseConfig.select ? (data: TQueryFnData) => select(baseConfig.select!(data)) : select
+    const mergedSelect: ((data: TQueryFnData) => TFinalData) | undefined = baseConfig.select
+      ? (data) => select(baseConfig.select!(data))
+      : baseConfig.select
+        ? (data) => baseConfig.select!(data) as unknown as TFinalData
+        : (data) => select(data as unknown as TData)
 
     return _useSuspenseQuery<TQueryFnData, TError, TFinalData, QueryKey>({
-      ...(baseConfig as any),
+      ...baseConfig,
       select: mergedSelect,
     })
   }
