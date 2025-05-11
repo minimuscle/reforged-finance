@@ -2,6 +2,15 @@ import { Database, Tables } from "utils/types/database.types"
 import { api, supabase } from "../utils/query/supabase"
 import { DB } from "utils/types"
 
+export namespace auth {
+  export namespace POST {
+    export interface authParams {
+      email: string
+      password: string
+    }
+  }
+}
+
 export const auth = {
   GET: {
     session: async () => {
@@ -14,8 +23,8 @@ export const auth = {
       return //API(supabase.auth.signUp({ email, password }))
     },
 
-    login: (email: string, password: string) => {
-      return //API(supabase.auth.signInWithPassword({ email, password }))
+    login: async (attributes: auth.POST.authParams) => {
+      return await supabase.auth.signInWithPassword(attributes)
     },
     logout: () => {
       return supabase.auth.signOut()
