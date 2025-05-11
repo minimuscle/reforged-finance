@@ -302,6 +302,48 @@ export const theme = createTheme({
                 color: theme.colors.blue[8],
               },
             }
+          case "autosaveLoading":
+            return {
+              root: {
+                backgroundColor: "white",
+                width: "240px",
+                left: "200px",
+              },
+              description: {
+                color: theme.colors.gray[5],
+              },
+              loader: {
+                "--loader-color": theme.colors.blue[5],
+              },
+            }
+          case "autosaveSuccess":
+            return {
+              root: {
+                backgroundColor: "white",
+                width: "240px",
+                left: "200px",
+              },
+              description: {
+                color: theme.colors.gray[5],
+              },
+              icon: {
+                color: theme.colors.green[7],
+              },
+            }
+          case "autosaveFail":
+            return {
+              root: {
+                backgroundColor: theme.colors.red[1],
+                width: "240px",
+                left: "200px",
+              },
+              description: {
+                color: theme.colors.red[5],
+              },
+              icon: {
+                color: theme.colors.red[7],
+              },
+            }
           default:
             return {} // Return empty styles for any other color
         }

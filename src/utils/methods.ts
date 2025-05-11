@@ -1,3 +1,4 @@
+import { NotificationData, notifications } from "@mantine/notifications"
 import type { MethodTypes } from "utils/types/methodTypes"
 
 /**

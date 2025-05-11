@@ -1,12 +1,25 @@
 import { notifications } from "@mantine/notifications"
 import { auth } from "../../../../api/auth"
 import { createMutation } from "utils/query/createMutation"
-import { successNotification } from "utils/notifications"
+import {
+  autosaveFailNotification,
+  autosaveLoadingNotification,
+  autosaveSuccessNotification,
+  pushNotification,
+  successNotification,
+  updateNotification,
+} from "utils/notifications"
 
 export const testUser = createMutation({
   mutationFn: auth.POST.test,
-  onSuccess: () => {
-    console.log("NEW MUTATION WORKING")
-    notifications.show(successNotification("success!"))
+  onMutate: () => {
+    const notification = pushNotification(autosaveLoadingNotification())
+    return { notificationId: notification }
+  },
+  onSuccess(_, __, context) {
+    updateNotification(context.notificationId, autosaveSuccessNotification())
+  },
+  onError: (_, __, context) => {
+    !!context && updateNotification(context.notificationId, autosaveFailNotification())
   },
 })

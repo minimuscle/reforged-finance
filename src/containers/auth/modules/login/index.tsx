@@ -40,9 +40,7 @@ export function Login() {
   /*********  RENDER  *********/
   return (
     <div className={styles.login}>
-      <button onClick={() => testUser("test working", { onSuccess: () => console.log("inner success!") })}>
-        TEST TEST
-      </button>
+      <button onClick={() => testUser({ colname: "lo22l" })}>TEST TEST</button>
       <LogoCard />
       <Card>
         <Text as="h1" size="xxl" alignCenter>
