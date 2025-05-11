@@ -1,4 +1,4 @@
-import { useMutation as _useMutation, UseMutationOptions, UseMutationResult } from "@tanstack/react-query"
+import { useMutation as _useMutation, UseMutationOptions } from "@tanstack/react-query"
 import {
   autosaveFailNotification,
   autosaveLoadingNotification,

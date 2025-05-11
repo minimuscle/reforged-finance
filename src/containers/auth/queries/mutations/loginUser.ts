@@ -1,6 +1,4 @@
-import { useMutation } from "@tanstack/react-query"
-import { auth } from "../../../../api/auth"
-import { useNavigate } from "@tanstack/react-router"
+import { auth } from "api/auth"
 import { createMutation } from "utils/query/createMutation"
 
 /******************************************************************
@@ -16,10 +14,5 @@ interface Params {
  ******************************************************************/
 export const loginUser = createMutation({
   mutationFn: (attributes: Params) => auth.POST.login(attributes),
-  onSuccess: () => {
-    const navigate = useNavigate()
-    return navigate({
-      to: "/",
-    })
-  },
+  onSuccess: () => {},
 })

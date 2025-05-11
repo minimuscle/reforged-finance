@@ -1,4 +1,3 @@
-import { Database, Tables } from "utils/types/database.types"
 import { api, supabase } from "../utils/query/supabase"
 import { DB } from "utils/types"
 

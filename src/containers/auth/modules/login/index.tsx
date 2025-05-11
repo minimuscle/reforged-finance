@@ -1,6 +1,6 @@
 import { FormProvider, useForm } from "react-hook-form"
 import styles from "./_login.module.css"
-import { Link } from "@tanstack/react-router"
+import { Link, useNavigate } from "@tanstack/react-router"
 import { auth } from "containers/auth/queries"
 import { Card } from "components/Card"
 import { Text } from "components/Text"
@@ -10,7 +10,6 @@ import { Input } from "components/Form/Input"
 import * as z from "zod"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { LogoCard } from "components/Logo"
-import { theme } from "utils/theme"
 
 /******************************************************************
  *  TYPE DEFINITIONS                                              *
@@ -29,19 +28,20 @@ export function Login() {
   const methods = useForm<Schema>({
     resolver: zodResolver(schema),
   })
-  const { mutate: loginUser } = auth.loginUser.useMutation()
-  const { mutate: testUser } = auth.testUser.useMutation()
+  const navigate = useNavigate()
+  const { mutateAsync: loginUserAsync } = auth.loginUser.useMutation()
 
   /********  FUNCTIONS  ********/
-  function handleSubmit(data: Schema) {
-    loginUser(data)
-    // testUser({ test: "WORKING" })
+  async function handleSubmit(data: Schema) {
+    await loginUserAsync(data)
+    return navigate({
+      to: "/",
+    })
   }
 
   /*********  RENDER  *********/
   return (
     <div className={styles.login}>
-      <button onClick={() => testUser({ colname: "lo22l" })}>TEST TEST</button>
       <LogoCard />
       <Card>
         <Text as="h1" size="xxl" alignCenter>
