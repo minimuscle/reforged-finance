@@ -10,6 +10,7 @@ import { Input } from "components/Form/Input"
 import * as z from "zod"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { LogoCard } from "components/Logo"
+import { theme } from "utils/theme"
 
 /******************************************************************
  *  TYPE DEFINITIONS                                              *

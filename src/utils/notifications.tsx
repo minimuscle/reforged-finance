@@ -74,6 +74,7 @@ export function autosaveFailNotification(): NotificationData {
     color: "autosaveFail",
     icon: <IconCircleXFilled size={36} />,
     position: "bottom-right",
+    autoClose: 10000,
   }
 }
 

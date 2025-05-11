@@ -12,6 +12,7 @@ import { IconEdit } from "@tabler/icons-react"
 import { useDisclosure } from "@mantine/hooks"
 import { SubMenu } from "components/AccountCard/subMenu"
 import { Flex } from "components/Flex"
+import { theme } from "utils/theme"
 
 /******************************************************************
  *  TYPE DEFINITIONS                                              *
@@ -25,32 +26,6 @@ interface AccountCardProps {
   }
   icon: IconType
 }
-
-/******************************************************************
- *  CONSTS                                                        *
- ******************************************************************/
-const colors = [
-  "red",
-  "orange",
-  "amber",
-  "yellow",
-  "lime",
-  "green",
-  "emerald",
-  "teal",
-  "cyan",
-  "sky",
-  "blue",
-  "indigo",
-  "violet",
-  "purple",
-  "fuchsia",
-  "pink",
-  "rose",
-  "gray",
-  "transparent",
-]
-//TODO: check if this can be imported from the theme
 
 /******************************************************************
  *  COMPONENT START                                               *
@@ -138,12 +113,12 @@ export function AccountCard({ title, value, currency, icon: Icon }: AccountCardP
             <div className={styles.colorMenu}>
               <Text color="gray">Select a colour:</Text>
               <Flex gap={10} wrap="wrap">
-                {colors.map((color) => (
+                {Object.keys(theme.colors!).map((color) => (
                   <ColorSwatch
                     key={color}
                     component="button"
                     onClick={() => console.log(color, " clicked")}
-                    color={`var(--mantine-color-${color}-5)`}
+                    color={theme.colors?.[color as keyof typeof theme.colors]![5] as string}
                   />
                 ))}
               </Flex>
