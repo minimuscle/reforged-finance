@@ -1,22 +1,18 @@
-import { notifications } from "@mantine/notifications"
 import { QueryClient } from "@tanstack/react-query"
-import { errorNotification, successNotification, warningNotification } from "../notifications"
+import { errorNotification, pushNotification, successNotification } from "../notifications"
 
 export const queryClient = new QueryClient({
   defaultOptions: {
     mutations: {
       onError: (err) => {
-        console.log("error: ", err)
-        notifications.show(errorNotification(err))
+        pushNotification(errorNotification(err))
       },
-      onSuccess: (response: unknown) => {
-        console.log(response)
-        const message = (response as { message?: string })?.message
-        if (message) {
-          notifications.show(successNotification(message))
-        } else if (response.statusText) {
-          notifications.show(errorNotification(new Error()))
-        }
+      onSuccess: (response) => {
+        const message =
+          (response as { message?: string })?.message ??
+          (response as { statusText?: string })?.statusText ??
+          "Successfully Completed"
+        pushNotification(successNotification(message))
       },
     },
   },

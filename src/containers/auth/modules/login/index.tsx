@@ -30,7 +30,7 @@ export function Login() {
     resolver: zodResolver(schema),
   })
   const { mutate: loginUser } = auth.loginUser.useMutation()
-  const { mutate: testUser } = auth.testUser.useAutoSaveMutation({ onSuccess: () => console.log("inner success") })
+  const { mutate: testUser } = auth.testUser.useMutation()
 
   /********  FUNCTIONS  ********/
   function handleSubmit(data: Schema) {

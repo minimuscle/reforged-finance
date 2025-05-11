@@ -38,10 +38,10 @@ export const auth = {
           })
         : new Promise((resolve) => {
             setTimeout(() => {
-              resolve("")
+              resolve(api.post({ from: "test", type: "insert", data: attributes }))
             }, 1000)
           })
-      //api.post({ from: "test", type: "insert", data: attributes })
+      //
     },
   },
 }

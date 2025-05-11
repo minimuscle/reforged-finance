@@ -17,10 +17,9 @@ export function createMutation<TData, TError = unknown, TVariables = void, TCont
    * Base mutation extension that allows the correct types
    */
   function useMutation(options?: Omit<UseMutationOptions<TData, TError, TVariables, TContext>, "mutationFn">) {
-    return _useMutation({
-      ...baseConfig,
-      ...options,
-      onMutate: async (variables) => {
+    const handlers: Partial<UseMutationOptions<TData, TError, TVariables, TContext>> = {}
+    if (baseConfig.onMutate || options?.onMutate) {
+      handlers.onMutate = async (variables) => {
         const baseContext = await baseConfig.onMutate?.(variables)
         const optionsContext = await options?.onMutate?.(variables)
 
@@ -28,19 +27,34 @@ export function createMutation<TData, TError = unknown, TVariables = void, TCont
           ...baseContext,
           ...optionsContext,
         } as TContext
-      },
-      onSuccess: (data, variables, context) => {
+      }
+    }
+
+    if (baseConfig.onSuccess || options?.onSuccess) {
+      handlers.onSuccess = (data, variables, context) => {
         baseConfig.onSuccess?.(data, variables, context)
         options?.onSuccess?.(data, variables, context)
-      },
-      onError: (error, variables, context) => {
+      }
+    }
+
+    if (baseConfig.onError || options?.onError) {
+      handlers.onError = (error, variables, context) => {
         baseConfig.onError?.(error, variables, context)
         options?.onError?.(error, variables, context)
-      },
-      onSettled(data, error, variables, context) {
+      }
+    }
+
+    if (baseConfig.onSettled || options?.onSettled) {
+      handlers.onSettled = (data, error, variables, context) => {
         baseConfig.onSettled?.(data, error, variables, context)
         options?.onSettled?.(data, error, variables, context)
-      },
+      }
+    }
+
+    return _useMutation({
+      ...baseConfig,
+      ...options,
+      ...handlers,
     })
   }
 
