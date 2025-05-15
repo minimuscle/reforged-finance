@@ -1,5 +1,8 @@
+import React from "react"
+
 export namespace Input {
-  export interface InputProps {
+  export interface InputProps
+    extends React.DetailedHTMLProps<React.InputHTMLAttributes<HTMLInputElement>, HTMLInputElement> {
     label?: string
     className?: string
     type?: React.HTMLInputTypeAttribute

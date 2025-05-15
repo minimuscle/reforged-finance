@@ -436,7 +436,7 @@ export const routeTree = rootRoute
       "parent": "/_app"
     },
     "/_app/settings": {
-      "filePath": "_app/settings.lazy.tsx",
+      "filePath": "_app/settings.lazy.ts",
       "parent": "/_app"
     },
     "/_app/side-income": {

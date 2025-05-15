@@ -7,7 +7,7 @@ import { Text } from "components/Text"
 import { Flex } from "components/Flex"
 import { Button } from "@mantine/core"
 import { Input } from "components/Form/Input"
-import * as z from "zod"
+import z from "zod"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { LogoCard } from "components/Logo"
 

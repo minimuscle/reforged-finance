@@ -1,6 +1,9 @@
 import { api, supabase } from "../utils/query/supabase"
 import { DB } from "utils/types"
 
+/******************************************************************
+ *  TYPE DEFINITIONS
+ ******************************************************************/
 export namespace auth {
   export namespace POST {
     export interface authParams {
@@ -10,6 +13,9 @@ export namespace auth {
   }
 }
 
+/******************************************************************
+ *  API START
+ ******************************************************************/
 export const auth = {
   GET: {
     session: async () => {
