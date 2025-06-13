@@ -64,4 +64,11 @@
       color: var(--mantine-color-gray-8);
     }
   }
+
+  .versionTag {
+    position: absolute;
+    left: 15px;
+    top: 20px;
+    rotate: -45deg;
+  }
 }

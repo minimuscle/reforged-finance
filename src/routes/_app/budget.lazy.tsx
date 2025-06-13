@@ -1,9 +1,6 @@
+import { Budget } from "containers/budget"
 import { createLazyFileRoute } from "@tanstack/react-router"
 
 export const Route = createLazyFileRoute("/_app/budget")({
-  component: RouteComponent,
+  component: Budget,
 })
-
-function RouteComponent() {
-  return "Hello /_app/budget!"
-}

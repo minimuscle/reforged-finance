@@ -35,18 +35,15 @@ export const auth = {
       return supabase.auth.signOut()
     },
     test: (attributes: DB.Insert<"test">) => {
-      return Math.random() > 0.5
-        ? new Promise((_, reject) => {
-            setTimeout(() => {
-              reject(new Error("Simulated failure"))
-            }, 1000)
-          })
-        : new Promise((resolve) => {
-            setTimeout(() => {
-              resolve(api.post({ from: "test", type: "insert", data: attributes }))
-            }, 1000)
-          })
+      return new Promise((resolve) => {
+        setTimeout(() => {
+          resolve(api.post({ from: "test", type: "insert", data: attributes }))
+        }, 1000)
+      })
       //
     },
+    // autosaveTest: (value: any) => {
+    //   return api.post()
+    // }
   },
 }

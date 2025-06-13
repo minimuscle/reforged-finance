@@ -5,23 +5,23 @@ import { autosaveInputMutation } from "utils/hooks/useAutosave/autosaveInputQuer
 /******************************************************************
  *  TYPE DEFINITIONS
  ******************************************************************/
-interface AutosaveProps {
-  mutationFn: MutationFunction
+interface AutosaveProps<T> {
+  mutationFn: MutationFunction<T>
   waitTime?: number
 }
 
 /******************************************************************
  *  COMPONENT START
  ******************************************************************/
-export function useAutosave({ mutationFn, waitTime = 1000 }: AutosaveProps) {
+export function useAutosave<T>({ mutationFn, waitTime = 1000 }: AutosaveProps<T>) {
   /*****  QUERIES  *****/
   const { mutate: autoSave } = autosaveInputMutation(mutationFn).useAutoSaveMutation()
 
   /*****  HOOKS  *****/
-  const autosaveDebouncer = useDebouncer((value) => autoSave(value), { wait: waitTime })
+  const autosaveDebouncer = useDebouncer((value: T) => autoSave(value), { wait: waitTime })
 
   /*****  FUNCTIONS  *****/
-  function save(value: any) {
+  function save(value: T) {
     autosaveDebouncer.maybeExecute(value)
   }
 

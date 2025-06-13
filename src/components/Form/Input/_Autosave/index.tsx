@@ -5,16 +5,22 @@ import { useAutosave } from "utils/hooks/useAutosave"
 /******************************************************************
  *  TYPE DEFINITIONS
  ******************************************************************/
-interface _AutosaveInput {
-  mutationFn: MutationFunction
+interface _AutosaveInput<TInsert> {
+  mutationFn: (attributes: TInsert) => Promise<unknown>
+  column: keyof TInsert
 }
 
 /******************************************************************
  *  COMPONENT START
  ******************************************************************/
-export const _AutosaveInput = ({ mutationFn }: _AutosaveInput) => {
+export const _AutosaveInput = <TInsert extends Record<string, unknown>>({
+  mutationFn,
+  column,
+}: _AutosaveInput<TInsert>) => {
   /*****  HOOKS  *****/
-  const autosave = useAutosave({ mutationFn })
+  const autosave = useAutosave({
+    mutationFn: (value) => mutationFn({ [column]: value } as TInsert),
+  })
 
   /*****  RENDER  *****/
   return <Input onChange={(e) => autosave.save(e.target.value)} />

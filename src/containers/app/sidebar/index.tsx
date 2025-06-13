@@ -1,4 +1,4 @@
-import { Divider } from "@mantine/core"
+import { Badge, Divider } from "@mantine/core"
 import styles from "./_sidebar.module.css"
 import { NavButton } from "./components/navButton"
 import { bottonNavOptions, navOptions } from "./consts"
@@ -39,6 +39,9 @@ export function Sidebar() {
                   exit={{ opacity: 0, transition: { duration: 0.2 } }}
                 >
                   <img src={Logo} alt="Reforged Finance Logo" />
+                  <Badge size="xs" color="pink" className={styles.versionTag}>
+                    Alpha
+                  </Badge>
                 </motion.div>
                 <motion.div
                   initial={{ x: -50, opacity: 0 }}

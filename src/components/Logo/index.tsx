@@ -3,6 +3,7 @@ import clsx from "clsx"
 import { Flex } from "components/Flex"
 import { Text } from "components/Text"
 import styles from "./_Logo.module.css"
+import { Badge } from "@mantine/core"
 
 /******************************************************************
  *  COMPONENT START                                               *
@@ -12,6 +13,9 @@ export function LogoCard({ className }: { className?: string }) {
   /*********  RENDER  *********/
   return (
     <Flex direction="column" className={cls}>
+      <Badge size="41px" color="pink" className={styles.versionTag}>
+        Alpha
+      </Badge>
       <img className={styles.image} src={Logo} alt="Reforged Finance Logo" />
       <Flex direction="column" gap={0}>
         <Text size="xxxl" alignCenter>

@@ -1,0 +1,11 @@
+@import "/src/utils/styles/_variables.css";
+
+.budget {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 30px;
+  height: 100%;
+  width: 100%;
+}

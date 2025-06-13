@@ -8,6 +8,7 @@
   background: linear-gradient(45deg, $purple-4 0%, $fuchsia-4 100%);
   color: $white;
   font-weight: bold;
+  z-index: 100;
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
 }
 
@@ -15,8 +16,12 @@
   height: 40px;
   border-radius: 5px;
   padding: 5px;
-  color: $white;
+  z-index: 100;
   background: linear-gradient(45deg, $purple-4 0%, $fuchsia-4 100%);
+
+  svg {
+    color: $white;
+  }
 
   &:hover {
     background: linear-gradient(45deg, $purple-5 0%, $fuchsia-5 100%);

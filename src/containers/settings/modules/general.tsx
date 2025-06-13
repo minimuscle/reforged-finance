@@ -1,5 +1,6 @@
-import { Autosave } from "components/Autosave"
+import { auth } from "api/auth"
 import { Card } from "components/Card"
+import { Input } from "components/Form/Input"
 
 /******************************************************************
  *  COMPONENT START                                               *
@@ -7,7 +8,7 @@ import { Card } from "components/Card"
 export const SettingsGeneral = () => {
   return (
     <Card heading="General">
-      <Autosave.Input />
+      <Input.Autosave mutationFn={auth.POST.test} column="colname" />
     </Card>
   )
 }
