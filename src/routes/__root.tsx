@@ -6,7 +6,6 @@ import { auth } from "../api/auth"
 export const Route = createRootRouteWithContext<{
   queryClient: QueryClient
 }>()({
-  //Check if user is authenticated
   beforeLoad: async () => {
     const res = await auth.GET.session()
     if (!res && window.location.pathname !== "/login" && window.location.pathname !== "/signup") {

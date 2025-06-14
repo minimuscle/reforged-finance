@@ -2,6 +2,7 @@ import { Card } from "components/Card"
 import styles from "./_premiumCard.module.css"
 import { Text } from "components/Text"
 import { Button } from "@mantine/core"
+import { Link } from "@tanstack/react-router"
 
 /******************************************************************
  *  TYPE DEFINITIONS                                              *
@@ -53,7 +54,7 @@ export function PremiumCard({ title, description, features, cost, selected = fal
         </ul>
       </div>
       <div className={styles.footer}>
-        <Button disabled={selected} className={styles.button} color="teal">
+        <Button component={Link} to="/premium/buy" disabled={selected} className={styles.button} color="teal">
           {selected ? "Current Plan" : "Buy Now"}
         </Button>
       </div>

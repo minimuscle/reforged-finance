@@ -1,19 +1,17 @@
 import { defineConfig } from "vite"
-import react from "@vitejs/plugin-react-swc"
-import { TanStackRouterVite } from "@tanstack/router-plugin/vite"
-import babel from "vite-plugin-babel"
+import { tanstackRouter } from "@tanstack/router-plugin/vite"
+import react from "@vitejs/plugin-react"
 import path from "path"
+import ReactCompiler from "babel-plugin-react-compiler"
 
-// https://vite.dev/config/
 export default defineConfig({
   plugins: [
-    TanStackRouterVite(),
-    react(),
-    babel({
-      filter: /\.[jt]sx?$/,
-      babelConfig: {
-        presets: [["@babel/preset-react", { runtime: "automatic" }], "@babel/preset-typescript"],
-        plugins: [["babel-plugin-react-compiler", {}]],
+    tanstackRouter({
+      autoCodeSplitting: true,
+    }),
+    react({
+      babel: {
+        plugins: [ReactCompiler],
       },
     }),
   ],

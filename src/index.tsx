@@ -1,11 +1,12 @@
 import { StrictMode } from "react"
 import ReactDOM from "react-dom/client"
-import { RouterProvider, createRouter } from "@tanstack/react-router"
+import { ErrorComponent, RouterProvider, createRouter } from "@tanstack/react-router"
 import { routeTree } from "./routeTree.gen"
 import { QueryClientProvider } from "@tanstack/react-query"
 import { queryClient } from "./utils/query/queryClient"
 import { MantineProvider } from "@mantine/core"
 import { theme } from "./utils/theme"
+import { ErrorBoundary } from "components/Templates/ErrorBoundary"
 
 /******************************************************************
  *  SETUP                                                         *
@@ -15,6 +16,7 @@ const router = createRouter({
   context: { queryClient },
   defaultPreload: "intent",
   defaultPreloadStaleTime: 0,
+  defaultErrorComponent: ErrorBoundary,
 })
 
 /******************************************************************

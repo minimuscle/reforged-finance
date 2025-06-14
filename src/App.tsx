@@ -5,8 +5,8 @@ import "@mantine/charts/styles.css"
 import "./utils/styles/globalStyles.css"
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools"
 import { Notifications } from "@mantine/notifications"
-import { ErrorBoundary } from "containers/app/errorBoundary"
 import { AppProvider } from "containers/app/appContext"
+import { ErrorBoundary } from "components/Templates/ErrorBoundary"
 
 /******************************************************************
  *  COMPONENT START                                               *
