@@ -1,6 +1,6 @@
 import { Flex } from "components/Flex"
 import { Text } from "components/Text"
-import styles from "./_Card.module.css"
+import styles, { noSpacing } from "./_Card.module.css"
 import clsx from "clsx"
 import { _ChartCard } from "components/Card/ChartCard"
 /******************************************************************
@@ -14,6 +14,7 @@ export interface CardProps {
   className?: string
   fullWidth?: boolean
   smallHeader?: boolean
+  noSpacing?: boolean
 }
 
 /******************************************************************
@@ -26,7 +27,7 @@ function _Card({ children, heading, subtitle, fullWidth, actions, className, sma
         <Flex
           direction="row"
           justify="space-between"
-          className={clsx(styles.header, { [styles.smallHeader]: smallHeader })}
+          className={clsx(styles.header, { [styles.smallHeader]: smallHeader, [styles.noSpacing]: noSpacing })}
         >
           <Flex direction="column">
             <Text

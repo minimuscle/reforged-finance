@@ -97,9 +97,9 @@ export function createQuery<TVariables, TQueryFnData, TError = unknown, TData = 
   }
 
   /**
-   * useSuspenseSelectQuery. A suspense version that garauntees data but also assumes a select
+   * useSelectSuspenseQuery. A suspense version that garauntees data but also assumes a select
    */
-  function useSuspenseSelectQuery<TFinalData = TData>(variables: TVariables, select: (data: TData) => TFinalData) {
+  function useSelectSuspenseQuery<TFinalData = TData>(variables: TVariables, select: (data: TData) => TFinalData) {
     const baseConfig = configFn(variables)
     const mergedSelect: ((data: TQueryFnData) => TFinalData) | undefined = baseConfig.select
       ? (data) => select(baseConfig.select!(data))
@@ -113,5 +113,5 @@ export function createQuery<TVariables, TQueryFnData, TError = unknown, TData = 
     })
   }
 
-  return { useQuery, useSelectQuery, useSuspenseQuery, useSuspenseSelectQuery }
+  return { useQuery, useSelectQuery, useSuspenseQuery, useSelectSuspenseQuery }
 }

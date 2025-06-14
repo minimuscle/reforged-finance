@@ -4,6 +4,5 @@ import { queryClient } from "utils/query/queryClient"
 
 export const createBaseQueryKey = (key: Array<string>): typeof key => {
   const test = queryClient.fetchQuery({ queryKey: ["user"] })
-  console.log(test)
   return key
 }

@@ -13,6 +13,7 @@ import { IconPlus } from "@tabler/icons-react"
 import { IconChevronDown } from "@tabler/icons-react"
 import { IconFileExport } from "@tabler/icons-react"
 import { IconReport } from "@tabler/icons-react"
+import { Suspense } from "react"
 
 /******************************************************************
  *  COMPONENT START                                               *
@@ -67,9 +68,11 @@ export function App() {
             </Tooltip>
           </Flex>
         </Flex>
-        <div className={styles.outlet}>
-          <Outlet />
-        </div>
+        <Suspense fallback={<h1>Loading...</h1>}>
+          <div className={styles.outlet}>
+            <Outlet />
+          </div>
+        </Suspense>
       </div>
     </motion.div>
   )

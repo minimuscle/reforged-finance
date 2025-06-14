@@ -1,13 +1,14 @@
 @import "/src/utils/styles/_variables.css";
 
 .input {
-  display: flex;
-  flex-direction: column;
-  position: relative;
-
   .label {
+    color: $gray-6;
+    font-size: 1rem;
+  }
+
+  .description {
     color: $gray-5;
-    font-size: 14px;
+    padding-bottom: 5px;
   }
 
   .icon {
@@ -18,23 +19,26 @@
     cursor: pointer;
   }
 
+  .section {
+    border: none;
+    margin: -1px;
+    background-color: $gray-1;
+    color: $gray-4;
+  }
+
+  .input,
+  .inputWithSection {
+    border: none;
+    background-color: $gray-2;
+  }
+
+  .inputWithSection {
+    padding-left: 45px;
+  }
+
   &.password {
     input[type="password"] {
       font-size: 12px;
-    }
-  }
-
-  input {
-    border-radius: 4px;
-    border: 0px;
-    height: 35px;
-    padding: 0 10px;
-    background-color: $gray-2;
-    color: $gray-7;
-    font-size: 16px;
-
-    &::placeholder {
-      color: $gray-4;
     }
   }
 }

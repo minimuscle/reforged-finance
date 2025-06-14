@@ -18,7 +18,7 @@ const AppContext = createContext<AppContext | undefined>(undefined)
 
 export function AppProvider({ children }: { children: React.ReactNode }) {
   const [isSidebarHidden, setSidebarHidden] = useState(false)
-  const { data: user_data } = auth.getUser.useSuspenseSelectQuery(void 0, ({ data: { user } }) => {
+  const { data: user_data } = auth.getUser.useSelectSuspenseQuery(void 0, ({ data: { user } }) => {
     if (!user) throw new Error("User is not authenticated")
     return user
   })

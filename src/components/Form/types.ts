@@ -1,15 +1,9 @@
-import React from "react"
+import type { NumberInputProps, TextInputProps } from "@mantine/core"
 
 export namespace Input {
-  export interface InputProps
-    extends React.DetailedHTMLProps<React.InputHTMLAttributes<HTMLInputElement>, HTMLInputElement> {
-    label?: string
-    className?: string
-    type?: React.HTMLInputTypeAttribute
-    placeholder?: string
-  }
+  export type InputProps = ({ type: "number" } & Omit<NumberInputProps, "type">) | TextInputProps
 
-  export interface HookFormInputProps extends InputProps {
+  export type HookFormInputProps = {
     name: string
-  }
+  } & InputProps
 }

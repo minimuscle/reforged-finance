@@ -9,7 +9,6 @@ import {
 } from "@tabler/icons-react"
 
 export function errorNotification(err?: Error, title?: string): NotificationData {
-  console.log(err?.message)
   return {
     title: title ?? "Something went wrong",
     message: Boolean(err?.message) ? err?.message : "Contact support if this persists.",

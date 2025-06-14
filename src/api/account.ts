@@ -21,7 +21,6 @@ export const account = {
   POST: {
     profile: async (attributes: DB.Row<"profile">) => {
       const res = await api.post({ from: "profile", data: attributes, type: "update" })
-      console.log(res)
       return res
     },
     autosaveTest: () => {

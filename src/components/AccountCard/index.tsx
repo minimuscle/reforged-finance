@@ -117,7 +117,7 @@ export function AccountCard({ title, value, currency, icon: Icon }: AccountCardP
                   <ColorSwatch
                     key={color}
                     component="button"
-                    onClick={() => console.log(color, " clicked")}
+                    onClick={() => {}}
                     color={theme.colors?.[color as keyof typeof theme.colors]![5] as string}
                   />
                 ))}
