@@ -34,6 +34,24 @@ export type Database = {
   }
   public: {
     Tables: {
+      profile: {
+        Row: {
+          created_at: string
+          employment_income: number | null
+          id: string
+        }
+        Insert: {
+          created_at?: string
+          employment_income?: number | null
+          id: string
+        }
+        Update: {
+          created_at?: string
+          employment_income?: number | null
+          id?: string
+        }
+        Relationships: []
+      }
       test: {
         Row: {
           colname: string | null

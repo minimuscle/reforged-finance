@@ -1,21 +1,24 @@
-import { MutationFunction } from "@tanstack/react-query"
+import { InputProps } from "@mantine/core"
 import { Input } from "components/Form/Input"
+import { Input as InputType } from "components/Form/types"
 import { useAutosave } from "utils/hooks/useAutosave"
 
 /******************************************************************
  *  TYPE DEFINITIONS
  ******************************************************************/
-interface _AutosaveInput<TInsert> {
-  mutationFn: (attributes: TInsert) => Promise<unknown>
-  column: keyof TInsert
-}
+type _AutosaveInput<TInsert> = InputType.InputProps &
+  InputProps & {
+    save: (attributes: TInsert) => Promise<unknown>
+    column: keyof TInsert
+  }
 
 /******************************************************************
  *  COMPONENT START
  ******************************************************************/
 export const _AutosaveInput = <TInsert extends Record<string, unknown>>({
-  mutationFn,
+  save: mutationFn,
   column,
+  ...restProps
 }: _AutosaveInput<TInsert>) => {
   /*****  HOOKS  *****/
   const autosave = useAutosave({
@@ -23,5 +26,5 @@ export const _AutosaveInput = <TInsert extends Record<string, unknown>>({
   })
 
   /*****  RENDER  *****/
-  return <Input onChange={(e) => autosave.save(e.target.value)} />
+  return <Input onChange={(e) => autosave.save(e.target.value)} {...restProps} />
 }

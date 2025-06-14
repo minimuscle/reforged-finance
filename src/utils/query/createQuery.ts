@@ -5,16 +5,22 @@ import {
   QueryKey,
   UseSuspenseQueryOptions,
   type UseQueryOptions,
+  queryOptions,
 } from "@tanstack/react-query"
+
+type TVariablesToTuple<T> = T extends undefined | void | never ? [] : T extends any[] ? T : [T]
+
+type QueryKeyInput<TVariables> =
+  | [...TVariablesToTuple<TVariables>, ...string[]]
+  | readonly [...TVariablesToTuple<TVariables>, ...string[]]
 
 /**
  * createQuery is an obstraction allowing to simplify the user of react query
  *
  */
-
 export function createQuery<TVariables, TQueryFnData, TError = unknown, TData = TQueryFnData>(
   configFn: (variables: TVariables) => {
-    queryKey: [TVariables] | [TVariables, ...any[]] | [...any[], TVariables]
+    queryKey: QueryKeyInput<TVariables>
     queryFn: QueryFunction<TQueryFnData>
     select?: (data: TQueryFnData) => TData
   } & Omit<UseQueryOptions<TQueryFnData, TError, TData, QueryKey>, "queryKey" | "queryFn" | "select">

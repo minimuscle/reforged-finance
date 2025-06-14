@@ -1,4 +1,6 @@
 import { createClient } from "@supabase/supabase-js"
+import { auth } from "containers/auth/queries"
+import { queryClient } from "utils/query/queryClient"
 import { DB } from "utils/types"
 import { Database, Tables } from "utils/types/database.types"
 
@@ -17,40 +19,65 @@ type PostParams<TTable extends keyof DB.Tables> =
       from: TTable
       type: "update"
       data: DB.Update<TTable>
-      eq: DB.Row<TTable>["id"]
+      eq?: DB.Row<TTable>["id"]
     }
   | {
       from: TTable
       type: "delete"
-      eq: DB.Row<TTable>["id"]
+      eq?: DB.Row<TTable>["id"]
     }
 
-//TODO: types don't work exactly right, the EQ and Data props don't like it if you don't define type. But eh it works mostly for how I will write types sooo
+function getId() {
+  const {
+    // @ts-ignore: User will be defined
+    data: {
+      user: { id },
+    },
+  } = queryClient.getQueryData(["user"])
+  return id
+}
 
 async function post<TTable extends keyof DB.Tables>(params: PostParams<TTable>) {
   // @ts-ignore: TypeScript may not infer types correctly for some cases here
-  const { type = "insert", from, data, eq } = params
+  const { type = "insert", from, data, eq = getId() } = params
   const query = supabase.from(from)
 
+  let request
   switch (type) {
     case "insert":
-      return await query.insert(data).select()
+      request = query.insert(data).select()
+      break
     case "upsert":
-      return await query.upsert(data).select()
+      request = query.upsert(data).select()
+      break
     case "update":
       if (eq == null) throw new Error(`Missing 'eq' (id) for update`)
-      return await query
-        .update(data as any)
-        .eq("id", eq as any)
-        .select()
+      request = query.update(data).eq("id", eq).select()
+      break
     case "delete":
       if (eq == null) throw new Error(`Missing 'eq' (id) for delete`)
-      return await query.delete().eq("id", eq as any)
+      request = query.delete().eq("id", eq)
+      break
     default:
       throw new Error(`Unknown post type: ${type}`)
   }
+
+  const { data: result_data } = await request.throwOnError()
+  return result_data
+}
+
+function get<TTable extends keyof DB.Tables, TSelect extends keyof DB.Row<TTable>>(
+  from: TTable,
+  select?: TSelect | TSelect[]
+) {
+  if (!select) {
+    return supabase.from(from).select("*") // ← parameter is the literal "*"
+  }
+  const cols = Array.isArray(select) ? select.join(",") : select
+  return supabase.from(from).select(String(cols))
 }
 
 export const api = {
+  get,
   post,
 }
