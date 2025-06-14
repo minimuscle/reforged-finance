@@ -30,6 +30,7 @@
     "motion": "^11.18.2",
     "postcss-import": "^16.1.0",
     "postcss-nested": "^7.0.2",
+    "posthog-js": "^1.252.0",
     "react": "^19.1.0",
     "react-apexcharts": "^1.7.0",
     "react-dom": "^19.1.0",
