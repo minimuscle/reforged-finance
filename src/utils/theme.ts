@@ -320,7 +320,7 @@ export const theme = createTheme({
             return {
               root: {
                 backgroundColor: "white",
-                width: "240px",
+                width: "250px",
                 left: "200px",
               },
               description: {

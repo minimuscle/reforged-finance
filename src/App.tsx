@@ -7,6 +7,7 @@ import { ReactQueryDevtools } from "@tanstack/react-query-devtools"
 import { Notifications } from "@mantine/notifications"
 import { AppProvider } from "containers/app/appContext"
 import { ErrorBoundary } from "components/Templates/ErrorBoundary"
+import { Suspense } from "react"
 
 /******************************************************************
  *  COMPONENT START                                               *
@@ -20,9 +21,11 @@ export function App() {
         onCatch={(error) => console.error("error!!!", error)}
         errorComponent={ErrorBoundary}
       >
-        <AppProvider>
-          <Outlet />
-        </AppProvider>
+        <Suspense fallback={<h1>loading...</h1>}>
+          <AppProvider>
+            <Outlet />
+          </AppProvider>
+        </Suspense>
       </CatchBoundary>
 
       <Notifications position="top-right" />

@@ -2,8 +2,8 @@ import { Text } from "components/Text"
 import styles from "./_AccountCard.module.css"
 import { IconType } from "utils/types"
 import { IconDotsVertical } from "@tabler/icons-react"
-import { ActionIcon, ColorSwatch, Menu, NumberFormatter } from "@mantine/core"
-import { useState } from "react"
+import { ActionIcon, ColorSwatch, MantineColor, Menu, NumberFormatter } from "@mantine/core"
+import React, { useState } from "react"
 import clsx from "clsx"
 import { IconTrash } from "@tabler/icons-react"
 import { IconPalette } from "@tabler/icons-react"
@@ -25,12 +25,13 @@ interface AccountCardProps {
     name: string
   }
   icon: IconType
+  color: MantineColor | null
 }
 
 /******************************************************************
  *  COMPONENT START                                               *
  ******************************************************************/
-export function AccountCard({ title, value, currency, icon: Icon }: AccountCardProps) {
+export function AccountCard({ title, value, currency, color = "red", icon: Icon }: AccountCardProps) {
   /**********  HOOKS  **********/
   const [isHovered, setIsHovered] = useState(false)
   const [isMainMenuOpened, mainMenu] = useDisclosure()
@@ -41,6 +42,7 @@ export function AccountCard({ title, value, currency, icon: Icon }: AccountCardP
   return (
     <div
       className={styles.accountCard}
+      style={{ "--account-card-border-color": color } as React.CSSProperties}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => {
         switch (true) {

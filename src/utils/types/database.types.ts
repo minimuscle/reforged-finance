@@ -34,39 +34,162 @@ export type Database = {
   }
   public: {
     Tables: {
-      profile: {
+      cash: {
         Row: {
+          amount: number
+          color: string | null
           created_at: string
-          employment_income: number | null
-          id: string
+          currency: Database["public"]["Enums"]["currency"]
+          icon: string | null
+          id: number
+          name: string
+          user_id: string
         }
         Insert: {
+          amount?: number
+          color?: string | null
           created_at?: string
-          employment_income?: number | null
-          id: string
+          currency?: Database["public"]["Enums"]["currency"]
+          icon?: string | null
+          id?: number
+          name?: string
+          user_id: string
         }
         Update: {
+          amount?: number
+          color?: string | null
           created_at?: string
-          employment_income?: number | null
-          id?: string
+          currency?: Database["public"]["Enums"]["currency"]
+          icon?: string | null
+          id?: number
+          name?: string
+          user_id?: string
         }
         Relationships: []
       }
-      test: {
+      debts: {
         Row: {
-          colname: string | null
+          amount: number
+          annual_interest: number
+          color: string | null
           created_at: string
+          currency: Database["public"]["Enums"]["currency"]
+          icon: string | null
           id: number
+          interest_frequency: Database["public"]["Enums"]["frequency"]
+          name: string
+          regular_payment: number
+          starting_balance: number
+          user_id: string
         }
         Insert: {
-          colname?: string | null
+          amount?: number
+          annual_interest?: number
+          color?: string | null
           created_at?: string
+          currency?: Database["public"]["Enums"]["currency"]
+          icon?: string | null
           id?: number
+          interest_frequency?: Database["public"]["Enums"]["frequency"]
+          name?: string
+          regular_payment?: number
+          starting_balance?: number
+          user_id?: string
         }
         Update: {
-          colname?: string | null
+          amount?: number
+          annual_interest?: number
+          color?: string | null
           created_at?: string
+          currency?: Database["public"]["Enums"]["currency"]
+          icon?: string | null
           id?: number
+          interest_frequency?: Database["public"]["Enums"]["frequency"]
+          name?: string
+          regular_payment?: number
+          starting_balance?: number
+          user_id?: string
+        }
+        Relationships: []
+      }
+      history: {
+        Row: {
+          cash: number
+          created_at: string
+          debts: number
+          id: number
+          salaried_income: number
+          super: number
+          user_id: string
+        }
+        Insert: {
+          cash?: number
+          created_at?: string
+          debts?: number
+          id?: number
+          salaried_income?: number
+          super?: number
+          user_id?: string
+        }
+        Update: {
+          cash?: number
+          created_at?: string
+          debts?: number
+          id?: number
+          salaried_income?: number
+          super?: number
+          user_id?: string
+        }
+        Relationships: []
+      }
+      profile: {
+        Row: {
+          cash_goal: number | null
+          created_at: string
+          currency: Database["public"]["Enums"]["currency"]
+          delivery_email: string | null
+          emergency_fund_goal: number | null
+          employment_income: number | null
+          home_deposit: boolean
+          home_deposit_goal: number | null
+          id: string
+          lifetime_premium: boolean
+          name: string | null
+          net_income: number | null
+          premium: boolean
+          salary_frequency: Database["public"]["Enums"]["frequency"]
+        }
+        Insert: {
+          cash_goal?: number | null
+          created_at?: string
+          currency?: Database["public"]["Enums"]["currency"]
+          delivery_email?: string | null
+          emergency_fund_goal?: number | null
+          employment_income?: number | null
+          home_deposit?: boolean
+          home_deposit_goal?: number | null
+          id: string
+          lifetime_premium?: boolean
+          name?: string | null
+          net_income?: number | null
+          premium?: boolean
+          salary_frequency?: Database["public"]["Enums"]["frequency"]
+        }
+        Update: {
+          cash_goal?: number | null
+          created_at?: string
+          currency?: Database["public"]["Enums"]["currency"]
+          delivery_email?: string | null
+          emergency_fund_goal?: number | null
+          employment_income?: number | null
+          home_deposit?: boolean
+          home_deposit_goal?: number | null
+          id?: string
+          lifetime_premium?: boolean
+          name?: string | null
+          net_income?: number | null
+          premium?: boolean
+          salary_frequency?: Database["public"]["Enums"]["frequency"]
         }
         Relationships: []
       }
@@ -78,7 +201,8 @@ export type Database = {
       [_ in never]: never
     }
     Enums: {
-      [_ in never]: never
+      currency: "AUD"
+      frequency: "daily" | "weekly" | "fortnightly" | "monthly" | "quarterly"
     }
     CompositeTypes: {
       [_ in never]: never

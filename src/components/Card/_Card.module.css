@@ -17,11 +17,16 @@
   .noSpacing {
     height: 40px;
   }
+  
   .smallHeader {
     height: 20px;
   }
 
   &.fullWidth {
     width: 100%;
+  }
+
+  .loader {
+    margin: 0 auto;
   }
 }

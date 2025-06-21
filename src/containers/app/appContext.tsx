@@ -1,5 +1,7 @@
-import { auth } from "containers/auth/queries"
 import { createContext, useContext, useState } from "react"
+import { query } from "src/queries/queryTree"
+import { DB } from "utils/types"
+
 /******************************************************************
  *  TYPE DEFINITIONS                                              *
  ******************************************************************/
@@ -8,7 +10,10 @@ interface AppContext {
   setSidebarHidden: React.Dispatch<React.SetStateAction<boolean>>
   isPremium: boolean
   isLifetimePremium: boolean
-  userId: string
+  user_data: {
+    userId: string
+    email?: string | null
+  } & Partial<DB.Row<"profile">>
 }
 
 /******************************************************************
@@ -18,17 +23,26 @@ const AppContext = createContext<AppContext | undefined>(undefined)
 
 export function AppProvider({ children }: { children: React.ReactNode }) {
   const [isSidebarHidden, setSidebarHidden] = useState(false)
-  const { data: user_data } = auth.getUser.useSelectSuspenseQuery(void 0, ({ data: { user } }) => {
+  // const {} = useSuspenseQueries()
+  //TODO: add this to a useSuspenseQuerries once I have created a createQueryOptions hook
+  const { data: profile_details } = query.user.profile.useSelectSuspenseQuery(void 0, ({ data }) => {
+    if (!data) throw new Error("User Profile is blank")
+    return data
+  })
+  const { data: user_data } = query.user.useSelectSuspenseQuery(void 0, ({ data: { user } }) => {
     if (!user) throw new Error("User is not authenticated")
     return user
   })
 
-  const isPremium = false //TODO: This will be replaced with a call to the backend to check if the user is a premium user
-  const isLifetimePremium = false //TODO: if the premium expiry is set to null, then the user is a lifetime premium user
-
   return (
     <AppContext.Provider
-      value={{ isSidebarHidden, setSidebarHidden, isPremium, isLifetimePremium, userId: user_data.id }}
+      value={{
+        isSidebarHidden,
+        setSidebarHidden,
+        isPremium: profile_details.premium,
+        isLifetimePremium: profile_details.lifetime_premium,
+        user_data: { ...profile_details, userId: user_data.id, email: user_data.email },
+      }}
     >
       {children}
     </AppContext.Provider>

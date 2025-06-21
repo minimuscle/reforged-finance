@@ -17,10 +17,19 @@ export const account = {
     profile: async () => {
       return await api.get("profile").single()
     },
+    cash: {
+      accounts: async () => {
+        return await api.get("cash").select("*")
+      },
+    },
+    history: async () => {
+      return await api.get("history")
+    },
   },
   POST: {
     profile: async (attributes: DB.Row<"profile">) => {
       const res = await api.post({ from: "profile", data: attributes, type: "update" })
+
       return res
     },
     autosaveTest: () => {
@@ -29,7 +38,6 @@ export const account = {
           resolve("")
         }, 1000)
       })
-      //
     },
   },
 }

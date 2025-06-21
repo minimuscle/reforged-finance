@@ -1,7 +1,7 @@
 import { useMutation } from "@tanstack/react-query"
-import { auth } from "../../../../api/auth"
+import { auth } from "../../api/auth"
 import { notifications } from "@mantine/notifications"
-import { successNotification } from "../../../../utils/notifications"
+import { successNotification } from "../../utils/notifications"
 /******************************************************************
  *  TYPE DEFINITIONS                                              *
  ******************************************************************/
@@ -15,9 +15,7 @@ interface SignupUserInput {
  ******************************************************************/
 function _useMutation() {
   return useMutation({
-    mutationFn: ({ email, password }: SignupUserInput) => {
-      return auth.POST.signup(email, password)
-    },
+    mutationFn: (attributes: SignupUserInput) => auth.POST.signup(attributes),
     onSuccess: () => {
       notifications.show(successNotification("Account created successfully."))
     },

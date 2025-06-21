@@ -24,7 +24,7 @@ export const auth = {
     },
   },
   POST: {
-    signup: (email: string, password: string) => {
+    signup: (attributes: { email: string; password: string }) => {
       return //API(supabase.auth.signUp({ email, password }))
     },
 

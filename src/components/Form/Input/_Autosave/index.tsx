@@ -25,5 +25,5 @@ export const _AutosaveInput = <TInsert extends Record<string, unknown>>({
   })
 
   /*****  RENDER  *****/
-  return <Input onChange={(value) => autosave.save(value)} {...restProps} />
+  return <Input onChange={(value: unknown) => autosave.save(value)} {...restProps} />
 }

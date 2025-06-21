@@ -1,13 +1,19 @@
-import { Badge } from "@mantine/core"
+import { Badge, NumberFormatter } from "@mantine/core"
 import { IconCircleArrowUp } from "@tabler/icons-react"
 import { Card } from "components/Card"
 import { Text } from "components/Text"
 import styles from "./totalSavings.module.css"
+import { query } from "src/queries/queryTree"
 
 /******************************************************************
  *  COMPONENT START                                               *
  ******************************************************************/
 export function TotalSavings() {
+  /*****  QUERIES  *****/
+  const { data: totalCash } = query.user.cash.useSelectSuspenseQuery(void 0, ({ data }) => {
+    return data?.reduce((sum, item) => sum + item.amount, 0)
+  })
+
   /*********  RENDER  *********/
   return (
     <Card
@@ -23,7 +29,7 @@ export function TotalSavings() {
         <Text color="gray" size={20} className={styles.dollarSign}>
           $
         </Text>
-        25,945.23
+        <NumberFormatter value={totalCash} thousandSeparator decimalScale={2} />
       </Text>
     </Card>
   )

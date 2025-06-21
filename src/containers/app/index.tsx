@@ -68,7 +68,7 @@ export function App() {
             </Tooltip>
           </Flex>
         </Flex>
-        <Suspense fallback={<h1>Loading...</h1>}>
+        <Suspense fallback={<h1>Top level loading...</h1>}>
           <div className={styles.outlet}>
             <Outlet />
           </div>
