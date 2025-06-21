@@ -1,15 +1,15 @@
 import { FormProvider, useForm } from "react-hook-form"
-import styles from "./_login.module.css"
-import { Link, useNavigate } from "@tanstack/react-router"
-import { auth } from "containers/auth/queries"
+import styles from "./_signup.module.css"
+import { Link } from "@tanstack/react-router"
+import { LogoCard } from "components/Logo"
 import { Card } from "components/Card"
 import { Text } from "components/Text"
 import { Flex } from "components/Flex"
-import { Button } from "@mantine/core"
 import { Input } from "components/Form/Input"
-import z from "zod"
+import { Button, Space } from "@mantine/core"
 import { zodResolver } from "@hookform/resolvers/zod"
-import { LogoCard } from "components/Logo"
+import { z } from "zod"
+import { query } from "src/queries/queryTree"
 
 /******************************************************************
  *  TYPE DEFINITIONS                                              *
@@ -20,48 +20,42 @@ const schema = z.object({
 })
 
 type Schema = z.infer<typeof schema>
+
 /******************************************************************
  *  COMPONENT START                                               *
  ******************************************************************/
-export function Login() {
+export function Signup() {
   /**********  HOOKS  **********/
   const methods = useForm<Schema>({
     resolver: zodResolver(schema),
   })
-  const navigate = useNavigate()
-  const { mutateAsync: loginUserAsync } = auth.loginUser.useMutation()
+  const { mutate: signupUser } = query.auth.signup.useMutation()
 
   /********  FUNCTIONS  ********/
-  async function handleSubmit(data: Schema) {
-    await loginUserAsync(data)
-    return navigate({
-      to: "/",
-    })
+  function handleSubmit(data: Schema) {
+    signupUser(data)
   }
 
   /*********  RENDER  *********/
   return (
-    <div className={styles.login}>
+    <div className={styles.signup}>
       <LogoCard />
       <Card>
         <Text as="h1" size="xxl" alignCenter>
-          Login
+          Sign Up
         </Text>
         <form onSubmit={methods.handleSubmit(handleSubmit)}>
           <FormProvider {...methods}>
             <Flex direction="column" gap="10px">
               <Input.HookForm name="email" label="Email" />
               <Input.HookForm name="password" label="Password" type="password" />
-
-              <Text className={styles.forgot} size="sm" alignRight>
-                <Link to="/">Forgot Password?</Link>
-              </Text>
-
+              <Input.HookForm name="repeat_password" label="Repeat Password" type="password" />
+              <Space h={10} />
               <Button color="sky" type="submit">
-                Login
+                Signup
               </Button>
               <Text size="sm" color="gray">
-                Not registered? <Link to="/signup">Signup here</Link>
+                Already registered? <Link to="/login">Login here</Link>
               </Text>
             </Flex>
           </FormProvider>
