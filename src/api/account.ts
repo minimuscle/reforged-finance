@@ -12,7 +12,11 @@ export namespace account {}
 export const account = {
   GET: {
     user: async () => {
-      return await supabase.auth.getUser()
+      return new Promise((resolve) => {
+        setTimeout(async () => {
+          resolve(await supabase.auth.getUser())
+        }, 10000)
+      })
     },
     profile: async () => {
       return await api.get("profile").single()
@@ -23,7 +27,7 @@ export const account = {
       },
     },
     history: async () => {
-      return await api.get("history")
+      return await api.get("history").select("*").order("date", { ascending: true })
     },
   },
   POST: {

@@ -1,8 +1,7 @@
 import { createClient } from "@supabase/supabase-js"
-import { auth } from "containers/auth/queries"
 import { queryClient } from "utils/query/queryClient"
 import { DB } from "utils/types"
-import { Database, Tables } from "utils/types/database.types"
+import { Database } from "utils/types/database.types"
 
 export const supabase = createClient<Database>(
   import.meta.env.VITE_SUPABASE_URL,

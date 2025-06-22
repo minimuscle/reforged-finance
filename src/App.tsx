@@ -5,9 +5,9 @@ import "@mantine/charts/styles.css"
 import "./utils/styles/globalStyles.css"
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools"
 import { Notifications } from "@mantine/notifications"
-import { AppProvider } from "containers/app/appContext"
 import { ErrorBoundary } from "components/Templates/ErrorBoundary"
 import { Suspense } from "react"
+import { AppProvider } from "utils/AppProvider"
 
 /******************************************************************
  *  COMPONENT START                                               *
