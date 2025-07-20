@@ -1,6 +1,6 @@
 import { Badge, Divider } from "@mantine/core"
 import styles from "./_sidebar.module.css"
-import { NavButton } from "./components/navButton"
+import { NavButton } from "./navButton"
 import { bottonNavOptions, navOptions } from "./consts"
 import { Text } from "components/Text"
 import clsx from "clsx"
@@ -8,17 +8,18 @@ import Logo from "assets/Images/Logo.png"
 import { IconLayoutSidebarLeftCollapseFilled, IconLayoutSidebarLeftExpandFilled } from "@tabler/icons-react"
 import { Flex } from "components/Flex"
 import { AnimatePresence, motion } from "motion/react"
-import { PremiumAd } from "containers/app/sidebar/components/premiumAd"
-import { useAppContext } from "containers/app/appContext"
+import { PremiumAd } from "routes/-components/sidebar/premiumAd"
 import { Link } from "@tanstack/react-router"
 import posthog from "posthog-js"
+import { use } from "react"
+import { AppContext } from "routes/-components/appContext"
 
 /******************************************************************
  *  COMPONENT START                                               *
  ******************************************************************/
 export function Sidebar() {
   /**********  HOOKS  **********/
-  const { isSidebarHidden, setSidebarHidden } = useAppContext()
+  const { isSidebarHidden, setSidebarHidden } = use(AppContext)
 
   /*********  RENDER  *********/
   return (

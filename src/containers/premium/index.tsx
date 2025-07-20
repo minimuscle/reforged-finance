@@ -1,7 +1,7 @@
 import { PremiumCard } from "containers/premium/components/premiumCard"
 import styles from "./_Premium.module.css"
 import { Flex } from "components/Flex"
-import { useAppContext } from "containers/app/appContext"
+import { useAppContext } from "routes/-components/appContext"
 
 /******************************************************************
  *  COMPONENT START                                               *

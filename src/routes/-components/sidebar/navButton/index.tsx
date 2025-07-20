@@ -2,7 +2,7 @@ import { Link } from "@tanstack/react-router"
 import { clsx } from "clsx"
 import { AnimatePresence, motion } from "motion/react"
 import styles from "./_navButton.module.css"
-import { NavButtonProps } from "containers/app/sidebar/types"
+import { NavButtonProps } from "routes/-components/sidebar/types"
 
 /******************************************************************
  *  COMPONENT START                                               *

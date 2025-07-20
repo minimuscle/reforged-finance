@@ -15,7 +15,7 @@ import {
   IconSettingsFilled,
   IconTrendingDown,
 } from "@tabler/icons-react"
-import { NavButtonProps } from "containers/app/sidebar/types"
+import { NavButtonProps } from "routes/-components/sidebar/types"
 
 export const navOptions: Array<NavButtonProps> = [
   {

@@ -3,7 +3,7 @@ import { Input } from "components/Form/Input"
 import { IconCurrencyDollar } from "@tabler/icons-react"
 import { Flex } from "components/Flex"
 import { Text } from "components/Text"
-import { useAppContext } from "containers/app/appContext"
+import { useAppContext } from "routes/-components/appContext"
 
 /******************************************************************
  *  COMPONENT START                                               *

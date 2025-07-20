@@ -1,4 +1,4 @@
-import { createContext, useContext } from "react"
+import { createContext } from "react"
 import { DB } from "utils/types"
 
 /******************************************************************
@@ -9,21 +9,23 @@ interface AppContext {
   setSidebarHidden: React.Dispatch<React.SetStateAction<boolean>>
   isPremium: boolean
   isLifetimePremium: boolean
-  user_data: {
-    userId: string
-    email?: string | null
-  } & Partial<DB.Row<"profile">>
+  user_data:
+    | ({
+        userId: string
+        email?: string | null
+      } & Partial<DB.Row<"profile">>)
+    | null
+}
+
+const defaultValues: AppContext = {
+  isSidebarHidden: false,
+  setSidebarHidden: () => {},
+  isPremium: false,
+  isLifetimePremium: false,
+  user_data: null,
 }
 
 /******************************************************************
  *  CONTEXT START                                               *
  ******************************************************************/
-export const AppContext = createContext<AppContext | undefined>(undefined)
-
-export function useAppContext() {
-  const context = useContext(AppContext)
-  if (!context) {
-    throw new Error("useAppContext must be used within a AppProvider")
-  }
-  return context
-}
+export const AppContext = createContext<AppContext>(defaultValues)

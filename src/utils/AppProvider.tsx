@@ -1,4 +1,4 @@
-import { AppContext } from "containers/app/appContext"
+import { AppContext } from "routes/-components/appContext"
 import { useState } from "react"
 import { query } from "src/queries/queryTree"
 
@@ -16,7 +16,7 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
   })
 
   return (
-    <AppContext.Provider
+    <AppContext
       value={{
         isSidebarHidden,
         setSidebarHidden,
@@ -26,6 +26,6 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
       }}
     >
       {children}
-    </AppContext.Provider>
+    </AppContext>
   )
 }

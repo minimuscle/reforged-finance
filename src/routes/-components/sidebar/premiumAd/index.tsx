@@ -4,7 +4,7 @@ import { IconSparkles } from "@tabler/icons-react"
 import { Flex } from "components/Flex"
 import { Button } from "@mantine/core"
 import { Link } from "@tanstack/react-router"
-import { useAppContext } from "containers/app/appContext"
+import { useAppContext } from "routes/-components/appContext"
 import { AnimatePresence, LayoutGroup, motion } from "motion/react"
 
 // /******************************************************************
