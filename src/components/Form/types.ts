@@ -1,9 +1,5 @@
-import type { NumberInputProps, TextInputProps } from "@mantine/core"
+import type { NumberInputProps, InputProps } from "@mantine/core"
 
 export namespace Input {
-  export type InputProps = ({ type: "number" } & Omit<NumberInputProps, "type">) | TextInputProps
-
-  export type HookFormInputProps = {
-    name: string
-  } & InputProps
+  export type Props = { type: "number" | "password" } & Omit<InputProps, "type">
 }

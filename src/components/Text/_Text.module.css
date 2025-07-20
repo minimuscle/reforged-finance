@@ -31,22 +31,20 @@
     }
   }
 
-  &.weight {
-    &.regular {
-      font-weight: 400;
-    }
+  &.weightRegular {
+    font-weight: 400;
+  }
 
-    &.semiBold {
-      font-weight: 550;
-    }
+  &.weightSemiBold {
+    font-weight: 550;
+  }
 
-    &.bold {
-      font-weight: 700;
-    }
+  &.weightBold {
+    font-weight: 700;
+  }
 
-    &.black {
-      font-weight: 900;
-    }
+  &.weightBlack {
+    font-weight: 900;
   }
 
   &.alignLeft {

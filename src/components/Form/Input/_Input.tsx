@@ -9,7 +9,7 @@ import { NumberInput, TextInputProps } from "@mantine/core"
 /******************************************************************
  *  COMPONENT START                                               *
  ******************************************************************/
-export function _Input({ type, className, ...rest }: Input.InputProps) {
+export function _Input({ type, className, ...rest }: Input.Props) {
   /**********  HOOKS  **********/
   const { value: passwordShown, toggle: toggleShowPassword } = useBoolean(false)
 

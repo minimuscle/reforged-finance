@@ -1,72 +1,72 @@
-import { FormProvider, useForm } from "react-hook-form"
 import styles from "./_login.module.css"
 import { Link, useNavigate } from "@tanstack/react-router"
 import { Card } from "components/Card"
 import { Text } from "components/Text"
-import { Flex } from "components/Flex"
 import { Button } from "@mantine/core"
-import { Input } from "components/Form/Input"
-import z from "zod"
-import { zodResolver } from "@hookform/resolvers/zod"
+import * as z from "zod"
 import { LogoCard } from "components/Logo"
 import { query } from "src/queries/queryTree"
+import { useAppForm } from "components/Form/AppForm"
+import { Form } from "components/Form/AppForm/Form"
 
 /******************************************************************
  *  TYPE DEFINITIONS                                              *
  ******************************************************************/
 const schema = z.object({
-  email: z.string({ message: "Email is required" }).email({ message: "Invalid email address" }),
+  email: z.email({ error: "Invalid email address" }),
   password: z.string().min(1, "Password is required"),
 })
 
-type Schema = z.infer<typeof schema>
+const defaultValues: z.input<typeof schema> = {
+  email: "",
+  password: "",
+}
+
 /******************************************************************
  *  COMPONENT START                                               *
  ******************************************************************/
 export function Login() {
   /**********  HOOKS  **********/
-  const methods = useForm<Schema>({
-    resolver: zodResolver(schema),
-  })
   const navigate = useNavigate()
   const { mutateAsync: loginUserAsync } = query.auth.login.useMutation()
-
-  /********  FUNCTIONS  ********/
-  async function handleSubmit(data: Schema) {
-    await loginUserAsync(data)
-    return navigate({
-      to: "/",
-    })
-  }
+  const form = useAppForm({
+    validators: { onChange: schema },
+    defaultValues,
+    onSubmit: async ({ value }) => {
+      console.log(value)
+      // await loginUserAsync(value)
+      // return navigate({
+      //   to: "/"
+      // })
+    },
+  })
 
   /*********  RENDER  *********/
   return (
-    <div className={styles.login}>
-      <LogoCard />
-      <Card>
-        <Text as="h1" size="xxl" alignCenter>
-          Login
-        </Text>
-        <form onSubmit={methods.handleSubmit(handleSubmit)}>
-          <FormProvider {...methods}>
-            <Flex direction="column" gap="10px">
-              <Input.HookForm name="email" label="Email" />
-              <Input.HookForm name="password" label="Password" type="password" />
+    <Form onSubmit={form.handleSubmit}>
+      <div className={styles.login}>
+        <LogoCard />
+        <Card className={styles.card}>
+          <Text as="h1" size="xxl" alignCenter>
+            Login
+          </Text>
 
-              <Text className={styles.forgot} size="sm" alignRight>
-                <Link to="/">Forgot Password?</Link>
-              </Text>
-
-              <Button color="sky" type="submit">
-                Login
-              </Button>
-              <Text size="sm" color="gray">
-                Not registered? <Link to="/signup">Signup here</Link>
-              </Text>
-            </Flex>
-          </FormProvider>
-        </form>
-      </Card>
-    </div>
+          <form.AppField name="email" children={(field) => <field.Input label="Email" autoComplete="email" />} />
+          <form.AppField
+            name="password"
+            children={(field) => <field.Input label="Password" autoComplete="password" />}
+          />
+          <Text className={styles.forgot} size="sm" alignRight>
+            <Link to="/">Forgot Password?</Link>
+          </Text>
+          <Button fullWidth color="sky" type="submit">
+            Login
+          </Button>
+          <Text size="sm" color="gray">
+            Not registered?<Link to="/signup"> Signup here</Link>
+          </Text>
+        </Card>
+      </div>
+    </Form>
   )
 }

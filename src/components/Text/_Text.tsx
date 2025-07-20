@@ -9,6 +9,7 @@ import { MantineColor, MantineColorShade } from "@mantine/core"
 type TextSizes = "xxs" | "xs" | "sm" | "md" | "lg" | "xl" | "xxl" | "xxxl" | number
 type TextColors = "primary" | "secondary" | "default" | "gray" | "error" | "success" | "warning" | "info" | "white"
 type TextCustomColors = `${MantineColor}-${MantineColorShade}`
+type TextWeightKeys = "regular" | "semiBold" | "bold" | "black"
 type TextWeights =
   | { bold: boolean; regular?: never; semiBold?: never; black?: never }
   | { regular: boolean; bold?: never; semiBold?: never; black?: never }
@@ -54,16 +55,16 @@ export function _Text({
     return child
   })
 
-  let weight: keyof TextWeights = "regular"
+  let weight: `weight${Capitalize<TextWeightKeys>}` = "weightRegular"
 
   if (otherProps.regular) {
-    weight = "regular"
+    weight = "weightRegular"
   } else if (otherProps.bold) {
-    weight = "bold"
+    weight = "weightBold"
   } else if (otherProps.semiBold) {
-    weight = "semiBold"
+    weight = "weightSemiBold"
   } else if (otherProps.black) {
-    weight = "black"
+    weight = "weightBlack"
   }
 
   let align: keyof TextAlign = "alignLeft"
