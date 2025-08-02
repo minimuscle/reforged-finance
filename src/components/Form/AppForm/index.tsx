@@ -1,6 +1,7 @@
 import { createFormHook, createFormHookContexts } from "@tanstack/react-form"
-import { _AppFormInput } from "components/Form/AppForm/Input"
-import * as z from "zod"
+import { InternalAppFormInput } from "components/Form/AppForm/fieldComponents/Input"
+import { InternalAppFormInputPassword } from "components/Form/AppForm/fieldComponents/Input/password"
+import { InternalAppFormSubmitButton } from "components/Form/AppForm/formComponents/submit"
 
 /******************************************************************
  *  FORM START
@@ -8,9 +9,13 @@ import * as z from "zod"
 export const { fieldContext, formContext, useFieldContext, useFormContext } = createFormHookContexts()
 
 export const { useAppForm } = createFormHook({
-  formComponents: {},
+  formComponents: {
+    Submit: InternalAppFormSubmitButton,
+  },
   fieldComponents: {
-    Input: Object.assign(_AppFormInput, {}),
+    Input: Object.assign(InternalAppFormInput, {
+      Password: InternalAppFormInputPassword,
+    }),
   },
   formContext,
   fieldContext,

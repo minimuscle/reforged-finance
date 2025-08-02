@@ -33,17 +33,16 @@ export function Login() {
     validators: { onChange: schema },
     defaultValues,
     onSubmit: async ({ value }) => {
-      console.log(value)
-      // await loginUserAsync(value)
-      // return navigate({
-      //   to: "/"
-      // })
+      await loginUserAsync(value)
+      return navigate({
+        to: "/",
+      })
     },
   })
 
   /*********  RENDER  *********/
   return (
-    <Form onSubmit={form.handleSubmit}>
+    <Form form={form}>
       <div className={styles.login}>
         <LogoCard />
         <Card className={styles.card}>
@@ -51,17 +50,14 @@ export function Login() {
             Login
           </Text>
 
-          <form.AppField name="email" children={(field) => <field.Input label="Email" autoComplete="email" />} />
-          <form.AppField
-            name="password"
-            children={(field) => <field.Input label="Password" autoComplete="password" />}
-          />
+          <form.AppField name="email" children={(field) => <field.Input label="Email" />} />
+          <form.AppField name="password" children={(field) => <field.Input.Password label="Password" />} />
           <Text className={styles.forgot} size="sm" alignRight>
             <Link to="/">Forgot Password?</Link>
           </Text>
-          <Button fullWidth color="sky" type="submit">
-            Login
-          </Button>
+          <form.AppForm>
+            <form.Submit label="Login" />
+          </form.AppForm>
           <Text size="sm" color="gray">
             Not registered?<Link to="/signup"> Signup here</Link>
           </Text>

@@ -2,14 +2,15 @@ import { account } from "api/account"
 import { Input } from "components/Form/Input"
 import { Flex } from "components/Flex"
 import { IconCurrencyDollar } from "@tabler/icons-react"
-import { useAppContext } from "routes/-components/appContext"
+import { AppContext } from "routes/-components/appContext"
+import { use } from "react"
 
 /******************************************************************
  *  COMPONENT START                                               *
  ******************************************************************/
 export const SettingsTargets = () => {
   /*****  HOOKS  *****/
-  const { user_data } = useAppContext()
+  const { user_data } = use(AppContext)
 
   /*****  RENDER  *****/
   return (

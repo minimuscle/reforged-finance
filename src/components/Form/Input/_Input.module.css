@@ -10,14 +10,6 @@
   padding-bottom: 5px;
 }
 
-.icon {
-  position: absolute;
-  right: 10px;
-  top: 50%;
-  color: $gray-5;
-  cursor: pointer;
-}
-
 .section {
   border: none;
   margin: -1px;
@@ -33,4 +25,8 @@
 
 .inputWithSection {
   padding-left: 45px;
+}
+
+.error {
+  border: 2px solid $red-6;
 }

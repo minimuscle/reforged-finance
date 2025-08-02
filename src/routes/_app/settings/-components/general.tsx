@@ -3,14 +3,15 @@ import { Input } from "components/Form/Input"
 import { IconCurrencyDollar } from "@tabler/icons-react"
 import { Flex } from "components/Flex"
 import { Text } from "components/Text"
-import { useAppContext } from "routes/-components/appContext"
+import { AppContext } from "routes/-components/appContext"
+import { use } from "react"
 
 /******************************************************************
  *  COMPONENT START                                               *
  ******************************************************************/
 export const SettingsGeneral = () => {
   /*****  HOOKS  *****/
-  const { user_data } = useAppContext()
+  const { user_data } = use(AppContext)
 
   /*****  RENDER  *****/
   return (

@@ -1,14 +1,15 @@
 import { PremiumCard } from "containers/premium/components/premiumCard"
 import styles from "./_Premium.module.css"
 import { Flex } from "components/Flex"
-import { useAppContext } from "routes/-components/appContext"
+import { AppContext } from "routes/-components/appContext"
+import { use } from "react"
 
 /******************************************************************
  *  COMPONENT START                                               *
  ******************************************************************/
 export function Premium() {
   /**********  HOOKS  **********/
-  const { isPremium, isLifetimePremium } = useAppContext()
+  const { isPremium, isLifetimePremium } = use(AppContext)
 
   /*********  RENDER  *********/
   return (

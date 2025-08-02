@@ -1,14 +1,15 @@
 import { account } from "api/account"
 import { Input } from "components/Form/Input"
 import { Flex } from "components/Flex"
-import { useAppContext } from "routes/-components/appContext"
+import { AppContext } from "routes/-components/appContext"
+import { use } from "react"
 
 /******************************************************************
  *  COMPONENT START                                               *
  ******************************************************************/
 export const SettingsProfile = () => {
   /*****  HOOKS  *****/
-  const { user_data } = useAppContext()
+  const { user_data } = use(AppContext)
 
   /*****  RENDER  *****/
   return (
@@ -16,7 +17,7 @@ export const SettingsProfile = () => {
       <Input.Autosave
         label="Account Email"
         description="Used to login to your account. Cannot be changed"
-        defaultValue={user_data.email ?? ""}
+        defaultValue={user_data?.email ?? ""}
         save={account.POST.profile}
         column="employment_income"
       />

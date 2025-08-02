@@ -10,10 +10,23 @@ type AppFormInput = React.FC<TextInputProps>
 /******************************************************************
  *  COMPONENT START
  ******************************************************************/
-export const _AppFormInput: AppFormInput = (props) => {
+export const InternalAppFormInput: AppFormInput = (props) => {
   /*****  HOOKS  *****/
-  const field = useFieldContext<string | number | readonly string[] | undefined>()
+  const { state, handleBlur, handleChange, form } = useFieldContext<string | number | readonly string[] | undefined>()
+  const {
+    value,
+    meta: { errors, isDirty, isBlurred },
+  } = state
+  const shouldShowError = (isDirty && isBlurred) || form.state.submissionAttempts > 0
 
   /*****  RENDER  *****/
-  return <Input {...props} value={field.state.value} onChange={(e) => field.handleChange(e.target.value)} />
+  return (
+    <Input
+      {...props}
+      value={value}
+      onChange={(e) => handleChange(e.target.value)}
+      onBlur={handleBlur}
+      error={shouldShowError && errors?.[0]?.message}
+    />
+  )
 }
