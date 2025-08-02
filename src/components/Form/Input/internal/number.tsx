@@ -1,8 +1,6 @@
-import { NumberInput, NumberInputProps, PasswordInput, PasswordInputProps } from "@mantine/core"
-import styles from "./_Input.module.css"
-import { IconEyeClosed } from "@tabler/icons-react"
-import { IconEye } from "@tabler/icons-react"
+import { NumberInput, NumberInputProps } from "@mantine/core"
 import clsx from "clsx"
+import styles from "./_Input.module.css"
 
 /******************************************************************
  *  COMPONENT START

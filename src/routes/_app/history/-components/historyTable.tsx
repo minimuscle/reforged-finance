@@ -16,7 +16,7 @@ type NumericKeys<T> = {
 export const HistoryTable = () => {
   /*****  QUERIES  *****/
   const { data: history_data } = query.user.history.useSelectSuspenseQuery(void 0, ({ data }) => data)
-  console.log(history_data)
+
   /*****  FUNCTIONS  *****/
   const getCalculatedValue = (value: NumericKeys<DB.Row<"history">>, index: number) => {
     if (index === 0) return { changeValue: 0, changePercent: 0 }

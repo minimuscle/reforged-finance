@@ -1,13 +1,12 @@
-import styles from "./_login.module.css"
 import { Link, useNavigate } from "@tanstack/react-router"
 import { Card } from "components/Card"
-import { Text } from "components/Text"
-import { Button } from "@mantine/core"
-import * as z from "zod"
-import { LogoCard } from "components/Logo"
-import { query } from "src/queries/queryTree"
 import { useAppForm } from "components/Form/AppForm"
 import { Form } from "components/Form/AppForm/Form"
+import { LogoCard } from "components/Logo"
+import { Text } from "components/Text"
+import { query } from "src/queries/queryTree"
+import * as z from "zod"
+import styles from "./_login.module.css"
 
 /******************************************************************
  *  TYPE DEFINITIONS                                              *
@@ -55,9 +54,7 @@ export function Login() {
           <Text className={styles.forgot} size="sm" alignRight>
             <Link to="/">Forgot Password?</Link>
           </Text>
-          <form.AppForm>
-            <form.Submit label="Login" />
-          </form.AppForm>
+          <form.Submit label="Login" />
           <Text size="sm" color="gray">
             Not registered?<Link to="/signup"> Signup here</Link>
           </Text>

@@ -3,9 +3,9 @@ import {
   useSuspenseQuery as _useSuspenseQuery,
   QueryFunction,
   QueryKey,
+  queryOptions,
   UseSuspenseQueryOptions,
   type UseQueryOptions,
-  queryOptions,
 } from "@tanstack/react-query"
 
 type TVariablesToTuple<T> = T extends undefined | void | never ? [] : T extends any[] ? T : [T]
@@ -113,5 +113,19 @@ export function createQuery<TVariables, TQueryFnData, TError = unknown, TData = 
     })
   }
 
-  return { useQuery, useSelectQuery, useSuspenseQuery, useSelectSuspenseQuery }
+  /**
+   * createQueryOptions - creates the query options for useQuery and related hooks
+   */
+  function createQueryOptions(
+    variables?: TVariables,
+    options?: Omit<UseQueryOptions<TQueryFnData, TError, TData, QueryKey>, "queryKey" | "queryFn">
+  ) {
+    const baseConfig = configFn(variables as TVariables)
+    return queryOptions({
+      ...baseConfig,
+      ...options,
+    })
+  }
+
+  return { useQuery, useSelectQuery, useSuspenseQuery, useSelectSuspenseQuery, createQueryOptions }
 }

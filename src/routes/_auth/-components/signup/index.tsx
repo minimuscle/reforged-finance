@@ -1,64 +1,73 @@
-import styles from "./_signup.module.css"
-import { Link } from "@tanstack/react-router"
-import { LogoCard } from "components/Logo"
+import { Link, useNavigate } from "@tanstack/react-router"
 import { Card } from "components/Card"
+import { useAppForm } from "components/Form/AppForm"
+import { Form } from "components/Form/AppForm/Form"
+import { createFormOptions } from "components/Form/AppForm/createFormOptions"
+import { LogoCard } from "components/Logo"
 import { Text } from "components/Text"
-import { Flex } from "components/Flex"
-import { Input } from "components/Form/Input"
-import { Button, Space } from "@mantine/core"
-import * as z from "zod"
 import { query } from "src/queries/queryTree"
+import * as z from "zod"
+import styles from "./_signup.module.css"
 
 /******************************************************************
  *  TYPE DEFINITIONS                                              *
  ******************************************************************/
-const schema = z.object({
-  email: z.string({ message: "Email is required" }).email({ message: "Invalid email address" }),
-  password: z.string().min(1, "Password is required"),
-})
+const schema = z
+  .object({
+    email: z.email({ error: "Invalid email address" }),
+    password: z.string().min(1, "Password is required"),
+    confirmPassword: z.string().min(1, "Confirm Password is required"),
+  })
+  .refine((data) => data.password === data.confirmPassword, {
+    message: "Passwords do not match",
+    path: ["confirmPassword"],
+  })
 
-type Schema = z.infer<typeof schema>
+const defaultValues = {
+  email: "",
+  password: "",
+  confirmPassword: "",
+}
 
 /******************************************************************
  *  COMPONENT START                                               *
  ******************************************************************/
 export function Signup() {
   /**********  HOOKS  **********/
-  const methods = useForm<Schema>({
-    resolver: zodResolver(schema),
+  const navigate = useNavigate()
+  const { mutateAsync: signupUserAsync } = query.auth.signup.useMutation()
+  const form = useAppForm({
+    ...createFormOptions(schema, defaultValues),
+    onSubmit: async ({ value }) => {
+      await signupUserAsync(value)
+      return navigate({
+        to: "/",
+      })
+    },
   })
-  const { mutate: signupUser } = query.auth.signup.useMutation()
-
-  /********  FUNCTIONS  ********/
-  function handleSubmit(data: Schema) {
-    signupUser(data)
-  }
 
   /*********  RENDER  *********/
   return (
-    <div className={styles.signup}>
-      <LogoCard />
-      <Card>
-        <Text as="h1" size="xxl" alignCenter>
-          Sign Up
-        </Text>
-        <form onSubmit={methods.handleSubmit(handleSubmit)}>
-          <FormProvider {...methods}>
-            <Flex direction="column" gap="10px">
-              <Input.HookForm name="email" label="Email" />
-              <Input.HookForm name="password" label="Password" type="password" />
-              <Input.HookForm name="repeat_password" label="Repeat Password" type="password" />
-              <Space h={10} />
-              <Button color="sky" type="submit">
-                Signup
-              </Button>
-              <Text size="sm" color="gray">
-                Already registered? <Link to="/login">Login here</Link>
-              </Text>
-            </Flex>
-          </FormProvider>
-        </form>
-      </Card>
-    </div>
+    <Form form={form}>
+      <div className={styles.signup}>
+        <LogoCard />
+        <Card className={styles.card}>
+          <Text as="h1" size="xxl" alignCenter>
+            Sign Up
+          </Text>
+
+          <form.AppField name="email" children={(field) => <field.Input label="Email" />} />
+          <form.AppField name="password" children={(field) => <field.Input.Password label="Password" />} />
+          <form.AppField
+            name="confirmPassword"
+            children={(field) => <field.Input.Password label="Confirm Password" />}
+          />
+          <form.Submit label="Sign Up" />
+          <Text size="sm" color="gray">
+            Already registered?<Link to="/login"> Login here</Link>
+          </Text>
+        </Card>
+      </div>
+    </Form>
   )
 }

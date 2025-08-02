@@ -13,7 +13,6 @@ export const account = {
   GET: {
     user: async () => {
       const res = await supabase.auth.getUser()
-      console.log("res: ", res)
       return res
     },
     profile: async () => {
