@@ -1,8 +1,8 @@
 import { Card } from "components/Card"
 import { Flex } from "components/Flex"
 import { Text } from "components/Text"
-import { Assets } from "containers/dashboard/components/breakdown/assets"
-import { Liabilities } from "containers/dashboard/components/breakdown/liabilities"
+import { Assets } from "routes/_app/_index/-components/breakdown/assets"
+import { Liabilities } from "routes/_app/_index/-components/breakdown/liabilities"
 import styles from "./_breakdown.module.css"
 
 /******************************************************************
