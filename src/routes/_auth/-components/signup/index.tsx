@@ -1,4 +1,3 @@
-import { FormProvider, useForm } from "react-hook-form"
 import styles from "./_signup.module.css"
 import { Link } from "@tanstack/react-router"
 import { LogoCard } from "components/Logo"
@@ -7,8 +6,7 @@ import { Text } from "components/Text"
 import { Flex } from "components/Flex"
 import { Input } from "components/Form/Input"
 import { Button, Space } from "@mantine/core"
-import { zodResolver } from "@hookform/resolvers/zod"
-import { z } from "zod"
+import * as z from "zod"
 import { query } from "src/queries/queryTree"
 
 /******************************************************************

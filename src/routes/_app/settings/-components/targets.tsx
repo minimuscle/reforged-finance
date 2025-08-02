@@ -18,7 +18,7 @@ export const SettingsTargets = () => {
       <Input.Autosave
         label="Cash Goal"
         description="Set a goal to work towards"
-        defaultValue={user_data?.employment_income ?? ""}
+        defaultValue={user_data?.cash_goal ?? 0}
         save={account.POST.profile}
         column="employment_income"
         leftSection={<IconCurrencyDollar size={18} />}
@@ -28,7 +28,7 @@ export const SettingsTargets = () => {
       <Input.Autosave
         label="Emergency Fund Goal"
         description="How many months you want to save for. We recommend at least 12 months"
-        defaultValue={user_data?.employment_income ?? ""}
+        defaultValue={user_data?.emergency_fund_goal ?? 0}
         save={account.POST.profile}
         column="employment_income"
         leftSection={<IconCurrencyDollar size={18} />}
@@ -37,7 +37,7 @@ export const SettingsTargets = () => {
       />
       <Input.Autosave
         description="How much are you saving for your home deposit?"
-        defaultValue={user_data?.employment_income ?? ""}
+        defaultValue={user_data?.home_deposit_goal ?? 0}
         save={account.POST.profile}
         column="employment_income"
         leftSection={<IconCurrencyDollar size={18} />}

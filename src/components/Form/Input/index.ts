@@ -1,12 +1,11 @@
 import { _AutosaveInput } from "components/Form/Input/_Autosave"
-import { _TextInput } from "components/Form/Input/_default"
-import { _Input } from "components/Form/Input/_Input"
-import { _PasswordInput } from "components/Form/Input/password"
+import { InternalTextInput } from "components/Form/Input/internal/_default"
+import { InternalPasswordInput } from "components/Form/Input/internal/password"
 
 /******************************************************************
  *  COMPONENT START                                               *
  ******************************************************************/
-export const Input = Object.assign(_TextInput, {
-  Password: _PasswordInput,
+export const Input = Object.assign(InternalTextInput, {
+  Password: InternalPasswordInput,
   Autosave: _AutosaveInput,
 })

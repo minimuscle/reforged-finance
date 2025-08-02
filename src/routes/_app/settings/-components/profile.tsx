@@ -16,6 +16,7 @@ export const SettingsProfile = () => {
     <Flex direction="column" gap={15}>
       <Input.Autosave
         label="Account Email"
+        disabled
         description="Used to login to your account. Cannot be changed"
         defaultValue={user_data?.email ?? ""}
         save={account.POST.profile}
@@ -24,14 +25,14 @@ export const SettingsProfile = () => {
       <Input.Autosave
         label="Email Delivery Address"
         description="We will send all delivery emails to this address"
-        defaultValue={user_data?.employment_income ?? ""}
+        defaultValue={user_data?.delivery_email ?? ""}
         save={account.POST.profile}
         column="employment_income"
       />
       <Input.Autosave
         label="Your Name"
         description="Your name for use in emails and within this app."
-        defaultValue={user_data?.employment_income ?? ""}
+        defaultValue={user_data?.name ?? ""}
         save={account.POST.profile}
         column="employment_income"
       />

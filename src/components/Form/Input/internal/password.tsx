@@ -7,7 +7,7 @@ import clsx from "clsx"
 /******************************************************************
  *  COMPONENT START
  ******************************************************************/
-export const _PasswordInput: React.FC<PasswordInputProps> = (props) => {
+export const InternalPasswordInput: React.FC<PasswordInputProps> = (props) => {
   const ToggleIcon = ({ reveal }: { reveal: boolean }) => (reveal ? <IconEyeClosed /> : <IconEye />)
   /*****  RENDER  *****/
   return (
