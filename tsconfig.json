@@ -10,7 +10,8 @@
     "paths": {
       "components/*": ["./src/components/*"],
       "utils/*": ["./src/utils/*"],
-      "routes/*": ["./src/routes/*"]
+      "routes/*": ["./src/routes/*"],
+      "api/*": ["./src/api/*"]
     }
   }
 }

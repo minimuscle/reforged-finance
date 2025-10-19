@@ -3,12 +3,16 @@ import { TanStackDevtools } from "@tanstack/react-devtools"
 import { FormDevtoolsPanel } from "@tanstack/react-form-devtools/production"
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query"
 import { ReactQueryDevtoolsPanel } from "@tanstack/react-query-devtools"
-import { createRootRoute, HeadContent, Outlet, Scripts } from "@tanstack/react-router"
+import { createRootRouteWithContext, HeadContent, Outlet, Scripts } from "@tanstack/react-router"
 import { TanStackRouterDevtoolsPanel } from "@tanstack/react-router-devtools"
+import { getUser } from "api/serverFunctions"
 import { StrictMode } from "react"
+import { queryClient } from "utils/queryClient"
 import { ReactChildren } from "utils/types/global"
 
-export const Route = createRootRoute({
+export const Route = createRootRouteWithContext<{
+  queryClient: QueryClient
+}>()({
   head: () => ({
     meta: [
       { charSet: "utf-8" },
@@ -16,11 +20,10 @@ export const Route = createRootRoute({
       { title: "Reforged Finance" },
     ],
   }),
+  beforeLoad: () => getUser(),
   component: RootComponent,
   notFoundComponent: () => <div>404 Not Found</div>,
 })
-
-const queryClient = new QueryClient()
 
 function RootComponent() {
   return (

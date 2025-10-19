@@ -1,25 +1,30 @@
+import { useSuspenseQuery } from "@tanstack/react-query"
 import { createFileRoute } from "@tanstack/react-router"
-import { createServerFn } from "@tanstack/react-start"
-import { getSupabaseServerClient } from "utils/supabase/serverClient"
+import { getUserQueryOptions } from "api/supabase"
+import { useEffect } from "react"
+import { queryClient } from "utils/queryClient"
 
 export const Route = createFileRoute("/_app/")({
+  loader: ({ context: { queryClient } }) => {
+    queryClient.ensureQueryData(getUserQueryOptions)
+  },
   component: RouteComponent,
-  loader: () => fetchUser(),
-})
-const fetchUser = createServerFn({ method: "GET" }).handler(async () => {
-  const supabase = getSupabaseServerClient()
-  const { data, error: _error } = await supabase.auth.getUser()
-
-  console.log(data)
-  if (!data.user?.email) {
-    return null
-  }
-
-  return {
-    email: data.user.email,
-  }
 })
 
 function RouteComponent() {
-  return <div>Hello "/_app/"!</div>
+  const { data } = useSuspenseQuery(getUserQueryOptions)
+  console.log(data)
+
+  useEffect(() => {
+    //timeout for 5 seconds then refetch
+    const timeout = setTimeout(() => {
+      console.log("Refetching user data...")
+      //refetch the query
+      queryClient.invalidateQueries({ queryKey: ["user"] })
+    }, 5000)
+
+    return () => clearTimeout(timeout)
+  }, [])
+
+  return <div>Hello "/_app/"! {JSON.stringify(data)}</div>
 }
