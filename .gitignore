@@ -27,4 +27,6 @@ dist-ssr
 /hidden
 
 .env
+.env.local
+.env.production
 .tanstack/tmp/*
