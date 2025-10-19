@@ -1,47 +1,65 @@
-import { CatchBoundary, createRootRouteWithContext, Outlet, redirect } from "@tanstack/react-router"
-import type { QueryClient } from "@tanstack/react-query"
-import { auth } from "../api/auth"
-import { ErrorBoundary } from "components/Templates/ErrorBoundary"
-import { Suspense } from "react"
-import { Notifications } from "@mantine/notifications"
-import { ReactQueryDevtools } from "@tanstack/react-query-devtools"
-import "@mantine/core/styles.css"
-import "@mantine/notifications/styles.css"
-import "@mantine/charts/styles.css"
-import "utils/styles/globalStyles.css"
+/// <reference types="vite/client" />
+import { TanStackDevtools } from "@tanstack/react-devtools"
+import { FormDevtoolsPanel } from "@tanstack/react-form-devtools/production"
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query"
+import { ReactQueryDevtoolsPanel } from "@tanstack/react-query-devtools"
+import { createRootRoute, HeadContent, Outlet, Scripts } from "@tanstack/react-router"
+import { TanStackRouterDevtoolsPanel } from "@tanstack/react-router-devtools"
+import { StrictMode } from "react"
+import { ReactChildren } from "utils/types/global"
 
-export const Route = createRootRouteWithContext<{
-  queryClient: QueryClient
-}>()({
-  beforeLoad: async () => {
-    const res = await auth.GET.session()
-    if (!res && window.location.pathname !== "/login" && window.location.pathname !== "/signup") {
-      throw redirect({ to: "/login" })
-    } else if (res && (window.location.pathname === "/login" || window.location.pathname === "/signup")) {
-      throw redirect({ to: "/" })
-    }
-  },
-  component: RouteComponent,
+export const Route = createRootRoute({
+  head: () => ({
+    meta: [
+      { charSet: "utf-8" },
+      { name: "viewport", content: "width=device-width, initial-scale=1" },
+      { title: "Reforged Finance" },
+    ],
+  }),
+  component: RootComponent,
+  notFoundComponent: () => <div>404 Not Found</div>,
 })
 
-/******************************************************************
- *  COMPONENT START
- ******************************************************************/
-function RouteComponent() {
-  return (
-    <>
-      <CatchBoundary
-        getResetKey={() => "reset"}
-        onCatch={(error) => console.error("error!!!", error)}
-        errorComponent={ErrorBoundary}
-      >
-        <Suspense fallback={<h1>loading...</h1>}>
-          <Outlet />
-        </Suspense>
-      </CatchBoundary>
+const queryClient = new QueryClient()
 
-      <Notifications position="top-right" />
-      <ReactQueryDevtools />
-    </>
+function RootComponent() {
+  return (
+    <StrictMode>
+      <RootDocument>
+        <QueryClientProvider client={queryClient}>
+          <Outlet />
+          <TanStackDevtools
+            plugins={[
+              {
+                name: "TanStack Query",
+                render: <ReactQueryDevtoolsPanel />,
+              },
+              {
+                name: "TanStack Router",
+                render: <TanStackRouterDevtoolsPanel />,
+              },
+              {
+                name: "TanStack Form",
+                render: <FormDevtoolsPanel />,
+              },
+            ]}
+          />
+        </QueryClientProvider>
+      </RootDocument>
+    </StrictMode>
+  )
+}
+
+function RootDocument({ children }: ReactChildren) {
+  return (
+    <html>
+      <head>
+        <HeadContent />
+      </head>
+      <body>
+        {children}
+        <Scripts />
+      </body>
+    </html>
   )
 }

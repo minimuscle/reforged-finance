@@ -9,354 +9,60 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as AppRouteRouteImport } from './routes/_app/route'
-import { Route as AuthSignupRouteImport } from './routes/_auth/signup'
-import { Route as AuthLogoutRouteImport } from './routes/_auth/logout'
-import { Route as AuthLoginRouteImport } from './routes/_auth/login'
-import { Route as AppSupportIndexRouteImport } from './routes/_app/support/index'
-import { Route as AppSuperIndexRouteImport } from './routes/_app/super/index'
-import { Route as AppSideIncomeIndexRouteImport } from './routes/_app/side-income/index'
-import { Route as AppSettingsIndexRouteImport } from './routes/_app/settings/index'
-import { Route as AppPremiumIndexRouteImport } from './routes/_app/premium/index'
-import { Route as AppHistoryIndexRouteImport } from './routes/_app/history/index'
-import { Route as AppDebtsIndexRouteImport } from './routes/_app/debts/index'
-import { Route as AppCashIndexRouteImport } from './routes/_app/cash/index'
-import { Route as AppBudgetIndexRouteImport } from './routes/_app/budget/index'
-import { Route as AppIndexIndexRouteImport } from './routes/_app/_index/index'
-import { Route as AppPremiumBuyRouteImport } from './routes/_app/premium/buy'
+import { Route as AppIndexRouteImport } from './routes/_app/index'
 
-const AppRouteRoute = AppRouteRouteImport.update({
-  id: '/_app',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const AuthSignupRoute = AuthSignupRouteImport.update({
-  id: '/_auth/signup',
-  path: '/signup',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const AuthLogoutRoute = AuthLogoutRouteImport.update({
-  id: '/_auth/logout',
-  path: '/logout',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const AuthLoginRoute = AuthLoginRouteImport.update({
-  id: '/_auth/login',
-  path: '/login',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const AppSupportIndexRoute = AppSupportIndexRouteImport.update({
-  id: '/support/',
-  path: '/support/',
-  getParentRoute: () => AppRouteRoute,
-} as any)
-const AppSuperIndexRoute = AppSuperIndexRouteImport.update({
-  id: '/super/',
-  path: '/super/',
-  getParentRoute: () => AppRouteRoute,
-} as any)
-const AppSideIncomeIndexRoute = AppSideIncomeIndexRouteImport.update({
-  id: '/side-income/',
-  path: '/side-income/',
-  getParentRoute: () => AppRouteRoute,
-} as any)
-const AppSettingsIndexRoute = AppSettingsIndexRouteImport.update({
-  id: '/settings/',
-  path: '/settings/',
-  getParentRoute: () => AppRouteRoute,
-} as any)
-const AppPremiumIndexRoute = AppPremiumIndexRouteImport.update({
-  id: '/premium/',
-  path: '/premium/',
-  getParentRoute: () => AppRouteRoute,
-} as any)
-const AppHistoryIndexRoute = AppHistoryIndexRouteImport.update({
-  id: '/history/',
-  path: '/history/',
-  getParentRoute: () => AppRouteRoute,
-} as any)
-const AppDebtsIndexRoute = AppDebtsIndexRouteImport.update({
-  id: '/debts/',
-  path: '/debts/',
-  getParentRoute: () => AppRouteRoute,
-} as any)
-const AppCashIndexRoute = AppCashIndexRouteImport.update({
-  id: '/cash/',
-  path: '/cash/',
-  getParentRoute: () => AppRouteRoute,
-} as any)
-const AppBudgetIndexRoute = AppBudgetIndexRouteImport.update({
-  id: '/budget/',
-  path: '/budget/',
-  getParentRoute: () => AppRouteRoute,
-} as any)
-const AppIndexIndexRoute = AppIndexIndexRouteImport.update({
-  id: '/_index/',
+const AppIndexRoute = AppIndexRouteImport.update({
+  id: '/_app/',
   path: '/',
-  getParentRoute: () => AppRouteRoute,
-} as any)
-const AppPremiumBuyRoute = AppPremiumBuyRouteImport.update({
-  id: '/premium/buy',
-  path: '/premium/buy',
-  getParentRoute: () => AppRouteRoute,
+  getParentRoute: () => rootRouteImport,
 } as any)
 
 export interface FileRoutesByFullPath {
-  '/login': typeof AuthLoginRoute
-  '/logout': typeof AuthLogoutRoute
-  '/signup': typeof AuthSignupRoute
-  '/premium/buy': typeof AppPremiumBuyRoute
-  '/': typeof AppIndexIndexRoute
-  '/budget': typeof AppBudgetIndexRoute
-  '/cash': typeof AppCashIndexRoute
-  '/debts': typeof AppDebtsIndexRoute
-  '/history': typeof AppHistoryIndexRoute
-  '/premium': typeof AppPremiumIndexRoute
-  '/settings': typeof AppSettingsIndexRoute
-  '/side-income': typeof AppSideIncomeIndexRoute
-  '/super': typeof AppSuperIndexRoute
-  '/support': typeof AppSupportIndexRoute
+  '/': typeof AppIndexRoute
 }
 export interface FileRoutesByTo {
-  '/login': typeof AuthLoginRoute
-  '/logout': typeof AuthLogoutRoute
-  '/signup': typeof AuthSignupRoute
-  '/premium/buy': typeof AppPremiumBuyRoute
-  '/': typeof AppIndexIndexRoute
-  '/budget': typeof AppBudgetIndexRoute
-  '/cash': typeof AppCashIndexRoute
-  '/debts': typeof AppDebtsIndexRoute
-  '/history': typeof AppHistoryIndexRoute
-  '/premium': typeof AppPremiumIndexRoute
-  '/settings': typeof AppSettingsIndexRoute
-  '/side-income': typeof AppSideIncomeIndexRoute
-  '/super': typeof AppSuperIndexRoute
-  '/support': typeof AppSupportIndexRoute
+  '/': typeof AppIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
-  '/_app': typeof AppRouteRouteWithChildren
-  '/_auth/login': typeof AuthLoginRoute
-  '/_auth/logout': typeof AuthLogoutRoute
-  '/_auth/signup': typeof AuthSignupRoute
-  '/_app/premium/buy': typeof AppPremiumBuyRoute
-  '/_app/_index/': typeof AppIndexIndexRoute
-  '/_app/budget/': typeof AppBudgetIndexRoute
-  '/_app/cash/': typeof AppCashIndexRoute
-  '/_app/debts/': typeof AppDebtsIndexRoute
-  '/_app/history/': typeof AppHistoryIndexRoute
-  '/_app/premium/': typeof AppPremiumIndexRoute
-  '/_app/settings/': typeof AppSettingsIndexRoute
-  '/_app/side-income/': typeof AppSideIncomeIndexRoute
-  '/_app/super/': typeof AppSuperIndexRoute
-  '/_app/support/': typeof AppSupportIndexRoute
+  '/_app/': typeof AppIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths:
-    | '/login'
-    | '/logout'
-    | '/signup'
-    | '/premium/buy'
-    | '/'
-    | '/budget'
-    | '/cash'
-    | '/debts'
-    | '/history'
-    | '/premium'
-    | '/settings'
-    | '/side-income'
-    | '/super'
-    | '/support'
+  fullPaths: '/'
   fileRoutesByTo: FileRoutesByTo
-  to:
-    | '/login'
-    | '/logout'
-    | '/signup'
-    | '/premium/buy'
-    | '/'
-    | '/budget'
-    | '/cash'
-    | '/debts'
-    | '/history'
-    | '/premium'
-    | '/settings'
-    | '/side-income'
-    | '/super'
-    | '/support'
-  id:
-    | '__root__'
-    | '/_app'
-    | '/_auth/login'
-    | '/_auth/logout'
-    | '/_auth/signup'
-    | '/_app/premium/buy'
-    | '/_app/_index/'
-    | '/_app/budget/'
-    | '/_app/cash/'
-    | '/_app/debts/'
-    | '/_app/history/'
-    | '/_app/premium/'
-    | '/_app/settings/'
-    | '/_app/side-income/'
-    | '/_app/super/'
-    | '/_app/support/'
+  to: '/'
+  id: '__root__' | '/_app/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
-  AppRouteRoute: typeof AppRouteRouteWithChildren
-  AuthLoginRoute: typeof AuthLoginRoute
-  AuthLogoutRoute: typeof AuthLogoutRoute
-  AuthSignupRoute: typeof AuthSignupRoute
+  AppIndexRoute: typeof AppIndexRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/_app': {
-      id: '/_app'
-      path: ''
-      fullPath: ''
-      preLoaderRoute: typeof AppRouteRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/_auth/signup': {
-      id: '/_auth/signup'
-      path: '/signup'
-      fullPath: '/signup'
-      preLoaderRoute: typeof AuthSignupRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/_auth/logout': {
-      id: '/_auth/logout'
-      path: '/logout'
-      fullPath: '/logout'
-      preLoaderRoute: typeof AuthLogoutRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/_auth/login': {
-      id: '/_auth/login'
-      path: '/login'
-      fullPath: '/login'
-      preLoaderRoute: typeof AuthLoginRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/_app/support/': {
-      id: '/_app/support/'
-      path: '/support'
-      fullPath: '/support'
-      preLoaderRoute: typeof AppSupportIndexRouteImport
-      parentRoute: typeof AppRouteRoute
-    }
-    '/_app/super/': {
-      id: '/_app/super/'
-      path: '/super'
-      fullPath: '/super'
-      preLoaderRoute: typeof AppSuperIndexRouteImport
-      parentRoute: typeof AppRouteRoute
-    }
-    '/_app/side-income/': {
-      id: '/_app/side-income/'
-      path: '/side-income'
-      fullPath: '/side-income'
-      preLoaderRoute: typeof AppSideIncomeIndexRouteImport
-      parentRoute: typeof AppRouteRoute
-    }
-    '/_app/settings/': {
-      id: '/_app/settings/'
-      path: '/settings'
-      fullPath: '/settings'
-      preLoaderRoute: typeof AppSettingsIndexRouteImport
-      parentRoute: typeof AppRouteRoute
-    }
-    '/_app/premium/': {
-      id: '/_app/premium/'
-      path: '/premium'
-      fullPath: '/premium'
-      preLoaderRoute: typeof AppPremiumIndexRouteImport
-      parentRoute: typeof AppRouteRoute
-    }
-    '/_app/history/': {
-      id: '/_app/history/'
-      path: '/history'
-      fullPath: '/history'
-      preLoaderRoute: typeof AppHistoryIndexRouteImport
-      parentRoute: typeof AppRouteRoute
-    }
-    '/_app/debts/': {
-      id: '/_app/debts/'
-      path: '/debts'
-      fullPath: '/debts'
-      preLoaderRoute: typeof AppDebtsIndexRouteImport
-      parentRoute: typeof AppRouteRoute
-    }
-    '/_app/cash/': {
-      id: '/_app/cash/'
-      path: '/cash'
-      fullPath: '/cash'
-      preLoaderRoute: typeof AppCashIndexRouteImport
-      parentRoute: typeof AppRouteRoute
-    }
-    '/_app/budget/': {
-      id: '/_app/budget/'
-      path: '/budget'
-      fullPath: '/budget'
-      preLoaderRoute: typeof AppBudgetIndexRouteImport
-      parentRoute: typeof AppRouteRoute
-    }
-    '/_app/_index/': {
-      id: '/_app/_index/'
+    '/_app/': {
+      id: '/_app/'
       path: '/'
       fullPath: '/'
-      preLoaderRoute: typeof AppIndexIndexRouteImport
-      parentRoute: typeof AppRouteRoute
-    }
-    '/_app/premium/buy': {
-      id: '/_app/premium/buy'
-      path: '/premium/buy'
-      fullPath: '/premium/buy'
-      preLoaderRoute: typeof AppPremiumBuyRouteImport
-      parentRoute: typeof AppRouteRoute
+      preLoaderRoute: typeof AppIndexRouteImport
+      parentRoute: typeof rootRouteImport
     }
   }
 }
 
-interface AppRouteRouteChildren {
-  AppPremiumBuyRoute: typeof AppPremiumBuyRoute
-  AppIndexIndexRoute: typeof AppIndexIndexRoute
-  AppBudgetIndexRoute: typeof AppBudgetIndexRoute
-  AppCashIndexRoute: typeof AppCashIndexRoute
-  AppDebtsIndexRoute: typeof AppDebtsIndexRoute
-  AppHistoryIndexRoute: typeof AppHistoryIndexRoute
-  AppPremiumIndexRoute: typeof AppPremiumIndexRoute
-  AppSettingsIndexRoute: typeof AppSettingsIndexRoute
-  AppSideIncomeIndexRoute: typeof AppSideIncomeIndexRoute
-  AppSuperIndexRoute: typeof AppSuperIndexRoute
-  AppSupportIndexRoute: typeof AppSupportIndexRoute
-}
-
-const AppRouteRouteChildren: AppRouteRouteChildren = {
-  AppPremiumBuyRoute: AppPremiumBuyRoute,
-  AppIndexIndexRoute: AppIndexIndexRoute,
-  AppBudgetIndexRoute: AppBudgetIndexRoute,
-  AppCashIndexRoute: AppCashIndexRoute,
-  AppDebtsIndexRoute: AppDebtsIndexRoute,
-  AppHistoryIndexRoute: AppHistoryIndexRoute,
-  AppPremiumIndexRoute: AppPremiumIndexRoute,
-  AppSettingsIndexRoute: AppSettingsIndexRoute,
-  AppSideIncomeIndexRoute: AppSideIncomeIndexRoute,
-  AppSuperIndexRoute: AppSuperIndexRoute,
-  AppSupportIndexRoute: AppSupportIndexRoute,
-}
-
-const AppRouteRouteWithChildren = AppRouteRoute._addFileChildren(
-  AppRouteRouteChildren,
-)
-
 const rootRouteChildren: RootRouteChildren = {
-  AppRouteRoute: AppRouteRouteWithChildren,
-  AuthLoginRoute: AuthLoginRoute,
-  AuthLogoutRoute: AuthLogoutRoute,
-  AuthSignupRoute: AuthSignupRoute,
+  AppIndexRoute: AppIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { createStart } from '@tanstack/react-start'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+  }
+}
