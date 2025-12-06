@@ -14,8 +14,8 @@ type ParagraphSemanticTextTag =
 
 type SemanticTextTag = HeadingSemanticTextTag | ParagraphSemanticTextTag
 
-export type ColorOptions = 'primary' | 'secondary' | 'tertiary' | 'error' | 'warning' | 'success' | 'info' | 'default'
-type TextColor = { color?: ColorOptions }
+export type ColorOptions = 'grey' | 'error' | 'warning' | 'success' | 'info' | 'default'
+type TextColor = { color?: ColorOptions | string }
 type TextDecorations = { bold?: boolean; italic?: boolean; underline?: boolean; strikethrough?: boolean }
 type TextSizes =
   | { xs?: true; sm?: never; md?: never; lg?: never; xl?: never }

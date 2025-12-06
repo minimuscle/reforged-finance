@@ -10,7 +10,27 @@ function RouteComponent() {
     <div>
       Hello "/_guest/login"!
       <Link to="/">Click here</Link>
-      <Text h1>f</Text>
+      <Text bold color="default">
+        Default
+      </Text>
+      <Text bold color="grey">
+        Grey
+      </Text>
+      <Text bold color="error">
+        Error
+      </Text>
+      <Text bold color="warning">
+        Warning
+      </Text>
+      <Text bold color="success">
+        Success
+      </Text>
+      <Text bold color="info">
+        Info
+      </Text>
+      <Text bold color="var(--purple-600)">
+        Custom Color
+      </Text>
     </div>
   )
 }
