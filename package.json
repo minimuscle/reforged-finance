@@ -1,41 +1,43 @@
 {
-  "name": "personalfinance",
-  "version": "0.6.0",
-  "description": "",
-  "main": "index.js",
+  "name": "reforgedfinance",
+  "private": true,
+  "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite dev",
-    "build": "vite build"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "packageManager": "pnpm@10.18.3+sha256.797d0059bc5fc3356d79c681615a137c7b35e4efc03a4449a8a1abfcbcc4bdc7",
-  "devDependencies": {
-    "@tanstack/devtools-vite": "^0.3.7",
-    "@tanstack/eslint-plugin-query": "^5.91.2",
-    "@types/node": "^24.8.1",
-    "@types/react": "^19.2.2",
-    "@types/react-dom": "^19.2.2",
-    "typescript": "^5.9.3",
-    "vite": "^7.1.10",
-    "vite-tsconfig-paths": "^5.1.4"
+    "dev": "vite",
+    "build": "tsc -b && vite build",
+    "lint": "eslint .",
+    "preview": "vite preview"
   },
   "dependencies": {
-    "@supabase/ssr": "^0.7.0",
-    "@supabase/supabase-js": "^2.75.1",
-    "@tanstack/react-devtools": "^0.7.7",
-    "@tanstack/react-form": "^1.23.7",
-    "@tanstack/react-form-devtools": "^0.1.7",
-    "@tanstack/react-query": "^5.90.5",
-    "@tanstack/react-query-devtools": "^5.90.2",
-    "@tanstack/react-router": "^1.133.13",
-    "@tanstack/react-router-devtools": "^1.133.13",
-    "@tanstack/react-start": "^1.133.13",
-    "@vitejs/plugin-react": "^5.0.4",
+    "@tanstack/react-form": "^1.27.0",
+    "@tanstack/react-query": "^5.90.12",
+    "@tanstack/react-router": "^1.139.14",
+    "@tanstack/react-router-devtools": "^1.139.14",
+    "@tanstack/router-plugin": "^1.139.14",
     "react": "^19.2.0",
     "react-aria-components": "^1.13.0",
     "react-dom": "^19.2.0"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.39.1",
+    "@types/node": "^24.10.1",
+    "@types/react": "^19.2.5",
+    "@types/react-dom": "^19.2.3",
+    "@vitejs/plugin-react": "^5.1.1",
+    "add": "^2.0.6",
+    "babel-plugin-react-compiler": "^1.0.0",
+    "eslint": "^9.39.1",
+    "eslint-plugin-react-hooks": "^7.0.1",
+    "eslint-plugin-react-refresh": "^0.4.24",
+    "globals": "^16.5.0",
+    "typescript": "~5.9.3",
+    "typescript-eslint": "^8.46.4",
+    "vite": "^8.0.0-beta.0"
+  },
+  "pnpm": {
+    "overrides": {
+      "vite": "^8.0.0-beta.0"
+    }
   }
 }
