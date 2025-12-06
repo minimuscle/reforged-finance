@@ -1,5 +1,7 @@
 import { createFileRoute, Link } from '@tanstack/react-router'
+import { Card } from 'components/Card'
 import { Text } from 'components/Text'
+import { Heading } from 'components/Text/Heading'
 
 export const Route = createFileRoute('/_guest/login')({
   component: RouteComponent,
@@ -7,30 +9,11 @@ export const Route = createFileRoute('/_guest/login')({
 
 function RouteComponent() {
   return (
-    <div>
-      Hello "/_guest/login"!
-      <Link to="/">Click here</Link>
-      <Text bold color="default">
-        Default
+    <Card>
+      <Heading bold>Sign in to your account</Heading>
+      <Text color="grey">
+        Don't have an account? <Link to="/signup">Sign up for FREE</Link>
       </Text>
-      <Text bold color="grey">
-        Grey
-      </Text>
-      <Text bold color="error">
-        Error
-      </Text>
-      <Text bold color="warning">
-        Warning
-      </Text>
-      <Text bold color="success">
-        Success
-      </Text>
-      <Text bold color="info">
-        Info
-      </Text>
-      <Text bold color="var(--purple-600)">
-        Custom Color
-      </Text>
-    </div>
+    </Card>
   )
 }

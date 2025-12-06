@@ -24,7 +24,7 @@ type TextSizes =
   | { xs?: never; sm?: never; md?: never; lg?: true; xl?: never }
   | { xs?: never; sm?: never; md?: never; lg?: never; xl?: true }
 
-export type TextAttributes = TextDecorations & TextSizes & TextColor
+export type TextAttributes = TextDecorations & TextSizes & TextColor & { className?: string }
 
 export type TextProps = ReactWithChildren<SemanticTextTag & TextAttributes>
 

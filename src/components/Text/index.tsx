@@ -4,7 +4,7 @@ import type { ColorOptions, TextProps } from 'components/Text/types'
  *   COMPONENT START
  **********************************************************************************************************/
 export const Text: TextProps = ({ children, ...props }) => {
-  const { h1, h2, h3, h4, h5, h6, p, span, color, italic, bold, strikethrough, underline } = props
+  const { h1, h2, h3, h4, h5, h6, p, span, color, italic, bold, strikethrough, underline, className } = props
 
   const semanticProps = { h1, h2, h3, h4, h5, h6, p, span }
   const Component = (Object.entries(semanticProps).find(([, val]) => val)?.[0] ?? 'p') as keyof React.JSX.IntrinsicElements
@@ -27,6 +27,7 @@ export const Text: TextProps = ({ children, ...props }) => {
         fontWeight: bold ? 'bold' : 'normal',
         textDecoration: `${underline ? 'underline ' : ''}${strikethrough ? 'line-through' : ''}`,
       }}
+      className={className}
     >
       {children}
     </Component>
