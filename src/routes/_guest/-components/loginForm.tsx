@@ -1,3 +1,4 @@
+import { Button } from 'components/Button'
 import { useAppForm } from 'components/Form'
 import { Form } from 'components/Form/form'
 
@@ -16,7 +17,7 @@ export const LoginForm = () => {
     <Form form={form}>
       <form.AppField name="email" children={(field) => <field.TextInput label="Email Address" />} />
       <form.AppField name="password" children={(field) => <field.TextInput label="Password" />} />
-      <button type="submit">Login</button>
+      <Button type="submit">Login</Button>
     </Form>
   )
 }
