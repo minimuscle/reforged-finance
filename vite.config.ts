@@ -1,26 +1,46 @@
-import { defineConfig } from "vite";
-import react from "@vitejs/plugin-react";
-import { tanstackRouter } from "@tanstack/router-plugin/vite";
+import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react'
+import { tanstackRouter } from '@tanstack/router-plugin/vite'
 
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [
     tanstackRouter({
-      target: "react",
-      autoCodeSplitting: true,
+      target: 'react',
+      customScaffolding: {
+        routeTemplate: [
+          '%%tsrImports%%',
+          '\n\n',
+          '/******************************************************\n',
+          ' *   ROUTE START\n',
+          ' ******************************************************/\n',
+          '%%tsrExportStart%%{\n',
+          '   component: RouteComponent\n',
+          '}%%tsrExportEnd%%\n\n',
+          '/******************************************************\n',
+          ' *   ROUTE COMPONENT START\n',
+          ' ******************************************************/\n',
+          'function RouteComponent() {\n\n',
+          '  /***** RENDER *****/\n',
+          '  return (\n',
+          '      <div>Hello "%%tsrPath%%"!</div>\n',
+          '  );\n',
+          '};\n',
+        ].join(''),
+      },
     }),
     react({
       babel: {
-        plugins: [["babel-plugin-react-compiler"]],
+        plugins: [['babel-plugin-react-compiler']],
       },
     }),
   ],
   resolve: {
     alias: {
-      components: "/src/components",
-      utils: "/src/utils",
-      routes: "/src/routes",
-      api: "/src/api",
+      components: '/src/components',
+      utils: '/src/utils',
+      routes: '/src/routes',
+      api: '/src/api',
     },
   },
-});
+})

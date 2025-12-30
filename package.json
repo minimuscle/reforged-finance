@@ -1,7 +1,7 @@
 {
   "name": "reforgedfinance",
   "private": true,
-  "version": "0.0.0",
+  "version": "0.6.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -10,36 +10,40 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@tanstack/react-form": "^1.27.0",
+    "@supabase/supabase-js": "^2.89.0",
+    "@tanstack/react-form": "^1.27.6",
     "@tanstack/react-query": "^5.90.12",
-    "@tanstack/react-router": "^1.139.14",
-    "@tanstack/react-router-devtools": "^1.139.14",
-    "@tanstack/router-plugin": "^1.139.14",
+    "@tanstack/react-router": "^1.144.0",
+    "@tanstack/react-router-devtools": "^1.144.0",
+    "@tanstack/router-plugin": "^1.144.0",
     "classnames": "^2.5.1",
-    "react": "^19.2.0",
-    "react-aria-components": "^1.13.0",
-    "react-dom": "^19.2.0",
-    "zod": "^4.1.13"
+    "react": "^19.2.3",
+    "react-aria-components": "^1.14.0",
+    "react-dom": "^19.2.3",
+    "zod": "^4.2.1"
   },
   "devDependencies": {
-    "@eslint/js": "^9.39.1",
-    "@types/node": "^24.10.1",
-    "@types/react": "^19.2.5",
+    "@eslint/js": "^9.39.2",
+    "@types/node": "^24.10.4",
+    "@types/react": "^19.2.7",
     "@types/react-dom": "^19.2.3",
-    "@vitejs/plugin-react": "^5.1.1",
+    "@vitejs/plugin-react": "^5.1.2",
     "add": "^2.0.6",
     "babel-plugin-react-compiler": "^1.0.0",
-    "eslint": "^9.39.1",
+    "eslint": "^9.39.2",
     "eslint-plugin-react-hooks": "^7.0.1",
-    "eslint-plugin-react-refresh": "^0.4.24",
+    "eslint-plugin-react-refresh": "^0.4.26",
     "globals": "^16.5.0",
     "typescript": "~5.9.3",
-    "typescript-eslint": "^8.46.4",
-    "vite": "^8.0.0-beta.0"
+    "typescript-eslint": "^8.50.1",
+    "vite": "8.0.0-beta.5"
   },
   "pnpm": {
     "overrides": {
       "vite": "^8.0.0-beta.0"
-    }
+    },
+    "ignoredBuiltDependencies": [
+      "esbuild"
+    ]
   }
 }

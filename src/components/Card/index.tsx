@@ -1,4 +1,4 @@
-import type { ReactWithChildren } from 'utils/types'
+import type { ReactWithChildren } from 'utils/types/general'
 import styles from './Card.module.css'
 import { Flex } from 'components/Flex'
 

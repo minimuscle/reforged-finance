@@ -1,7 +1,7 @@
-import type { ReactWithChildren } from 'utils/types'
+import type { ReactWithChildren } from 'utils/types/general'
 import styles from './Button.module.css'
 import type { ButtonHTMLAttributes, CSSProperties } from 'react'
-import { colorVar, type ColorToken } from 'utils/styles'
+import { colorVar, type ColorToken } from 'utils/css/styles'
 
 /**********************************************************************************************************
  *   TYPE DEFINITIONS

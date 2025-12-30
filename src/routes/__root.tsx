@@ -1,16 +1,19 @@
-import * as React from "react";
-import { HeadContent, Outlet, createRootRoute } from "@tanstack/react-router";
+import * as React from 'react'
+import { HeadContent, Outlet, createRootRoute } from '@tanstack/react-router'
 
+/******************************************************
+ *   ROOT ROUTE START
+ ******************************************************/
 export const Route = createRootRoute({
   head: () => ({
     meta: [
       {
-        title: "Reforged Finance",
+        title: 'Reforged Finance',
       },
     ],
   }),
   component: RootComponent,
-});
+})
 
 function RootComponent() {
   return (
@@ -18,5 +21,5 @@ function RootComponent() {
       <HeadContent />
       <Outlet />
     </React.Fragment>
-  );
+  )
 }

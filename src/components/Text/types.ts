@@ -1,4 +1,4 @@
-import type { ReactWithChildren } from 'utils/types'
+import type { ReactWithChildren } from 'utils/types/general'
 
 type HeadingSemanticTextTag =
   | { h1?: true; h2?: never; h3?: never; h4?: never; h5?: never; h6?: never; p?: never; span?: never }

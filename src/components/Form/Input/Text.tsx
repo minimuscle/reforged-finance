@@ -20,11 +20,14 @@ export const TextInput: TextInput = ({ label, ...props }) => {
 
   return (
     <div className={styles.container}>
-      <label className={styles.label}>{label}</label>
+      <label htmlFor={field.name} className={styles.label}>
+        {label}
+      </label>
       <input
+        id={field.name}
         className={styles.input}
         type="text"
-        value={field.state.value}
+        value={field.state.value ?? ''}
         onChange={(e) => field.handleChange(e.target.value)}
         onBlur={field.handleBlur}
         {...props}

@@ -15,8 +15,11 @@ export const LoginForm = () => {
   /***** RENDER *****/
   return (
     <Form form={form}>
-      <form.AppField name="email" children={(field) => <field.TextInput label="Email Address" />} />
-      <form.AppField name="password" children={(field) => <field.TextInput label="Password" />} />
+      <form.AppField name="email" children={(field) => <field.TextInput label="Email Address" autoComplete="email" />} />
+      <form.AppField
+        name="password"
+        children={(field) => <field.TextInput label="Password" type="password" autoComplete="current-password" />}
+      />
       <Button type="submit">Login</Button>
     </Form>
   )
