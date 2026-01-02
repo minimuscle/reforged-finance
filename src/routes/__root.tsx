@@ -1,10 +1,11 @@
 import * as React from 'react'
-import { HeadContent, Outlet, createRootRoute } from '@tanstack/react-router'
+import { createRootRouteWithContext, HeadContent, Outlet, createRootRoute } from '@tanstack/react-router'
+import type { RouterContext } from '../utils/types/router.ts'
 
 /******************************************************
  *   ROOT ROUTE START
  ******************************************************/
-export const Route = createRootRoute({
+export const Route = createRootRouteWithContext<RouterContext>()({
   head: () => ({
     meta: [
       {

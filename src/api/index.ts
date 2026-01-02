@@ -10,6 +10,12 @@ export declare namespace API {
         password: string
       }
     }
+    namespace login {
+      type Params = {
+        email: string
+        password: string
+      }
+    }
   }
 }
 
@@ -20,6 +26,12 @@ export const API = {
   auth: {
     signup: async ({ email, password }: API.auth.signup.Params) => {
       return await supabase.auth.signUp({
+        email,
+        password,
+      })
+    },
+    login: async ({ email, password }: API.auth.login.Params) => {
+      return await supabase.auth.signInWithPassword({
         email,
         password,
       })

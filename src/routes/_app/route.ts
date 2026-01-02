@@ -1,9 +1,8 @@
 import { createFileRoute, redirect } from '@tanstack/react-router'
 
 export const Route = createFileRoute('/_app')({
-  beforeLoad: () => {
-    if (true) {
-      throw redirect({ to: '/login' })
-    }
+  beforeLoad: async ({ context: { supabase } }) => {
+    const { data } = await supabase.auth.getUser()
+    if (!data) throw redirect({ to: '/' })
   },
 })
