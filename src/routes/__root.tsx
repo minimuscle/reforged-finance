@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { createRootRouteWithContext, HeadContent, Outlet, createRootRoute } from '@tanstack/react-router'
+import { createRootRouteWithContext, HeadContent, Outlet } from '@tanstack/react-router'
 import type { RouterContext } from '../utils/types/router.ts'
 
 /******************************************************

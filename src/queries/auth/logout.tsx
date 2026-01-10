@@ -4,7 +4,7 @@ import { API } from 'api/index'
 /**********************************************************************************************************
  *   MUTATION START
  **********************************************************************************************************/
-export const loginUser = mutationOptions({
-  mutationKey: ['auth', 'login'],
-  mutationFn: API.auth.login,
+export const logoutUser = mutationOptions({
+  mutationKey: ['auth', 'logout'],
+  mutationFn: API.auth.logout,
 })

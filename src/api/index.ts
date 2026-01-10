@@ -36,5 +36,8 @@ export const API = {
         password,
       })
     },
+    logout: async () => {
+      return await supabase.auth.signOut()
+    },
   },
 }
