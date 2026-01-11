@@ -10,6 +10,7 @@ body,
 html,
 #root {
   min-height: 100dvh;
+  color: var(--slate-800);
 }
 
 :root {

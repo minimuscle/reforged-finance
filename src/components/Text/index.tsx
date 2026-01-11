@@ -16,7 +16,7 @@ export const Text: TextProps = ({ children, ...props }) => {
     error: 'var(--red-600)',
     warning: 'var(--amber-500)',
     success: 'var(--green-600)',
-    info: 'var(--sky-600)',
+    info: 'var(--cyan-600)',
     default: 'var(--slate-800)',
   }
 

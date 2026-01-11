@@ -1,6 +1,4 @@
 import type { PaddingProps } from 'components/Padding/types'
-import type { CSSProperties } from 'react'
-import styles from './padding.module.css'
 
 /**********************************************************************************************************
  *   COMPONENT START
@@ -8,18 +6,12 @@ import styles from './padding.module.css'
 export const Padding: PaddingProps = ({ xy, x, y, top, bottom, left, right, children }) => {
   return (
     <div
-      style={
-        {
-          '--padding-xy': xy && `${xy}px`,
-          '--padding-x': x && `${x}px`,
-          '--padding-y': y && `${y}px`,
-          '--padding-top': top && `${top}px`,
-          '--padding-bottom': bottom && `${bottom}px`,
-          '--padding-left': left && `${left}px`,
-          '--padding-right': right && `${right}px`,
-        } as CSSProperties
-      }
-      className={styles.padding}
+      style={{
+        paddingLeft: left ? `${left}px` : x ? `${x}px` : xy ? `${xy}px` : '0',
+        paddingRight: right ? `${right}px` : x ? `${x}px` : xy ? `${xy}px` : '0',
+        paddingTop: top ? `${top}px` : y ? `${y}px` : xy ? `${xy}px` : '0',
+        paddingBottom: bottom ? `${bottom}px` : y ? `${y}px` : xy ? `${xy}px` : '0',
+      }}
     >
       {children}
     </div>

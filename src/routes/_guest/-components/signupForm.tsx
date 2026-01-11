@@ -7,27 +7,28 @@ import { createFormOptions } from 'components/Form/createFormOptions'
 import { Form } from 'components/Form/form'
 import { Text } from 'components/Text'
 import z from 'zod'
-import { loginUser } from '../../../queries/auth/login'
+import { signupUser } from '../../../queries/auth/signup'
 import styles from './login.module.css'
 
 /**********************************************************************************************************
  *   COMPONENT START
  **********************************************************************************************************/
-export const LoginForm = () => {
-  const { mutateAsync: login } = useMutation(loginUser)
+export const SignupForm = () => {
+  const { mutateAsync: signup } = useMutation(signupUser)
 
   const form = useAppForm({
     ...createFormOptions(
       z.object({
         email: z.email(),
         password: z.string(),
+        repeat_password: z.string(),
       }),
-      { email: '', password: '' }
+      { email: '', password: '', repeat_password: '' }
     ),
     onSubmit: ({ value }) => {
-      login(value, {
+      signup(value, {
         onSuccess: () => {
-          return redirect({ to: '/' })
+          redirect({ to: '/' })
         },
       })
     },
@@ -40,12 +41,16 @@ export const LoginForm = () => {
         <form.AppField name="email" children={(field) => <field.TextInput label="Email Address" autoComplete="email" />} />
         <form.AppField
           name="password"
-          children={(field) => <field.TextInput label="Password" type="password" autoComplete="current-password" />}
+          children={(field) => <field.TextInput label="Password" type="password" autoComplete="new-password" />}
+        />
+        <form.AppField
+          name="repeat_password"
+          children={(field) => <field.TextInput label="Repeat Password" type="password" autoComplete="new-password" />}
         />
         <Text size="xs" color="info" className={styles.forgot}>
           Forgot Password?
         </Text>
-        <Button type="submit">Log In</Button>
+        <Button type="submit">Sign Up</Button>
       </Flex>
     </Form>
   )

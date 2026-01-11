@@ -1,0 +1,14 @@
+.container {
+  max-width: 350px;
+  margin: 0 auto;
+
+  a {
+    text-decoration: none;
+    color: var(--cyan-600);
+  }
+}
+
+.forgot {
+  text-align: end;
+  margin-top: -15px;
+}

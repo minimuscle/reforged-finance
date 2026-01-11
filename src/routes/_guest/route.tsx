@@ -28,9 +28,11 @@ function RouteComponent() {
         <Heading h2 size={24} semiBold color="grey">
           Personal Wealth Tracker
         </Heading>
-        <Padding xy={100}>
-          <Outlet />
-        </Padding>
+        <Flex direction="column" fullWidth>
+          <Padding top={100}>
+            <Outlet />
+          </Padding>
+        </Flex>
       </Flex>
     </Flex>
   )
