@@ -1,5 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap');
 
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -26,6 +32,7 @@ button {
 
 :root {
   --background: #eaf4f6;
+  --white: #ffffff;
 
   /*** COLOR PALETTE VARIABLES ***/
   /* SLATE */

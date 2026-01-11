@@ -1,5 +1,7 @@
 import { createFileRoute, Outlet, redirect } from '@tanstack/react-router'
+import { Padding } from 'components/Padding'
 import { GlobalHeader } from 'routes/_app/-components/header'
+import { PremiumBanner } from 'routes/_app/-components/premiumBanner'
 import styles from './-components/app.module.css'
 
 /******************************************************
@@ -21,7 +23,10 @@ function RouteComponent() {
   return (
     <div className={styles.container}>
       <GlobalHeader />
-      <Outlet />
+      <PremiumBanner />
+      <Padding top={20}>
+        <Outlet />
+      </Padding>
     </div>
   )
 }

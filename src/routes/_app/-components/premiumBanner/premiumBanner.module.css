@@ -1,0 +1,6 @@
+.container {
+  border-radius: 30px;
+  background: linear-gradient(to bottom right, #0e7490, #06b6d4);
+  height: 85px;
+  padding: 0 30px;
+}
