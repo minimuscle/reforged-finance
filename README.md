@@ -1,75 +1,67 @@
-# React + TypeScript + Vite
+# Reforged Finance
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+**Reforged Finance** is a modern personal wealth tracker designed to give a clear, honest picture of your financial position over time — without the clutter, guilt, or rigid budgeting rules of traditional finance apps.
 
-Currently, two official plugins are available:
+It focuses on **net worth**, **asset visibility**, and **long-term progress**, built with a clean UI and a modern TypeScript stack.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## React Compiler
+## ✨ Features
 
-The React Compiler is enabled on this template. See [this documentation](https://react.dev/learn/react-compiler) for more information.
+- 📊 **Net Worth Tracking**  
+  Track assets and liabilities to see your real financial position at a glance.
 
-Note: This will impact Vite dev & build performances.
+- 🏦 **Multi-Account Support**  
+  Supports cash, savings, investments, debts, and custom account types.
 
-## Expanding the ESLint configuration
+- 📈 **Historical Insights**  
+  Visualise how your wealth changes over time instead of focusing only on day-to-day spending.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- 🧠 **Low-Friction Design**  
+  No aggressive budgeting, shaming alerts, or unnecessary complexity.
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+- 🔐 **Privacy-First**  
+  Built with security and data privacy as core concerns.
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+---
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+## 🛠 Tech Stack
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+- **Frontend:** React + TypeScript
+- **Routing:** TanStack Router
+- **Data Fetching:** TanStack Query
+- **Backend:** Supabase (Postgres + Auth)
+- **Validation:** Zod
+- **Analytics / Flags:** PostHog
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+---
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+## 🚧 Project Status
+
+Reforged Finance is **actively under development**.
+
+The core experience is not yet functional, with ongoing work focused on:
+
+- Creating the foundational pages
+- Restyling the UI
+- Ensuring the backend behaves correctly
+
+Expect breaking changes while the project evolves.
+
+---
+
+## 🎯 Philosophy
+
+Reforged Finance is built around a few core beliefs:
+
+- Net worth matters more than daily guilt.
+- Visibility beats restriction.
+- Financial tools should reduce stress, not add to it.
+- Progress should be motivating, not punishing.
+
+---
+
+## 📄 License
+
+Proprietary.  
+All rights reserved.
