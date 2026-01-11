@@ -15,16 +15,22 @@ type ParagraphSemanticTextTag =
 type SemanticTextTag = HeadingSemanticTextTag | ParagraphSemanticTextTag
 
 export type ColorOptions = 'grey' | 'error' | 'warning' | 'success' | 'info' | 'default'
-type TextColor = { color?: ColorOptions | string }
-type TextDecorations = { bold?: boolean; italic?: boolean; underline?: boolean; strikethrough?: boolean }
-type TextSizes =
-  | { xs?: true; sm?: never; md?: never; lg?: never; xl?: never }
-  | { xs?: never; sm?: true; md?: never; lg?: never; xl?: never }
-  | { xs?: never; sm?: never; md?: true; lg?: never; xl?: never }
-  | { xs?: never; sm?: never; md?: never; lg?: true; xl?: never }
-  | { xs?: never; sm?: never; md?: never; lg?: never; xl?: true }
+type TextColor = { color?: ColorOptions }
 
-export type TextAttributes = TextDecorations & TextSizes & TextColor & { className?: string }
+type TextDecorations = { italic?: boolean; underline?: boolean; strikethrough?: boolean }
+
+export type TextSizeOptions = 'xs' | 'sm' | 'md' | 'lg' | 'xl' | number
+type TextSizes = { size?: TextSizeOptions }
+
+export type TextWeight =
+  | { regular?: true; medium?: never; semiBold?: never; bold?: never; extraBold?: never; black?: never }
+  | { regular?: never; medium?: true; semiBold?: never; bold?: never; extraBold?: never; black?: never }
+  | { regular?: never; medium?: never; semiBold?: true; bold?: never; extraBold?: never; black?: never }
+  | { regular?: never; medium?: never; semiBold?: never; bold?: true; extraBold?: never; black?: never }
+  | { regular?: never; medium?: never; semiBold?: never; bold?: never; extraBold?: true; black?: never }
+  | { regular?: never; medium?: never; semiBold?: never; bold?: never; extraBold?: never; black?: true }
+
+export type TextAttributes = TextDecorations & TextSizes & TextColor & TextWeight & { className?: string }
 
 export type TextProps = ReactWithChildren<SemanticTextTag & TextAttributes>
 

@@ -13,6 +13,8 @@ html,
 }
 
 :root {
+  --background: #eaf4f6;
+
   /*** COLOR PALETTE VARIABLES ***/
   /* SLATE */
   --slate-50: #f8fafc;

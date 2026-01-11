@@ -1,0 +1,6 @@
+.margin {
+  margin-left: var(--margin-left, var(--margin-x, var(--margin-xy, 0)));
+  margin-right: var(--margin-right, var(--margin-x, var(--margin-xy, 0)));
+  margin-top: var(--margin-top, var(--margin-y, var(--margin-xy, 0)));
+  margin-bottom: var(--margin-bottom, var(--margin-y, var(--margin-xy, 0)));
+}

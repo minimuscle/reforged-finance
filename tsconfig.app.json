@@ -11,7 +11,8 @@
       "routes/*": ["./src/routes/*"],
       "components/*": ["./src/components/*"],
       "api/*": ["./src/api/*"],
-      "utils/*": ["./src/utils/*"]
+      "utils/*": ["./src/utils/*"],
+      "assets/*": ["./src/assets/*"]
     },
 
     /* Bundler mode */

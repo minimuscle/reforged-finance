@@ -1,4 +1,7 @@
 export const colorTokens = [
+  // General
+  'background',
+
   // Slate
   'slate-50',
   'slate-100',

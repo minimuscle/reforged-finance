@@ -11,12 +11,14 @@ type Flex = ReactWithChildren<{
   gap?: 'none' | 'xs' | 'sm' | 'md' | 'lg' | 'xl'
   wrap?: boolean
   className?: string
+  fullWidth?: boolean
+  fullHeight?: boolean
 }>
 
 /**********************************************************************************************************
  *   COMPONENT START
  **********************************************************************************************************/
-export const Flex: Flex = ({ children, justify, align, direction, gap, wrap, className: otherClassName }) => {
+export const Flex: Flex = ({ children, justify, align, direction, gap, wrap, fullHeight, fullWidth, className: otherClassName }) => {
   const className = [
     styles.flex,
     styles[`justify-${justify}`],
@@ -24,6 +26,8 @@ export const Flex: Flex = ({ children, justify, align, direction, gap, wrap, cla
     styles[`direction-${direction}`],
     styles[`gap-${gap}`],
     wrap && styles.wrap,
+    fullHeight && styles.fullHeight,
+    fullWidth && styles.fullWidth,
     otherClassName,
   ]
     .filter(Boolean)

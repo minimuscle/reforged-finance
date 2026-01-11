@@ -1,0 +1,6 @@
+.padding {
+  padding-left: var(--padding-left, var(--padding-x, var(--padding-xy, 0)));
+  padding-right: var(--padding-right, var(--padding-x, var(--padding-xy, 0)));
+  padding-top: var(--padding-top, var(--padding-y, var(--padding-xy, 0)));
+  padding-bottom: var(--padding-bottom, var(--padding-y, var(--padding-xy, 0)));
+}
