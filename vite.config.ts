@@ -42,6 +42,7 @@ export default defineConfig({
       routes: '/src/routes',
       api: '/src/api',
       assets: '/src/assets',
+      queries: '/src/queries',
     },
   },
 })

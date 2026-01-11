@@ -1,5 +1,5 @@
 import { useMutation } from '@tanstack/react-query'
-import { redirect } from '@tanstack/react-router'
+import { useNavigate } from '@tanstack/react-router'
 import { Button } from 'components/Button'
 import { Flex } from 'components/Flex'
 import { useAppForm } from 'components/Form'
@@ -14,7 +14,9 @@ import styles from './login.module.css'
  *   COMPONENT START
  **********************************************************************************************************/
 export const SignupForm = () => {
+  /***** HOOKS *****/
   const { mutateAsync: signup } = useMutation(signupUser)
+  const navigate = useNavigate()
 
   const form = useAppForm({
     ...createFormOptions(
@@ -25,12 +27,9 @@ export const SignupForm = () => {
       }),
       { email: '', password: '', repeat_password: '' }
     ),
-    onSubmit: ({ value }) => {
-      signup(value, {
-        onSuccess: () => {
-          redirect({ to: '/' })
-        },
-      })
+    onSubmit: async ({ value }) => {
+      await signup(value)
+      return navigate({ to: '/' })
     },
   })
 

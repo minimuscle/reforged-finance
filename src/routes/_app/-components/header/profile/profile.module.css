@@ -1,0 +1,23 @@
+.container {
+  background-color: white;
+  border-radius: 75px;
+  height: 65px;
+  padding: 0 20px;
+  gap: 20px;
+}
+
+.notification {
+  background-color: var(--slate-100);
+  color: var(--slate-800);
+  border-radius: 40px;
+  width: 40px;
+  height: 40px;
+}
+
+.user {
+  background: linear-gradient(to top right, var(--purple-600), var(--fuchsia-500));
+  border-radius: 40px;
+  width: 40px;
+  height: 40px;
+  color: white;
+}

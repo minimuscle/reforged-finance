@@ -12,7 +12,8 @@
       "components/*": ["./src/components/*"],
       "api/*": ["./src/api/*"],
       "utils/*": ["./src/utils/*"],
-      "assets/*": ["./src/assets/*"]
+      "assets/*": ["./src/assets/*"],
+      "queries/*": ["./src/queries/*"]
     },
 
     /* Bundler mode */

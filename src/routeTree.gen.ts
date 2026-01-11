@@ -9,13 +9,18 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as LogoutRouteImport } from './routes/logout'
 import { Route as GuestRouteRouteImport } from './routes/_guest/route'
 import { Route as AppRouteRouteImport } from './routes/_app/route'
 import { Route as AppIndexRouteImport } from './routes/_app/index'
 import { Route as GuestSignupRouteImport } from './routes/_guest/signup'
 import { Route as GuestLoginRouteImport } from './routes/_guest/login'
-import { Route as AppTestRouteImport } from './routes/_app/test'
 
+const LogoutRoute = LogoutRouteImport.update({
+  id: '/logout',
+  path: '/logout',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const GuestRouteRoute = GuestRouteRouteImport.update({
   id: '/_guest',
   getParentRoute: () => rootRouteImport,
@@ -39,20 +44,15 @@ const GuestLoginRoute = GuestLoginRouteImport.update({
   path: '/login',
   getParentRoute: () => GuestRouteRoute,
 } as any)
-const AppTestRoute = AppTestRouteImport.update({
-  id: '/test',
-  path: '/test',
-  getParentRoute: () => AppRouteRoute,
-} as any)
 
 export interface FileRoutesByFullPath {
-  '/test': typeof AppTestRoute
+  '/logout': typeof LogoutRoute
   '/login': typeof GuestLoginRoute
   '/signup': typeof GuestSignupRoute
   '/': typeof AppIndexRoute
 }
 export interface FileRoutesByTo {
-  '/test': typeof AppTestRoute
+  '/logout': typeof LogoutRoute
   '/login': typeof GuestLoginRoute
   '/signup': typeof GuestSignupRoute
   '/': typeof AppIndexRoute
@@ -61,21 +61,21 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/_app': typeof AppRouteRouteWithChildren
   '/_guest': typeof GuestRouteRouteWithChildren
-  '/_app/test': typeof AppTestRoute
+  '/logout': typeof LogoutRoute
   '/_guest/login': typeof GuestLoginRoute
   '/_guest/signup': typeof GuestSignupRoute
   '/_app/': typeof AppIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/test' | '/login' | '/signup' | '/'
+  fullPaths: '/logout' | '/login' | '/signup' | '/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/test' | '/login' | '/signup' | '/'
+  to: '/logout' | '/login' | '/signup' | '/'
   id:
     | '__root__'
     | '/_app'
     | '/_guest'
-    | '/_app/test'
+    | '/logout'
     | '/_guest/login'
     | '/_guest/signup'
     | '/_app/'
@@ -84,10 +84,18 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   AppRouteRoute: typeof AppRouteRouteWithChildren
   GuestRouteRoute: typeof GuestRouteRouteWithChildren
+  LogoutRoute: typeof LogoutRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/logout': {
+      id: '/logout'
+      path: '/logout'
+      fullPath: '/logout'
+      preLoaderRoute: typeof LogoutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/_guest': {
       id: '/_guest'
       path: ''
@@ -123,23 +131,14 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof GuestLoginRouteImport
       parentRoute: typeof GuestRouteRoute
     }
-    '/_app/test': {
-      id: '/_app/test'
-      path: '/test'
-      fullPath: '/test'
-      preLoaderRoute: typeof AppTestRouteImport
-      parentRoute: typeof AppRouteRoute
-    }
   }
 }
 
 interface AppRouteRouteChildren {
-  AppTestRoute: typeof AppTestRoute
   AppIndexRoute: typeof AppIndexRoute
 }
 
 const AppRouteRouteChildren: AppRouteRouteChildren = {
-  AppTestRoute: AppTestRoute,
   AppIndexRoute: AppIndexRoute,
 }
 
@@ -164,6 +163,7 @@ const GuestRouteRouteWithChildren = GuestRouteRoute._addFileChildren(
 const rootRouteChildren: RootRouteChildren = {
   AppRouteRoute: AppRouteRouteWithChildren,
   GuestRouteRoute: GuestRouteRouteWithChildren,
+  LogoutRoute: LogoutRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
