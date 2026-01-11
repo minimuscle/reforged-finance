@@ -1,0 +1,19 @@
+.container {
+  background-color: var(--background);
+  min-height: 100svh;
+}
+
+.info {
+  height: 100svh;
+
+  img {
+    width: 75%;
+  }
+}
+
+.panel {
+  background-color: white;
+  min-width: 500px;
+  width: 60%;
+  padding-top: 100px;
+}

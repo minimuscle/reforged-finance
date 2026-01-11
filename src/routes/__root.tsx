@@ -1,19 +1,26 @@
-import { createRootRouteWithContext, redirect } from "@tanstack/react-router"
-import type { QueryClient } from "@tanstack/react-query"
-import { App } from "../App"
-import { auth } from "../api/auth"
+import * as React from 'react'
+import { createRootRouteWithContext, HeadContent, Outlet } from '@tanstack/react-router'
+import type { RouterContext } from '../utils/types/router.ts'
 
-export const Route = createRootRouteWithContext<{
-  queryClient: QueryClient
-}>()({
-  //Check if user is authenticated
-  beforeLoad: async () => {
-    const res = await auth.GET.session()
-    if (!res && window.location.pathname !== "/login" && window.location.pathname !== "/signup") {
-      throw redirect({ to: "/login" })
-    } else if (res && (window.location.pathname === "/login" || window.location.pathname === "/signup")) {
-      throw redirect({ to: "/" })
-    }
-  },
-  component: App,
+/******************************************************
+ *   ROOT ROUTE START
+ ******************************************************/
+export const Route = createRootRouteWithContext<RouterContext>()({
+  head: () => ({
+    meta: [
+      {
+        title: 'Reforged Finance',
+      },
+    ],
+  }),
+  component: RootComponent,
 })
+
+function RootComponent() {
+  return (
+    <React.Fragment>
+      <HeadContent />
+      <Outlet />
+    </React.Fragment>
+  )
+}

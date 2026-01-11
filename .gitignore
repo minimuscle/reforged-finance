@@ -23,7 +23,6 @@ dist-ssr
 *.sln
 *.sw?
 
-# Hide old code files
-/hidden
+hidden/*
 
 .env

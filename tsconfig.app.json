@@ -1,16 +1,25 @@
 {
   "compilerOptions": {
     "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.app.tsbuildinfo",
-    "target": "ES2020",
+    "target": "ES2022",
     "useDefineForClassFields": true,
-    "lib": ["ES2020", "DOM", "DOM.Iterable"],
+    "lib": ["ES2022", "DOM", "DOM.Iterable"],
     "module": "ESNext",
+    "types": ["vite/client"],
     "skipLibCheck": true,
+    "paths": {
+      "routes/*": ["./src/routes/*"],
+      "components/*": ["./src/components/*"],
+      "api/*": ["./src/api/*"],
+      "utils/*": ["./src/utils/*"],
+      "assets/*": ["./src/assets/*"],
+      "queries/*": ["./src/queries/*"]
+    },
 
     /* Bundler mode */
-    "moduleResolution": "Bundler",
+    "moduleResolution": "bundler",
     "allowImportingTsExtensions": true,
-    "isolatedModules": true,
+    "verbatimModuleSyntax": true,
     "moduleDetection": "force",
     "noEmit": true,
     "jsx": "react-jsx",
@@ -19,18 +28,9 @@
     "strict": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
+    "erasableSyntaxOnly": true,
     "noFallthroughCasesInSwitch": true,
-    "noUncheckedSideEffectImports": true,
-
-    /* Custom */
-    "baseUrl": "./",
-    "paths": {
-      "components/*": ["src/components/*"],
-      "assets/*": ["src/assets/*"],
-      "utils/*": ["src/utils/*"],
-      "containers/*": ["src/containers/*"],
-      "routes/*": ["src/routes/*"]
-    }
+    "noUncheckedSideEffectImports": true
   },
   "include": ["src"]
 }

@@ -1,18 +1,48 @@
-import { defineConfig } from "vite"
-import react from "@vitejs/plugin-react-swc"
-import { TanStackRouterVite } from "@tanstack/router-plugin/vite"
-import path from "path"
+import { tanstackRouter } from '@tanstack/router-plugin/vite'
+import react from '@vitejs/plugin-react'
+import { defineConfig } from 'vite'
 
 // https://vite.dev/config/
 export default defineConfig({
-  plugins: [TanStackRouterVite(), react()],
+  plugins: [
+    tanstackRouter({
+      target: 'react',
+      customScaffolding: {
+        routeTemplate: [
+          '%%tsrImports%%',
+          '\n\n',
+          '/******************************************************\n',
+          ' *   ROUTE START\n',
+          ' ******************************************************/\n',
+          '%%tsrExportStart%%{\n',
+          '   component: RouteComponent\n',
+          '}%%tsrExportEnd%%\n\n',
+          '/******************************************************\n',
+          ' *   ROUTE COMPONENT START\n',
+          ' ******************************************************/\n',
+          'function RouteComponent() {\n\n',
+          '  /***** RENDER *****/\n',
+          '  return (\n',
+          '      <div>Hello "%%tsrPath%%"!</div>\n',
+          '  );\n',
+          '};\n',
+        ].join(''),
+      },
+    }),
+    react({
+      babel: {
+        plugins: [['babel-plugin-react-compiler']],
+      },
+    }),
+  ],
   resolve: {
     alias: {
-      components: path.resolve(__dirname, "src/components"),
-      assets: path.resolve(__dirname, "src/assets"),
-      utils: path.resolve(__dirname, "src/utils"),
-      containers: path.resolve(__dirname, "src/containers"),
-      routes: path.resolve(__dirname, "src/routes"),
+      components: '/src/components',
+      utils: '/src/utils',
+      routes: '/src/routes',
+      api: '/src/api',
+      assets: '/src/assets',
+      queries: '/src/queries',
     },
   },
 })

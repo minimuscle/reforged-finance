@@ -1,0 +1,11 @@
+.container {
+  background-color: white;
+  border-radius: 75px;
+  height: 65px;
+  padding: 0 25px 0 10px;
+  gap: 10px;
+}
+
+.link {
+  text-decoration: none;
+}

@@ -1,0 +1,12 @@
+.container {
+  background-color: white;
+  border-radius: 75px;
+  height: 50px;
+  width: max-content;
+  padding: 0 20px;
+  gap: 30px;
+
+  a {
+    text-decoration: none;
+  }
+}
