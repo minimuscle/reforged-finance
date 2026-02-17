@@ -1,3 +1,4 @@
+import type { CSSProperties } from 'react'
 import type { ReactWithChildren } from 'utils/types/general'
 import styles from './Flex.module.css'
 
@@ -8,7 +9,7 @@ type Flex = ReactWithChildren<{
   justify?: 'start' | 'center' | 'end' | 'between' | 'around' | 'evenly'
   align?: 'start' | 'center' | 'end' | 'stretch' | 'baseline'
   direction?: 'row' | 'column' | 'row-reverse' | 'column-reverse'
-  gap?: 'none' | 'xs' | 'sm' | 'md' | 'lg' | 'xl'
+  gap?: number
   wrap?: boolean
   className?: string
   fullWidth?: boolean
@@ -24,7 +25,7 @@ export const Flex: Flex = ({ children, justify, align, direction, gap, wrap, ful
     styles[`justify-${justify}`],
     styles[`align-${align}`],
     styles[`direction-${direction}`],
-    styles[`gap-${gap}`],
+    gap && styles.gap,
     wrap && styles.wrap,
     fullHeight && styles.fullHeight,
     fullWidth && styles.fullWidth,
@@ -32,5 +33,11 @@ export const Flex: Flex = ({ children, justify, align, direction, gap, wrap, ful
   ]
     .filter(Boolean)
     .join(' ')
-  return <div className={className}>{children}</div>
+
+  /***** RENDER *****/
+  return (
+    <div className={className} style={{ '--gap': `${gap}px` } as CSSProperties}>
+      {children}
+    </div>
+  )
 }

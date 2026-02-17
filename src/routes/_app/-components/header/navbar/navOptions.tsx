@@ -20,7 +20,7 @@ export const NavOption: NavOption = ({ to, icon: Icon, children }) => {
   return (
     <Link to={to}>
       {({ isActive }) => (
-        <Flex gap="sm" align="center">
+        <Flex gap={10} align="center">
           <Icon weight={isActive ? 'fill' : 'regular'} size={24} color={isActive ? 'var(--cyan-600)' : 'var(--slate-500)'} />
           <Text bold={isActive} color={isActive ? 'info' : 'default'}>
             {children}

@@ -54,23 +54,8 @@
 }
 
 /* Gap */
-.gap-none {
-  gap: 0;
-}
-.gap-xs {
-  gap: 4px;
-}
-.gap-sm {
-  gap: 8px;
-}
-.gap-md {
-  gap: 12px;
-}
-.gap-lg {
-  gap: 16px;
-}
-.gap-xl {
-  gap: 24px;
+.gap {
+  gap: var(--gap, 0);
 }
 
 /* Wrap */

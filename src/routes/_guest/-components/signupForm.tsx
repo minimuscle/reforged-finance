@@ -36,7 +36,7 @@ export const SignupForm = () => {
   /***** RENDER *****/
   return (
     <Form form={form}>
-      <Flex direction="column" gap="xl">
+      <Flex direction="column" gap={20}>
         <form.AppField name="email" children={(field) => <field.TextInput label="Email Address" autoComplete="email" />} />
         <form.AppField
           name="password"

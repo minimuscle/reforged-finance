@@ -12,7 +12,7 @@ export const Route = createFileRoute('/_guest/signup')({
 function RouteComponent() {
   return (
     <div className={styles.container}>
-      <Flex gap="sm" direction="column" fullWidth>
+      <Flex gap={10} direction="column" fullWidth>
         <SignupForm />
         <Padding top={10}>
           <Text color="grey" size="xs">

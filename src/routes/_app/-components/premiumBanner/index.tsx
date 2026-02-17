@@ -13,7 +13,7 @@ export const PremiumBanner = () => {
   return (
     <Flex align="center" justify="between" fullWidth className={styles.container}>
       <Flex direction="column">
-        <Flex gap={'sm'}>
+        <Flex gap={10}>
           <Heading color="white" bold size={20}>
             Do more with Premium
           </Heading>
