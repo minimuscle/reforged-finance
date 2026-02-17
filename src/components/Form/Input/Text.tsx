@@ -1,6 +1,5 @@
-import { useFieldContext } from 'components/Form'
+import { useFieldContext, useFormContext } from 'components/Form'
 import styles from './Input.module.css'
-import { useStore } from '@tanstack/react-form'
 
 /**********************************************************************************************************
  *   TYPE DEFINITIONS
@@ -16,8 +15,11 @@ type TextInput = React.FC<
  **********************************************************************************************************/
 export const TextInput: TextInput = ({ label, ...props }) => {
   const field = useFieldContext<string>()
-  const errors = useStore(field.store, (state) => state.meta.errors)
+  const {
+    state: { submissionAttempts },
+  } = useFormContext()
 
+  /***** RENDER *****/
   return (
     <div className={styles.container}>
       <label htmlFor={field.name} className={styles.label}>
@@ -32,7 +34,8 @@ export const TextInput: TextInput = ({ label, ...props }) => {
         onBlur={field.handleBlur}
         {...props}
       />
-      <p className={styles.errorMessage}>{errors.join(', ')}</p>
+
+      {field.state.meta.errors && submissionAttempts > 0 && <p className={styles.errorMessage}>{field.state.meta.errors[0]?.message}</p>}
     </div>
   )
 }

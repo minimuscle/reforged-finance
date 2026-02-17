@@ -19,7 +19,7 @@ export const Form: Form = ({ children, form }) => {
         form.handleSubmit()
       }}
     >
-      {children}
+      <form.AppForm>{children}</form.AppForm>
     </form>
   )
 }
