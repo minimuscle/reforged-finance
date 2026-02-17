@@ -1,9 +1,10 @@
 import { createFileRoute } from '@tanstack/react-router'
+import { Button } from '../../../components/Button'
 
 /******************************************************
  *   ROUTE START
  ******************************************************/
-export const Route = createFileRoute('/_app/premium/')({
+export const Route = createFileRoute('/_authedOther/premium/')({
   component: RouteComponent,
 })
 
@@ -12,5 +13,10 @@ export const Route = createFileRoute('/_app/premium/')({
  ******************************************************/
 function RouteComponent() {
   /***** RENDER *****/
-  return <div>Hello "/_app/premium/"!</div>
+  return (
+    <div>
+      <Button.Link to="/">Close</Button.Link>
+      Hello "/_app/premium/"!
+    </div>
+  )
 }

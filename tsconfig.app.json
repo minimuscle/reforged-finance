@@ -13,7 +13,8 @@
       "api/*": ["./src/api/*"],
       "utils/*": ["./src/utils/*"],
       "assets/*": ["./src/assets/*"],
-      "queries/*": ["./src/queries/*"]
+      "queries/*": ["./src/queries/*"],
+      "src/*": ["./src/*"]
     },
 
     /* Bundler mode */

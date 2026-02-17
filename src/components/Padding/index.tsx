@@ -3,9 +3,10 @@ import type { PaddingProps } from 'components/Padding/types'
 /**********************************************************************************************************
  *   COMPONENT START
  **********************************************************************************************************/
-export const Padding: PaddingProps = ({ xy, x, y, top, bottom, left, right, children }) => {
+export const Padding: PaddingProps = ({ xy, x, y, top, bottom, left, right, children, className }) => {
   return (
     <div
+      className={className}
       style={{
         paddingLeft: left ? `${left}px` : x ? `${x}px` : xy ? `${xy}px` : '0',
         paddingRight: right ? `${right}px` : x ? `${x}px` : xy ? `${xy}px` : '0',

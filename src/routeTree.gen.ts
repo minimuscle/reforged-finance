@@ -14,11 +14,11 @@ import { Route as GuestRouteRouteImport } from './routes/_guest/route'
 import { Route as AppRouteRouteImport } from './routes/_app/route'
 import { Route as GuestSignupRouteImport } from './routes/_guest/signup'
 import { Route as GuestLoginRouteImport } from './routes/_guest/login'
+import { Route as AuthedOtherPremiumIndexRouteImport } from './routes/_authedOther/premium/index'
 import { Route as AppSuperIndexRouteImport } from './routes/_app/super/index'
 import { Route as AppStocksIndexRouteImport } from './routes/_app/stocks/index'
 import { Route as AppSettingsIndexRouteImport } from './routes/_app/settings/index'
 import { Route as AppPropertyIndexRouteImport } from './routes/_app/property/index'
-import { Route as AppPremiumIndexRouteImport } from './routes/_app/premium/index'
 import { Route as AppHistoryIndexRouteImport } from './routes/_app/history/index'
 import { Route as AppGoalsIndexRouteImport } from './routes/_app/goals/index'
 import { Route as AppDebtsIndexRouteImport } from './routes/_app/debts/index'
@@ -49,6 +49,11 @@ const GuestLoginRoute = GuestLoginRouteImport.update({
   path: '/login',
   getParentRoute: () => GuestRouteRoute,
 } as any)
+const AuthedOtherPremiumIndexRoute = AuthedOtherPremiumIndexRouteImport.update({
+  id: '/_authedOther/premium/',
+  path: '/premium/',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AppSuperIndexRoute = AppSuperIndexRouteImport.update({
   id: '/super/',
   path: '/super/',
@@ -67,11 +72,6 @@ const AppSettingsIndexRoute = AppSettingsIndexRouteImport.update({
 const AppPropertyIndexRoute = AppPropertyIndexRouteImport.update({
   id: '/property/',
   path: '/property/',
-  getParentRoute: () => AppRouteRoute,
-} as any)
-const AppPremiumIndexRoute = AppPremiumIndexRouteImport.update({
-  id: '/premium/',
-  path: '/premium/',
   getParentRoute: () => AppRouteRoute,
 } as any)
 const AppHistoryIndexRoute = AppHistoryIndexRouteImport.update({
@@ -115,11 +115,11 @@ export interface FileRoutesByFullPath {
   '/debts/': typeof AppDebtsIndexRoute
   '/goals/': typeof AppGoalsIndexRoute
   '/history/': typeof AppHistoryIndexRoute
-  '/premium/': typeof AppPremiumIndexRoute
   '/property/': typeof AppPropertyIndexRoute
   '/settings/': typeof AppSettingsIndexRoute
   '/stocks/': typeof AppStocksIndexRoute
   '/super/': typeof AppSuperIndexRoute
+  '/premium/': typeof AuthedOtherPremiumIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof AppDashboardIndexRoute
@@ -131,11 +131,11 @@ export interface FileRoutesByTo {
   '/debts': typeof AppDebtsIndexRoute
   '/goals': typeof AppGoalsIndexRoute
   '/history': typeof AppHistoryIndexRoute
-  '/premium': typeof AppPremiumIndexRoute
   '/property': typeof AppPropertyIndexRoute
   '/settings': typeof AppSettingsIndexRoute
   '/stocks': typeof AppStocksIndexRoute
   '/super': typeof AppSuperIndexRoute
+  '/premium': typeof AuthedOtherPremiumIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -150,11 +150,11 @@ export interface FileRoutesById {
   '/_app/debts/': typeof AppDebtsIndexRoute
   '/_app/goals/': typeof AppGoalsIndexRoute
   '/_app/history/': typeof AppHistoryIndexRoute
-  '/_app/premium/': typeof AppPremiumIndexRoute
   '/_app/property/': typeof AppPropertyIndexRoute
   '/_app/settings/': typeof AppSettingsIndexRoute
   '/_app/stocks/': typeof AppStocksIndexRoute
   '/_app/super/': typeof AppSuperIndexRoute
+  '/_authedOther/premium/': typeof AuthedOtherPremiumIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -168,11 +168,11 @@ export interface FileRouteTypes {
     | '/debts/'
     | '/goals/'
     | '/history/'
-    | '/premium/'
     | '/property/'
     | '/settings/'
     | '/stocks/'
     | '/super/'
+    | '/premium/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -184,11 +184,11 @@ export interface FileRouteTypes {
     | '/debts'
     | '/goals'
     | '/history'
-    | '/premium'
     | '/property'
     | '/settings'
     | '/stocks'
     | '/super'
+    | '/premium'
   id:
     | '__root__'
     | '/_app'
@@ -202,17 +202,18 @@ export interface FileRouteTypes {
     | '/_app/debts/'
     | '/_app/goals/'
     | '/_app/history/'
-    | '/_app/premium/'
     | '/_app/property/'
     | '/_app/settings/'
     | '/_app/stocks/'
     | '/_app/super/'
+    | '/_authedOther/premium/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   AppRouteRoute: typeof AppRouteRouteWithChildren
   GuestRouteRoute: typeof GuestRouteRouteWithChildren
   LogoutRoute: typeof LogoutRoute
+  AuthedOtherPremiumIndexRoute: typeof AuthedOtherPremiumIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -252,6 +253,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof GuestLoginRouteImport
       parentRoute: typeof GuestRouteRoute
     }
+    '/_authedOther/premium/': {
+      id: '/_authedOther/premium/'
+      path: '/premium'
+      fullPath: '/premium/'
+      preLoaderRoute: typeof AuthedOtherPremiumIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/_app/super/': {
       id: '/_app/super/'
       path: '/super'
@@ -278,13 +286,6 @@ declare module '@tanstack/react-router' {
       path: '/property'
       fullPath: '/property/'
       preLoaderRoute: typeof AppPropertyIndexRouteImport
-      parentRoute: typeof AppRouteRoute
-    }
-    '/_app/premium/': {
-      id: '/_app/premium/'
-      path: '/premium'
-      fullPath: '/premium/'
-      preLoaderRoute: typeof AppPremiumIndexRouteImport
       parentRoute: typeof AppRouteRoute
     }
     '/_app/history/': {
@@ -339,7 +340,6 @@ interface AppRouteRouteChildren {
   AppDebtsIndexRoute: typeof AppDebtsIndexRoute
   AppGoalsIndexRoute: typeof AppGoalsIndexRoute
   AppHistoryIndexRoute: typeof AppHistoryIndexRoute
-  AppPremiumIndexRoute: typeof AppPremiumIndexRoute
   AppPropertyIndexRoute: typeof AppPropertyIndexRoute
   AppSettingsIndexRoute: typeof AppSettingsIndexRoute
   AppStocksIndexRoute: typeof AppStocksIndexRoute
@@ -353,7 +353,6 @@ const AppRouteRouteChildren: AppRouteRouteChildren = {
   AppDebtsIndexRoute: AppDebtsIndexRoute,
   AppGoalsIndexRoute: AppGoalsIndexRoute,
   AppHistoryIndexRoute: AppHistoryIndexRoute,
-  AppPremiumIndexRoute: AppPremiumIndexRoute,
   AppPropertyIndexRoute: AppPropertyIndexRoute,
   AppSettingsIndexRoute: AppSettingsIndexRoute,
   AppStocksIndexRoute: AppStocksIndexRoute,
@@ -382,6 +381,7 @@ const rootRouteChildren: RootRouteChildren = {
   AppRouteRoute: AppRouteRouteWithChildren,
   GuestRouteRoute: GuestRouteRouteWithChildren,
   LogoutRoute: LogoutRoute,
+  AuthedOtherPremiumIndexRoute: AuthedOtherPremiumIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

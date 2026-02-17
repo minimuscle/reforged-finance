@@ -1,4 +1,5 @@
 import { BellIcon } from '@phosphor-icons/react'
+import { Link } from '@tanstack/react-router'
 import { Flex } from 'components/Flex'
 import { Text } from 'components/Text'
 import styles from './profile.module.css'
@@ -16,13 +17,13 @@ export const GlobalHeaderProfile = () => {
           <BellIcon size={28} />
         </Flex>
       </button>
-      <button>
+      <Link to="/settings">
         <Flex align="center" justify="center" className={styles.user}>
           <Text color="white" bold>
             JT
           </Text>
         </Flex>
-      </button>
+      </Link>
     </Flex>
   )
 }

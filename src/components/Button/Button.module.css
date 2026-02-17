@@ -18,3 +18,19 @@
     background-color: color-mix(in srgb, var(--button-color), black 40%);
   }
 }
+
+.buttonLink {
+  color: white;
+  background-color: white;
+  height: 44px;
+  padding: 0 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  cursor: pointer;
+  border-radius: 30px;
+
+  a {
+    text-decoration: none;
+  }
+}

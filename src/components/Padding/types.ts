@@ -11,4 +11,5 @@ export type PaddingProps = ReactWithChildren<{
   bottom?: number
   left?: number
   right?: number
+  className?: string
 }>

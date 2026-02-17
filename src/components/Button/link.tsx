@@ -1,4 +1,5 @@
-import type { ButtonHTMLAttributes, CSSProperties } from 'react'
+import { Link, type LinkComponentProps } from '@tanstack/react-router'
+import type { CSSProperties } from 'react'
 import { colorVar, type ColorToken } from 'utils/css/styles'
 import type { ReactWithChildren } from 'utils/types/general'
 import styles from './Button.module.css'
@@ -9,18 +10,18 @@ import styles from './Button.module.css'
 type Button = ReactWithChildren<
   {
     color?: ColorToken
-  } & ButtonHTMLAttributes<HTMLButtonElement>
+  } & LinkComponentProps
 >
 
 /**********************************************************************************************************
  *   COMPONENT START
  **********************************************************************************************************/
-export const Button: Button = ({ children, color, ...props }) => {
+export const InternalLinkButton: Button = ({ children, color, ...props }) => {
   return (
-    <div style={{ '--button-color': colorVar(color ?? 'cyan-600') } as CSSProperties}>
-      <button className={styles.button} {...props}>
+    <div style={{ '--button-color': colorVar(color ?? 'cyan-600') } as CSSProperties} className={styles.buttonLink}>
+      <Link {...props} preload="intent">
         {children}
-      </button>
+      </Link>
     </div>
   )
 }

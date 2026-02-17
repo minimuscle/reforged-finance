@@ -23,9 +23,9 @@ export const PremiumBanner = () => {
           Unlock all features, advanced insights, and powerful tools to manage your finances with confidence
         </Text>
       </Flex>
-      <Button color="white">
+      <Button.Link to="/premium" color="white">
         <Text bold>Go Premium</Text>
-      </Button>
+      </Button.Link>
     </Flex>
   )
 }

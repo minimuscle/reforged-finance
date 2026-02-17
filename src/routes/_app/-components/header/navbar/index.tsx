@@ -16,10 +16,10 @@ export const GlobalHeaderNavBar = () => {
       <NavOption to="/login" icon={CoinsIcon}>
         Money
       </NavOption>
-      <NavOption to="/signup" icon={NotepadIcon}>
+      <NavOption to="/budget" icon={NotepadIcon}>
         Budget
       </NavOption>
-      <NavOption to="/logout" icon={ClockCounterClockwiseIcon}>
+      <NavOption to="/history" icon={ClockCounterClockwiseIcon}>
         History
       </NavOption>
     </Flex>

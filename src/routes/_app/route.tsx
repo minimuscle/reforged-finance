@@ -24,7 +24,7 @@ function RouteComponent() {
     <div className={styles.container}>
       <GlobalHeader />
       <PremiumBanner />
-      <Padding top={20}>
+      <Padding top={20} className={styles.content}>
         <Outlet />
       </Padding>
     </div>

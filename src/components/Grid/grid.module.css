@@ -1,0 +1,9 @@
+.Grid {
+  display: grid;
+  grid-template-columns: var(--columns);
+  gap: var(--gap, 0);
+}
+
+.GridColumn {
+  grid-column: var(--span);
+}
