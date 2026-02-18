@@ -1,5 +1,6 @@
-import { ClockCounterClockwiseIcon, CoinsIcon, HouseIcon, NotepadIcon } from '@phosphor-icons/react'
+import { ClockCounterClockwiseIcon, HouseIcon, NotepadIcon } from '@phosphor-icons/react'
 import { Flex } from 'components/Flex'
+import { NavMoneyDropdown } from 'routes/_app/-components/header/navbar/navDropdown'
 import { NavOption } from 'routes/_app/-components/header/navbar/navOptions'
 import styles from './navbar.module.css'
 
@@ -13,9 +14,7 @@ export const GlobalHeaderNavBar = () => {
       <NavOption to="/" icon={HouseIcon}>
         Dashboard
       </NavOption>
-      <NavOption to="/login" icon={CoinsIcon}>
-        Money
-      </NavOption>
+      <NavMoneyDropdown />
       <NavOption to="/budget" icon={NotepadIcon}>
         Budget
       </NavOption>
